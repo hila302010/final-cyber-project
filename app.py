@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('w3css.html')
+    return render_template('OsinTech/index.html')
 
 @app.route('/submit', methods=['POST'])
 def submit():
