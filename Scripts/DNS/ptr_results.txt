@@ -1,0 +1,6 @@
+8.8.8.8 -> dns.google.
+8.8.8.8 -> dns.google.
+132.72.118.41 -> Error: The DNS query name does not exist: 41.118.72.132.in-addr.arpa.
+1.2.0.192 -> Error: The DNS query name does not exist: 192.0.2.1.in-addr.arpa.
+41.118.72.132 -> Error: The DNS query name does not exist: 132.72.118.41.in-addr.arpa.
+192.128.0.2 -> Error: The resolution lifetime expired after 5.214 seconds: Server Do53:132.72.140.46@53 answered SERVFAIL; Server Do53:132.72.140.45@53 answered SERVFAIL; Server Do53:172.29.1.171@53 answered The DNS operation timed out.; Server Do53:172.29.1.171@53 answered The DNS operation timed out.

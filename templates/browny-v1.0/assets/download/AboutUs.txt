@@ -1,0 +1,6 @@
+Welcome To OsinTech!
+Our project leverages Open Source Intelligence (OSINT) to gather and analyze relevant data based on a given domain name, company name, and country name. Using custom Python scripts, we interact with powerful tools such as Shodan, WHOIS databases, and networksDB to extract key information.
+
+Additionally, we gather insights about the company’s workforce from LinkedIn, and utilize GitHub and Google Dorks to uncover publicly available data related to the company’s infrastructure, code repositories, and potential vulnerabilities.
+
+By aggregating and analyzing this information, our project aims to provide a comprehensive view of an organization's online presence and security posture, offering valuable insights for cybersecurity professionals, researchers, and analysts.

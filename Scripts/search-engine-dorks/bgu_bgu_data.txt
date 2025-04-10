@@ -1,0 +1,131 @@
+Email Address	Source URL	Email Dork
+support@bgu	https://play.google.com/store/apps/details?id=com.mobitti.bgu&hl=en	intext:@bgu
+support@bgu	https://play.google.com/store/apps/details?id=com.mobitti.bgu	inurl:@bgu
+support@bgu	https://play.google.com/store/apps/details?id=com.mobitti.bgu&hl=en	intext:@bgu
+support@bgu	https://play.google.com/store/apps/details?id=com.mobitti.bgu	inurl:@bgu
+Passwords	Source URL	Password Dork
+Files	Source URL	Files Dork
+File URL: 
+Dork Used: site:bgu filetype:pdf
+==================================================
+File URL: 
+Dork Used: site:bgu filetype:pdf
+==================================================
+File URL: 
+Dork Used: site:bgu filetype:pdf
+==================================================
+File URL: 
+Dork Used: site:bgu filetype:pdf
+==================================================
+File URL: 
+Dork Used: site:bgu filetype:pdf
+==================================================
+File URL: 
+Dork Used: site:bgu filetype:pdf
+==================================================
+File URL: 
+Dork Used: site:bgu filetype:pdf
+==================================================
+File URL: 
+Dork Used: site:bgu filetype:pdf
+==================================================
+File URL: 
+Dork Used: site:bgu filetype:pdf
+==================================================
+File URL: 
+Dork Used: site:bgu filetype:pdf
+==================================================
+File URL: 
+Dork Used: site:bgu filetype:docx
+==================================================
+File URL: 
+Dork Used: site:bgu filetype:docx
+==================================================
+File URL: 
+Dork Used: site:bgu filetype:docx
+==================================================
+File URL: 
+Dork Used: site:bgu filetype:docx
+==================================================
+File URL: 
+Dork Used: site:bgu filetype:docx
+==================================================
+File URL: 
+Dork Used: site:bgu filetype:docx
+==================================================
+File URL: 
+Dork Used: site:bgu filetype:docx
+==================================================
+File URL: 
+Dork Used: site:bgu filetype:docx
+==================================================
+File URL: 
+Dork Used: site:bgu filetype:docx
+==================================================
+File URL: 
+Dork Used: site:bgu filetype:docx
+==================================================
+File URL: 
+Dork Used: site:bgu filetype:xlsx
+==================================================
+File URL: 
+Dork Used: site:bgu filetype:xlsx
+==================================================
+File URL: 
+Dork Used: site:bgu filetype:xlsx
+==================================================
+File URL: 
+Dork Used: site:bgu filetype:xlsx
+==================================================
+File URL: 
+Dork Used: site:bgu filetype:xlsx
+==================================================
+File URL: 
+Dork Used: site:bgu filetype:xlsx
+==================================================
+File URL: 
+Dork Used: site:bgu filetype:xlsx
+==================================================
+File URL: 
+Dork Used: site:bgu filetype:xlsx
+==================================================
+File URL: 
+Dork Used: site:bgu filetype:xlsx
+==================================================
+File URL: 
+Dork Used: site:bgu filetype:xlsx
+==================================================
+File URL: 
+Dork Used: site:bgu filetype:pptx
+==================================================
+File URL: 
+Dork Used: site:bgu filetype:pptx
+==================================================
+File URL: 
+Dork Used: site:bgu filetype:pptx
+==================================================
+File URL: 
+Dork Used: site:bgu filetype:pptx
+==================================================
+File URL: 
+Dork Used: site:bgu filetype:pptx
+==================================================
+File URL: 
+Dork Used: site:bgu filetype:pptx
+==================================================
+File URL: 
+Dork Used: site:bgu filetype:pptx
+==================================================
+File URL: 
+Dork Used: site:bgu filetype:pptx
+==================================================
+File URL: 
+Dork Used: site:bgu filetype:pptx
+==================================================
+File URL: 
+Dork Used: site:bgu filetype:pptx
+==================================================
+File URL: 
+Dork Used: site:bgu filetype:txt
+==================================================
+Admin	Source URL	Admin Dork

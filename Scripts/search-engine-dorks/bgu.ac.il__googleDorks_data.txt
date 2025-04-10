@@ -1,0 +1,568 @@
+Email Address	Source URL	Email Dork
+heshbons@bgu.ac.il	https://www.bgu.ac.il/welcome/payments-lobby/	intext:@bgu.ac.il
+helpDesk@bgu.ac.il	https://www.bgu.ac.il/academic-calendar/	intext:@bgu.ac.il
+helpdesk@bgu.ac.il	https://www.bgu.ac.il/welcome/contents/course-registration/courses-registration/	intext:@bgu.ac.il
+miluim@bgu.ac.il	https://www.bgu.ac.il/welcome/mitve2025/	intext:@bgu.ac.il
+efratkol@bgu.ac.il	https://www.bgu.ac.il/welcome/mitve2025/	intext:@bgu.ac.il
+helpdesk@bgu.ac.il	https://tamrur.bgu.ac.il/wcp/login.php	intext:@bgu.ac.il
+mimon@bgu.ac.il	https://www.bgu.ac.il/welcome/ba/scholarship-lobby/	intext:@bgu.ac.il
+havidaf@bgu.ac.il	https://www.bgu.ac.il/welcome/ba/scholarship-lobby/	intext:@bgu.ac.il
+siada@bgu.ac.il	https://www.bgu.ac.il/welcome/ba/scholarship-lobby/	intext:@bgu.ac.il
+heshbons@bgu.ac.il	https://www.bgu.ac.il/welcome/payments-lobby/	site:bgu.ac.il intext:@bgu.ac.il
+helpDesk@bgu.ac.il	https://www.bgu.ac.il/academic-calendar/	site:bgu.ac.il intext:@bgu.ac.il
+helpdesk@bgu.ac.il	https://www.bgu.ac.il/welcome/contents/course-registration/courses-registration/	site:bgu.ac.il intext:@bgu.ac.il
+mlast@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+lynnsch@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+batelgo@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+yahelh@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+codishd@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+ozkira@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+mamiram@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+rusek@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+FoM.HTMSC@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+nettaach@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+hanac@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+mks@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+weissj@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+roth@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+kogut@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+benyoav@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+tropper@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+mayaco@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+offenber@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+marzok@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+ratson@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+hadashaw@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+achiya@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+arikc@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+heiman@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+laviema@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+updatebgu@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+mizrahii@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+haklaime@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+cana@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+litvakhi@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+inaviv@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+suisac@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+livnon@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+liorab@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+elmakaie@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+doritd@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+liatti@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+annayan@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+taliben@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+dgrave@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+atiasa@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+ophirsh@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+offere@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+hagitz@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+larazi@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+deihi@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+lusiana@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+seifan@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+mmm@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+eranmaniv@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+nurita@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+chacham@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+tsvoray@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+edrier@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+arts@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+yuvtal@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+arogeti@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+elisg@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+helpdesk@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+ellenmo@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+plotking@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+bialika@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+lahavraz@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+liorgu@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+liaschn@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+shaniam@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+simont@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+talmond@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+urileib@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+fom.tmc@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+avieli@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+kovetz@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+donchin@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+shirlees@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+sternron@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+yoran@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+gitler@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+kadari@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+delmakis@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+ansegal@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+gurewitz@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+rotemri@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+miluim@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+uharan@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+benshmer@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+barabu@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+danzigb@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+dvorak@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+hannash@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+ilcoh@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+livnehat@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+raifs@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+ronitco@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+davidyos@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+aviadraz@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+saraia@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+nitzanil@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+alandau@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+ifat@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+nbad@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+yanatchk@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+anatkap@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+gdishon@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+farkashh@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+giladkz@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+techeduc@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+zoharwk@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+fom.hfa@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+tomerblu@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+berkovir@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+rachelmz@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+chalifal@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+kaganol@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+avnergro@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+gunnar@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+kubani@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+noambard@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+FoM.HSMC1D@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+yunik@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+shshira@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+keasar@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+avedri@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+warim@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+shapirad@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+mariabi@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+osnatd@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+malul@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+stdadmin@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+ntorit@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+naomige@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+rellish@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+hsf@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+glshalev@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+simagel@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+benshmor@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+shlomoe@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+econba@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+sluba@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+mzaccai@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+meidadk@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+alonihad@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+talg@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+urisha@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+iliberty@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+algabsil@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+ofery@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+shalish@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+orubin@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+ortalslo@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+avirubin@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+saritd@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+stasd@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+ahsaadi@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+dorittu@bgu.ac.il	https://www.bgu.ac.il/standarts/iron-swords/mitve/	site:bgu.ac.il intext:@bgu.ac.il
+studadv2@bgu.ac.il	https://www.bgu.ac.il/welcome/kdam/programs/nativ/	site:bgu.ac.il intext:@bgu.ac.il
+pre2@bgu.ac.il	https://www.bgu.ac.il/welcome/kdam/programs/nativ/	site:bgu.ac.il intext:@bgu.ac.il
+studpre2@bgu.ac.il	https://www.bgu.ac.il/welcome/kdam/programs/nativ/	site:bgu.ac.il intext:@bgu.ac.il
+miluim@bgu.ac.il	https://www.bgu.ac.il/welcome/mitve2025/	site:bgu.ac.il intext:@bgu.ac.il
+efratkol@bgu.ac.il	https://www.bgu.ac.il/welcome/mitve2025/	site:bgu.ac.il intext:@bgu.ac.il
+helpdesk@bgu.ac.il	https://tamrur.bgu.ac.il/wcp/login.php	site:bgu.ac.il intext:@bgu.ac.il
+mimon@bgu.ac.il	https://www.bgu.ac.il/welcome/ba/scholarship-lobby/	site:bgu.ac.il intext:@bgu.ac.il
+havidaf@bgu.ac.il	https://www.bgu.ac.il/welcome/ba/scholarship-lobby/	site:bgu.ac.il intext:@bgu.ac.il
+siada@bgu.ac.il	https://www.bgu.ac.il/welcome/ba/scholarship-lobby/	site:bgu.ac.il intext:@bgu.ac.il
+Passwords	Source URL	Password Dork
+password.</strong></span></span></p>	https://libguides.bgu.ac.il/guides/PURE/Trusted_Users	site:bgu.ac.il intext:"SELECT" intext:"password"
+password and	https://libguides.bgu.ac.il/c.php?g=996619&p=7212807	site:bgu.ac.il intext:"SELECT" intext:"password"
+Password"	https://lifeserv.bgu.ac.il/Faculty/ServiceCalle/	site:bgu.ac.il intext:"SELECT" intext:"password"
+Password</label>	https://lifeserv.bgu.ac.il/Faculty/ServiceCalle/	site:bgu.ac.il intext:"SELECT" intext:"password"
+password"	https://lifeserv.bgu.ac.il/Faculty/ServiceCalle/	site:bgu.ac.il intext:"SELECT" intext:"password"
+password.</strong></span></span></p>	https://libguides.bgu.ac.il/guides/PURE/Add_publication	site:bgu.ac.il intext:"SELECT" intext:"password"
+password.</strong></span></p>	https://libguides.bgu.ac.il/guides/PURE/Fingerprints	site:bgu.ac.il intext:"SELECT" intext:"password"
+password.</strong></span></span></p>	https://libguides.bgu.ac.il/guides/PURE/Claim_Publication	site:bgu.ac.il intext:"SELECT" intext:"password"
+Password</a></li>	https://www.bgu.ac.il/en/u/faculties/bidr/i/akis/environmental-and-aquatic-microbiology-academic-program/	site:bgu.ac.il intext:"SELECT" intext:"password"
+Password</a>	https://www.bgu.ac.il/en/u/faculties/bidr/i/akis/environmental-and-aquatic-microbiology-academic-program/	site:bgu.ac.il intext:"SELECT" intext:"password"
+Password change</div>	https://www.bgu.ac.il/en/u/faculties/bidr/i/akis/environmental-and-aquatic-microbiology-academic-program/	site:bgu.ac.il intext:"SELECT" intext:"password"
+password.</strong></span></p>	https://libguides.bgu.ac.il/c.php?g=1129588&p=8258184	site:bgu.ac.il intext:"SELECT" intext:"password"
+password is	https://netbio.bgu.ac.il/labwebsite/the-responsenet-v-3-tutorial/	site:bgu.ac.il intext:"SELECT" intext:"password"
+Password</a></li>	https://www.bgu.ac.il/en/u/faculties/bidr/i/akis/microbiology-and-water-quality-academic-program/	site:bgu.ac.il intext:"SELECT" intext:"password"
+Password</a>	https://www.bgu.ac.il/en/u/faculties/bidr/i/akis/microbiology-and-water-quality-academic-program/	site:bgu.ac.il intext:"SELECT" intext:"password"
+Password change</div>	https://www.bgu.ac.il/en/u/faculties/bidr/i/akis/microbiology-and-water-quality-academic-program/	site:bgu.ac.il intext:"SELECT" intext:"password"
+Files	Source URL	Files Dork
+File URL: https://tzin.bgu.ac.il/~arnona/Sovereignty_and_Economic_Development.pdf
+Dork Used: site:bgu.ac.il filetype:pdf
+==================================================
+File URL: https://tzin.bgu.ac.il/~anersela/Papers/1998_A_Learning_Approach_to_Auctions.pdf
+Dork Used: site:bgu.ac.il filetype:pdf
+==================================================
+File URL: https://tzin.bgu.ac.il/~arnona/newspapers/Yed_11_99_Per_Agr.pdf
+Dork Used: site:bgu.ac.il filetype:pdf
+==================================================
+File URL: https://tzin.bgu.ac.il/~dleiser/docs/causal.pdf
+Dork Used: site:bgu.ac.il filetype:pdf
+==================================================
+File URL: https://tzin.bgu.ac.il/~arnona/newspapers/Yed_08_Per_Agr.pdf
+Dork Used: site:bgu.ac.il filetype:pdf
+==================================================
+File URL: https://tzin.bgu.ac.il/~arnona/newspapers/Haar_04_03_New_Ideology.pdf
+Dork Used: site:bgu.ac.il filetype:pdf
+==================================================
+File URL: https://tzin.bgu.ac.il/~arnona/newspapers/Haar_09_99_Per_Agr.pdf
+Dork Used: site:bgu.ac.il filetype:pdf
+==================================================
+File URL: https://tzin.bgu.ac.il/~arnona/newspapers/Yed_03_03_Fat.pdf
+Dork Used: site:bgu.ac.il filetype:pdf
+==================================================
+File URL: https://www.ise.bgu.ac.il/faculty/noam/teaching/dss_syl_03.pdf
+Dork Used: site:bgu.ac.il filetype:pdf
+==================================================
+File URL: https://math.bgu.ac.il/files/OrderingInk.pdf
+Dork Used: site:bgu.ac.il filetype:pdf
+==================================================
+File URL: https://myforum.bgu.ac.il/phpBB3/files/4414_6ae0c3883a5a6bc2c9d67caac3133468
+Dork Used: site:bgu.ac.il filetype:docx
+==================================================
+File URL: /search?q=site:bgu.ac.il+filetype:docx&num=12&safe=active&sca_esv=ed9d3596700ef35f&hl=en&ie=UTF-8&filter=0
+Dork Used: site:bgu.ac.il filetype:docx
+==================================================
+File URL: 
+Dork Used: site:bgu.ac.il filetype:docx
+==================================================
+File URL: /search?q=site:bgu.ac.il+filetype:docx&num=2&safe=active&sca_esv=ed9d3596700ef35f&hl=en&ie=UTF-8&filter=0
+Dork Used: site:bgu.ac.il filetype:docx
+==================================================
+File URL: 
+Dork Used: site:bgu.ac.il filetype:docx
+==================================================
+File URL: 
+Dork Used: site:bgu.ac.il filetype:docx
+==================================================
+File URL: 
+Dork Used: site:bgu.ac.il filetype:docx
+==================================================
+File URL: 
+Dork Used: site:bgu.ac.il filetype:docx
+==================================================
+File URL: 
+Dork Used: site:bgu.ac.il filetype:docx
+==================================================
+File URL: 
+Dork Used: site:bgu.ac.il filetype:docx
+==================================================
+File URL: https://aranne5.bgu.ac.il/Tuv/index/yamit.xlsx
+Dork Used: site:bgu.ac.il filetype:xlsx
+==================================================
+File URL: /search?q=site:bgu.ac.il+filetype:xlsx&num=12&safe=active&sca_esv=ed9d3596700ef35f&hl=en&ie=UTF-8&filter=0
+Dork Used: site:bgu.ac.il filetype:xlsx
+==================================================
+File URL: 
+Dork Used: site:bgu.ac.il filetype:xlsx
+==================================================
+File URL: /search?q=site:bgu.ac.il+filetype:xlsx&num=2&safe=active&sca_esv=ed9d3596700ef35f&hl=en&ie=UTF-8&filter=0
+Dork Used: site:bgu.ac.il filetype:xlsx
+==================================================
+File URL: 
+Dork Used: site:bgu.ac.il filetype:xlsx
+==================================================
+File URL: 
+Dork Used: site:bgu.ac.il filetype:xlsx
+==================================================
+File URL: 
+Dork Used: site:bgu.ac.il filetype:xlsx
+==================================================
+File URL: 
+Dork Used: site:bgu.ac.il filetype:xlsx
+==================================================
+File URL: 
+Dork Used: site:bgu.ac.il filetype:xlsx
+==================================================
+File URL: 
+Dork Used: site:bgu.ac.il filetype:xlsx
+==================================================
+File URL: https://www.bgu.ac.il/media/wvrlmq2l/vatat.pptx
+Dork Used: site:bgu.ac.il filetype:pptx
+==================================================
+File URL: /search?q=site:bgu.ac.il+filetype:pptx&num=12&safe=active&sca_esv=ed9d3596700ef35f&hl=en&ie=UTF-8&filter=0
+Dork Used: site:bgu.ac.il filetype:pptx
+==================================================
+File URL: 
+Dork Used: site:bgu.ac.il filetype:pptx
+==================================================
+File URL: /search?q=site:bgu.ac.il+filetype:pptx&num=2&safe=active&sca_esv=ed9d3596700ef35f&hl=en&ie=UTF-8&filter=0
+Dork Used: site:bgu.ac.il filetype:pptx
+==================================================
+File URL: https://physics.bgu.ac.il/SHNATON/SHNATON2016/lists/ShnatonCrsListsInput.txt
+Dork Used: site:bgu.ac.il filetype:txt
+==================================================
+File URL: /search?q=site:bgu.ac.il+filetype:txt&num=12&safe=active&sca_esv=ed9d3596700ef35f&hl=en&ie=UTF-8&filter=0
+Dork Used: site:bgu.ac.il filetype:txt
+==================================================
+File URL: 
+Dork Used: site:bgu.ac.il filetype:txt
+==================================================
+File URL: /search?q=site:bgu.ac.il+filetype:txt&num=2&safe=active&sca_esv=ed9d3596700ef35f&hl=en&ie=UTF-8&filter=0
+Dork Used: site:bgu.ac.il filetype:txt
+==================================================
+File URL: 
+Dork Used: site:bgu.ac.il filetype:txt
+==================================================
+File URL: 
+Dork Used: site:bgu.ac.il filetype:txt
+==================================================
+File URL: 
+Dork Used: site:bgu.ac.il filetype:txt
+==================================================
+File URL: 
+Dork Used: site:bgu.ac.il filetype:txt
+==================================================
+File URL: 
+Dork Used: site:bgu.ac.il filetype:txt
+==================================================
+File URL: 
+Dork Used: site:bgu.ac.il filetype:txt
+==================================================
+File URL: 
+Dork Used: site:bgu.ac.il filetype:csv
+==================================================
+File URL: 
+Dork Used: site:bgu.ac.il filetype:csv
+==================================================
+File URL: 
+Dork Used: site:bgu.ac.il filetype:csv
+==================================================
+File URL: 
+Dork Used: site:bgu.ac.il filetype:csv
+==================================================
+File URL: 
+Dork Used: site:bgu.ac.il filetype:csv
+==================================================
+File URL: 
+Dork Used: site:bgu.ac.il filetype:csv
+==================================================
+File URL: 
+Dork Used: site:bgu.ac.il filetype:csv
+==================================================
+File URL: 
+Dork Used: site:bgu.ac.il filetype:csv
+==================================================
+File URL: 
+Dork Used: site:bgu.ac.il filetype:csv
+==================================================
+File URL: 
+Dork Used: site:bgu.ac.il filetype:csv
+==================================================
+Admin	Source URL	Admin Dork
+Admin URL: https://www.bgu.ac.il/u/admin/main/
+Dork Used: site:bgu.ac.il inurl:admin
+==================================================
+Admin URL: https://lifewp.bgu.ac.il/wp/imizrahi/author/wp-admin-imizrahi/
+Dork Used: site:bgu.ac.il inurl:admin
+==================================================
+Admin URL: https://www.bgu.ac.il/u/admin/logistics/about-us/
+Dork Used: site:bgu.ac.il inurl:admin
+==================================================
+Admin URL: https://www.bgu.ac.il/u/admin/logistics/
+Dork Used: site:bgu.ac.il inurl:admin
+==================================================
+Admin URL: https://www.bgu.ac.il/u/admin/finance/main/
+Dork Used: site:bgu.ac.il inurl:admin
+==================================================
+Admin URL: https://www.bgu.ac.il/u/admin/finance/main/about/
+Dork Used: site:bgu.ac.il inurl:admin
+==================================================
+Admin URL: https://www.bgu.ac.il/u/admin/main/hierarchy/
+Dork Used: site:bgu.ac.il inurl:admin
+==================================================
+Admin URL: https://www.bgu.ac.il/u/admin/main/internal-com/
+Dork Used: site:bgu.ac.il inurl:admin
+==================================================
+Admin URL: https://www.bgu.ac.il/u/admin/finance/main/infofreedom/
+Dork Used: site:bgu.ac.il inurl:admin
+==================================================
+Admin URL: https://www.bgu.ac.il/u/admin/%D7%94%D7%9E%D7%97%D7%9C%D7%A7%D7%94-%D7%9C%D7%90%D7%A8%D7%92%D7%95%D7%9F-%D7%95%D7%A9%D7%99%D7%98%D7%95%D7%AA/osh/
+Dork Used: site:bgu.ac.il inurl:admin
+==================================================
+Admin URL: https://physics.bgu.ac.il/accounts/login/?next=/events/seminars/141/
+Dork Used: site:bgu.ac.il inurl:login
+==================================================
+Admin URL: https://grf.bgu.ac.il/index.php/GRF/login
+Dork Used: site:bgu.ac.il inurl:login
+==================================================
+Admin URL: https://star.fohs.bgu.ac.il/ExamPractice/Security/Login
+Dork Used: site:bgu.ac.il inurl:login
+==================================================
+Admin URL: https://apps4cloud.bgu.ac.il/visitorform/login.aspx
+Dork Used: site:bgu.ac.il inurl:login
+==================================================
+Admin URL: https://apps4cloud.bgu.ac.il/orcidProd/login
+Dork Used: site:bgu.ac.il inurl:login
+==================================================
+Admin URL: https://bgu4u22.bgu.ac.il/apex/10g/r/kioskinfo/login?P_LANG=en
+Dork Used: site:bgu.ac.il inurl:login
+==================================================
+Admin URL: https://in.bgu.ac.il/accounts/_vti_bin/Authentication.asmx?op=Login
+Dork Used: site:bgu.ac.il inurl:login
+==================================================
+Admin URL: https://bgu4u22.bgu.ac.il/apex/10g/r/newlogin/login?P0_APP_ID=1130&P_LANG=he
+Dork Used: site:bgu.ac.il inurl:login
+==================================================
+Admin URL: https://fohs.bgu.ac.il/research/login.aspx
+Dork Used: site:bgu.ac.il inurl:login
+==================================================
+Admin URL: https://grf.bgu.ac.il/index.php/GRF/login/lostPassword
+Dork Used: site:bgu.ac.il inurl:login
+==================================================
+Admin URL: https://cris.bgu.ac.il/en/publications/simulating-the-impact-of-an-online-digital-dashboard-in-emergency-3/fingerprints/
+Dork Used: site:bgu.ac.il inurl:dashboard
+==================================================
+Admin URL: https://cris.bgu.ac.il/en/publications/a-dashboard-for-latent-class-trajectory-modeling-application-in-r/fingerprints/?sortBy=alphabetically
+Dork Used: site:bgu.ac.il inurl:dashboard
+==================================================
+Admin URL: https://wiki.physics.bgu.ac.il/bin/view/Dashboard/?xpage=print&xpage=copy
+Dork Used: site:bgu.ac.il inurl:dashboard
+==================================================
+Admin URL: https://cris.bgu.ac.il/en/publications/gnps-dashboard-collaborative-exploration-of-mass-spectrometry-dat
+Dork Used: site:bgu.ac.il inurl:dashboard
+==================================================
+Admin URL: https://wiki.physics.bgu.ac.il/bin/view/Dashboard/SpaceDashboardTemplate
+Dork Used: site:bgu.ac.il inurl:dashboard
+==================================================
+Admin URL: https://wiki.physics.bgu.ac.il/bin/view/Dashboard/
+Dork Used: site:bgu.ac.il inurl:dashboard
+==================================================
+Admin URL: https://cris.bgu.ac.il/en/publications/gnps-dashboard-collaborative-exploration-of-mass-spectrometry-dat-2
+Dork Used: site:bgu.ac.il inurl:dashboard
+==================================================
+Admin URL: https://cris.bgu.ac.il/en/publications/simulating-the-impact-of-an-online-digital-dashboard-in-emergency
+Dork Used: site:bgu.ac.il inurl:dashboard
+==================================================
+Admin URL: /search?q=site:bgu.ac.il+inurl:dashboard&num=12&safe=active&sca_esv=ed9d3596700ef35f&hl=en&ie=UTF-8&filter=0
+Dork Used: site:bgu.ac.il inurl:dashboard
+==================================================
+Admin URL: 
+Dork Used: site:bgu.ac.il inurl:dashboard
+==================================================
+Admin URL: 
+Dork Used: site:bgu.ac.il inurl:controlpanel
+==================================================
+Admin URL: 
+Dork Used: site:bgu.ac.il inurl:controlpanel
+==================================================
+Admin URL: 
+Dork Used: site:bgu.ac.il inurl:controlpanel
+==================================================
+Admin URL: 
+Dork Used: site:bgu.ac.il inurl:controlpanel
+==================================================
+Admin URL: 
+Dork Used: site:bgu.ac.il inurl:controlpanel
+==================================================
+Admin URL: 
+Dork Used: site:bgu.ac.il inurl:controlpanel
+==================================================
+Admin URL: 
+Dork Used: site:bgu.ac.il inurl:controlpanel
+==================================================
+Admin URL: 
+Dork Used: site:bgu.ac.il inurl:controlpanel
+==================================================
+Admin URL: 
+Dork Used: site:bgu.ac.il inurl:controlpanel
+==================================================
+Admin URL: 
+Dork Used: site:bgu.ac.il inurl:controlpanel
+==================================================
+Admin URL: https://bidi.cs.bgu.ac.il/survey/w1o1ru3
+Dork Used: site:bgu.ac.il intitle:'Admin Panel'
+==================================================
+Admin URL: https://bidi.cs.bgu.ac.il/survey/z7ui7s3
+Dork Used: site:bgu.ac.il intitle:'Admin Panel'
+==================================================
+Admin URL: /search?q=site:bgu.ac.il+intitle:'Admin+Panel'&num=12&safe=active&sca_esv=ed9d3596700ef35f&hl=en&ie=UTF-8&filter=0
+Dork Used: site:bgu.ac.il intitle:'Admin Panel'
+==================================================
+Admin URL: 
+Dork Used: site:bgu.ac.il intitle:'Admin Panel'
+==================================================
+Admin URL: /search?q=site:bgu.ac.il+intitle:'Admin+Panel'&num=2&safe=active&sca_esv=ed9d3596700ef35f&hl=en&ie=UTF-8&filter=0
+Dork Used: site:bgu.ac.il intitle:'Admin Panel'
+==================================================
+Admin URL: 
+Dork Used: site:bgu.ac.il intitle:'Admin Panel'
+==================================================
+Admin URL: 
+Dork Used: site:bgu.ac.il intitle:'Admin Panel'
+==================================================
+Admin URL: 
+Dork Used: site:bgu.ac.il intitle:'Admin Panel'
+==================================================
+Admin URL: 
+Dork Used: site:bgu.ac.il intitle:'Admin Panel'
+==================================================
+Admin URL: 
+Dork Used: site:bgu.ac.il intitle:'Admin Panel'
+==================================================
+Admin URL: https://lifewp.bgu.ac.il/wp/imizrahi/author/wp-admin-imizrahi/
+Dork Used: site:bgu.ac.il inurl:wp-admin
+==================================================
+Admin URL: /search?q=site:bgu.ac.il+inurl:wp-admin&num=12&safe=active&sca_esv=ed9d3596700ef35f&hl=en&ie=UTF-8&filter=0
+Dork Used: site:bgu.ac.il inurl:wp-admin
+==================================================
+Admin URL: 
+Dork Used: site:bgu.ac.il inurl:wp-admin
+==================================================
+Admin URL: /search?q=site:bgu.ac.il+inurl:wp-admin&num=2&safe=active&sca_esv=ed9d3596700ef35f&hl=en&ie=UTF-8&filter=0
+Dork Used: site:bgu.ac.il inurl:wp-admin
+==================================================
+Admin URL: 
+Dork Used: site:bgu.ac.il inurl:wp-admin
+==================================================
+Admin URL: 
+Dork Used: site:bgu.ac.il inurl:wp-admin
+==================================================
+Admin URL: 
+Dork Used: site:bgu.ac.il inurl:wp-admin
+==================================================
+Admin URL: 
+Dork Used: site:bgu.ac.il inurl:wp-admin
+==================================================
+Admin URL: 
+Dork Used: site:bgu.ac.il inurl:wp-admin
+==================================================
+Admin URL: 
+Dork Used: site:bgu.ac.il inurl:wp-admin
+==================================================
+Admin URL: 
+Dork Used: site:bgu.ac.il inurl:cpanel
+==================================================
+Admin URL: 
+Dork Used: site:bgu.ac.il inurl:cpanel
+==================================================
+Admin URL: 
+Dork Used: site:bgu.ac.il inurl:cpanel
+==================================================
+Admin URL: 
+Dork Used: site:bgu.ac.il inurl:cpanel
+==================================================
+Admin URL: 
+Dork Used: site:bgu.ac.il inurl:cpanel
+==================================================
+Admin URL: 
+Dork Used: site:bgu.ac.il inurl:cpanel
+==================================================
+Admin URL: 
+Dork Used: site:bgu.ac.il inurl:cpanel
+==================================================
+Admin URL: 
+Dork Used: site:bgu.ac.il inurl:cpanel
+==================================================
+Admin URL: 
+Dork Used: site:bgu.ac.il inurl:cpanel
+==================================================
+Admin URL: 
+Dork Used: site:bgu.ac.il inurl:cpanel
+==================================================

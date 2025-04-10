@@ -1,0 +1,19 @@
+www.dbgu - https://github.com/liszero/yuming_shouji/blob/main/18.txt
+www.bgu - https://github.com/liszero/yuming_shouji/blob/main/18.txt
+Tunkeutumistestaus2024-bgu - https://github.com/KebabGarva/Tunkeutumistestaus2024-bgu248/blob/main/h5.md
+Tunkeutumistestaus2024-bgu - https://github.com/KebabGarva/Tunkeutumistestaus2024-bgu248/blob/main/h1.md
+libgu - https://github.com/virt-manager/virt-manager/blob/main/NEWS.md
+libgu - https://github.com/scumdestroy/warlusts/blob/main/s3.txt
+H4sIAAAAAAAAAC2OwQ6CMAyG32bHBRABDzthTEwMHkCvpm5lEgqbG5j49sLk1vb7v_SfHEg8H8U4EzGP78qIhEkg6kZdGbWie10-kpzHacGTdMcL1qzOiUCLKESreXii25bFq9F9OolC-ZZbgu - https://github.com/ljp802/a/blob/main/b.txt
+webgu - https://github.com/d3fudd/Wordlists/blob/main/sap.txt
+u012bgu - https://github.com/tri11iona1re/cryptix-client/blob/main/jars/assets/objects/f7/f7b8c510e05199db0b268551f11411c3d44d19d2
+u012bgu - https://github.com/Wuplish/Hotline-VestigeForCraftRise/blob/main/Hotline 2.0/jars/assets/objects/f7/f7b8c510e05199db0b268551f11411c3d44d19d2
+u012bgu - https://github.com/MoonriseDevelopment/MoonRise/blob/main/jars/assets/objects/f7/f7b8c510e05199db0b268551f11411c3d44d19d2
+u012bgu - https://github.com/Marcelektro/MCP-919/blob/main/jars/assets/objects/f7/f7b8c510e05199db0b268551f11411c3d44d19d2
+uc7bgu - https://github.com/trustanprice/Data-Science-Projects/blob/main/project_01/project_01_template.ipynb
+uZMBbgu - https://github.com/salman-sayeed/OOP2-Project-Oshomoy/blob/main/Oshomoy/Form1.resx
+oVMfjgK6bgu - https://github.com/salman-sayeed/OOP2-Project-Oshomoy/blob/main/Oshomoy/Form1.resx
+pitt.libgu - https://github.com/Unil-SGC/unil-sgc.github.io/blob/main/geodata.md
+hVPyBiwxHbgu - https://github.com/k8s-operatorhub/community-operators/blob/main/operators/clickhouse/0.21.3/manifests/clickhouse-operator.v0.21.3.clusterserviceversion.yaml
+UVbnbgu - https://github.com/k8s-operatorhub/community-operators/blob/main/operators/clickhouse/0.21.3/manifests/clickhouse-operator.v0.21.3.clusterserviceversion.yaml
+zbgu - https://github.com/Azure/azure-rest-api-specs/blob/main/specification/iotoperations/IoTOperations.Management/examples/2025-04-01/BrokerListener_CreateOrUpdate_MaximumSet_Gen.json
