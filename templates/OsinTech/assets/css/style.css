@@ -769,122 +769,178 @@ nav.navbar.bootsnav .navbar-toggle i{color: #439397;}
 /*-------------------------------------
         11. Contact
 --------------------------------------*/
+
 .contact {
-    background: #f9fbfd;
-    padding: 50px 0 100px;
+    padding: 50px 0 200px;
 }
-.single-contact-box {padding-top: 100px;}
-.contact-form  .form-group {
-    margin-bottom: 20px;
-    
+
+.col-md-6 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 50%;
+    flex: 0 0 100%;
+    max-width: 50%; 
+    align-items: center;
 }
-.contact-form .form-control {
-    padding: 25px;
+
+.col-md-10 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 83.33333%;
+    flex: 0 0 83.33333%;
+    max-width: 83.33333%; 
+}
+.col-md-12 {
+    -webkit-box-flex: 0;
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%; 
+}
+
+.wrapper {
+    width: 100%;
+    -webkit-box-shadow: 0px 21px 41px -13px rgba(0, 0, 0, 0.18);
+    -moz-box-shadow: 0px 21px 41px -13px rgba(0, 0, 0, 0.18);
+    box-shadow: 0px 21px 41px -13px rgba(0, 0, 0, 0.18); 
+}
+
+.mb-4,
+.my-4 {
+  margin-bottom: 1.5rem !important; }
+
+.row {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px; 
+    align-items: center;
+}
+
+.form-control {
+    height: 52px;
+    background: transparent;
+    color: #fff!important;
     font-size: 14px;
-    border: 1px solid #fff;
     border-radius: 0px;
-    box-shadow: none;
-    outline: 0!important;
-    background: #fff;
-    color: #636a82;
-    resize: none;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    border: 1px solid rgba(255, 255, 255, 0.2); 
+    align-items: center;
 }
 
-/*--contct button--*/
-.contact-form .single-contact-btn {
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    height:50px;
-    text-transform:capitalize;
-    margin-top: 3px;
-    background: #439397;
-    border: 1px solid #439397;
-    cursor:pointer;
-    box-shadow: 0 5px 20px rgba(0,0,0,.2);
-     -webkit-transition: .5s; 
-    -moz-transition:.5s; 
-    -ms-transition:.5s; 
-    -o-transition:.5s;
-    transition: .5s;
-}
-.contact-form .single-contact-btn .contact-btn ,
-.contact-form .single-contact-btn .contact-btn:focus {
-    margin-top:0px;
-    outline: 0 !important;
-    border:0;
-    color: #fff;
-    border-radius: 0px;
-    font-size:14px;
-    -webkit-transition: .5s; 
-    -moz-transition:.5s; 
-    -ms-transition:.5s; 
-    -o-transition:.5s;
-    transition: .5s;
-    
-}
-.single-contact-btn:hover{
-    background: #439397;
-    border: 1px solid #439397;
-    box-shadow: 0 5px 20px rgba(0,0,0,.2);
+
+.form-group {
+    display: flex; /* Enable Flexbox for alignment */
+    justify-content: center; /* Center the button horizontally */
+    margin-top: 20px; /* Optional: Add spacing above the button */
 }
 
-/*--contct button--*/
+.contact .row {
+    display: flex; /* Enable Flexbox for the row */
+    justify-content: space-between; /* Add space between the two columns */
+    align-items: center; /* Center vertically */
+    height: 100%; /* Ensure it takes the full height of the section */
+}
 
-/* contact-adress */
-.contact-add-head h3 {
-    font-size:  24px;
-    color:  #3c4258;
+.contact .col-md-6 {
+    flex: 0 0 48%; /* Make each column take up 48% of the width */
+    max-width: 48%; /* Ensure the columns don't exceed 48% */
 }
-.contact-add-head p {
-    font-size:  16px;
-    text-transform: capitalize;
-    color:  #636a82;
-    font-weight:  300;
-    margin-top:  6px;
-}
-/* contact-adress */
 
-/*.contact-add-info */
-.contact-add-info { margin: 42px 0 52px;}
-.single-contact-add-info h3 {
-    color:  #636a82;
-    font-weight:  500;
+.contact-wrap {
+    width: 100%; /* Make the form take the full width of its column */
+    max-width: none; /* Remove the max-width restriction */
+    background-color: #99b8ba; /* Background color */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    display: flex; /* Enable Flexbox */
+    flex-direction: column; /* Stack children vertically */
+    justify-content: center; /* Center vertically */
+    align-items: center; /* Center horizontally */
+    padding: 20px; /* Add padding for spacing */
+    color: #000; /* Text color */
 }
-.single-contact-add-info p {
-    color:  #999fb3;
-    font-size:  16px;
-    margin-top:  18px;
-}
-.single-contact-add-info {
-    margin-bottom:  26px;
-}
-/*.contact-add-info */
+.contact-wrap h3 {
+    text-align: center; /* Center the text */
+    font-size: 24px; /* Increase the font size */
 
-/*hm-foot-icon*/
-.hm-foot-icon {
-   
+    color: #ffffff; /* Set the text color */
+    background-color: #99b8ba; /* Add a background color */
+    padding: 10px 20px; /* Add padding for spacing */
+    border-radius: 8px; /* Add rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    margin-bottom: 20px; /* Add spacing below the heading */
 }
-.hm-foot-icon ul li{float:left;}
-.hm-foot-icon ul li>a {
-    color: #636a82;
-    margin-right:18px;
-    -webkit-transition: .3s; 
-    -moz-transition:.3s; 
-    -ms-transition:.3s; 
-    -o-transition:.3s;
-    transition: .3s;
+.contact-wrap .form-control {
+    color: #000; /* Ensure input text is black */
+    background-color: #fff; /* Optional: Set input background to white for better contrast */
+    border: 1px solid #ccc; /* Optional: Add a border for better visibility */
+    align-items: center; /* Center text inside input */
+    padding: 10px; /* Optional: Add padding for better spacing */
 }
-.hm-foot-icon ul li>a:hover{
-    color: #439397;
-}/*hm-foot-icon*/
 
-.hm-footer-copyright p{
-    color: #888ea5;
-    text-transform: capitalize;
-    padding: 38px 0;
+.dbox {
+    display: flex; /* Enable Flexbox for alignment */
+    align-items: center; /* Vertically align the icon and text */
+    margin-bottom: 15px; /* Add spacing between rows */
 }
-.hm-footer-copyright p a {color: #888ea5;}
+
+.dbox .icon {
+    flex-shrink: 0; /* Prevent the icon from shrinking */
+    width: 40px; /* Set a fixed width for the icon container */
+    height: 40px; /* Set a fixed height for the icon container */
+    display: flex; /* Center the icon inside the container */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    background-color: #f7fdfd; /* Lighter background color for the icon */
+    border-radius: 50%; /* Make the icon container circular */
+    color: #000; /* Icon color */
+    font-size: 18px; /* Adjust icon size */
+    margin-right: 15px; /* Add spacing between the icon and the text */
+    opacity: 0.9; /* Slightly reduce opacity for a lighter effect */
+}
+
+.dbox .icon:hover {
+    background-color: #439397; /* Slightly darker color on hover */
+    opacity: 1; /* Restore full opacity on hover */
+}
+
+.dbox .text {
+    flex-grow: 1; /* Allow the text to take up remaining space */
+    color: #333; /* Text color */
+}
+
+.dbox .text p {
+    margin: 0; /* Remove default margin */
+    font-size: 14px; /* Adjust text size */
+}
+
+.dbox .text p span {
+    font-weight: bold; /* Make the title (e.g., "Address") bold */
+}
+
+.btn-primary {
+    background-color: #6d989b; /* Set a custom background color */
+    color: #fff; /* Set the text color to white */
+    font-size: 16px; /* Increase the font size */
+    font-weight: bold; /* Make the text bold */
+    padding: 10px 20px; /* Add padding for a better look */
+    border: none; /* Remove the border */
+    border-radius: 8px; /* Add rounded corners */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+    transition: all 0.3s ease; /* Add a smooth hover effect */
+    cursor: pointer; /* Change the cursor to a pointer */
+    align-items: center;
+}
+
+.btn-primary:hover {
+    background-color: #367f7f; /* Darken the background color on hover */
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* Enhance the shadow on hover */
+    transform: translateY(-2px); /* Add a slight lift effect */
+    align-items: center;
+}
+
 /*===============================
     Scroll Top
 ===============================*/
