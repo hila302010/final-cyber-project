@@ -24,16 +24,9 @@
 [class^="flaticon-"]:before, [class*=" flaticon-"]:before,
 [class^="flaticon-"]:after, [class*=" flaticon-"]:after {   
   font-family: Flaticon;
-  font-size: 24px;
+  font-size: 30px;
   font-style: normal;
   margin-left: 0px;
 }
 
-.flaticon-bitbucket-logotype-camera-lens-in-perspective:before { content: "\f100"; }
-.flaticon-squarespace-logo:before { content: "\f101"; }
-.flaticon-smug:before { content: "\f102"; }
-.flaticon-flickr-website-logo-silhouette:before { content: "\f103"; }
 .flaticon-github-logo:before { content: "\f104"; }
-.flaticon-behance-logo:before { content: "\f105"; }
-.flaticon-dribbble:before { content: "\f106"; }
-.flaticon-themeforest:before { content: "\f107"; }
