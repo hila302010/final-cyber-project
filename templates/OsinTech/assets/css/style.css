@@ -830,7 +830,7 @@ nav.navbar.bootsnav .navbar-toggle i{color: #439397;}
 }
 
 
-.form-group {
+.contact .form-group {
     display: flex; /* Enable Flexbox for alignment */
     justify-content: center; /* Center the button horizontally */
     margin-top: 20px; /* Optional: Add spacing above the button */
