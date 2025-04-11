@@ -17,43 +17,42 @@ $(document).ready(function(){
 5. welcome animation support
 ======================================*/
 
-    // 1. Scroll To Top 
-		$(window).on('scroll',function () {
+
+	// 1. Scroll To Top
+	$(window).on('scroll', function() {
 			if ($(this).scrollTop() > 600) {
-				$('.return-to-top').fadeIn();
+					$('.return-to-top').fadeIn();
 			} else {
-				$('.return-to-top').fadeOut();
+					$('.return-to-top').fadeOut();
 			}
-		});
-		$('.return-to-top').on('click',function(){
-				$('html, body').animate({
-				scrollTop: 0
+	});
+	$('.return-to-top').on('click', function() {
+			$('html, body').animate({
+					scrollTop: 0
 			}, 1500);
 			return false;
-		});
-	
-	
-	
-	// 2. Smooth Scroll spy
-		
-		$('.header-area').sticky({
-           topSpacing:0
-        });
-		
-		//=============
+	});
 
-		$('li.smooth-menu a').bind("click", function(event) {
+	// 2. Smooth Scroll spy
+	$('.header-area').sticky({
+			topSpacing: 0
+	});
+
+	$('li.smooth-menu a').bind("click", function(event) {
 			event.preventDefault();
 			var anchor = $(this);
+			var headerOffset = 80; // Adjust this value based on your header height
 			$('html, body').stop().animate({
-				scrollTop: $(anchor.attr('href')).offset().top - 0
-			}, 1200,'easeInOutExpo');
-		});
-		
-		$('body').scrollspy({
-			target:'.navbar-collapse',
-			offset:0
-		});
+					scrollTop: $(anchor.attr('href')).offset().top - headerOffset // Add the offset
+			}, 1200, 'easeInOutExpo');
+	});
+
+	$('body').scrollspy({
+			target: '.navbar-collapse',
+			offset: 80 // Match the header offset here
+	});
+
+
 
 	// 3. Progress-bar
 	
@@ -122,6 +121,9 @@ $(document).ready(function(){
         	$(".header-text h2,.header-text p").addClass("animated fadeInUp").css({'opacity':'0'});
             $(".header-text a").addClass("animated fadeInDown").css({'opacity':'0'});
         });
+
+				
+
 
 });	
 	
