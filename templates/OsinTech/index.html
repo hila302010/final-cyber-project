@@ -110,8 +110,8 @@
 							<h1 class="welcome-text">welcome to</h1>
 							<h2> OsinTech </h2>
 							<p>Shaked pickholz and Hila Ben Michael</p>
-							<a class="smooth-menu" href="#about">About our project</a>
-							<a class="smooth-menu" href="#data-gathering">Start Data Gathering</a>
+							<li class="smooth-menu"><a href="#about">About our project</a><br><br></li>
+							<li class=" smooth-menu"><a href="#data-gathering">Start Data Gathering</a></li>
 							
 						</div><!--/.header-text -->  
 					</div><!--/.col-->
@@ -846,7 +846,11 @@
         
         <!--Custom JS-->
         <script src="assets/js/custom.js"></script>
-        <script>
+
+				
+
+				<!--should be in custom.js -->
+				  <script>
 					document.addEventListener("DOMContentLoaded", function () {
 							fetch("AboutUs.txt")
 									.then(response => response.text())
@@ -858,20 +862,6 @@
 											document.getElementById("about-content").innerHTML = "<p>Unable to load content.</p>";
 									});
 					});
-
-						$(document).ready(function() {
-								$(".smooth-menu a, a.smooth-menu").on('click', function(event) {
-									if (this.hash !== "") {
-										event.preventDefault();
-										const hash = this.hash;
-										$('html, body').animate({
-											scrollTop: $(hash).offset().top
-										}, 800);
-									}
-								});
-							});
-
-
 			</script>
 			
     </body>
