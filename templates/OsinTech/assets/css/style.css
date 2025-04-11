@@ -48,6 +48,21 @@ body{
 }
 
 
+.inline-list {
+    display: flex; /* Use flexbox to align items horizontally */
+    justify-content: center; /* Center the items horizontally */
+    gap: 20px; /* Add spacing between the items */
+    list-style: none; /* Remove default list styling */
+    padding: 0; /* Remove default padding */
+    margin: 0; /* Remove default margin */
+    align-items: center;
+  }
+  
+  .inline-list li {
+    display: inline-block; /* Ensure the list items are inline */
+  }
+
+  
 
 
 a,a:hover,a:active,a:focus {
@@ -835,6 +850,15 @@ nav.navbar.bootsnav .navbar-toggle i{color: #439397;}
     justify-content: center; /* Center the button horizontally */
     margin-top: 20px; /* Optional: Add spacing above the button */
 }
+.contact-content {
+    display: flex; /* Enable Flexbox */
+    justify-content: flex-start; /* Align content to the left */
+    align-items: center; /* Center vertically */
+    flex-wrap: wrap; /* Allow wrapping for smaller screens */
+    text-align: right; /* Align text to the left */
+    gap: 30px; /* Add spacing between columns */
+    padding-left: 20px; /* Add padding to shift content to the left */
+}
 
 .contact .row {
     display: flex; /* Enable Flexbox for the row */
@@ -851,7 +875,7 @@ nav.navbar.bootsnav .navbar-toggle i{color: #439397;}
 .contact-wrap {
     width: 100%; /* Make the form take the full width of its column */
     max-width: none; /* Remove the max-width restriction */
-    background-color: #99b8ba; /* Background color */
+    background-color: #a3cacd; /* Background color */
     border-radius: 8px; /* Rounded corners */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
     display: flex; /* Enable Flexbox */
@@ -865,8 +889,8 @@ nav.navbar.bootsnav .navbar-toggle i{color: #439397;}
     text-align: center; /* Center the text */
     font-size: 24px; /* Increase the font size */
 
-    color: #ffffff; /* Set the text color */
-    background-color: #99b8ba; /* Add a background color */
+    color: #000; /* Set the text color */
+    background-color:#a3cacd; /* Add a background color */
     padding: 10px 20px; /* Add padding for spacing */
     border-radius: 8px; /* Add rounded corners */
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
@@ -893,12 +917,13 @@ nav.navbar.bootsnav .navbar-toggle i{color: #439397;}
     display: flex; /* Center the icon inside the container */
     justify-content: center; /* Center horizontally */
     align-items: center; /* Center vertically */
-    background-color: #f7fdfd; /* Lighter background color for the icon */
+    background-color: #d5dde0; /* Lighter background color for the icon */
     border-radius: 50%; /* Make the icon container circular */
     color: #000; /* Icon color */
     font-size: 18px; /* Adjust icon size */
     margin-right: 15px; /* Add spacing between the icon and the text */
     opacity: 0.9; /* Slightly reduce opacity for a lighter effect */
+    size: 10px;
 }
 
 .dbox .icon:hover {
@@ -921,8 +946,8 @@ nav.navbar.bootsnav .navbar-toggle i{color: #439397;}
 }
 
 .btn-primary {
-    background-color: #6d989b; /* Set a custom background color */
-    color: #fff; /* Set the text color to white */
+    background-color: #d5dde0; /* Set a custom background color */
+    color: #000; /* Set the text color to white */
     font-size: 16px; /* Increase the font size */
     font-weight: bold; /* Make the text bold */
     padding: 10px 20px; /* Add padding for a better look */
@@ -935,7 +960,7 @@ nav.navbar.bootsnav .navbar-toggle i{color: #439397;}
 }
 
 .btn-primary:hover {
-    background-color: #367f7f; /* Darken the background color on hover */
+    background-color: #84969a; /* Darken the background color on hover */
     box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2); /* Enhance the shadow on hover */
     transform: translateY(-2px); /* Add a slight lift effect */
     align-items: center;
