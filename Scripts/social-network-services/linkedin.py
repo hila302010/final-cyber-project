@@ -8,6 +8,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.action_chains import ActionChains
 import logging
 
 # Configure logging
@@ -37,9 +38,6 @@ def navigate_to_company_page(driver, company_name):
     except Exception as e:
         logging.error(f"Error navigating to company page: {e}")
         raise
-
-
-from selenium.webdriver.common.action_chains import ActionChains
 
 
 def navigate_to_people_tab(driver, company_name):
@@ -74,7 +72,6 @@ def navigate_to_people_tab(driver, company_name):
         raise
 
 
-
 def scroll_down(driver):
     last_height = driver.execute_script("return document.body.scrollHeight")
     while True:
@@ -82,36 +79,64 @@ def scroll_down(driver):
         time.sleep(3)  # Delay to mimic human behavior
         new_height = driver.execute_script("return document.body.scrollHeight")
         if new_height == last_height:
-            break
+            try:
+                # Wait for the first clickable one
+                load_more_button = WebDriverWait(driver, 10).until(
+                    EC.presence_of_element_located(
+                        (By.XPATH, "//button[contains(@class, 'scaffold-finite-scroll__load-button')]")
+                    )
+                )
+                driver.execute_script("arguments[0].scrollIntoView(true);", load_more_button)
+                time.sleep(1)
+                load_more_button.click()
+                logging.info("Clicked 'Show more results' button.")
+                time.sleep(3)
+
+            except Exception as e:
+                logging.info(f"No 'Show more results' button found or clickable. Reason: {e}")
+                break
         last_height = new_height
 
-def scrape_employees(driver):
+
+
+
+def scrape_employees_with_roles(driver):
     employees = []
     scroll_down(driver)
 
     try:
-        # Wait until the employee data becomes available (adjust the XPath accordingly)
-        employee_elements = WebDriverWait(driver, 60).until(
-            EC.presence_of_all_elements_located((By.XPATH, "//a[contains(@class, 'link-without-visited-state')]/div"))
+        # Get all employee cards (parent <li> elements)
+        employee_cards = WebDriverWait(driver, 60).until(
+            EC.presence_of_all_elements_located((By.XPATH, "//li[contains(@class, 'org-people-profile-card__profile-card-spacing')]"))
         )
 
-        # Loop through the elements and extract employee names
-        for element in employee_elements:
-            name = element.text.strip()
-            if name:
-                # Use regex to match only names with English letters and spaces
-                if re.match("^[a-zA-Z\\s]*$", name):
-                    employees.append(name)
-                    logging.info(f"Found employee: {name}")
+        # Iterate through each employee card and extract name and role
+        for card in employee_cards:
+            try:
+                # Extract the name
+                name_element = card.find_element(By.XPATH, ".//a[contains(@class, 'link-without-visited-state')]")
+                name = name_element.text.strip()
+
+                # Extract the role
+                role_element = card.find_element(By.XPATH, ".//div[contains(@class, 'lt-line-clamp--multi-line')]")
+                role_text = role_element.text.strip()
+
+                # Add to the list only if both name and role are present
+                if name and role_text:
+                    employees.append((name, role_text))
+                    logging.info(f"Found employee: {name}, Role: {role_text}")
+                else:
+                    logging.info("Skipped an employee card with missing name or role.")
+            except Exception as e:
+                logging.warning(f"Error extracting name or role from a card: {e}")
+
     except Exception as e:
-        logging.error(f"Error scraping employees: {e}")
+        logging.error(f"Error scraping employees and roles: {e}")
 
     return employees
-
-
 def generate_usernames(employees):
     usernames = []
-    for name in employees:
+    for name, _ in employees:
         parts = name.lower().split()
         if len(parts) < 2:
             continue
@@ -122,17 +147,20 @@ def generate_usernames(employees):
     return usernames
 
 
-def save_to_csv(usernames, file_name):
-    try:
-        with open(file_name, 'w', newline='', encoding='utf-8') as file:
-            writer = csv.writer(file)
-            writer.writerow(["Username"])
-            for username in usernames:
-                writer.writerow([username])
-    except Exception as e:
-        logging.error(f"Error saving to CSV: {e}")
-        raise
+def save_to_csv(employees, file_name):
+    with open(file_name, 'w', newline='', encoding='utf-8') as file:
+        writer = csv.writer(file)
+        writer.writerow(["Name", "Role"])
+        for name, role in employees:
+            writer.writerow([name, role])
 
+
+def save_to_csv_usernames(usernames, file_name):
+    with open(file_name, 'w', newline='', encoding='utf-8') as file:
+        writer = csv.writer(file)
+        writer.writerow(["Username"])  # Header for the CSV
+        for username in usernames:
+            writer.writerow([username])  # Write each username as a single row
 
 def get_company_name(domain):
     api_key = "your_serpapi_key"
@@ -158,6 +186,8 @@ def get_company_name(domain):
     except Exception as e:
         logging.error(f"An unexpected error occurred: {e}")
     return None
+from selenium.webdriver.chrome.options import Options
+
 
 def execute_linkedin(domain):
     linkedin_username = "bulipik34@gmail.com"
@@ -175,18 +205,19 @@ def execute_linkedin(domain):
         logging.error("LinkedIn credentials are not set.")
         exit(1)
 
-    driver = webdriver.Chrome()
+    driver = webdriver.Chrome()  # Use the updated function
     driver.maximize_window()
 
     try:
         login_to_linkedin(driver, linkedin_username, linkedin_password)
         navigate_to_company_page(driver, company_name)
         navigate_to_people_tab(driver, company_name)
-        employees = scrape_employees(driver)
+        employees = scrape_employees_with_roles(driver)
+        save_to_csv(employees, "employees.csv")
         logging.info(f"Found {len(employees)} employees.")
 
         usernames = generate_usernames(employees)
-        save_to_csv(usernames, "usernames.csv")
+        save_to_csv_usernames(usernames, "usernames.csv")
         logging.info("Usernames saved to usernames.csv")
 
     finally:
