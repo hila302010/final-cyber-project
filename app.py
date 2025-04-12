@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, jsonify
-from Scripts.extract_data import extract_info  # your custom script
+import Scripts.DNS.DkimDmarc as dkim_dmarc  # your custom script
 import webbrowser
 import threading
 
@@ -17,9 +17,10 @@ def submit():
     company = request.form['company']
     
     # Call your Python logic here
-    result = extract_info(domain, country, company)
+    result = dkim_dmarc.fetch_dns_records(domain)
+    print("result", result)
     
-    return jsonify(result=result)
+    return result
 
 def open_browser():
     webbrowser.open_new("http://127.0.0.1:5000")
