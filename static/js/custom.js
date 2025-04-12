@@ -122,7 +122,18 @@ $(document).ready(function(){
             $(".header-text a").addClass("animated fadeInDown").css({'opacity':'0'});
         });
 
-				
+				// 6. fetch about us text
+				$(document).ready(function () {
+					$.get("/static/AboutUs.txt")
+							.done(function (data) {
+									console.log("Fetched data:", data);
+									$("#about-content").html(data); // Use jQuery to set the content
+							})
+							.fail(function (error) {
+									console.error("Error loading About Us content:", error);
+									$("#about-content").html("<p>Unable to load content.</p>");
+							});
+			});
 
 
 });	
