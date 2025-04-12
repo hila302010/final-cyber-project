@@ -135,6 +135,53 @@ $(document).ready(function(){
 							});
 			});
 
+				// 7. fetch the result from submit button
+				// Ensure that the DOM is fully loaded before attaching event handlers
+				$(document).ready(function () {
+							$("#infoForm").on("submit", function (event) {
+									event.preventDefault(); // Prevent the default form submission
+					
+									const formData = $(this).serialize(); // Serialize form data
+					
+									// Show the loading bar
+									$("#loading").show();
+									$("#result").html(""); // Clear previous results
+					
+									$.ajax({
+											url: "/submit",
+											type: "POST",
+											data: formData,
+											success: function (response) {
+													console.log("Response:", response); // Log the response to inspect its structure
+					
+													// Check if the response is an object
+													if (typeof response === "object") {
+															// Extract and format the response properties
+															let resultHtml = "<h4>Result:</h4><ul>";
+															for (const [key, value] of Object.entries(response)) {
+																	resultHtml += `<li><strong>${key}:</strong> ${value}</li>`;
+															}
+															resultHtml += "</ul>";
+					
+															// Update the result div with the formatted response
+															$("#result").html(resultHtml);
+													} else {
+															// If the response is plain text, display it directly
+															$("#result").html(`<pre>${response}</pre>`);
+													}
+											},
+											error: function (xhr, status, error) {
+													console.error("Error:", error);
+													$("#result").html("An error occurred. Please try again.");
+											},
+											complete: function () {
+													// Hide the loading bar after the request is complete
+													$("#loading").hide();
+											}
+									});
+							});
+					});
+
 
 });	
 	

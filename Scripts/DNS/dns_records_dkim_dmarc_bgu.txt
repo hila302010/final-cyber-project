@@ -1,7 +1,0 @@
-DNS Records for bgu.ac.il
-========================================
-SPF: Error fetching SPF: The resolution lifetime expired after 5.115 seconds: Server Do53:132.72.140.46@53 answered ; Server Do53:132.72.140.46@53 answered The DNS operation timed out.; Server Do53:132.72.140.45@53 answered ; Server Do53:132.72.140.45@53 answered The DNS operation timed out.; Server Do53:172.29.1.171@53 answered The DNS operation timed out.
-DMARC: v=DMARC1; p=quarantine; adkim=r; aspf=s
-DMARC Policy: DMARC policy: p=quarantine
-DKIM Selector: Not found
-DKIM: No DKIM record found

@@ -89,7 +89,10 @@ def save_to_text_file(domain, results, filename="dns_records.txt"):
             file.write(f"{record_type}: {record_value}\n")
     print(f"Results saved to {filename}")
 
-if __name__ == "__main__":
+def main():
     domain = input("Enter the domain: ")
     results = fetch_dns_records(domain)
     save_to_text_file(domain, results)
+
+if __name__ == "__main__":
+    main()

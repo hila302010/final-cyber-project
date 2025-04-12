@@ -136,18 +136,18 @@
 			<div class="section-heading text-center">
 				<h2>Enter Company Details</h2>
 			</div>
-			<form id="infoForm" class="form-style">
+			<form id="infoForm" class="form-style" action="/submit" method="POST">
 				<div class="form-group">
 					<label for="domain">Domain <i class="fa fa-globe"><br></i></label>
 					<input type="text" id="domain" name="domain" placeholder="Enter Domain" required />
 				</div>
 				<div class="form-group">
-					<label for="country">Country <i class="fa fa-flag"><br></i></label>
-					<input type="text" id="country" name="country" placeholder="Enter Country" required />
+					<label for="country">Country (optional) <i class="fa fa-flag"><br></i></label>
+					<input type="text" id="country" name="country" placeholder="Enter Country" />
 				</div>
 				<div class="form-group">
-					<label for="company">Company Name <i class="fa fa-building"><br></i></label>
-					<input type="text" id="company" name="company" placeholder="Enter Company Name" required />
+					<label for="company">Company Name (optional) <i class="fa fa-building"><br></i></label>
+					<input type="text" id="company" name="company" placeholder="Enter Company Name"  />
 				</div>
 				<div class="form-button">
 					<button type="submit" >
@@ -155,6 +155,13 @@
 					</button>
 				</div>
 			</form>
+
+			<!-- Add a div to display the result -->
+			<div id="result" style="margin-top: 20px; font-weight: bold;"></div>
+			<div id="loading" style="display: none; text-align: center; margin-top: 20px;">
+				<div class="spinner"></div>
+				<p>Loading, please wait...</p>
+		</div>
 		</div>
 	</section>
 	
