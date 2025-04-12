@@ -688,80 +688,42 @@ nav.navbar.bootsnav .navbar-toggle i{color: #439397;}
 .single-profile:hover .profile-icon-name,.single-profile:hover .profile-txt a>i{color: #fff;}
 .single-profile:hover .profile-border {border:transparent;}
 /*-------------------------------------
-        9. Portfolio
+        9. cyberterms
 --------------------------------------*/
-.portfolio {
-    padding:  50px 0 100px;
-    border:  1px solid #e5ebf2;
-}
-
-.portfolio-content {padding-top: 100px;}
-
-/* ---- .item ---- */
-.isotope:after {
-    content: '';
-    display: block;
-    clear: both;
-}
-.isotope .item {
-    position:relative;
-    overflow:hidden;
-    margin-bottom: 30px;
-}
-/*.item img*/
-.isotope .item img{
-    width:100%;
-    height:100%;
-    -webkit-transition: .5s;
-    -moz-transition: .5s;
-    -ms-transition: .5s;
-    -o-transition: .5s;
-    transition: .5s;
-}
-.isotope .item:hover  img{
-    -webkit-transform:scale(1.5);
-    -moz-transform:scale(1.5);
-    -ms-transform:scale(1.5);
-    -o-transform:scale(1.5);
-    transform:scale(1.5);
-}/*.item img*/
-
-/*.isotope-overlay*/
-.isotope-overlay{
-    position:absolute;
-    height:100%;
-    width:100%;
-    background:rgba(31,44,108,.5);
-    display:flex;
-    align-items:center;
-    text-transform: uppercase;
-    justify-content:center;
-    flex-direction:row;
-    -webkit-transform:scale(0);
-    -moz-transform:scale(0);
-    -ms-transform:scale(0);
-    -o-transform:scale(0);
-    transform:scale(0);
-    -webkit-transition: .5s;
-    -moz-transition: .5s;
-    -ms-transition: .5s;
-    -o-transition: .5s;
-    transition: .5s;
-}
-.isotope-overlay a {
-    display: inline-block;
-    color: #fff;
-    font-size: 14px;
-    text-align: center;
-}
-.isotope .item:hover .isotope-overlay{
-    -webkit-transform:scale(1);
-    -moz-transform:scale(1);
-    -ms-transform:scale(1);
-    -o-transform:scale(1);
-    transform:scale(1);
-    top:0;
-}/*.isotope-overlay*/
+#cyber-glossary {
+    padding: 40px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    font-family: 'Arial', sans-serif;
+    color: #000000;
+  }
+  
+  #cyber-glossary h2 {
+    font-size: 24px;
+    margin-bottom: 40px;
+    color: #39394b;
+  }
+  
+  .term {
+    margin-bottom: 25px;
+    padding: 20px 30px 20px 30px;
+    background-color: #ffffff;
+    border-left: 5px solid #7fc8ce;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  }
+  
+  .term h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #39394b;
+  }
+  
+  .term p {
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  
 
 /*-------------------------------------
         10. Clients
@@ -835,7 +797,7 @@ nav.navbar.bootsnav .navbar-toggle i{color: #439397;}
 .form-control {
     height: 52px;
     background: transparent;
-    color: #fff!important;
+    color: #000000!important;
     font-size: 14px;
     border-radius: 0px;
     -webkit-box-shadow: none !important;
