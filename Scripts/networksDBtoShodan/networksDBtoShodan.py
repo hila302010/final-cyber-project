@@ -1,5 +1,7 @@
 import requests
-import shodanAPI  # Import your shodanAPI script
+import Scripts.networksDBtoShodan.shodanAPI as shodanAPI
+#import shodanAPI
+import csv
 
 
 def search_networksdb(country_name, organization_name, api_key):
@@ -44,7 +46,6 @@ def search_networksdb(country_name, organization_name, api_key):
         else:
             print(f"Organization '{organization_name}' not found in '{country_name}' or no results.")
             return []
-
     except requests.exceptions.RequestException as e:
         print(f"An error occurred during the API request: {e}")
         return []
@@ -56,27 +57,83 @@ def search_networksdb(country_name, organization_name, api_key):
         return []
 
 
+
+
+
 def process_shodan_for_cidr(country, cidr_addresses):
+    all_data = []
     for address in cidr_addresses:
         print(f"Processing Shodan for {address} in {country}...")
 
         # Call the lookup_country_and_ip function from shodanAPI.py
         result = shodanAPI.lookup_country_and_ip(country, address)
 
-        # If results are found, save to CSV
+        # If results are found, save to CSV and collect the data
         if result and 'matches' in result:
-            shodanAPI.save_to_csv(result['matches'], f"shodan_results_{address.replace('/', '_')}.csv")
+            shodan_data = save_to_csv(result['matches'],address, f"shodan_results_{address.replace('/', '_')}.csv")
+            all_data.extend(shodan_data)  # Add the data to the main list
         else:
             print(f"No Shodan results for {address}")
+    return all_data
 
 
-if __name__ == "__main__":
-    country = input("Enter the country name: ")
-    ormatted_country = country.capitalize()  # Capitalize first letter
-    organization = input("Enter the organization name: ")
+
+def save_to_csv(data, adress, filename):
+    if not data:
+        print("No data to save.")
+        return []
+
+    # Make 'address' the first field in the fieldnames list
+    fieldnames = ['address', 'port', 'vulns', 'org', 'country_name', 'city', 'ip_str', 'domains', 'hostnames']
+
+    with open(filename, 'w', newline='', encoding='utf-8-sig') as file:
+        writer = csv.DictWriter(file, fieldnames=fieldnames)
+        writer.writeheader()
+
+        data_written = False
+        result_data = []  # To collect the processed data
+
+        for row in data:
+            # Ensure it's a valid Shodan result (skip unwanted data)
+            if not isinstance(row, dict) or 'ip_str' not in row or 'port' not in row:
+                continue
+
+            # Clean "vulns" field (avoid CVE lists)
+            if 'vulns' in row and isinstance(row['vulns'], dict):
+                row['vulns'] = ', '.join(row['vulns'].keys())  # Keep only CVE IDs, remove details
+
+            # Convert lists to comma-separated strings for CSV readability
+            for field in ['domains', 'hostnames']:
+                if isinstance(row.get(field), list):
+                    row[field] = ', '.join(row[field])
+
+            # Extract country_name and city from the location dictionary
+            row['country_name'] = row.get('location', {}).get('country_name', '')
+            row['city'] = row.get('location', {}).get('city', '')
+
+            # Extract only required fields and add the address as the first field
+            filtered_row = {'address': adress}  # Add address as the first field
+            filtered_row.update({field: row.get(field, '') for field in fieldnames if field != 'address'})
+
+            # Avoiding blank rows
+            if any(filtered_row.values()):
+                writer.writerow(filtered_row)
+                result_data.append(filtered_row)  # Add the row to the result data
+                data_written = True
+
+        if not data_written:
+            writer.writerow({field: '' for field in fieldnames})
+
+    print(f"Results saved to {filename}")
+    return result_data  # Return the processed data
+
+
+
+
+def execute_networksdb_to_shodan(ormatted_country, organization):
     api_key = "751ba4ad-5a35-4428-a4d3-1ec191d9aaf6"
-
     if not api_key:
+        data = "API key is required."
         print("Error: NetworksDB API key is required. You can get one at https://networksdb.io/api/plans")
     else:
         cidr_addresses = search_networksdb(ormatted_country, organization, api_key)
@@ -87,6 +144,16 @@ if __name__ == "__main__":
                 print(f"- {address}")
 
             # Call the Shodan API for each CIDR/IP using lookup_country_and_ip
-            process_shodan_for_cidr(ormatted_country, cidr_addresses)
+            data = (process_shodan_for_cidr(ormatted_country, cidr_addresses))
         else:
+            data = "No CIDR/IP addresses found."
             print(f"\nNo CIDR/IP addresses found for '{organization}' in '{ormatted_country}'.")
+    return data 
+
+if __name__ == "__main__":
+    country = input("Enter the country name: ")
+    ormatted_country = country.capitalize()  # Capitalize first letter
+    organization = input("Enter the organization name: ")
+    print(execute_networksdb_to_shodan(ormatted_country, organization))
+    
+

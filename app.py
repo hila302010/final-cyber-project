@@ -1,5 +1,7 @@
 from flask import Flask, render_template, request, jsonify
-from Scripts.extract_data import extract_info  # your custom script
+import Scripts.DNS.DkimDmarc as dkim_dmarc  # your custom script
+import Scripts.networksDBtoShodan.shodanAPI as shodanAPI
+import Scripts.networksDBtoShodan.networksDBtoShodan as nDBtoS 
 import webbrowser
 import threading
 
@@ -17,9 +19,12 @@ def submit():
     company = request.form['company']
     
     # Call your Python logic here
-    result = extract_info(domain, country, company)
+    #result = dkim_dmarc.fetch_dns_records(domain)
+    data= nDBtoS.execute_networksdb_to_shodan(country, company)
+    print("result", data)
     
-    return jsonify(result=result)
+    # Pass the data to the template
+    return data
 
 def open_browser():
     webbrowser.open_new("http://127.0.0.1:5000")

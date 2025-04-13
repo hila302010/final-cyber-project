@@ -1,4 +1,3 @@
-import csv
 from shodan import Shodan
 import pycountry
 
@@ -60,52 +59,6 @@ def lookup_country_and_ip(country_name, ip):
         print(f"Error retrieving country '{country_name}' and IP '{ip}': {e}")
         return None
 
-
-def save_to_csv(data, filename):
-    if not data:
-        print("No data to save.")
-        return
-
-    fieldnames = ['port', 'vulns', 'org', 'country_name','city', 'ip_str', 'domains', 'hostnames']
-
-    with open(filename, 'w', newline='', encoding='utf-8-sig') as file:
-        writer = csv.DictWriter(file, fieldnames=fieldnames)
-        writer.writeheader()
-
-        data_written = False
-
-        for row in data:
-            # Ensure it's a valid Shodan result (skip unwanted data)
-            #The data is in structure of a dict and it has port and ip
-            if not isinstance(row, dict) or 'ip_str' not in row or 'port' not in row:
-                continue
-
-            # Clean "vulns" field (avoid CVE lists)
-            #remove unnecessary data
-            if 'vulns' in row and isinstance(row['vulns'], dict):
-                row['vulns'] = ', '.join(row['vulns'].keys())  # Keep only CVE IDs, remove details
-
-            # Convert lists to comma-separated strings for CSV readability
-            for field in ['domains', 'hostnames']:
-                if isinstance(row.get(field), list):
-                    row[field] = ', '.join(row[field])
-
-            # Extract country_name and city from the location dictionary
-            row['country_name'] = row.get('location', {}).get('country_name', '')
-            row['city'] = row.get('location', {}).get('city', '')
-
-            # Extract only required fields that have been written above
-            filtered_row = {field: row.get(field, '') for field in fieldnames}
-
-            # Avoiding blank rows
-            if any(filtered_row.values()):
-                writer.writerow(filtered_row)
-                data_written = True
-
-        if not data_written:
-            writer.writerow({field: '' for field in fieldnames})
-
-    print(f"Results saved to {filename}")
 
 
 if __name__ == "__main__":
