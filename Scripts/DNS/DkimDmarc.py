@@ -82,12 +82,15 @@ def fetch_dns_records(domain):
     return records
 
 def save_to_text_file(domain, results, filename="dns_records.txt"):
-    with open(filename, "w", encoding="utf-8") as file:
-        file.write(f"DNS Records for {domain}\n")
-        file.write("=" * 40 + "\n")
-        for record_type, record_value in results.items():
-            file.write(f"{record_type}: {record_value}\n")
-    print(f"Results saved to {filename}")
+    try:
+        with open(filename, "w", encoding="utf-8") as file:
+            file.write(f"DNS Records for {domain}\n")
+            file.write("=" * 40 + "\n")
+            for record_type, record_value in results.items():
+                file.write(f"{record_type}: {record_value}\n")
+        print(f"Results saved to {filename}")
+    except Exception as e:
+        print(f"An error occurred while saving to the file: {e}")
 
 def main():
     domain = input("Enter the domain: ")
