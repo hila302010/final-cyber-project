@@ -5,6 +5,7 @@
 132.72.0.0/16,443,,Ben Gurion University,Israel,Beersheba,132.72.118.88,bgu.ac.il,"bgu.ac.il, web2.bgu.ac.il"
 132.72.0.0/16,80,,Ben Gurion University,Israel,Beersheba,132.72.118.88,bgu.ac.il,web2.bgu.ac.il
 132.72.0.0/16,80,,Ben Gurion University,Israel,Beersheba,132.72.124.233,,
+132.72.0.0/16,443,,Ben Gurion University,Israel,Beersheba,132.72.211.254,,
 132.72.0.0/16,80,,Ben Gurion University,Israel,Beersheba,132.72.211.254,,
 132.72.0.0/16,443,,Ben Gurion University,Israel,Beersheba,132.72.118.41,bgu.ac.il,bgu.ac.il
 132.72.0.0/16,443,,Ben Gurion University,Israel,Beersheba,132.72.118.139,bgu.ac.il,bgu.ac.il
@@ -40,11 +41,13 @@
 132.72.0.0/16,80,,Ben Gurion University,Israel,Beersheba,132.72.124.217,,
 132.72.0.0/16,443,,Ben Gurion University,Israel,Beersheba,132.72.6.1,,
 132.72.0.0/16,80,,Ben Gurion University,Israel,Beersheba,132.72.6.1,,
+132.72.0.0/16,443,,Ben Gurion University,Israel,Beersheba,132.72.124.233,,
 132.72.0.0/16,264,,Ben Gurion University,Israel,Beersheba,132.72.211.254,,
 132.72.0.0/16,18264,,Ben Gurion University,Israel,Beersheba,132.72.124.126,,
 132.72.0.0/16,53,,Ben Gurion University,Israel,Beersheba,132.72.140.45,bgu.ac.il,dns2.bgu.ac.il
 132.72.0.0/16,264,,Ben Gurion University,Israel,Beersheba,132.72.84.254,,
 132.72.0.0/16,264,,Ben Gurion University,Israel,Beersheba,132.72.124.233,,
+132.72.0.0/16,443,,Ben Gurion University,Israel,Beersheba,132.72.23.254,,
 132.72.0.0/16,264,,Ben Gurion University,Israel,Beersheba,132.72.24.1,,
 132.72.0.0/16,264,,Ben Gurion University,Israel,Beersheba,132.72.23.254,,
 132.72.0.0/16,80,,Ben Gurion University,Israel,Beersheba,132.72.23.254,,
@@ -56,6 +59,7 @@
 132.72.0.0/16,80,,Ben Gurion University,Israel,Beersheba,132.72.145.254,,
 132.72.0.0/16,443,,Ben Gurion University,Israel,Beersheba,132.72.124.201,,
 132.72.0.0/16,80,,Ben Gurion University,Israel,Beersheba,132.72.124.201,,
+132.72.0.0/16,18264,,Ben Gurion University,Israel,Beersheba,132.72.174.232,,
 132.72.0.0/16,264,,Ben Gurion University,Israel,Beersheba,132.72.179.66,,
 132.72.0.0/16,264,,Ben Gurion University,Israel,Beersheba,132.72.151.254,,
 132.72.0.0/16,264,,Ben Gurion University,Israel,Beersheba,132.72.86.254,,

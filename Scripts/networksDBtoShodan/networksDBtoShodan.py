@@ -130,12 +130,13 @@ def save_to_csv(data, adress, filename):
 
 
 
-def execute_networksdb_to_shodan(ormatted_country, organization):
+def execute_networksdb_to_shodan(country, organization):
     api_key = "751ba4ad-5a35-4428-a4d3-1ec191d9aaf6"
     if not api_key:
         data = "API key is required."
         print("Error: NetworksDB API key is required. You can get one at https://networksdb.io/api/plans")
     else:
+        ormatted_country = country.capitalize()  # Capitalize first letter
         cidr_addresses = search_networksdb(ormatted_country, organization, api_key)
 
         if cidr_addresses:
@@ -152,7 +153,6 @@ def execute_networksdb_to_shodan(ormatted_country, organization):
 
 if __name__ == "__main__":
     country = input("Enter the country name: ")
-    ormatted_country = country.capitalize()  # Capitalize first letter
     organization = input("Enter the organization name: ")
     print(execute_networksdb_to_shodan(ormatted_country, organization))
     
