@@ -151,9 +151,11 @@ def execute_networksdb_to_shodan(country, organization):
             print(f"\nNo CIDR/IP addresses found for '{organization}' in '{ormatted_country}'.")
     return data 
 
+
+
 if __name__ == "__main__":
     country = input("Enter the country name: ")
     organization = input("Enter the organization name: ")
-    print(execute_networksdb_to_shodan(ormatted_country, organization))
+    print(execute_networksdb_to_shodan(country, organization))
     
 
