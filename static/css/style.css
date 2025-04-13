@@ -532,7 +532,7 @@ nav.navbar.bootsnav .navbar-toggle i{color: #439397;}
 }
 
 /*-------------------------------------
-        7. Experience
+        7. Experience- Report Generation Workflow
 -------------------------------------*/
 .experience {
     padding: 50px 0 100px;
@@ -545,15 +545,16 @@ nav.navbar.bootsnav .navbar-toggle i{color: #439397;}
 .experience-time {
     position: relative;
 }
-.experience-time h2 {
+.experience-time h1 {
     font-weight: 400;
+    color: #2d868a;
 }
 .experience-time h3 {
     font-size: 16px;
     font-weight: 300;
     color: #636a82;
     margin-top: 14px;
-    text-transform: uppercase;
+    
 }
 /*experience-time*/
 
@@ -564,10 +565,10 @@ nav.navbar.bootsnav .navbar-toggle i{color: #439397;}
 .main-timeline:before{
     content: "";
     width: 2px;
-    height: 84%;
+    height: 98%;
     background: #b2c1ce;
     position: absolute;
-    top: 1.5%;
+    top: 0.5%;
     left: 45.8%;
     z-index: -1;
 }
@@ -586,16 +587,12 @@ nav.navbar.bootsnav .navbar-toggle i{color: #439397;}
     font-size: 16px;
     font-weight: 400;
     text-transform: uppercase;
+    color: #439397;
 }
-.timeline-content h5 {
-    color: #636a82;
-    font-size: 14px;
-    font-weight: 300;
-    margin: 18px 0 20px;
-}
+
 .main-timeline .description {
     font-size: 14px;
-    color: #999fb3;
+    color: #62646c;
 }
 .main-timeline .timeline-content.right{
     float: right;
