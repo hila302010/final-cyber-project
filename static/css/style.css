@@ -577,7 +577,7 @@ nav.navbar.bootsnav .navbar-toggle i{color: #439397;}
 }
 
 /*-------------------------------------
-        7. Experience- Report Generation Workflow
+    7.Report Generation Workflow
 -------------------------------------*/
 .experience {
     padding: 50px 0 100px;
@@ -599,7 +599,7 @@ nav.navbar.bootsnav .navbar-toggle i{color: #439397;}
     font-weight: 300;
     color: #636a82;
     margin-top: 14px;
-    
+    text-transform: none; /* Ensure text remains as written */
 }
 /*experience-time*/
 

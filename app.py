@@ -20,7 +20,7 @@ def submit():
     
     # Call your Python logic here
     #result = dkim_dmarc.fetch_dns_records(domain)
-    data= nDBtoS.execute_networksdb_to_shodan(country, company)
+    data = nDBtoS.execute_networksdb_to_shodan(country, company)
     print("result", data)
     
     # Pass the data to the template
