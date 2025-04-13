@@ -152,24 +152,58 @@ $(document).ready(function(){
 											type: "POST",
 											data: formData,
 											success: function (response) {
-													console.log("Response:", response); // Log the response to inspect its structure
-					
-													// Check if the response is an object
-													if (typeof response === "object") {
-															// Extract and format the response properties
-															let resultHtml = "<h4>Result:</h4><ul>";
-															for (const [key, value] of Object.entries(response)) {
-																	resultHtml += `<li><strong>${key}:</strong> ${value}</li>`;
-															}
-															resultHtml += "</ul>";
-					
-															// Update the result div with the formatted response
-															$("#result").html(resultHtml);
-													} else {
-															// If the response is plain text, display it directly
-															$("#result").html(`<pre>${response}</pre>`);
-													}
-											},
+												console.log("Response:", response); // Log the response to inspect its structure
+										
+												// Check if the response is an array
+												if (Array.isArray(response)) {
+														let resultHtml = `
+																<h2>Networks DB to Shodan Results</h2>
+																<table>
+																		<thead>
+																				<tr>
+																						<th>Address</th>
+																						<th>Port</th>
+																						<th>Vulnerabilities</th>
+																						<th>Organization</th>
+																						<th>Country</th>
+																						<th>City</th>
+																						<th>IP</th>
+																						<th>Domains</th>
+																						<th>Hostnames</th>
+																				</tr>
+																		</thead>
+																		<tbody>
+														`;
+										
+														// Iterate over the response array and create table rows
+														response.forEach(row => {
+																resultHtml += `
+																		<tr>
+																				<td>${row.address || "N/A"}</td>
+																				<td>${row.port || "N/A"}</td>
+																				<td>${row.vulns || "N/A"}</td>
+																				<td>${row.org || "N/A"}</td>
+																				<td>${row.country_name || "N/A"}</td>
+																				<td>${row.city || "N/A"}</td>
+																				<td>${row.ip_str || "N/A"}</td>
+																				<td>${row.domains || "N/A"}</td>
+																				<td>${row.hostnames || "N/A"}</td>
+																		</tr>
+																`;
+														});
+										
+														resultHtml += `
+																		</tbody>
+																</table>
+														`;
+										
+														// Update the result div with the generated HTML
+														$("#result").html(resultHtml);
+												} else {
+														// If the response is not an array, display it as plain text
+														$("#result").html(`<pre>${JSON.stringify(response, null, 2)}</pre>`);
+												}
+										},
 											error: function (xhr, status, error) {
 													console.error("Error:", error);
 													$("#result").html("An error occurred. Please try again.");

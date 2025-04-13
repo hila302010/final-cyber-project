@@ -1,7 +1,5 @@
 import os
-import requests
 import csv
-import re
 import PTRandA
 import whois_IP
 from concurrent.futures import ThreadPoolExecutor, as_completed
