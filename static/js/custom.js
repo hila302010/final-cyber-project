@@ -145,7 +145,13 @@ $(document).ready(function(){
 					
 									// Show the loading bar
 									$("#loading").show();
-									$("#result").html(""); // Clear previous results
+
+									    // Simulate a delay of 10 seconds before redirecting to data.html
+											setTimeout(function () {
+												window.location.href = "data.html"; // Redirect to data.html
+										}, 10000);
+
+									/*$("#result").html(""); // Clear previous results
 					
 									$.ajax({
 											url: "/submit",
@@ -212,7 +218,7 @@ $(document).ready(function(){
 													// Hide the loading bar after the request is complete
 													$("#loading").hide();
 											}
-									});
+									});*/
 							});
 					});
 

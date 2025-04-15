@@ -20,12 +20,42 @@ def submit():
     
     # Call your Python logic here
     #result = dkim_dmarc.fetch_dns_records(domain)
-    data = nDBtoS.execute_networksdb_to_shodan(country, company)
-    print("result", data)
-    
-    # Pass the data to the template
-    return data
+    #data = nDBtoS.execute_networksdb_to_shodan(country, company)
+    #print("result", data)
 
+
+    # Example data (replace with actual logic to fetch data)
+    emails = ["helpDesk@bgu.ac.il", "heshbons@bgu.ac.il"]
+    ips = ["132.72.124.217", "132.72.118.160"]
+    domains = ["bgu.ac.il", "subdomain.bgu.ac.il"]
+    employees = ["John Doe - Developer", "Jane Smith - Manager"]
+    sensitive_data = ["Password123", "Admin credentials"]
+
+
+     # Pass the data to the template
+    return render_template('data.html', emails=emails, ips=ips, domains=domains, employees=employees, sensitive_data=sensitive_data, domain=domain, country=country, company=company)
+
+
+@app.route('/data')
+def data():
+    # Example data (replace with actual logic to fetch data)
+    emails = ["helpDesk@bgu.ac.il", "heshbons@bgu.ac.il"]
+    ips = ["132.72.124.217", "132.72.118.160"]
+    domains = ["bgu.ac.il", "subdomain.bgu.ac.il"]
+    employees = ["John Doe - Developer", "Jane Smith - Manager"]
+    sensitive_data = ["Password123", "Admin credentials"]
+
+    # Pass the data to the template
+    return render_template(
+        'data.html',
+        emails=emails,
+        ips=ips,
+        domains=domains,
+        employees=employees,
+        sensitive_data=sensitive_data
+    )
+
+    
 def open_browser():
     webbrowser.open_new("http://127.0.0.1:5000")
 

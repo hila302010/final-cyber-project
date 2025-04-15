@@ -475,7 +475,7 @@ nav.navbar.bootsnav .navbar-toggle i{color: #439397;}
 }
 
 /* Style for the results container */
-.result {
+/*.result {
     margin-top: 20px;
     font-family: 'Poppins', sans-serif;
     color: #43485c;
@@ -494,15 +494,15 @@ nav.navbar.bootsnav .navbar-toggle i{color: #439397;}
 }
 
 /* Add spacing between Address and Port */
-#result td:first-child {
+/*#result td:first-child {
     padding-right: 20px;
 }
 
 /* Make Vulnerabilities column text smaller */
-#result td:nth-child(3) {
+/*#result td:nth-child(3) {
     font-size: 12px;
     color: #666;
-}
+}*/
 
 
 /*.education-horizontal-timeline*/

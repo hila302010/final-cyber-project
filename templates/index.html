@@ -83,7 +83,6 @@
 			                    <li class="smooth-menu"><a href="#reportWorkflow">Workflow</a></li>
 			                    <li class="smooth-menu"><a href="#cyber-glossary">Terms</a></li>
 								<li class="smooth-menu"><a href="#tokens">Tokens</a></li>
-			                    <li class="smooth-menu"><a href="#clients">clients</a></li>
 			                    <li class="smooth-menu"><a href="#contact">contact</a></li>
 			                </ul><!--/.nav -->
 			            </div><!-- /.navbar-collapse -->
@@ -105,7 +104,7 @@
 						<div class="header-text">
 							<h1 class="welcome-text">welcome to</h1>
 							<h2> OsinTech </h2>
-							<p>Shaked pickholz and Hila Ben Michael</p>
+							<p>By Shaked pickholz and Hila Ben Michael</p>
 							<ul class="inline-list">
 								<li class="smooth-menu"><a href="#about">About our project</a></li>
 								<li class="smooth-menu"><a href="#data-gathering">Start Data Gathering</a></li>
@@ -141,7 +140,7 @@
 				</h2><br>
 				
 			</div>
-			<form id="infoForm" class="form-style" action="/submit" method="POST">
+			<form id="infoForm" class="form-style" action="/submit" method="POST"  target="_blank">
 				<div class="form-group">
 					<label for="domain">Domain <i class="fa fa-globe"><br></i></label>
 					<input type="text" id="domain" name="domain" placeholder="Enter Domain" required />
@@ -162,7 +161,7 @@
 			</form>
 
 			<!-- Add a div to display the result  style="margin-top: 20px; font-weight: bold;" -->
-			<div id="result" >
+				<!--<div id="result" >
 				{% if data %}
 						<h2>Networks DB to Shodan Results</h2>
 						<table id="result">
@@ -196,7 +195,7 @@
 							</tbody>
 					</table>
 				{% endif %}
-		</div> 
+		</div> -->
 		
 
 			<div id="loading" style="display: none; text-align: center; margin-top: 20px;">
@@ -777,59 +776,6 @@
 </section><!--/.profiles-->
 <!--profiles end -->
 
-
-		<!--clients start -->
-		<section id="clients" class="clients">
-			<div class="section-heading text-center">
-				<h2>clients</h2>
-			</div>
-			<div class="clients-area">
-				<div class="container">
-					<div class="owl-carousel owl-theme" id="client">
-						<div class="item">
-							<a href="#">
-								<img src="static/images/clients/c1.png" alt="brand-image" />
-							</a>
-						</div><!--/.item-->
-						<div class="item">
-							<a href="#">
-								<img src="static/images/clients/c2.png" alt="brand-image" />
-							</a>
-						</div><!--/.item-->
-						<div class="item">
-							<a href="#">
-								<img src="static/images/clients/c3.png" alt="brand-image" />
-							</a>
-						</div><!--/.item-->
-						<div class="item">
-							<a href="#">
-								<img src="static/images/clients/c4.png" alt="brand-image" />
-							</a>
-						</div><!--/.item-->
-						<div class="item">
-							<a href="#">
-								<img src="static/images/clients/c5.png" alt="brand-image" />
-							</a>
-						</div><!--/.item-->
-						<div class="item">
-							<a href="#">
-								<img src="static/images/clients/c6.png" alt="brand-image" />
-							</a>
-						</div><!--/.item-->
-						<div class="item">
-							<a href="#">
-								<img src="static/images/clients/c7.png" alt="brand-image" />
-							</a>
-						</div><!--/.item-->
-					</div><!--/.owl-carousel-->
-				</div><!--/.container-->
-			</div><!--/.clients-area-->
-
-		</section><!--/.clients-->
-
-		</section><!--/.clients-->
-		<!--clients end -->
-
 		
 		<section class="contact" id="contact">
 			<div class="section-heading text-center">
@@ -844,24 +790,24 @@
 									<div class="contact-wrap w-100 p-lg-5 p-4">
 										<h3 class="contact-wrap h3">Send us a message</h3>
 										<h1>We'd love to hear from you!</h1>
-										<form id="contactForm" class="contactForm" action="send_email.php" method="POST">
-											<div class="form-group">
-												<input type="text" class="form-control" name="name" placeholder="Name" required>
-											</div>
-											<div class="form-group">
-												<input type="email" class="form-control" name="email" placeholder="Email" required>
-											</div>
-											<div class="form-group">
-												<input type="text" class="form-control" name="subject" placeholder="Subject" required>
-											</div>
-											<div class="form-group">
-												<textarea name="message" class="form-control" cols="30" rows="4" placeholder="Message" required></textarea>
-											</div>
-											<div class="form-group">
-												<input type="submit" value="Send Message" class="btn btn-primary">
-											</div>
-										</form>
-									</div>
+										<h2> Shaked Pickholz</h2>
+
+										<!-- LinkedIn -->
+										<a href="https://www.linkedin.com/in/your-profile" target="_blank" style="color: #0077b5; text-decoration: none;">
+											LinkedIn site
+										</a>
+										
+										<!-- Phone Number -->
+										<h1>Phone Number - </h1>
+										<a href="tel:+1234567890" style="color: #000; text-decoration: none;">
+											+1 234-567-890
+										</a>
+										
+										<!-- Email -->
+										<h1>Email - </h1>
+										<a href="mailto:your-email@example.com" style="color: #000; text-decoration: none;">
+											your-email@example.com
+										</a>									</div>
 								</div>
 							</div>
 						</div>
