@@ -138,89 +138,21 @@ $(document).ready(function(){
 				// 7. fetch the result from submit button
 				// Ensure that the DOM is fully loaded before attaching event handlers
 				$(document).ready(function () {
-							$("#infoForm").on("submit", function (event) {
-									event.preventDefault(); // Prevent the default form submission
-					
-									const formData = $(this).serialize(); // Serialize form data
-					
-									// Show the loading bar
-									$("#loading").show();
-
-									    // Simulate a delay of 10 seconds before redirecting to data.html
-											setTimeout(function () {
-												window.location.href = "data.html"; // Redirect to data.html
-										}, 10000);
-
-									/*$("#result").html(""); // Clear previous results
-					
-									$.ajax({
-											url: "/submit",
-											type: "POST",
-											data: formData,
-											success: function (response) {
-												console.log("Response:", response); // Log the response to inspect its structure
-										
-												// Check if the response is an array
-												if (Array.isArray(response)) {
-														let resultHtml = `
-																<h2>Networks DB to Shodan Results</h2>
-																<table>
-																		<thead>
-																				<tr>
-																						<th>Address</th>
-																						<th>Port</th>
-																						<th>Vulnerabilities</th>
-																						<th>Organization</th>
-																						<th>Country</th>
-																						<th>City</th>
-																						<th>IP</th>
-																						<th>Domains</th>
-																						<th>Hostnames</th>
-																				</tr>
-																		</thead>
-																		<tbody>
-														`;
-										
-														// Iterate over the response array and create table rows
-														response.forEach(row => {
-																resultHtml += `
-																		<tr>
-																				<td>${row.address || "N/A"}</td>
-																				<td>${row.port || "N/A"}</td>
-																				<td>${row.vulns || "N/A"}</td>
-																				<td>${row.org || "N/A"}</td>
-																				<td>${row.country_name || "N/A"}</td>
-																				<td>${row.city || "N/A"}</td>
-																				<td>${row.ip_str || "N/A"}</td>
-																				<td>${row.domains || "N/A"}</td>
-																				<td>${row.hostnames || "N/A"}</td>
-																		</tr>
-																`;
-														});
-										
-														resultHtml += `
-																		</tbody>
-																</table>
-														`;
-										
-														// Update the result div with the generated HTML
-														$("#result").html(resultHtml);
-												} else {
-														// If the response is not an array, display it as plain text
-														$("#result").html(`<pre>${JSON.stringify(response, null, 2)}</pre>`);
-												}
-										},
-											error: function (xhr, status, error) {
-													console.error("Error:", error);
-													$("#result").html("An error occurred. Please try again.");
-											},
-											complete: function () {
-													// Hide the loading bar after the request is complete
-													$("#loading").hide();
-											}
-									});*/
-							});
+					$("#infoForm").on("submit", function (event) {
+							event.preventDefault(); // Prevent the default form submission
+			
+							// Show the loading bar
+							$("#loading").show();
+			
+							// Delay the form submission by 5 seconds
+							setTimeout(() => {
+									// Submit the form programmatically
+									this.submit();
+									$("#loading").hide();
+							}, 5000); // 5000 milliseconds = 5 seconds
 					});
+			
+			});
 
 
 });	
