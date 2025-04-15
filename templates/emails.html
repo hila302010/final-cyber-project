@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Emails Table</title>
+    <link rel="stylesheet" href="static/css/styledata.css" />
+</head>
+<body>
+    <!-- Back to Data Link -->
+    <a href="{{ url_for('data') }}" style="position: absolute; top: 10px; right: 10px; text-decoration: none; font-size: 32px; color: #52a3b1;">
+        &larr; Back to Data
+    </a>
+    <!-- Export to CSV Button -->
+    <a href="{{ url_for('export_emails') }}" class="button" style="position: absolute;align-items: center; text-align: center; top: 10px;right: 10px; margin-top: 50px; text-decoration: none; font-size: 18px; color: white; background-color: #acd3d6; padding: 10px 20px;">
+        Export to CSV
+    </a>
+    <div class="container">
+        <h1>Emails Table</h1>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Item number</th>
+                    <th>Email Address</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for email in emails %}
+                <tr>
+                    <td>{{ loop.index }}</td>
+                    <td>{{ email }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
