@@ -1,0 +1,94 @@
+pinkasm@bgu.ac.il - https://github.com/pkp/pkp-lib/blob/main/locale/he/admin.po
+vatineg@bgu.ac.il - https://github.com/dashnowlab/STRchive/blob/main/data/literature/PHOX2B01.txt
+livnehat@bgu.ac.il - https://github.com/revue-de-qumran/revue-de-qumran.github.io/blob/main/src/views/Contact.vue
+felner@bgu.ac.il - https://github.com/sean-la/causal-sentiment-bert/blob/main/SO-CAL-master/data_source/arxiv.cs.ai_2007-2017/train/parsed_pdfs/1401.3490.pdf.json
+felner@bgu.ac.il - https://github.com/ArthurCisotto/AI_NLP/blob/main/data/arxiv.cs.ai_2007-2017/train/parsed_pdfs/1401.3490.pdf.json
+felner@bgu.ac.il - https://github.com/gurusha01/Human_or_AI/blob/main/data/arxiv.cs.ai_2007-2017/train/parsed_pdfs/1401.3490.pdf.json
+omerlev@bgu.ac.il - https://github.com/COMSOC-Community/comsoc-website/blob/main/comsoc-website/assets/docs/call-for-bids-to-host-comsoc-2025.txt
+omerlev@bgu.ac.il - https://github.com/niharshah/goldstandard-reviewer-paper-match/blob/main/data/txts/293ed3367027c99a81ead6ff3f31be7de43bce9c.txt
+omerlev@bgu.ac.il - https://github.com/COMSOC-Community/comsoc-website/blob/main/comsoc-website/archive/comsoc-2023/index.html
+ymiller@bgu.ac.il - https://github.com/AndrejAngelovski/deep_seek_hackathon/blob/main/papers/PMC8389909.txt
+geraw@bgu.ac.il - https://github.com/geraw/Evolving-solvers-for-CodeGuru/blob/main/old/old.tex
+achiya@bgu.ac.il - https://github.com/geraw/Evolving-solvers-for-CodeGuru/blob/main/old/old.tex
+bshapira@bgu.ac.il - https://github.com/isoboroff/autobib/blob/main/data/sigir-2018/neg/3210058.txt
+pliskinn@bgu.ac.il - https://github.com/bartala/GLP1/blob/main/LaTex/sn-article.tex
+sattath@bgu.ac.il - https://github.com/QCrypt/website-2023/blob/main/data/hotcrp_output.json
+sattath@bgu.ac.il - https://github.com/QCrypt/website-2024/blob/main/data/hotcrp_output.json
+tganel@bgu.ac.il - https://github.com/ashimakeshava/GTI/blob/main/source/references.bib
+galipa@bgu.ac.il - https://github.com/iafcy/Meta-Analysis/blob/main/data/OR_data/33811827/key_references/pdfplumber/Pariente 2020.txt
+galipa@bgu.ac.il - https://github.com/iafcy/Meta-Analysis/blob/main/data/OR_data/33811827/key_references/PyMuPDF/Pariente 2020.txt
+tsori@bgu.ac.il - https://github.com/zavalis/transparency-indicators-inf-dis-models/blob/main/publications/PMC7894958.xml
+cohenrap@bgu.ac.il - https://github.com/EdwardoSunny/ResearcherProfileSummarization/blob/main/yilu_data/Noémie Elhadad.json
+cohenrap@bgu.ac.il - https://github.com/DanielLiangAjj/DBMI_research_profile_crawler/blob/main/researchers_files(Yilu_format)/Noémie Elhadad.json
+nadavsh@bgu.ac.il - https://github.com/BennyDanielT/Dalhousie-University-MACS-Curriculum-Assignments/blob/main/CSCI 5408/A1/PROBLEM 3/Updated CSV files/Project_Pi_Information.csv
+shabtaia@bgu.ac.il - https://github.com/HughXuechen/BlockchainGameOverviewLDA/blob/main/Litearature as the training data/fullTXT/Badash-2021-Blockchain-based bug bounty framew.txt
+amaljith@bgu.ac.il - https://github.com/lamaoptic/lamaoptic.github.io/blob/main/index.html
+user2@bgu.ac.il - https://github.com/Carpool-Buddies/Backend/blob/main/api-server-flask/tests_package/acceptance/constants.py
+odedham@bgu.ac.il - https://github.com/AndrejAngelovski/deep_seek_hackathon/blob/main/papers/PMC8510588.txt
+fuhrmann@bgu.ac.il - https://github.com/anniecollins/reproducibility_markers_in_covid19_preprints/blob/main/outputs/data/text-arXiv/2007.01059v1.txt
+mickyfi@bgu.ac.il - https://github.com/anniecollins/reproducibility_markers_in_covid19_preprints/blob/main/outputs/data/text-arXiv/2007.01059v1.txt
+kagandi@bgu.ac.il - https://github.com/anniecollins/reproducibility_markers_in_covid19_preprints/blob/main/outputs/data/text-arXiv/2007.01059v1.txt
+alonmon@bgu.ac.il - https://github.com/logos000/RAG_EVL/blob/main/biology/html_3/paper_908.html
+estiyl@bgu.ac.il - https://github.com/bio-tools/biohackathon2024/blob/main/biotoolspub/fulltexts/PMC3692079.xml
+sappl@bgu.ac.il - https://github.com/abhinavwidak/20231128AquaculturePaper/blob/main/savedrecs (3).txt
+tzvidov@bgu.ac.il - https://github.com/Marc-Morcos/DatabaseWordCounter/blob/main/search_results/NCT00190021.xml
+cobym@bgu.ac.il - https://github.com/RabbitSnore/CLIMR/blob/main/data/utility/climr_social-stimuli.csv
+savtlana@bgu.ac.il - https://github.com/barteraiofficial/instagram_scraper/blob/main/exported_data/erikanthony.csv
+savtlana@bgu.ac.il - https://github.com/barteraiofficial/instagram_scraper/blob/main/extracted_data/erikanthony_extracted.csv
+hagitc@bgu.ac.il - https://github.com/AndrejAngelovski/deep_seek_hackathon/blob/main/papers/PMC8200046.txt
+toiber@bgu.ac.il - https://github.com/AndrejAngelovski/deep_seek_hackathon/blob/main/papers/PMC8548377.txt
+reggevn@bgu.ac.il - https://github.com/doomlab/PSA002-Final/blob/main/code/Stage2_Report_full_shortcite.Rmd
+puzis@bgu.ac.il - https://github.com/Torin-Perkins/revolutionizing-higher-ed-rankings/blob/main/email-crawler/emails/international/csrankings-r_emails.csv
+puzis@bgu.ac.il - https://github.com/anniecollins/reproducibility_markers_in_covid19_preprints/blob/main/outputs/data/text-arXiv/2010.01380v1.txt
+daoud@bgu.ac.il - https://github.com/ML4LitS/article_classifier/blob/main/data/300_articles_source_files/PMC4607270.xml
+shalish@bgu.ac.il - https://github.com/logos000/RAG_EVL/blob/main/material/L1_questions_answers.json
+vardasb@bgu.ac.il - https://github.com/AndrejAngelovski/deep_seek_hackathon/blob/main/papers/PMC6651789.txt
+robinzon@bgu.ac.il - https://github.com/lattiric/search_engine_Data_Structure_Project_5/blob/main/cs2341_data/86fe00ed292aab3fd191a7f8253d33dad3be59b3.json
+polinaz@bgu.ac.il - https://github.com/anniecollins/reproducibility_markers_in_covid19_preprints/blob/main/outputs/data/text-arXiv/2010.01380v1.txt
+pinkasm@bgu.ac.il - https://github.com/pkp/pkp-lib/blob/main/locale/he/admin.po
+vatineg@bgu.ac.il - https://github.com/dashnowlab/STRchive/blob/main/data/literature/PHOX2B01.txt
+livnehat@bgu.ac.il - https://github.com/revue-de-qumran/revue-de-qumran.github.io/blob/main/src/views/Contact.vue
+felner@bgu.ac.il - https://github.com/gurusha01/Human_or_AI/blob/main/data/arxiv.cs.ai_2007-2017/train/parsed_pdfs/1401.3490.pdf.json
+felner@bgu.ac.il - https://github.com/sean-la/causal-sentiment-bert/blob/main/SO-CAL-master/data_source/arxiv.cs.ai_2007-2017/train/parsed_pdfs/1401.3490.pdf.json
+felner@bgu.ac.il - https://github.com/ArthurCisotto/AI_NLP/blob/main/data/arxiv.cs.ai_2007-2017/train/parsed_pdfs/1401.3490.pdf.json
+omerlev@bgu.ac.il - https://github.com/COMSOC-Community/comsoc-website/blob/main/comsoc-website/archive/comsoc-2023/index.html
+omerlev@bgu.ac.il - https://github.com/niharshah/goldstandard-reviewer-paper-match/blob/main/data/txts/293ed3367027c99a81ead6ff3f31be7de43bce9c.txt
+omerlev@bgu.ac.il - https://github.com/COMSOC-Community/comsoc-website/blob/main/comsoc-website/assets/docs/call-for-bids-to-host-comsoc-2025.txt
+achiya@bgu.ac.il - https://github.com/geraw/Evolving-solvers-for-CodeGuru/blob/main/old/old.tex
+geraw@bgu.ac.il - https://github.com/geraw/Evolving-solvers-for-CodeGuru/blob/main/old/old.tex
+ymiller@bgu.ac.il - https://github.com/AndrejAngelovski/deep_seek_hackathon/blob/main/papers/PMC8389909.txt
+pliskinn@bgu.ac.il - https://github.com/bartala/GLP1/blob/main/LaTex/sn-article.tex
+sattath@bgu.ac.il - https://github.com/QCrypt/website-2024/blob/main/data/hotcrp_output.json
+sattath@bgu.ac.il - https://github.com/QCrypt/website-2023/blob/main/data/hotcrp_output.json
+bshapira@bgu.ac.il - https://github.com/isoboroff/autobib/blob/main/data/sigir-2018/neg/3210058.txt
+tganel@bgu.ac.il - https://github.com/ashimakeshava/GTI/blob/main/source/references.bib
+galipa@bgu.ac.il - https://github.com/iafcy/Meta-Analysis/blob/main/data/OR_data/33811827/key_references/pdfplumber/Pariente 2020.txt
+galipa@bgu.ac.il - https://github.com/iafcy/Meta-Analysis/blob/main/data/OR_data/33811827/key_references/PyMuPDF/Pariente 2020.txt
+tsori@bgu.ac.il - https://github.com/zavalis/transparency-indicators-inf-dis-models/blob/main/publications/PMC7894958.xml
+cohenrap@bgu.ac.il - https://github.com/EdwardoSunny/ResearcherProfileSummarization/blob/main/yilu_data/Noémie Elhadad.json
+cohenrap@bgu.ac.il - https://github.com/DanielLiangAjj/DBMI_research_profile_crawler/blob/main/researchers_files(Yilu_format)/Noémie Elhadad.json
+nadavsh@bgu.ac.il - https://github.com/BennyDanielT/Dalhousie-University-MACS-Curriculum-Assignments/blob/main/CSCI 5408/A1/PROBLEM 3/Updated CSV files/Project_Pi_Information.csv
+shabtaia@bgu.ac.il - https://github.com/HughXuechen/BlockchainGameOverviewLDA/blob/main/Litearature as the training data/fullTXT/Badash-2021-Blockchain-based bug bounty framew.txt
+amaljith@bgu.ac.il - https://github.com/lamaoptic/lamaoptic.github.io/blob/main/index.html
+user2@bgu.ac.il - https://github.com/Carpool-Buddies/Backend/blob/main/api-server-flask/tests_package/acceptance/constants.py
+odedham@bgu.ac.il - https://github.com/AndrejAngelovski/deep_seek_hackathon/blob/main/papers/PMC8510588.txt
+mickyfi@bgu.ac.il - https://github.com/anniecollins/reproducibility_markers_in_covid19_preprints/blob/main/outputs/data/text-arXiv/2007.01059v1.txt
+fuhrmann@bgu.ac.il - https://github.com/anniecollins/reproducibility_markers_in_covid19_preprints/blob/main/outputs/data/text-arXiv/2007.01059v1.txt
+kagandi@bgu.ac.il - https://github.com/anniecollins/reproducibility_markers_in_covid19_preprints/blob/main/outputs/data/text-arXiv/2007.01059v1.txt
+alonmon@bgu.ac.il - https://github.com/logos000/RAG_EVL/blob/main/biology/html_3/paper_908.html
+estiyl@bgu.ac.il - https://github.com/bio-tools/biohackathon2024/blob/main/biotoolspub/fulltexts/PMC3692079.xml
+sappl@bgu.ac.il - https://github.com/abhinavwidak/20231128AquaculturePaper/blob/main/savedrecs (3).txt
+tzvidov@bgu.ac.il - https://github.com/Marc-Morcos/DatabaseWordCounter/blob/main/search_results/NCT00190021.xml
+savtlana@bgu.ac.il - https://github.com/barteraiofficial/instagram_scraper/blob/main/extracted_data/erikanthony_extracted.csv
+savtlana@bgu.ac.il - https://github.com/barteraiofficial/instagram_scraper/blob/main/exported_data/erikanthony.csv
+cobym@bgu.ac.il - https://github.com/RabbitSnore/CLIMR/blob/main/data/utility/climr_social-stimuli.csv
+hagitc@bgu.ac.il - https://github.com/AndrejAngelovski/deep_seek_hackathon/blob/main/papers/PMC8200046.txt
+reggevn@bgu.ac.il - https://github.com/doomlab/PSA002-Final/blob/main/code/Stage2_Report_full_shortcite.Rmd
+toiber@bgu.ac.il - https://github.com/AndrejAngelovski/deep_seek_hackathon/blob/main/papers/PMC8548377.txt
+puzis@bgu.ac.il - https://github.com/anniecollins/reproducibility_markers_in_covid19_preprints/blob/main/outputs/data/text-arXiv/2010.01380v1.txt
+puzis@bgu.ac.il - https://github.com/Torin-Perkins/revolutionizing-higher-ed-rankings/blob/main/email-crawler/emails/international/csrankings-r_emails.csv
+daoud@bgu.ac.il - https://github.com/ML4LitS/article_classifier/blob/main/data/300_articles_source_files/PMC4607270.xml
+shalish@bgu.ac.il - https://github.com/logos000/RAG_EVL/blob/main/material/L1_questions_answers.json
+vardasb@bgu.ac.il - https://github.com/AndrejAngelovski/deep_seek_hackathon/blob/main/papers/PMC6651789.txt
+robinzon@bgu.ac.il - https://github.com/lattiric/search_engine_Data_Structure_Project_5/blob/main/cs2341_data/86fe00ed292aab3fd191a7f8253d33dad3be59b3.json
+polinaz@bgu.ac.il - https://github.com/anniecollins/reproducibility_markers_in_covid19_preprints/blob/main/outputs/data/text-arXiv/2010.01380v1.txt

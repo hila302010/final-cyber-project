@@ -1,0 +1,155 @@
+Email Address	Source URL	Email Dork
+helpDesk@bgu.ac.il	https://www.bgu.ac.il/academic-calendar/	intext:@bgu.ac.il
+heshbons@bgu.ac.il	https://www.bgu.ac.il/welcome/payments-lobby/	intext:@bgu.ac.il
+helpdesk@bgu.ac.il	https://www.bgu.ac.il/welcome/contents/course-registration/courses-registration/	intext:@bgu.ac.il
+miluim@bgu.ac.il	https://www.bgu.ac.il/welcome/mitve2025/	intext:@bgu.ac.il
+efratkol@bgu.ac.il	https://www.bgu.ac.il/welcome/mitve2025/	intext:@bgu.ac.il
+elearn@bgu.ac.il	https://in.bgu.ac.il/academicdev/Pages/Hybridclasses.aspx	intext:@bgu.ac.il
+yaatz@bgu.ac.il	https://in.bgu.ac.il/aranne/Pages/default.aspx	intext:@bgu.ac.il
+welcomebgu@bgu.ac.il	https://www.bgu.ac.il/welcome/payments-lobby/studies-cessation/	intext:@bgu.ac.il
+helpDesk@bgu.ac.il	https://www.bgu.ac.il/academic-calendar/	site:@bgu.ac.il intext:@bgu.ac.il
+heshbons@bgu.ac.il	https://www.bgu.ac.il/welcome/payments-lobby/	site:@bgu.ac.il intext:@bgu.ac.il
+miluim@bgu.ac.il	https://www.bgu.ac.il/welcome/mitve2025/	site:@bgu.ac.il intext:@bgu.ac.il
+efratkol@bgu.ac.il	https://www.bgu.ac.il/welcome/mitve2025/	site:@bgu.ac.il intext:@bgu.ac.il
+elearn@bgu.ac.il	https://in.bgu.ac.il/academicdev/Pages/Hybridclasses.aspx	site:@bgu.ac.il intext:@bgu.ac.il
+yaatz@bgu.ac.il	https://in.bgu.ac.il/aranne/Pages/default.aspx	site:@bgu.ac.il intext:@bgu.ac.il
+welcomebgu@bgu.ac.il	https://www.bgu.ac.il/welcome/payments-lobby/studies-cessation/	site:@bgu.ac.il intext:@bgu.ac.il
+ophirsh@bgu.ac.il	https://in.bgu.ac.il/humsos/masscom/Pages/default.aspx	site:@bgu.ac.il intext:@bgu.ac.il
+helpdesk@bgu.ac.il	https://tamrur.bgu.ac.il/restore/hlogin.php	site:@bgu.ac.il intext:@bgu.ac.il
+Passwords	Source URL	Password Dork
+password.</strong></span></span></p>	https://libguides.bgu.ac.il/guides/PURE/Trusted_Users	site:@bgu.ac.il intext:"SELECT" intext:"password"
+password and	https://libguides.bgu.ac.il/c.php?g=996619&p=7212807	site:@bgu.ac.il intext:"SELECT" intext:"password"
+Password</label>	https://lifeserv.bgu.ac.il/Faculty/ServiceCalle/	site:@bgu.ac.il intext:"SELECT" intext:"password"
+Password"	https://lifeserv.bgu.ac.il/Faculty/ServiceCalle/	site:@bgu.ac.il intext:"SELECT" intext:"password"
+password"	https://lifeserv.bgu.ac.il/Faculty/ServiceCalle/	site:@bgu.ac.il intext:"SELECT" intext:"password"
+password is	https://netbio.bgu.ac.il/labwebsite/the-responsenet-v-3-tutorial/	site:@bgu.ac.il intext:"SELECT" intext:"password"
+Password change</div>	https://www.bgu.ac.il/en/housing/beer-sheva/graduate-students-housing/	site:@bgu.ac.il intext:"SELECT" intext:"password"
+password.</strong></span></span></p>	https://libguides.bgu.ac.il/guides/PURE/Claim_Publication	site:@bgu.ac.il intext:"SELECT" intext:"password"
+Password change</div>	https://www.bgu.ac.il/en/study/short-term-programs/summer-programs/sustainable-agricultural-solutions/	site:@bgu.ac.il intext:"SELECT" intext:"password"
+password.</strong></span></span></p>	https://libguides.bgu.ac.il/guides/PURE/Add_publication	site:@bgu.ac.il intext:"SELECT" intext:"password"
+Password change</div>	https://www.bgu.ac.il/en/u/faculties/health-sciences/the-program-of-gerontology/gerontology/qa/	site:@bgu.ac.il intext:"SELECT" intext:"password"
+Files	Source URL	Files Dork
+File URL: https://tzin.bgu.ac.il/~arnona/Sovereignty_and_Economic_Development.pdf
+Dork Used: site:@bgu.ac.il filetype:pdf
+==================================================
+File URL: https://tzin.bgu.ac.il/~dleiser/docs/causal.pdf
+Dork Used: site:@bgu.ac.il filetype:pdf
+==================================================
+File URL: https://tzin.bgu.ac.il/~arnona/newspapers/Yed_08_Per_Agr.pdf
+Dork Used: site:@bgu.ac.il filetype:pdf
+==================================================
+File URL: https://tzin.bgu.ac.il/~arnona/newspapers/Haar_09_99_Per_Agr.pdf
+Dork Used: site:@bgu.ac.il filetype:pdf
+==================================================
+File URL: https://in.bgu.ac.il/humsos/geog/epif/Documents/%D7%93%D7%95%D7%97%20%D7%9E%D7%97%D7%A7%D7%A8.pdf
+Dork Used: site:@bgu.ac.il filetype:pdf
+==================================================
+File URL: https://www.bgu.ac.il/atomchip/Group_Abstract.pdf
+Dork Used: site:@bgu.ac.il filetype:pdf
+==================================================
+File URL: https://physics.bgu.ac.il/~lublinm/program2.pdf
+Dork Used: site:@bgu.ac.il filetype:pdf
+==================================================
+File URL: https://www.bgu.ac.il/media/rcwndazj/%D7%A9%D7%A0%D7%99.pdf
+Dork Used: site:@bgu.ac.il filetype:pdf
+==================================================
+File URL: https://www.bgu.ac.il/media/ppan3qmk/%D7%A9%D7%A0%D7%99.pdf
+Dork Used: site:@bgu.ac.il filetype:pdf
+==================================================
+File URL: https://tzin.bgu.ac.il/atomchip/People/Mark_Keil_CV.pdf
+Dork Used: site:@bgu.ac.il filetype:pdf
+==================================================
+File URL: https://myforum.bgu.ac.il/phpBB3/files/4414_6ae0c3883a5a6bc2c9d67caac3133468
+Dork Used: site:@bgu.ac.il filetype:docx
+==================================================
+File URL: https://aranne5.bgu.ac.il/Tuv/index/yamit.xlsx
+Dork Used: site:@bgu.ac.il filetype:xlsx
+==================================================
+File URL: https://www.bgu.ac.il/media/wvrlmq2l/vatat.pptx
+Dork Used: site:@bgu.ac.il filetype:pptx
+==================================================
+File URL: https://physics.bgu.ac.il/SHNATON/SHNATON2016/lists/ShnatonCrsListsInput.txt
+Dork Used: site:@bgu.ac.il filetype:txt
+==================================================
+Admin	Source URL	Admin Dork
+Admin URL: https://www.bgu.ac.il/en/u/faculties/health-sciences/admin-units/
+Dork Used: site:@bgu.ac.il inurl:admin
+==================================================
+Admin URL: https://www.bgu.ac.il/u/admin/main/
+Dork Used: site:@bgu.ac.il inurl:admin
+==================================================
+Admin URL: https://lifewp.bgu.ac.il/wp/imizrahi/index.php/author/wp-admin-imizrahi/
+Dork Used: site:@bgu.ac.il inurl:admin
+==================================================
+Admin URL: https://www.bgu.ac.il/u/admin/hr/hierarchy/
+Dork Used: site:@bgu.ac.il inurl:admin
+==================================================
+Admin URL: https://www.bgu.ac.il/u/admin/budgeting/
+Dork Used: site:@bgu.ac.il inurl:admin
+==================================================
+Admin URL: https://in.bgu.ac.il/humsos/econ/Pages/Admin-Staff_heb.aspx
+Dork Used: site:@bgu.ac.il inurl:admin
+==================================================
+Admin URL: https://www.bgu.ac.il/u/admin/main/internal-com/
+Dork Used: site:@bgu.ac.il inurl:admin
+==================================================
+Admin URL: https://www.bgu.ac.il/u/admin/budgeting/about/
+Dork Used: site:@bgu.ac.il inurl:admin
+==================================================
+Admin URL: https://www.bgu.ac.il/u/admin/budgeting/regular-budget/
+Dork Used: site:@bgu.ac.il inurl:admin
+==================================================
+Admin URL: https://www.bgu.ac.il/u/admin/%D7%90%D7%92%D7%A3-%D7%94%D7%9E%D7%97%D7%A9%D7%95%D7%91-%D7%95%D7%94%D7%A1%D7%99%D7%99%D7%91%D7%A8/computing/support/
+Dork Used: site:@bgu.ac.il inurl:admin
+==================================================
+Admin URL: https://physics.bgu.ac.il/accounts/login/?next=/seminars/
+Dork Used: site:@bgu.ac.il inurl:login
+==================================================
+Admin URL: https://bgu4u22.bgu.ac.il/apex/10g/r/kioskinfo/login
+Dork Used: site:@bgu.ac.il inurl:login
+==================================================
+Admin URL: https://apps4cloud.bgu.ac.il/orcidProd/login
+Dork Used: site:@bgu.ac.il inurl:login
+==================================================
+Admin URL: https://apps4cloud.bgu.ac.il/visitorform/login.aspx
+Dork Used: site:@bgu.ac.il inurl:login
+==================================================
+Admin URL: https://fohs.bgu.ac.il/research/login.aspx
+Dork Used: site:@bgu.ac.il inurl:login
+==================================================
+Admin URL: https://grf.bgu.ac.il/index.php/GRF/login
+Dork Used: site:@bgu.ac.il inurl:login
+==================================================
+Admin URL: https://fohs.bgu.ac.il/fohsservices/RequestApproval/RequestsPortal/Login
+Dork Used: site:@bgu.ac.il inurl:login
+==================================================
+Admin URL: https://tamrur.bgu.ac.il/wcp/login.php
+Dork Used: site:@bgu.ac.il inurl:login
+==================================================
+Admin URL: https://bgu4u22.bgu.ac.il/apex/10g/r/newlogin/login?P_LANG=en&P0_APP_ID=1006
+Dork Used: site:@bgu.ac.il inurl:login
+==================================================
+Admin URL: https://in.bgu.ac.il/accounts/_vti_bin/Authentication.asmx?op=Login
+Dork Used: site:@bgu.ac.il inurl:login
+==================================================
+Admin URL: https://wiki.physics.bgu.ac.il/bin/view/Dashboard/
+Dork Used: site:@bgu.ac.il inurl:dashboard
+==================================================
+Admin URL: https://wiki.physics.bgu.ac.il/bin/view/Dashboard/?xpage=print&xpage=copy
+Dork Used: site:@bgu.ac.il inurl:dashboard
+==================================================
+Admin URL: https://wiki.physics.bgu.ac.il/bin/view/Dashboard/?xpage=pdfoptions&qs=xpage%3Dpdfoptions%26qs%3Dxpage%253Dpdfoptions%2526qs%253Dformat%25253Drtf%252526xpage%25253Dcopy
+Dork Used: site:@bgu.ac.il inurl:dashboard
+==================================================
+Admin URL: https://wiki.physics.bgu.ac.il/bin/view/Dashboard/ApplicationsPanelEntry?viewer=history
+Dork Used: site:@bgu.ac.il inurl:dashboard
+==================================================
+Admin URL: https://wiki.physics.bgu.ac.il/bin/view/Dashboard/ApplicationsPanelEntry?viewer=content
+Dork Used: site:@bgu.ac.il inurl:dashboard
+==================================================
+Admin URL: https://bidi.cs.bgu.ac.il/survey/rlufhsg
+Dork Used: site:@bgu.ac.il intitle:'Admin Panel'
+==================================================
+Admin URL: https://lifewp.bgu.ac.il/wp/imizrahi/index.php/author/wp-admin-imizrahi/
+Dork Used: site:@bgu.ac.il inurl:wp-admin
+==================================================

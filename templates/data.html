@@ -6,7 +6,7 @@
 -->
 <html>
 	<head>
-		<title>Date Results</title>
+		<title>Data Results</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="static/css/styledata.css" />
@@ -19,22 +19,23 @@
 					<div id="main">
 						<div class="inner">
 							<header>
-								<br><h1>Data Results for Your Query<br /></h1>
+								<br><h1>Data Results</h1>
+								<p>Domain: {{ domain }}</p>
+								<p>Country: {{ country }}</p>
+								<p>Company: {{ company }}</p>
 								<p>Below are the results based on your query.</p>
 							</header>
 
 
 							<section class="tiles">
-
-
 								<article class="style1">
 									<span class="image">
 										<img src="static/images/dataImages/pic01.jpg" alt="" />
 									</span>
-									<a href="generic.html">
-										<h2>Magna</h2>
+									<a href="{{ url_for('emails') }}">
+										<h2>Emails</h2>
 										<div class="content">
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
+											<p>Click here to view the table of emails.</p>
 										</div>
 									</a>
 								</article>
@@ -45,9 +46,9 @@
 										<img src="static/images/dataImages/pic02.jpg" alt="" />
 									</span>
 									<a href="generic.html">
-										<h2>Lorem</h2>
+										<h2>IP adresses</h2>
 										<div class="content">
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
+											<p>Click here to view the table of ip's.</p>
 										</div>
 									</a>
 								</article>
@@ -58,9 +59,9 @@
 										<img src="static/images/dataImages/pic03.jpg" alt="" />
 									</span>
 									<a href="generic.html">
-										<h2>Feugiat</h2>
+										<h2>Domains</h2>
 										<div class="content">
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
+											<p>Click here to view the table of domains.</p>
 										</div>
 									</a>
 								</article>
@@ -71,9 +72,9 @@
 										<img src="static/images/dataImages/pic04.jpg" alt="" />
 									</span>
 									<a href="generic.html">
-										<h2>Tempus</h2>
+										<h2>Employees information</h2>
 										<div class="content">
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
+											<p>Click here to view the table of employees.</p>
 										</div>
 									</a>
 								</article>
@@ -84,22 +85,9 @@
 										<img src="static/images/dataImages/pic05.jpg" alt="" />
 									</span>
 									<a href="generic.html">
-										<h2>Aliquam</h2>
+										<h2>Sensitive data</h2>
 										<div class="content">
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-										</div>
-									</a>
-								</article>
-
-
-								<article class="style6">
-									<span class="image">
-										<img src="static/images/dataImages/pic06.jpg" alt="" />
-									</span>
-									<a href="generic.html">
-										<h2>Veroeros</h2>
-										<div class="content">
-											<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
+											<p>Click here to view the table of passwords files and sensitive data.</p>
 										</div>
 									</a>
 								</article>
@@ -108,15 +96,9 @@
 							</section>
 
 
-
-							<h1>Submitted Data</h1>
-							<p><strong>Domain:</strong> {{ domain }}</p>
-							<p><strong>Country:</strong> {{ country }}</p>
-							<p><strong>Company:</strong> {{ company }}</p>
-
 							
 							 <!-- Emails Section -->
-							 <section>
+							 <!--<section>
 								<h2>Emails</h2>
 								<ul>
 										{% if emails %}
@@ -127,47 +109,47 @@
 												<li>No emails found.</li>
 										{% endif %}
 								</ul>
-						</section>
+						</section>-->
 
 						<!-- IPs Section -->
-						<section>
+						<!--<section>
 								<h2>IPs</h2>
 								<ul>
 										{% for ip in ips %}
 										<li>{{ ip }}</li>
 										{% endfor %}
 								</ul>
-						</section>
+						</section> -->
 
 						<!-- Domains Section -->
-						<section>
+						<!--<section>
 								<h2>Domains</h2>
 								<ul>
 										{% for domain in domains %}
 										<li>{{ domain }}</li>
 										{% endfor %}
 								</ul>
-						</section>
+						</section> -->
 
 						<!-- Employees Section -->
-						<section>
+						<!-- <section>
 								<h2>Employees</h2>
 								<ul>
 										{% for employee in employees %}
 										<li>{{ employee }}</li>
 										{% endfor %}
 								</ul>
-						</section>
+						</section> -->
 
 						<!-- Sensitive Data Section -->
-						<section>
+						<!--<section>
 								<h2>Sensitive Data</h2>
 								<ul>
 										{% for data in sensitive_data %}
 										<li>{{ data }}</li>
 										{% endfor %}
 								</ul>
-						</section>
+						</section>-->
 
 
 

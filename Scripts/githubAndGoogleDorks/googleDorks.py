@@ -1,6 +1,7 @@
 import subprocess
 import json
 import tempfile
+import re
 
 
 def run_pagodo(dork, num_results=10):
@@ -127,6 +128,21 @@ def save_to_txt(email_data, password_data, files_data,admin_data, domain):
 
 
     print(f"Data about {domain} saved to {filename}")
+    
+
+def getEmails():
+    emails = set()  # Use a set to avoid duplicates
+    email_pattern = r'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}'
+    print("google emails: \n")
+    with open("@bgu.ac.il_google_results.txt", "r", encoding="utf-8") as file:
+         for line in file:
+            matches = re.findall(email_pattern, line)
+            print(matches)
+            emails.update(matches)
+    return list(emails)
+
+
+
 
 def main(domain):
     email_data = google_dork_emails(domain)
