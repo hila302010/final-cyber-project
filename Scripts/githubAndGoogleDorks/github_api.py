@@ -121,6 +121,18 @@ def write_to_file(output_file, results):
     except IOError as e:
         print(f"Error writing to file: {e}")
 
+def getEmails():
+    emails = set()
+    with open("@bgu.ac.il_github_results.txt", "r", encoding="utf-8") as file:
+        print("github mails: \n")
+        for line in file:
+            if line.strip():  # Ignore empty lines
+                # Split the line by " - " and take the first part (email address)
+                email = line.split(" - ")[0].strip()
+                print(email,"\n")
+                emails.add(email)
+    return list(emails)
+
 if __name__ == "__main__":
     domain_name = input("Enter the domain name: ").strip()
     found_emails = search_github_emails(domain_name, "email_code_results_threads.txt")

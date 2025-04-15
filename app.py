@@ -2,6 +2,9 @@ from flask import Flask, render_template, request, jsonify
 import Scripts.DNS.DkimDmarc as dkim_dmarc  # your custom script
 import Scripts.networksDBtoShodan.shodanAPI as shodanAPI
 import Scripts.networksDBtoShodan.networksDBtoShodan as nDBtoS 
+import Scripts.githubAndGoogleDorks.googleDorks   as google
+import Scripts.githubAndGoogleDorks.github_api as github
+from flask import Response
 from flask import session
 from flask import redirect, url_for
 import webbrowser
@@ -12,6 +15,8 @@ import secrets
 
 app = Flask(__name__)
 app.secret_key = str(secrets.token_hex(32)) # Replace with a secure random key
+
+
 
 @app.route('/')
 def index():
@@ -28,20 +33,27 @@ def submit():
     #result = dkim_dmarc.fetch_dns_records(domain)
     #data = nDBtoS.execute_networksdb_to_shodan(country, company)
     #print("result", data)
-
+    
+    emails = dataLoading()
 
     # Example data (replace with actual logic to fetch data)
     session['domain'] = domain
     session['country'] = country
     session['company'] = company
-    session['emails'] = ["helpDesk@bgu.ac.il", "heshbons@bgu.ac.il"]
-    session['ips'] = ["132.72.124.217", "132.72.118.160"]
-    session['domains'] = ["bgu.ac.il", "subdomain.bgu.ac.il"]
-    session['employees'] = ["John Doe - Developer", "Jane Smith - Manager"]
-    session['sensitive_data'] = ["Password123", "Admin credentials"]
+    session['emails'] = emails
+
     
     # Redirect to the /data route
     return redirect(url_for('data'))
+
+
+def dataLoading():
+    # Example data loading function (replace with actual logic)
+    
+    data = github.getEmails() 
+    data.extend(google.getEmails())
+
+    return data
 
 
 @app.route('/data')
@@ -53,12 +65,32 @@ def data():
         country=session.get('country', ''),
         company=session.get('company', ''),
         emails=session.get('emails', []),
-        ips=session.get('ips', []),
-        domains=session.get('domains', []),
-        employees=session.get('employees', []),
-        sensitive_data=session.get('sensitive_data', [])
     )
-    
+
+
+@app.route('/emails')
+def emails():
+    # Render the table for emails
+    return render_template('emails.html', emails = session.get('emails', []))
+
+
+@app.route('/export_emails')
+def export_emails():
+    domain = session.get('domain', '')
+    emails = session.get('emails', [])
+    # Create a CSV response
+    def generate():
+        yield "Email Address\n"  # Header row
+        for email in emails:
+            yield f"{email}\n"  # Each email as a new row
+    # Return the response as a CSV file
+    return Response(
+        generate(),
+        mimetype='text/csv',
+        headers={"Content-Disposition": f"attachment; filename=emails_{domain}.csv"})
+
+
+
 def open_browser():
     webbrowser.open_new("http://127.0.0.1:5000")
 
