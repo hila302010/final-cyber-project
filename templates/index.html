@@ -82,8 +82,7 @@
 			                    <li class="smooth-menu"><a href="#skills">skills</a></li>
 			                    <li class="smooth-menu"><a href="#reportWorkflow">Workflow</a></li>
 			                    <li class="smooth-menu"><a href="#cyber-glossary">Terms</a></li>
-													<li class="smooth-menu"><a href="#tokens">Tokens</a></li>
-			                    <li class="smooth-menu"><a href="#clients">clients</a></li>
+								<li class="smooth-menu"><a href="#tokens">Tokens</a></li>
 			                    <li class="smooth-menu"><a href="#contact">contact</a></li>
 			                </ul><!--/.nav -->
 			            </div><!-- /.navbar-collapse -->
@@ -105,7 +104,7 @@
 						<div class="header-text">
 							<h1 class="welcome-text">welcome to</h1>
 							<h2> OsinTech </h2>
-							<p>Shaked pickholz and Hila Ben Michael</p>
+							<p>By Shaked pickholz and Hila Ben Michael</p>
 							<ul class="inline-list">
 								<li class="smooth-menu"><a href="#about">About our project</a></li>
 								<li class="smooth-menu"><a href="#data-gathering">Start Data Gathering</a></li>
@@ -134,9 +133,14 @@
 	<section id="data-gathering" class="data-gathering">
 		<div class="content">
 			<div class="section-heading text-center">
-				<h2>Enter Company Details</h2>
+				<h2>Enter Company Details
+					<p class="suggested-domains">Suggested Domains To Investigate - 
+						<span>bgu.ac.il, reddit.com, google.com, amazon.com, zemingo.com</span>
+					</p>
+				</h2><br>
+				
 			</div>
-			<form id="infoForm" class="form-style" action="/submit" method="POST">
+			<form id="infoForm" class="form-style" action="/submit" method="POST"  target="_blank">
 				<div class="form-group">
 					<label for="domain">Domain <i class="fa fa-globe"><br></i></label>
 					<input type="text" id="domain" name="domain" placeholder="Enter Domain" required />
@@ -146,7 +150,7 @@
 					<input type="text" id="country" name="country" placeholder="Enter Country" required/>
 				</div>
 				<div class="form-group">
-					<label for="company">Company Name <i class="fa fa-building"><br></i></label>
+					<label for="company">Company Name <i class="fa fa-users"><br></i></label>
 					<input type="text" id="company" name="company" placeholder="Enter Company Name"  required/>
 				</div>
 				<div class="form-button">
@@ -157,7 +161,7 @@
 			</form>
 
 			<!-- Add a div to display the result  style="margin-top: 20px; font-weight: bold;" -->
-			<div id="result" >
+				<!--<div id="result" >
 				{% if data %}
 						<h2>Networks DB to Shodan Results</h2>
 						<table id="result">
@@ -191,7 +195,7 @@
 							</tbody>
 					</table>
 				{% endif %}
-		</div> 
+		</div> -->
 		
 
 			<div id="loading" style="display: none; text-align: center; margin-top: 20px;">
@@ -575,7 +579,7 @@
 				  
 				  <div class="term">
 					<h3>DNS</h3>
-					<p>Domain Name Server – translates domain names like example.com into numerical IP addresses that computers use to locate each other.</p>
+					<p>Domain Name System – translates domain names like google.com into numerical IP addresses that computers use to locate each other.</p>
 				  </div><br>
 				  
 				  <div class="term">
@@ -587,12 +591,7 @@
 					<h3>Dorks</h3>
 					<p>Google Dorks – advanced search queries used to find hidden or vulnerable data on websites through search engines.</p>
 				  </div><br>
-				  
-				  <div class="term">
-					<h3>API</h3>
-					<p>Application Programming Interface – allows different software systems to communicate and exchange data with each other.</p>
-				  </div><br>
-				  
+			
 				  <div class="term">
 					<h3>IP and Net Range</h3>
 					<p>An IP address identifies a device on a network. A net range (e.g., 192.168.0.0/24) is a block of IPs used for organizing and managing networks.</p>
@@ -606,9 +605,12 @@
 					 <p> An API is a set of rules and tools that allows different software systems to communicate with each other. It lets you request specific data from a service (like getting user details from a platform) without using the website itself. APIs are commonly used in OSINT to access structured data quickly, such as searching IP info, domains, or employee records without scraping web pages. </p> 
 					</div><br>
 					<div class="term">
-						<h3>User-Agent</h3>
-						  <p> A User-Agent is a string of text sent by a browser or tool to a website to identify itself. It includes information like the browser type, operating system, and device. In OSINT and automation, changing the User-Agent can help disguise automated tools (like Selenium or scripts) as real users, allowing them to avoid detection or access data meant for browsers. </p>
-						</div><br>
+				<h3>User-Agent</h3>
+					<p> A User-Agent is a string of text sent by a browser or tool to a website to identify itself. It includes information like the browser type, operating system, and device. In OSINT and automation, changing the User-Agent can help disguise automated tools (like Selenium or scripts) as real users, allowing them to avoid detection or access data meant for browsers. </p>
+				</div><br>
+
+				<div class="term"> <h3>CIDR (Classless Inter-Domain Routing)</h3> <p> CIDR is a method for assigning IP addresses and organizing IP networks. Instead of using traditional IP classes (A, B, C), CIDR uses a format like <code>192.168.0.0/24</code> to define a range of IP addresses. The number after the slash (<code>/24</code>) indicates how many bits are fixed for the network part, allowing more flexible and efficient allocation of IP ranges. In OSINT, CIDR ranges are used to scan or map all IPs belonging to an organization.
+					</p> </div><br>
 	</section>
 		</div><!--/.portfolio-details-->
 
@@ -774,59 +776,6 @@
 </section><!--/.profiles-->
 <!--profiles end -->
 
-
-		<!--clients start -->
-		<section id="clients" class="clients">
-			<div class="section-heading text-center">
-				<h2>clients</h2>
-			</div>
-			<div class="clients-area">
-				<div class="container">
-					<div class="owl-carousel owl-theme" id="client">
-						<div class="item">
-							<a href="#">
-								<img src="static/images/clients/c1.png" alt="brand-image" />
-							</a>
-						</div><!--/.item-->
-						<div class="item">
-							<a href="#">
-								<img src="static/images/clients/c2.png" alt="brand-image" />
-							</a>
-						</div><!--/.item-->
-						<div class="item">
-							<a href="#">
-								<img src="static/images/clients/c3.png" alt="brand-image" />
-							</a>
-						</div><!--/.item-->
-						<div class="item">
-							<a href="#">
-								<img src="static/images/clients/c4.png" alt="brand-image" />
-							</a>
-						</div><!--/.item-->
-						<div class="item">
-							<a href="#">
-								<img src="static/images/clients/c5.png" alt="brand-image" />
-							</a>
-						</div><!--/.item-->
-						<div class="item">
-							<a href="#">
-								<img src="static/images/clients/c6.png" alt="brand-image" />
-							</a>
-						</div><!--/.item-->
-						<div class="item">
-							<a href="#">
-								<img src="static/images/clients/c7.png" alt="brand-image" />
-							</a>
-						</div><!--/.item-->
-					</div><!--/.owl-carousel-->
-				</div><!--/.container-->
-			</div><!--/.clients-area-->
-
-		</section><!--/.clients-->
-
-		</section><!--/.clients-->
-		<!--clients end -->
-
 		
 		<section class="contact" id="contact">
 			<div class="section-heading text-center">
@@ -841,24 +790,24 @@
 									<div class="contact-wrap w-100 p-lg-5 p-4">
 										<h3 class="contact-wrap h3">Send us a message</h3>
 										<h1>We'd love to hear from you!</h1>
-										<form id="contactForm" class="contactForm" action="send_email.php" method="POST">
-											<div class="form-group">
-												<input type="text" class="form-control" name="name" placeholder="Name" required>
-											</div>
-											<div class="form-group">
-												<input type="email" class="form-control" name="email" placeholder="Email" required>
-											</div>
-											<div class="form-group">
-												<input type="text" class="form-control" name="subject" placeholder="Subject" required>
-											</div>
-											<div class="form-group">
-												<textarea name="message" class="form-control" cols="30" rows="4" placeholder="Message" required></textarea>
-											</div>
-											<div class="form-group">
-												<input type="submit" value="Send Message" class="btn btn-primary">
-											</div>
-										</form>
-									</div>
+										<h2> Shaked Pickholz</h2>
+
+										<!-- LinkedIn -->
+										<a href="https://www.linkedin.com/in/your-profile" target="_blank" style="color: #0077b5; text-decoration: none;">
+											LinkedIn site
+										</a>
+										
+										<!-- Phone Number -->
+										<h1>Phone Number - </h1>
+										<a href="tel:+1234567890" style="color: #000; text-decoration: none;">
+											+1 234-567-890
+										</a>
+										
+										<!-- Email -->
+										<h1>Email - </h1>
+										<a href="mailto:your-email@example.com" style="color: #000; text-decoration: none;">
+											your-email@example.com
+										</a>									</div>
 								</div>
 							</div>
 						</div>
