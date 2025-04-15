@@ -159,49 +159,13 @@
 					</button>
 				</div>
 			</form>
-
-			<!-- Add a div to display the result  style="margin-top: 20px; font-weight: bold;" -->
-				<!--<div id="result" >
-				{% if data %}
-						<h2>Networks DB to Shodan Results</h2>
-						<table id="result">
-							<thead>
-									<tr>
-											<th>Address</th>
-											<th>Port</th>
-											<th>Vulnerabilities</th>
-											<th>Organization</th>
-											<th>Country</th>
-											<th>City</th>
-											<th>IP</th>
-											<th>Domains</th>
-											<th>Hostnames</th>
-									</tr>
-							</thead>
-							<tbody>
-									{% for row in data %}
-									<tr>
-											<td>{{ row.address }}</td>
-											<td>{{ row.port }}</td>
-											<td>{{ row.vulns }}</td>
-											<td>{{ row.org }}</td>
-											<td>{{ row.country_name }}</td>
-											<td>{{ row.city }}</td>
-											<td>{{ row.ip_str }}</td>
-											<td>{{ row.domains }}</td>
-											<td>{{ row.hostnames }}</td>
-									</tr>
-									{% endfor %}
-							</tbody>
-					</table>
-				{% endif %}
-		</div> -->
 		
 
 			<div id="loading" style="display: none; text-align: center; margin-top: 20px;">
 				<div class="spinner"></div>
 				<p>Loading, please wait...</p>
 		</div>
+		
 		</div>
 	</section>
 	
