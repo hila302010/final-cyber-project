@@ -5,6 +5,7 @@ from concurrent.futures import ThreadPoolExecutor, as_completed
 import Scripts.mergedWhois.crtsh as crtsh
 import Scripts.mergedWhois.PTRandA as PTRandA
 import logging
+import time
 
 
 
@@ -67,7 +68,7 @@ def append_to_csv(data, file_name="whois_data_combined.csv"):
         print(f"WHOIS data appended to {file_name}")
     except Exception as e:
         print(f"Error appending to CSV: {e}")
-
+"""
 
 
 def getipsWithFields(domain):    
@@ -115,7 +116,127 @@ def getipsWithFields(domain):
                     print("Empty IP address, skipping.")
 
     # Return all the extracted data
+    return all_extracted_data"""
+
+
+def getipsWithFields(domain, max_time=300):
+    """
+    Main function to fetch subdomains, IP addresses, and WHOIS data for a given domain.
+    Stops after max_time seconds and returns the data collected so far.
+    """
+    start_time = time.time()  # Record the start time
+
+    # Step 1: Fetch subdomains
+    subdomains_info = fetch_subdomains(domain)
+    if not subdomains_info:
+        print("No subdomains found. Exiting.")
+        return []
+
+    # Check if the time limit has been reached
+    if time.time() - start_time > max_time:
+        print(f"Time limit of {max_time} seconds reached. Returning collected data so far.")
+        return []
+
+    # Step 2: Fetch IP addresses for subdomains
+    subdomains_ip = fetch_ips_for_subdomains_with_timer(subdomains_info, start_time, max_time)
+
+    # Step 3: Fetch WHOIS data for IP addresses
+    all_extracted_data = fetch_whois_for_ips_with_timer(subdomains_ip, start_time, max_time)
+
+    # Return all the extracted data
     return all_extracted_data
+
+
+
+def fetch_subdomains(domain):
+    """
+    Fetch subdomains and issuers for a given domain.
+    """
+    print(f"Fetching subdomains for domain: {domain}")
+    subdomains_info = crtsh.fetch_subdomains_and_issuers(domain)
+    if subdomains_info:
+        print(f"Found {len(subdomains_info)} subdomains.")
+    return subdomains_info
+
+
+
+def fetch_ips_for_subdomains_with_timer(subdomains_info, start_time, max_time):
+    """
+    Fetch IP addresses for each subdomain with a time limit.
+    """
+    subdomains = [item["subdomain"] for item in subdomains_info]
+    subdomains_ip = []
+
+    print("Fetching IP addresses for subdomains...")
+    with ThreadPoolExecutor() as executor:
+        ip_futures = {executor.submit(fetch_ip_for_subdomain, sub): sub for sub in subdomains}
+
+        for future in as_completed(ip_futures):
+            # Check if the time limit has been reached
+            if time.time() - start_time > max_time:
+                print(f"Time limit of {max_time} seconds reached while fetching IPs. Returning collected data so far.")
+                return subdomains_ip
+
+            try:
+                result = future.result()
+                if result:
+                    ip_addresses = result["ip_addresses"]
+                    if ip_addresses and not any("Error:" in ip for ip in ip_addresses):
+                        subdomains_ip.append(result)
+                        print(f"IP addresses for {result['subdomain']}: {ip_addresses}")
+                    else:
+                        print(f"Could not fetch IPs for {result['subdomain']}")
+            except Exception as e:
+                print(f"Error fetching IP for subdomain: {e}")
+
+    return subdomains_ip
+
+
+
+def fetch_whois_for_ips_with_timer(subdomains_ip, start_time, max_time):
+    """
+    Fetch WHOIS data for each IP address with a time limit.
+    """
+    all_extracted_data = []
+
+    print("Fetching WHOIS data for IP addresses...")
+    with ThreadPoolExecutor() as executor:
+        for info in subdomains_ip:
+            for ip in info["ip_addresses"]:
+                # Check if the time limit has been reached
+                if time.time() - start_time > max_time:
+                    print(f"Time limit of {max_time} seconds reached while fetching WHOIS data. Returning collected data so far.")
+                    return all_extracted_data
+
+                if ip:
+                    try:
+                        whois_future = executor.submit(fetch_whois_data_for_ip, info["subdomain"], ip)
+                        whois_data = whois_future.result()  # Wait for the WHOIS data to be fetched
+                        extracted_data = extract_whois_fields(ip, whois_data)
+                        all_extracted_data.append(extracted_data)
+                    except Exception as e:
+                        print(f"Error fetching WHOIS data for IP {ip}: {e}")
+                else:
+                    print("Empty IP address, skipping.")
+
+    return all_extracted_data
+
+
+def extract_whois_fields(ip, whois_data):
+    """
+    Extract required fields from WHOIS data.
+    """
+    return {
+        "IP": ip,
+        "Country": whois_data.get("Country", "N/A"),
+        "Mnt-By": whois_data.get("Mnt-By", "N/A"),
+        "Abuse Mailbox": whois_data.get("Abuse Mailbox", "N/A")
+    }
+
+
+
+
+
 
 
 if __name__ == "__main__":
