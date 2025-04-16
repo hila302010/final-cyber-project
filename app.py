@@ -17,7 +17,7 @@ import Scripts.networksDBtoShodan.networksDBtoShodan as nDBtoS
 import Scripts.githubAndGoogleDorks.googleDorks as google
 import Scripts.githubAndGoogleDorks.github_api as github
 import Scripts.socialNetworkServices.linkedin as linkedin
-import Scripts.mergedWhois.combinedScript as whois
+import Scripts.mergedWhois.crtshToIPSToWhois as whois
 
 
 
