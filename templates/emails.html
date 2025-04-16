@@ -2,30 +2,27 @@
 <html>
 <head>
     <title>Emails Table</title>
+     <!-- For the logo png -->
+     <link rel="shortcut icon" size="32x32" type="image/icon" href="static/images/logo.png"/>
     <link rel="stylesheet" href="static/css/styledata.css" />
 </head>
 <body>
-    <!-- Back to Data Link -->
-    <a href="{{ url_for('data') }}" style="position: absolute; top: 10px; right: 10px; text-decoration: none; font-size: 32px; color: #52a3b1;">
-        &larr; Back to Data
-    </a>
-    <!-- Export to CSV Button -->
-    <a href="{{ url_for('export_emails') }}" class="button" style="position: absolute;align-items: center; text-align: center; top: 10px;right: 10px; margin-top: 50px; text-decoration: none; font-size: 18px; color: white; background-color: #acd3d6; padding: 10px 20px;">
-        Export to CSV
-    </a>
-    <div class="container">
-        <h1>Emails Table</h1>
-        <table border="1">
+    <img src="static/images/osintech.png" alt="Brand Logo" style="max-width: 170px; height: auto;" />
+    <div class="card-container">
+        <div class="top-bar">
+            <a href="{{ url_for('data') }}" class="back-link">&larr; Back to Data</a>
+            <a href="{{ url_for('export_emails') }}" class="export-btn">Export to CSV</a>
+        </div>
+        <h1 style="color: rgb(64, 66, 66); font-size: 200%;">Emails Table</h1>
+        <table>
             <thead>
                 <tr>
-                    <th>Item number</th>
-                    <th>Email Address</th>
+                    <th style="text-align: center; background-color:rgb(102, 183, 178);">Email Address</th>
                 </tr>
             </thead>
             <tbody>
                 {% for email in emails %}
                 <tr>
-                    <td>{{ loop.index }}</td>
                     <td>{{ email }}</td>
                 </tr>
                 {% endfor %}

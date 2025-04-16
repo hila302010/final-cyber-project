@@ -100,7 +100,7 @@ def scroll_down(driver):
 
 
 
-def scrape_employees_with_roles(driver):
+def scrape_employees_with_roles(driver, domain):
     employees = []
     scroll_down(driver)
 
@@ -123,7 +123,8 @@ def scrape_employees_with_roles(driver):
 
                 # Add to the list only if both name and role are present
                 if name and role_text:
-                    employees.append((name, role_text))
+                    us1, us2, us3 = generate_usernames(name, domain)
+                    employees.append((name, role_text, us1, us2, us3))
                     logging.info(f"Found employee: {name}, Role: {role_text}")
                 else:
                     logging.info("Skipped an employee card with missing name or role.")
@@ -134,25 +135,26 @@ def scrape_employees_with_roles(driver):
         logging.error(f"Error scraping employees and roles: {e}")
 
     return employees
-def generate_usernames(employees):
-    usernames = []
-    for name, _ in employees:
-        parts = name.lower().split()
-        if len(parts) < 2:
-            continue
-        first_name, last_name = parts[0], parts[-1]
-        usernames.append(f"{first_name}.{last_name}")
-        usernames.append(f"{first_name}{last_name}")
-        usernames.append(f"{first_name[0]}{last_name}")
-    return usernames
+
+
+
+def generate_usernames(name, domain):
+    parts = name.lower().split()
+    if len(parts) < 2:
+        return name
+    first_name, last_name = parts[0], parts[-1]
+    username1 = (f"{first_name}.{last_name}@{domain}")
+    username2 = (f"{first_name}{last_name}@{domain}")
+    username3 = (f"{first_name[0]}{last_name}@{domain}")
+    return username1, username2, username3
 
 
 def save_to_csv(employees, file_name):
     with open(file_name, 'w', newline='', encoding='utf-8') as file:
         writer = csv.writer(file)
-        writer.writerow(["Name", "Role"])
-        for name, role in employees:
-            writer.writerow([name, role])
+        writer.writerow(["Name", "Role", "USER1", "USER2", "USER3" ])
+        for name, role , us1, us2, us3 in employees:
+            writer.writerow([name, role, us1, us2, us3])
 
 
 def save_to_csv_usernames(usernames, file_name):
@@ -212,16 +214,47 @@ def execute_linkedin(domain):
         login_to_linkedin(driver, linkedin_username, linkedin_password)
         navigate_to_company_page(driver, company_name)
         navigate_to_people_tab(driver, company_name)
-        employees = scrape_employees_with_roles(driver)
+        employees = scrape_employees_with_roles(driver, domain)
         save_to_csv(employees, "employees.csv")
         logging.info(f"Found {len(employees)} employees.")
 
-        usernames = generate_usernames(employees)
-        save_to_csv_usernames(usernames, "usernames.csv")
+        #save_to_csv_usernames(usernames, "usernames.csv")
         logging.info("Usernames saved to usernames.csv")
 
     finally:
         driver.quit()
+        return employees
+
+def getData():
+    return [('Tomer Zachor', '4th year Electrical & Computer Engineering student at Ben-Gurion University of the Negev', 'tomer.zachor@bgu.ac.il', 'tomerzachor@bgu.ac.il', 'tzachor@bgu.ac.il'),
+             ('Guy Michael Tammam', 'Electrical and Computer Engineering Graduate at BGU', 'guy.tammam@bgu.ac.il', 'guytammam@bgu.ac.il', 'gtammam@bgu.ac.il'), 
+             ('Oleg Dukhno', 'Director of Bariatric and Minimally invasive Surgery Center at Soroka Medical Center', 'oleg.dukhno@bgu.ac.il', 'olegdukhno@bgu.ac.il', 'odukhno@bgu.ac.il'), 
+             ('Ori Salomon', 'Physics student, BGU', 'ori.salomon@bgu.ac.il', 'orisalomon@bgu.ac.il', 'osalomon@bgu.ac.il'), 
+             ('Sagi Sameah', 'Student at Ben-Gurion University of the Negev', 'sagi.sameah@bgu.ac.il', 'sagisameah@bgu.ac.il', 'ssameah@bgu.ac.il'), 
+             ('Shira Kauffman 🎗️🇮🇱', 'Donors & VIP visitors unit Coordinator at BGU', '  'shira.🎗️🇮🇱@bgu.ac.il', 'shira🎗️🇮🇱@bgu.ac.il', 's🎗️🇮🇱@bgu.ac.il'), 
+             ('Frederic Libersat', 'Professor a        at Ben Gurion University and The Abraham and Bessie Zacks Chair in Neurobiology', 'frederic.libersat@bgu.ac.il', 'fredericlibersat@bgu.ac.il', 'flibersat@bgu.ac.il'), 
+             ('max kleiner', 'chemical engineer at EST ecological systems and treatments', 'max.kleiner@bgu.ac.il', 'maxkleiner@bgu.ac.il', 'mkleiner@bgu.ac.il'), 
+             ('Michal Miterani', 'Projects manager at Mimun Yashir', 'michal.miterani@bgu.ac.il', 'michalmiterani@bgu.ac.il', 'mmiterani@bgu.ac.il'), 
+             ('Hadas Ner-Gaon', 'researcher at BGU', 'hadas.ner-gaon@bgu.ac.il', 'hadasner-gaon@bgu.ac.il', 'hner-gaon@bgu.ac.il'), 
+             ('Vladimir Lapidus', 'at Ben Gurion University', 'vladimir.lapidus@bgu.ac.il', 'vladimirlapidus@bgu.ac.il', 'vlapidus@bgu.ac.il'), 
+             ('Ifat Ben-Simon', 'Leave of Absence', 'ifat.ben-simon@bgu.ac.il', 'ifatben-simon@bgu.ac.il', 'iben-simon@bgu.ac.il'), 
+             ('Eugene Frumker', 'Head of Attosecond Science and Nanophotonics Group @BGU & Fellow of the IQSE@TAMU', 'eugene.frumker@bgu.ac.il', 'eugenefrumker@bgu.ac.il', 'efrumker@bgu.ac.il'), 
+             ('Guy Shani', 'Professor, Software and Information Systems Engineering, Ben-Gurion University', 'guy.shani@bgu.ac.il', 'guyshani@bgu.ac.il', 'gshani@bgu.ac.il'), 
+             ('Eric Maimon', 'Dr at bgu university', 'eric.maimon@bgu.ac.il', 'ericmaimon@bgu.ac.il', 'emaimon@bgu.ac.il'), 
+             ('Berry Pinshow', 'Professor Emeritus at BGU', 'berry.pinshow@bgu.ac.il', 'berrypinshow@bgu.ac.il', 'bpinshow@bgu.ac.il'), 
+             ('Biomedtech BGU', 'community for biomedical students at BGU University', 'biomedtech.bgu@bgu.ac.il', 'biomedtechbgu@bgu.ac.il', 'bbgu@bgu.ac.il'), 
+             ('Carmit Cohen', 'Researcher', 'carmit.cohen@bgu.ac.il', 'carmitcohen@bgu.ac.il', 'ccohen@bgu.ac.il'), 
+             ('Tania Danov', '--', 'tania.danov@bgu.ac.il', 'taniadanov@bgu.ac.il', 'tdanov@bgu.ac.il'), 
+             ('Amit Savaya', 'Mariculture development officer, Ministry of Agriculture and Rural development, Israel', 'amit.savaya@bgu.ac.il', 'amitsavaya@bgu.ac.il', 'asavaya@bgu.ac.il'), 
+             ('vladimir lyandres', 'professor at bgu', 'vladimir.lyandres@bgu.ac.il', 'vladimirlyandres@bgu.ac.il', 'vlyandres@bgu.ac.il'), 
+             ('Rachel Lichtenstein', 'Senior Lecturer at BGU', 'rachel.lichtenstein@bgu.ac.il', 'rachellichtenstein@bgu.ac.il', 'rlichtenstein@bgu.ac.il'), 
+             ('Ido Efrat', 'Prof at BGU', 'ido.efrat@bgu.ac.il', 'idoefrat@bgu.ac.il', 'iefrat@bgu.ac.il'), 
+             ('max frost', 'Student at BGU', 'max.frost@bgu.ac.il', 'maxfrost@bgu.ac.il', 'mfrost@bgu.ac.il'), 
+             ('Ella Akkerman', 'Scientific software consultant at BGU', 'ella.akkerman@bgu.ac.il', 'ellaakkerman@bgu.ac.il', 'eakkerman@bgu.ac.il'), 
+             ('Yehuda Ben-Shimol', 'Consulting History: Ionoterra, Giraffic, ESL, MOBILICOM, Itran, Tadiran Communications, QVergence, TerraX, Gilat', 'yehuda.ben-shimol@bgu.ac.il', 'yehudaben-shimol@bgu.ac.il', 'yben-shimol@bgu.ac.il'),
+               ('Benjamin Arazi', 'Professor at BGU', 'benjamin.arazi@bgu.ac.il', 'benjaminarazi@bgu.ac.il', 'barazi@bgu.ac.il'), 
+            ('Nave Markovich', 'Mechanical Engineering student at Ben-Gurion University', 'nave.markovich@bgu.ac.il', 'navemarkovich@bgu.ac.il', 'nmarkovich@bgu.ac.il')]
+
 
 if __name__ == "__main__":
     #company_name = input("Enter the company name: ")
