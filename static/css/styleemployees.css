@@ -61,3 +61,15 @@ tr:nth-child(even) {
 tr:hover {
     background: #e3f6fa;
 }
+.export-btn {
+	font-size: 13px;
+	color: #fff;
+	background: #67adb2;
+	border: none;
+	border-radius: 3px;
+	padding: 8px 20px;
+	text-decoration: none;
+	font-weight: 500;
+	transition: background 0.2s;
+	float: left; /* Align the button to the left */
+}

@@ -12,6 +12,7 @@ import webbrowser
 import threading
 import os
 import secrets
+import time  # Add this import at the top of your file
 
 
 app = Flask(__name__)
@@ -23,31 +24,30 @@ app.secret_key = str(secrets.token_hex(32)) # Replace with a secure random key
 def index():
     return render_template('index.html')
 
-@app.route('/submit', methods=['POST'])
-def submit():
 
-    domain = request.form['domain']
-    country = request.form['country']
-    company = request.form['company']
-    
+@app.route('/load_data', methods=['POST'])
+def load_data():
+    # Parse the JSON data from the AJAX request
+    data = request.get_json()
+    domain = data.get('domain')
+    country = data.get('country')
+    company = data.get('company')
+
     # Call your Python logic here
-    #result = dkim_dmarc.fetch_dns_records(domain)
-    #data = nDBtoS.execute_networksdb_to_shodan(country, company)
-    #print("result", data)
-    
     emails = dataLoadingEmails()
     employees = linkedin.execute_linkedin(domain)
-    print("employees app.py: ",employees)
 
+    # Store the data in the session
     session['domain'] = domain
     session['country'] = country
     session['company'] = company
     session['emails'] = emails
     session['employees'] = employees
 
-    
-    # Redirect to the /data route
-    return redirect(url_for('data'))
+    # Return a success response
+    return jsonify({"message": "Data loaded successfully"})
+
+
 
 
 def dataLoadingEmails():
@@ -91,11 +91,31 @@ def export_emails():
         mimetype='text/csv',
         headers={"Content-Disposition": f"attachment; filename=emails_{domain}.csv"})
 
+@app.route('/export_employees')
+def export_employees():
+    domain = session.get('domain', '')
+    employees = session.get('employees', [])
+    # Create a CSV response
+    def generate():
+        # Header row
+        yield "Employee Name,Role,Username1,Username2,Username3\n"
+        for employee in employees:
+            # each employee is a list that has 'name', 'role', 'username1', 'username2', 'username3' 
+            yield f"{employee[0]},{employee[1]},{employee[2]},{employee[3]},{employee[4]}\n"
+    # Return the response as a CSV file
+    return Response(
+        generate(),
+        mimetype='text/csv',
+        headers={"Content-Disposition": f"attachment; filename=employees_{domain}.csv"})
 
+
+    
 @app.route('/employees')
 def employees():
     # Render the table for employees
     return render_template('employees.html', employees = session.get('employees', []))
+
+
 
 def open_browser():
     webbrowser.open_new("http://127.0.0.1:5000")
