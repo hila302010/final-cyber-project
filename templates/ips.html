@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>IPs Table</title>
+    <link rel="stylesheet" href="static/css/styleips.css" />
+</head>
+<body>
+    <div class="card-container">
+        <h1>IPs Table</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>IP</th>
+                    <th>Country</th>
+                    <th>Mnt-By</th>
+                    <th>Abuse Mailbox</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for ip_data in ips %}
+                <tr>
+                    <td>{{ ip_data.IP }}</td>
+                    <td>{{ ip_data.Country }}</td>
+                    <td>{{ ip_data['Mnt-By'] }}</td>
+                    <td>{{ ip_data['Abuse Mailbox'] }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
