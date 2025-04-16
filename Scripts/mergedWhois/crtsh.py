@@ -2,8 +2,7 @@ import os
 import requests
 import csv
 import re
-import PTRandA
-import whois_IP
+
 
 def fetch_subdomains_and_issuers(domain):
     url = f"https://crt.sh/?q=%.{domain}&output=json"

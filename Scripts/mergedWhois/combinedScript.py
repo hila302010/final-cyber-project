@@ -1,22 +1,35 @@
 import os
 import csv
-import PTRandA
-import whois_IP
+import Scripts.mergedWhois.whois_IP as whois_IP
 from concurrent.futures import ThreadPoolExecutor, as_completed
-import crtsh
+import Scripts.mergedWhois.crtsh as crtsh
+import Scripts.mergedWhois.PTRandA as PTRandA
+import logging
+
+
 
 # Function to fetch the A record for each subdomain
 def fetch_ip_for_subdomain(subdomain):
-    print(f"Fetching IP for subdomain: {subdomain}")
-    ip_addresses = PTRandA.get_a_record(subdomain)
-    return {"subdomain": subdomain, "ip_addresses": ip_addresses}
+    try:
+        print(f"Fetching IP for subdomain: {subdomain}")
+        ip_addresses = PTRandA.get_a_record(subdomain)
+        return {"subdomain": subdomain, "ip_addresses": ip_addresses}
+    
+    except Exception as e:
+        logging.error(f"Error fetching WHOIS ip for subdomain {subdomain}: {e}")
+        return {}  # Return an empty dictionary on failure
 
 
 # Function to fetch WHOIS data for each IP
 def fetch_whois_data_for_ip(subdomain, ip):
-    print(f"Fetching WHOIS for IP {ip} of subdomain: {subdomain}")
-    whois_data = whois_IP.get_whois_data(ip, subdomain)
-    return whois_data
+    try:
+        print(f"Fetching WHOIS for IP {ip} of subdomain: {subdomain}")
+        whois_data = whois_IP.get_whois_data(ip, subdomain)
+        return whois_data
+    
+    except Exception as e:
+        logging.error(f"Error fetching WHOIS data for IP {ip}: {e}")
+        return {}  # Return an empty dictionary on failure
 
 
 # Function to append data to CSV file
@@ -54,6 +67,55 @@ def append_to_csv(data, file_name="whois_data_combined.csv"):
         print(f"WHOIS data appended to {file_name}")
     except Exception as e:
         print(f"Error appending to CSV: {e}")
+
+
+
+def getipsWithFields(domain):    
+    # Fetch subdomains info
+    subdomains_info = crtsh.fetch_subdomains_and_issuers(domain)
+    if not subdomains_info:
+        print("No subdomains found. Exiting.")
+        exit()
+
+    subdomains = [item["subdomain"] for item in subdomains_info]
+    # Use ThreadPoolExecutor to fetch IP addresses and WHOIS data in parallel
+    with ThreadPoolExecutor() as executor:
+        # First fetch the A records (IP addresses) for subdomains
+        ip_futures = {executor.submit(fetch_ip_for_subdomain, sub): sub for sub in subdomains}
+        subdomains_ip = []
+
+        # Process results from IP fetch
+        for future in as_completed(ip_futures):
+            result = future.result()
+            if result:
+                ip_addresses = result["ip_addresses"]
+                if ip_addresses and not any("Error:" in ip for ip in ip_addresses):
+                    subdomains_ip.append(result)
+
+         # Prepare a list to store all extracted WHOIS data
+        all_extracted_data = []
+
+
+        # Now fetch WHOIS data for each IP address in the same order
+        for info in subdomains_ip:
+            for ip in info["ip_addresses"]:
+                if ip:
+                    whois_future = executor.submit(fetch_whois_data_for_ip, info["subdomain"], ip)
+                    whois_data = whois_future.result()  # Wait for the WHOIS data to be fetched
+                    # Extract only the required fields
+                    extracted_data = {
+                        "IP": ip,
+                        "Country": whois_data.get("Country", "N/A"),
+                        "Mnt-By": whois_data.get("Mnt-By", "N/A"),
+                        "Abuse Mailbox": whois_data.get("Abuse Mailbox", "N/A")
+                    }
+                      # Add the extracted data to the list
+                    all_extracted_data.append(extracted_data)
+                else:
+                    print("Empty IP address, skipping.")
+
+    # Return all the extracted data
+    return all_extracted_data
 
 
 if __name__ == "__main__":
