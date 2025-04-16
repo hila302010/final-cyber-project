@@ -144,16 +144,38 @@ $(document).ready(function(){
 							// Show the loading bar
 							$("#loading").show();
 			
-							// Delay the form submission by 5 seconds
-							setTimeout(() => {
-									// Submit the form programmatically
-									this.submit();
-									$("#loading").hide();
-							}, 5000); // 5000 milliseconds = 5 seconds
-					});
+							// Collect form data
+							const formData = {
+									domain: $("#domain").val(),
+									country: $("#country").val(),
+									company: $("#company").val()
+							};
 			
+							// Make an AJAX request to load the data
+							$.ajax({
+									url: "/load_data", // Endpoint to load data
+									method: "POST",
+									contentType: "application/json",
+									data: JSON.stringify(formData),
+									success: function (response) {
+											console.log("Data loaded successfully:", response);
+			
+											// Hide the loading bar
+											$("#loading").hide();
+			
+											// Redirect to the /data page
+											window.location.href = "/data";
+									},
+									error: function (error) {
+											console.error("Error loading data:", error);
+			
+											// Hide the loading bar and show an error message
+											$("#loading").hide();
+											alert("Failed to load data. Please try again.");
+									}
+							});
+					});
 			});
-
 
 });	
 	

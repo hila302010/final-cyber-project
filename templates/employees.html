@@ -8,6 +8,7 @@
     <div class="card-container">
         <div class="top-bar">
             <a href="{{ url_for('data') }}" class="back-link">&larr; Back to Data</a>
+            <a href="{{ url_for('export_employees') }}" class="export-btn">Export to CSV</a>
         </div>
         <h1>Employees Table</h1>
         <table>
@@ -23,11 +24,11 @@
             <tbody>
                 {% for employee in employees %}
                 <tr>
-                    <td>{{ employee.name }}</td>
-                    <td>{{ employee.role }}</td>
-                    <td>{{ employee.username1 }}</td>
-                    <td>{{ employee.username2 }}</td>
-                    <td>{{ employee.username3 }}</td>
+                    <td>{{ employee[0] }}</td>
+                    <td>{{ employee[1] }}</td>
+                    <td>{{ employee[2] }}</td>
+                    <td>{{ employee[3] }}</td>
+                    <td>{{ employee[4] }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
