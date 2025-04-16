@@ -1,30 +1,47 @@
-from flask import Flask, render_template, request, jsonify
-import Scripts.DNS.DkimDmarc as dkim_dmarc  # your custom script
-import Scripts.networksDBtoShodan.shodanAPI as shodanAPI
-import Scripts.networksDBtoShodan.networksDBtoShodan as nDBtoS 
-import Scripts.githubAndGoogleDorks.googleDorks   as google
-import Scripts.githubAndGoogleDorks.github_api as github
-import Scripts.socialNetworkServices.linkedin as linkedin
-from flask import Response
-from flask import session
-from flask import redirect, url_for
+# ------------------------------
+# Imports
+# ------------------------------
+from flask import Flask, render_template, request, jsonify, Response, session, redirect, url_for
 import webbrowser
 import threading
 import os
 import secrets
-import time  # Add this import at the top of your file
+import time
+import csv
+from io import StringIO
+
+# Custom scripts
+import Scripts.DNS.DkimDmarc as dkim_dmarc
+import Scripts.networksDBtoShodan.shodanAPI as shodanAPI
+import Scripts.networksDBtoShodan.networksDBtoShodan as nDBtoS
+import Scripts.githubAndGoogleDorks.googleDorks as google
+import Scripts.githubAndGoogleDorks.github_api as github
+import Scripts.socialNetworkServices.linkedin as linkedin
+import Scripts.mergedWhois.combinedScript as whois
 
 
+
+# ------------------------------
+# Flask App Configuration
+# ------------------------------
 app = Flask(__name__)
 app.secret_key = str(secrets.token_hex(32)) # Replace with a secure random key
 
 
+
+# ------------------------------
+# Routes
+# ------------------------------
 
 @app.route('/')
 def index():
     return render_template('index.html')
 
 
+
+# ------------------------------------------------------
+# loading data from the scripts by the form fields: domain country and company
+# ------------------------------------------------------
 @app.route('/load_data', methods=['POST'])
 def load_data():
     # Parse the JSON data from the AJAX request
@@ -34,8 +51,11 @@ def load_data():
     company = data.get('company')
 
     # Call your Python logic here
-    emails = dataLoadingEmails()
-    employees = linkedin.execute_linkedin(domain)
+    #emails = dataLoadingEmails()
+    emails=[]
+    #employees = linkedin.execute_linkedin(domain)
+    employees = []
+    ips = whois.getipsWithFields(domain)
 
     # Store the data in the session
     session['domain'] = domain
@@ -43,6 +63,7 @@ def load_data():
     session['company'] = company
     session['emails'] = emails
     session['employees'] = employees
+    session['ips'] = ips
 
     # Return a success response
     return jsonify({"message": "Data loaded successfully"})
@@ -50,13 +71,9 @@ def load_data():
 
 
 
-def dataLoadingEmails():
-    # Example data loading function (replace with actual logic)
-    data = github.getEmails() 
-    data.extend(google.getEmails())
-    return data
-
-
+# ------------------------------
+# DATA html route
+# ------------------------------
 @app.route('/data')
 def data():
     # Use session data to render the template
@@ -66,10 +83,15 @@ def data():
         country=session.get('country', ''),
         company=session.get('company', ''),
         emails=session.get('emails', []),
-        employees=session.get('employees', [])
+        employees=session.get('employees', []),
+        ips=session.get('ips', [])
     )
 
 
+
+# ------------------------------
+# Emails html and Emails export routes
+# ------------------------------
 @app.route('/emails')
 def emails():
     # Render the table for emails
@@ -91,22 +113,45 @@ def export_emails():
         mimetype='text/csv',
         headers={"Content-Disposition": f"attachment; filename=emails_{domain}.csv"})
 
+
+
+
+# ------------------------------
+# Employees html and Employees export routes
+# ------------------------------
+
 @app.route('/export_employees')
 def export_employees():
-    domain = session.get('domain', '')
     employees = session.get('employees', [])
+    
+    # Ensure the data is structured as a list of tuples
+    if not employees:
+        return "No employee data available to export.", 400
+
     # Create a CSV response
     def generate():
-        # Header row
-        yield "Employee Name,Role,Username1,Username2,Username3\n"
+        output = StringIO() # Create a StringIO object to write CSV data
+        writer = csv.writer(output) # Create a CSV writer object
+        
+        # Write the header row
+        writer.writerow(["Name", "Role", "Username1", "Username2", "Username3"])
+        yield output.getvalue() # Sends the current content of the output object to the client.
+        output.seek(0) # Move the cursor to the beginning of the StringIO object
+        output.truncate(0)# Clear the StringIO object for the next write
+        
+        # Write each employee's data
         for employee in employees:
-            # each employee is a list that has 'name', 'role', 'username1', 'username2', 'username3' 
-            yield f"{employee[0]},{employee[1]},{employee[2]},{employee[3]},{employee[4]}\n"
+            writer.writerow(employee) # Write the employee data as a new row
+            yield output.getvalue()
+            output.seek(0)
+            output.truncate(0)
+
     # Return the response as a CSV file
     return Response(
         generate(),
         mimetype='text/csv',
-        headers={"Content-Disposition": f"attachment; filename=employees_{domain}.csv"})
+        headers={"Content-Disposition": "attachment; filename=employees.csv"}
+    )
 
 
     
@@ -117,9 +162,38 @@ def employees():
 
 
 
+# ------------------------------
+# IPS html and IPS export routes
+# ------------------------------
+@app.route('/ips')
+def ips():
+    # Render the table for ips
+    return render_template('ips.html', ips = session.get('ips', []))
+
+
+# ------------------------------
+# Helper Functions
+# ------------------------------
+
+def dataLoadingEmails():
+    # Example data loading function (replace with actual logic)
+    data = github.getEmails() 
+    data.extend(google.getEmails())
+    return data
+
+
+
+
+# ------------------------------
+# open browser function
+# ------------------------------
 def open_browser():
     webbrowser.open_new("http://127.0.0.1:5000")
 
+
+# ------------------------------
+# Main Entry Point
+# ------------------------------
 if __name__ == "__main__":
     import os
 
