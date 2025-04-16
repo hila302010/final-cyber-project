@@ -167,12 +167,11 @@ def fetch_ips_for_subdomains_with_timer(subdomains_info, start_time, max_time):
     """
     Fetch IP addresses for each subdomain with a time limit.
     """
-    subdomains = [item["subdomain"] for item in subdomains_info]
     subdomains_ip = []
 
     print("Fetching IP addresses for subdomains...")
     with ThreadPoolExecutor() as executor:
-        ip_futures = {executor.submit(fetch_ip_for_subdomain, sub): sub for sub in subdomains}
+        ip_futures = {executor.submit(fetch_ip_for_subdomain, sub): sub for sub in subdomains_info}
 
         for future in as_completed(ip_futures):
             # Check if the time limit has been reached
@@ -243,8 +242,11 @@ def extract_whois_fields(ip, whois_data):
 if __name__ == "__main__":
     domain = input("Enter the domain: ")
     print(f"Fetching subdomains and issuers for {domain}...")
+    all_extracted_data = getipsWithFields(domain)
+    for data in all_extracted_data:
+        print(data)
 
-    # Fetch subdomains info
+    """# Fetch subdomains info
     subdomains_info = crtsh.fetch_subdomains_and_issuers(domain)
     if not subdomains_info:
         print("No subdomains found. Exiting.")
@@ -284,4 +286,4 @@ if __name__ == "__main__":
                 else:
                     print("Empty IP address, skipping.")
 
-    print("DONE!!!")
+    print("DONE!!!")"""

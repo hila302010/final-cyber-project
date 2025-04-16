@@ -6,7 +6,7 @@ import re
 
 def fetch_subdomains_and_issuers(domain):
     url = f"https://crt.sh/?q=%.{domain}&output=json"
-    allowed_issuers = {"DigiCert", "Let's Encrypt", "Global Sign"}
+    #allowed_issuers = {"DigiCert", "Let's Encrypt", "Global Sign"}
 
     try:
         response = requests.get(url)
@@ -14,38 +14,31 @@ def fetch_subdomains_and_issuers(domain):
         certificates = response.json()
 
         # Extract subdomains and issuer information
-        subdomains_info = []
-        seen_subdomains = set()  # Keep track of already added subdomains
+        subdomains_info = set()
         for cert in certificates:
             name = cert.get("name_value", "")
+            '''
             issuer = cert.get("issuer_name", "")
             not_before = cert.get("not_before", "").strip()
             not_after = cert.get("not_after", "").strip()
-
-            # Extract only the part after "O="
+            '''
+            '''# Extract only the part after "O="
             match = re.search(r"O=([^,]+)", issuer)
             issuer_organization = match.group(1).strip() if match else ""
 
             # Check if the issuer is in the allowed list
             unknown_issuer = not any(allowed_issuer in issuer for allowed_issuer in allowed_issuers)
-
+'''
             # Add all subdomains and their issuer status to the list
             for subdomain in name.split("\n"):
                 subdomain = subdomain.strip()
-                if subdomain.endswith(domain) and subdomain not in seen_subdomains:
-                    seen_subdomains.add(subdomain)  # Mark the subdomain as seen
-                    subdomains_info.append({
-                        "subdomain": subdomain,
-                        "unknown_issuer": issuer_organization if unknown_issuer else "",
-                        "not_before": not_before,
-                        "not_after": not_after
-                    })
-
-
+                if subdomain.endswith(domain):
+                    subdomains_info.add(subdomain)
         return subdomains_info
     except requests.exceptions.RequestException as e:
         print(f"Error fetching data from crt.sh: {e}")
         return []
+    
 
 def save_to_csv(subdomains_info, filename = "crtsh.csv"):
     try:
@@ -78,4 +71,5 @@ if __name__ == "__main__":
         print("No subdomains found. Exiting.")
         exit()
     print(f"Found {len(subdomains_info)} subdomains.")
-    save_to_csv(subdomains_info)
+    #print("\n".join(sorted(subdomains_info)))
+    #save_to_csv(subdomains_info)
