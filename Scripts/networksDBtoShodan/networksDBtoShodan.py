@@ -70,7 +70,7 @@ def process_shodan_for_cidr(country, cidr_addresses):
 
         # If results are found, save to CSV and collect the data
         if result and 'matches' in result:
-            shodan_data = save_to_csv(result['matches'],address, f"shodan_results_{address.replace('/', '_')}.csv")
+            shodan_data = getData(result['matches'])
             all_data.extend(shodan_data)  # Add the data to the main list
         else:
             print(f"No Shodan results for {address}")
@@ -78,7 +78,7 @@ def process_shodan_for_cidr(country, cidr_addresses):
 
 
 
-def save_to_csv(data, adress, filename):
+"""def save_to_csv(data, adress, filename):
     if not data:
         print("No data to save.")
         return []
@@ -126,8 +126,47 @@ def save_to_csv(data, adress, filename):
 
     print(f"Results saved to {filename}")
     return result_data  # Return the processed data
+"""
+
+def getData(data):
+    if not data:
+        print("No data to save.")
+        return []
+
+    # Make 'address' the first field in the fieldnames list
+    fieldnames = ['ip_str', 'port', 'vulns',  'country_name', 'city', 'domains', 'hostnames']
 
 
+    result_data = []  # To collect the processed data
+
+    for row in data:
+        # Ensure it's a valid Shodan result (skip unwanted data)
+        if not isinstance(row, dict) or 'ip_str' not in row or 'port' not in row:
+            continue
+
+        # Clean "vulns" field (avoid CVE lists)
+        if 'vulns' in row and isinstance(row['vulns'], dict):
+            row['vulns'] = ', '.join(row['vulns'].keys())  # Keep only CVE IDs, remove details
+
+        # Convert lists to comma-separated strings for CSV readability
+        for field in ['domains', 'hostnames']:
+            if isinstance(row.get(field), list):
+                row[field] = ', '.join(row[field])
+
+        # Extract country_name and city from the location dictionary
+        row['country_name'] = row.get('location', {}).get('country_name', '')
+        row['city'] = row.get('location', {}).get('city', '')
+
+        # Extract only required fields and add the ip address as the first field 
+        filtered_row = {field: row.get(field, '') for field in fieldnames}
+
+        # Avoiding blank rows
+        if any(filtered_row.values()):
+            result_data.append(filtered_row)  # Add the row to the result data
+
+
+    print("Results saved ", result_data)
+    return result_data  # Return the processed data
 
 
 def execute_networksdb_to_shodan(country, organization):
