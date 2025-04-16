@@ -7,6 +7,8 @@
 <html>
 	<head>
 		<title>Data Results</title>
+		  <!-- For the logo png -->
+		  <link rel="shortcut icon" size="32x32" type="image/icon" href="static/images/logo.png"/>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<link rel="stylesheet" href="static/css/styledata.css" />
@@ -18,15 +20,14 @@
 				<!-- Main -->
 					<div id="main">
 						<div class="inner">
+							<img src="static/images/osintech.png" alt="Brand Logo" style="max-width: 170px; height: auto; margin-top: 20px;" />
 							<header>
-								<br><h1>Data Results</h1>
-								<p>Domain: {{ domain }}</p>
-								<p>Country: {{ country }}</p>
-								<p>Company: {{ company }}</p>
-								<p>Below are the results based on your query.</p>
+								<br><h1 style="text-align: center; margin: -100px;">Data Results</h1><br><br>
+								<p style="text-align: center; margin-top: 40px; font-weight: bold; font-size:25px">Below are the results based on your query:</p>
+								<p style="text-align: center; margin-bottom: 13px;">Domain: {{ domain }}</p>
+								<p style="text-align: center; margin-bottom: 13px;">Country: {{ country }}</p>
+								<p style="text-align: center; margin-bottom: 13px;">Company: {{ company }}</p>							
 							</header>
-
-
 							<section class="tiles">
 								<article class="style1">
 									<span class="image">
@@ -35,7 +36,7 @@
 									<a href="{{ url_for('emails') }}">
 										<h2>Emails</h2>
 										<div class="content">
-											<p>Click here to view the table of emails.</p>
+											<p>Click here to view the table of Emails.</p>
 										</div>
 									</a>
 								</article>
@@ -48,7 +49,7 @@
 									<a href="generic.html">
 										<h2>IP adresses</h2>
 										<div class="content">
-											<p>Click here to view the table of ip's.</p>
+											<p>Click here to view the table of IP's.</p>
 										</div>
 									</a>
 								</article>
@@ -61,7 +62,7 @@
 									<a href="generic.html">
 										<h2>Domains</h2>
 										<div class="content">
-											<p>Click here to view the table of domains.</p>
+											<p>Click here to view the table of Domains.</p>
 										</div>
 									</a>
 								</article>
@@ -71,10 +72,10 @@
 									<span class="image">
 										<img src="static/images/dataImages/pic04.jpg" alt="" />
 									</span>
-									<a href="generic.html">
+										<a href="{{ url_for('employees') }}">
 										<h2>Employees information</h2>
 										<div class="content">
-											<p>Click here to view the table of employees.</p>
+											<p>Click here to view the table of Employees.</p>
 										</div>
 									</a>
 								</article>
@@ -87,7 +88,7 @@
 									<a href="generic.html">
 										<h2>Sensitive data</h2>
 										<div class="content">
-											<p>Click here to view the table of passwords files and sensitive data.</p>
+											<p>Click here to view the table of Passwords Files and Sensitive Data.</p>
 										</div>
 									</a>
 								</article>

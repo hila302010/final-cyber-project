@@ -133,17 +133,17 @@
 	<section id="data-gathering" class="data-gathering">
 		<div class="content">
 			<div class="section-heading text-center">
-				<h2>Enter Company Details
-					<p class="suggested-domains">Suggested Domains To Investigate - 
-						<span>bgu.ac.il, reddit.com, google.com, amazon.com, zemingo.com</span>
-					</p>
-				</h2><br>
+				<h2>Enter Company Details</h2><br>
 				
 			</div>
 			<form id="infoForm" class="form-style" action="/submit" method="POST"  target="_blank">
 				<div class="form-group">
-					<label for="domain">Domain <i class="fa fa-globe"><br></i></label>
+					<label for="domain">Domain <i class="fa fa-globe"></i></label>
 					<input type="text" id="domain" name="domain" placeholder="Enter Domain" required />
+					<span class="tooltip">
+						<i class="fa fa-info-circle" aria-hidden="true"></i>
+						<span class="tooltiptext">Suggested domains: bgu.ac.il, reddit.com, google.com, amazon.com, zemingo.com</span>
+					</span>
 				</div>
 				<div class="form-group">
 					<label for="country">Country  <i class="fa fa-flag"><br></i></label>

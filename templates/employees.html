@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employees Table</title>
+    <link rel="stylesheet" href="static/css/styleemployees.css" />
+</head>
+<body>
+    <div class="card-container">
+        <div class="top-bar">
+            <a href="{{ url_for('data') }}" class="back-link">&larr; Back to Data</a>
+        </div>
+        <h1>Employees Table</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Role</th>
+                    <th>Username1</th>
+                    <th>Username2</th>
+                    <th>Username3</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for employee in employees %}
+                <tr>
+                    <td>{{ employee.name }}</td>
+                    <td>{{ employee.role }}</td>
+                    <td>{{ employee.username1 }}</td>
+                    <td>{{ employee.username2 }}</td>
+                    <td>{{ employee.username3 }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
