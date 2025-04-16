@@ -24,7 +24,7 @@ def login_to_linkedin(driver, username, password):
         driver.find_element(By.ID, "password").send_keys(password)
         # Click login
         driver.find_element(By.XPATH, "//button[@type='submit']").click()
-        time.sleep(10)
+        time.sleep(5)
     except Exception as e:
         logging.error(f"Error logging into LinkedIn: {e}")
         raise
@@ -34,7 +34,7 @@ def navigate_to_company_page(driver, company_name):
         # Create the LinkedIn URL for the company page (format: https://www.linkedin.com/company/<company_name>)
         company_url = f"https://www.linkedin.com/company/{company_name.lower()}/"
         driver.get(company_url)
-        time.sleep(5)
+        time.sleep(3)
     except Exception as e:
         logging.error(f"Error navigating to company page: {e}")
         raise
@@ -47,7 +47,7 @@ def navigate_to_people_tab(driver, company_name):
             EC.presence_of_element_located(
                 (By.XPATH, f"//a[contains(@href, '/company/{company_name.lower()}/people/')]"))
         )
-        time.sleep(2)  # Allow time to visually see the element
+        time.sleep(1)  # Allow time to visually see the element
 
         # Create an ActionChains object to simulate the mouse actions
         actions = ActionChains(driver)
@@ -55,12 +55,12 @@ def navigate_to_people_tab(driver, company_name):
         # Move the mouse to the People tab
         actions.move_to_element(people_tab).perform()
         logging.info("Mouse moved to the People tab.")
-        time.sleep(2)  # Wait to see the mouse move
+        time.sleep(1)  # Wait to see the mouse move
 
         # Click on the People tab
         actions.click().perform()
         logging.info("Mouse clicked on the People tab.")
-        time.sleep(5)  # Allow the page to load
+        time.sleep(3)  # Allow the page to load
 
         # Print the current URL after the page loads
         current_url = driver.current_url
@@ -76,7 +76,7 @@ def scroll_down(driver):
     last_height = driver.execute_script("return document.body.scrollHeight")
     while True:
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-        time.sleep(3)  # Delay to mimic human behavior
+        time.sleep(1)  # Delay to mimic human behavior
         new_height = driver.execute_script("return document.body.scrollHeight")
         if new_height == last_height:
             try:
@@ -90,13 +90,28 @@ def scroll_down(driver):
                 time.sleep(1)
                 load_more_button.click()
                 logging.info("Clicked 'Show more results' button.")
-                time.sleep(3)
 
             except Exception as e:
                 logging.info(f"No 'Show more results' button found or clickable. Reason: {e}")
                 break
         last_height = new_height
 
+
+
+def remove_emojis(text):
+    # Regular expression to match emojis
+    emoji_pattern = re.compile(
+        "["
+        "\U0001F600-\U0001F64F"  # Emoticons
+        "\U0001F300-\U0001F5FF"  # Symbols & Pictographs
+        "\U0001F680-\U0001F6FF"  # Transport & Map Symbols
+        "\U0001F1E0-\U0001F1FF"  # Flags (iOS)
+        "\U00002702-\U000027B0"  # Dingbats
+        "\U000024C2-\U0001F251"  # Enclosed Characters
+        "]+",
+        flags=re.UNICODE,
+    )
+    return emoji_pattern.sub(r'', text)  # Remove emojis from the text
 
 
 
@@ -116,6 +131,8 @@ def scrape_employees_with_roles(driver, domain):
                 # Extract the name
                 name_element = card.find_element(By.XPATH, ".//a[contains(@class, 'link-without-visited-state')]")
                 name = name_element.text.strip()
+                name = remove_emojis(name)  # Remove emojis from the name
+
 
                 # Extract the role
                 role_element = card.find_element(By.XPATH, ".//div[contains(@class, 'lt-line-clamp--multi-line')]")
@@ -224,36 +241,6 @@ def execute_linkedin(domain):
     finally:
         driver.quit()
         return employees
-
-def getData():
-    return [('Tomer Zachor', '4th year Electrical & Computer Engineering student at Ben-Gurion University of the Negev', 'tomer.zachor@bgu.ac.il', 'tomerzachor@bgu.ac.il', 'tzachor@bgu.ac.il'),
-             ('Guy Michael Tammam', 'Electrical and Computer Engineering Graduate at BGU', 'guy.tammam@bgu.ac.il', 'guytammam@bgu.ac.il', 'gtammam@bgu.ac.il'), 
-             ('Oleg Dukhno', 'Director of Bariatric and Minimally invasive Surgery Center at Soroka Medical Center', 'oleg.dukhno@bgu.ac.il', 'olegdukhno@bgu.ac.il', 'odukhno@bgu.ac.il'), 
-             ('Ori Salomon', 'Physics student, BGU', 'ori.salomon@bgu.ac.il', 'orisalomon@bgu.ac.il', 'osalomon@bgu.ac.il'), 
-             ('Sagi Sameah', 'Student at Ben-Gurion University of the Negev', 'sagi.sameah@bgu.ac.il', 'sagisameah@bgu.ac.il', 'ssameah@bgu.ac.il'), 
-             ('Shira Kauffman 🎗️🇮🇱', 'Donors & VIP visitors unit Coordinator at BGU', '  'shira.🎗️🇮🇱@bgu.ac.il', 'shira🎗️🇮🇱@bgu.ac.il', 's🎗️🇮🇱@bgu.ac.il'), 
-             ('Frederic Libersat', 'Professor a        at Ben Gurion University and The Abraham and Bessie Zacks Chair in Neurobiology', 'frederic.libersat@bgu.ac.il', 'fredericlibersat@bgu.ac.il', 'flibersat@bgu.ac.il'), 
-             ('max kleiner', 'chemical engineer at EST ecological systems and treatments', 'max.kleiner@bgu.ac.il', 'maxkleiner@bgu.ac.il', 'mkleiner@bgu.ac.il'), 
-             ('Michal Miterani', 'Projects manager at Mimun Yashir', 'michal.miterani@bgu.ac.il', 'michalmiterani@bgu.ac.il', 'mmiterani@bgu.ac.il'), 
-             ('Hadas Ner-Gaon', 'researcher at BGU', 'hadas.ner-gaon@bgu.ac.il', 'hadasner-gaon@bgu.ac.il', 'hner-gaon@bgu.ac.il'), 
-             ('Vladimir Lapidus', 'at Ben Gurion University', 'vladimir.lapidus@bgu.ac.il', 'vladimirlapidus@bgu.ac.il', 'vlapidus@bgu.ac.il'), 
-             ('Ifat Ben-Simon', 'Leave of Absence', 'ifat.ben-simon@bgu.ac.il', 'ifatben-simon@bgu.ac.il', 'iben-simon@bgu.ac.il'), 
-             ('Eugene Frumker', 'Head of Attosecond Science and Nanophotonics Group @BGU & Fellow of the IQSE@TAMU', 'eugene.frumker@bgu.ac.il', 'eugenefrumker@bgu.ac.il', 'efrumker@bgu.ac.il'), 
-             ('Guy Shani', 'Professor, Software and Information Systems Engineering, Ben-Gurion University', 'guy.shani@bgu.ac.il', 'guyshani@bgu.ac.il', 'gshani@bgu.ac.il'), 
-             ('Eric Maimon', 'Dr at bgu university', 'eric.maimon@bgu.ac.il', 'ericmaimon@bgu.ac.il', 'emaimon@bgu.ac.il'), 
-             ('Berry Pinshow', 'Professor Emeritus at BGU', 'berry.pinshow@bgu.ac.il', 'berrypinshow@bgu.ac.il', 'bpinshow@bgu.ac.il'), 
-             ('Biomedtech BGU', 'community for biomedical students at BGU University', 'biomedtech.bgu@bgu.ac.il', 'biomedtechbgu@bgu.ac.il', 'bbgu@bgu.ac.il'), 
-             ('Carmit Cohen', 'Researcher', 'carmit.cohen@bgu.ac.il', 'carmitcohen@bgu.ac.il', 'ccohen@bgu.ac.il'), 
-             ('Tania Danov', '--', 'tania.danov@bgu.ac.il', 'taniadanov@bgu.ac.il', 'tdanov@bgu.ac.il'), 
-             ('Amit Savaya', 'Mariculture development officer, Ministry of Agriculture and Rural development, Israel', 'amit.savaya@bgu.ac.il', 'amitsavaya@bgu.ac.il', 'asavaya@bgu.ac.il'), 
-             ('vladimir lyandres', 'professor at bgu', 'vladimir.lyandres@bgu.ac.il', 'vladimirlyandres@bgu.ac.il', 'vlyandres@bgu.ac.il'), 
-             ('Rachel Lichtenstein', 'Senior Lecturer at BGU', 'rachel.lichtenstein@bgu.ac.il', 'rachellichtenstein@bgu.ac.il', 'rlichtenstein@bgu.ac.il'), 
-             ('Ido Efrat', 'Prof at BGU', 'ido.efrat@bgu.ac.il', 'idoefrat@bgu.ac.il', 'iefrat@bgu.ac.il'), 
-             ('max frost', 'Student at BGU', 'max.frost@bgu.ac.il', 'maxfrost@bgu.ac.il', 'mfrost@bgu.ac.il'), 
-             ('Ella Akkerman', 'Scientific software consultant at BGU', 'ella.akkerman@bgu.ac.il', 'ellaakkerman@bgu.ac.il', 'eakkerman@bgu.ac.il'), 
-             ('Yehuda Ben-Shimol', 'Consulting History: Ionoterra, Giraffic, ESL, MOBILICOM, Itran, Tadiran Communications, QVergence, TerraX, Gilat', 'yehuda.ben-shimol@bgu.ac.il', 'yehudaben-shimol@bgu.ac.il', 'yben-shimol@bgu.ac.il'),
-               ('Benjamin Arazi', 'Professor at BGU', 'benjamin.arazi@bgu.ac.il', 'benjaminarazi@bgu.ac.il', 'barazi@bgu.ac.il'), 
-            ('Nave Markovich', 'Mechanical Engineering student at Ben-Gurion University', 'nave.markovich@bgu.ac.il', 'navemarkovich@bgu.ac.il', 'nmarkovich@bgu.ac.il')]
 
 
 if __name__ == "__main__":
