@@ -11,18 +11,24 @@
             <thead>
                 <tr>
                     <th>IP</th>
+                    <th>Port</th>
+                    <th>Vulnerabilities</th>
                     <th>Country</th>
-                    <th>Mnt-By</th>
-                    <th>Abuse Mailbox</th>
+                    <th>City</th>
+                    <th>Domains</th>
+                    <th>Hostnames</th>
                 </tr>
             </thead>
             <tbody>
                 {% for ip_data in ips %}
                 <tr>
-                    <td>{{ ip_data.IP }}</td>
-                    <td>{{ ip_data.Country }}</td>
-                    <td>{{ ip_data['Mnt-By'] }}</td>
-                    <td>{{ ip_data['Abuse Mailbox'] }}</td>
+                    <td>{{ ip_data.ip_str }}</td>
+                    <td>{{ ip_data.port }}</td>
+                    <td>{{ ip_data.vulns }}</td>
+                    <td>{{ ip_data.country_name }}</td>
+                    <td>{{ ip_data.city }}</td>
+                    <td>{{ ip_data.domains }}</td>
+                    <td>{{ ip_data.hostnames }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
