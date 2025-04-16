@@ -4,6 +4,7 @@ import Scripts.networksDBtoShodan.shodanAPI as shodanAPI
 import Scripts.networksDBtoShodan.networksDBtoShodan as nDBtoS 
 import Scripts.githubAndGoogleDorks.googleDorks   as google
 import Scripts.githubAndGoogleDorks.github_api as github
+import Scripts.socialNetworkServices.linkedin as linkedin
 from flask import Response
 from flask import session
 from flask import redirect, url_for
@@ -34,25 +35,25 @@ def submit():
     #data = nDBtoS.execute_networksdb_to_shodan(country, company)
     #print("result", data)
     
-    emails = dataLoading()
+    emails = dataLoadingEmails()
+    employees = linkedin.execute_linkedin(domain)
+    print("employees app.py: ",employees)
 
-    # Example data (replace with actual logic to fetch data)
     session['domain'] = domain
     session['country'] = country
     session['company'] = company
     session['emails'] = emails
+    session['employees'] = employees
 
     
     # Redirect to the /data route
     return redirect(url_for('data'))
 
 
-def dataLoading():
+def dataLoadingEmails():
     # Example data loading function (replace with actual logic)
-    
     data = github.getEmails() 
     data.extend(google.getEmails())
-
     return data
 
 
@@ -65,6 +66,7 @@ def data():
         country=session.get('country', ''),
         company=session.get('company', ''),
         emails=session.get('emails', []),
+        employees=session.get('employees', [])
     )
 
 
@@ -90,6 +92,10 @@ def export_emails():
         headers={"Content-Disposition": f"attachment; filename=emails_{domain}.csv"})
 
 
+@app.route('/employees')
+def employees():
+    # Render the table for employees
+    return render_template('employees.html', employees = session.get('employees', []))
 
 def open_browser():
     webbrowser.open_new("http://127.0.0.1:5000")
