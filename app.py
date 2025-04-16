@@ -55,7 +55,8 @@ def load_data():
     emails=[]
     #employees = linkedin.execute_linkedin(domain)
     employees = []
-    ips = whois.getipsWithFields(domain)
+    #ips = whois.getipsWithFields(domain)
+    ips = nDBtoS.execute_networksdb_to_shodan(country, company)
 
     # Store the data in the session
     session['domain'] = domain
@@ -145,6 +146,8 @@ def export_employees():
             yield output.getvalue()
             output.seek(0)
             output.truncate(0)
+
+
 
     # Return the response as a CSV file
     return Response(
