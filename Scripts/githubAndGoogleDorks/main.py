@@ -1,7 +1,7 @@
 import json
 
-import github_api as github
-import googleDorksNoPagodo as google
+import Scripts.githubAndGoogleDorks.github_api as github
+import Scripts.githubAndGoogleDorks.googleDorksNoPagodo as google
 
 import subprocess
 
@@ -27,6 +27,20 @@ def disconnect_from_nordvpn():
             print(f"Error disconnecting from NordVPN: {result.stderr}")
     except Exception as e:
         print(f"Exception occurred: {e}")
+
+
+#["@" + domain, company_name] == query
+def getEmails(queries):
+    emails = []
+    for query in queries:
+        # GitHub email search
+        github_results = github.search_github_emails(query)
+        if isinstance(github_results, dict):
+            emails.extend(github_results.keys())  # Flattening the keys into the list
+        # Google email search
+        email_data = google.google_dork_emails(query)
+        emails.extend([email for email, _, _ in email_data])  # Just the emails
+    return emails
 
 def run_all_queries(queries):
     for query in queries:

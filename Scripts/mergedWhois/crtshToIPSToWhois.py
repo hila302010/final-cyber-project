@@ -1,12 +1,15 @@
 import os
 import csv
-#import Scripts.mergedWhois.whois_IP as whois_IP
-import whois_IP
 from concurrent.futures import ThreadPoolExecutor, as_completed
-#import Scripts.mergedWhois.crtsh as crtsh
-import crtsh
-#import Scripts.mergedWhois.PTRandA as PTRandA
-import PTRandA
+
+import Scripts.mergedWhois.whois_IP as whois_IP
+import Scripts.mergedWhois.crtsh as crtsh
+import Scripts.mergedWhois.PTRandA as PTRandA
+
+#import whois_IP
+#import crtsh
+#import PTRandA
+
 import logging
 import time
 
@@ -231,6 +234,7 @@ def extract_whois_fields(ip, whois_data):
     return {
         "IP": ip,
         "Country": whois_data.get("Country", "N/A"),
+        "Domain": whois_data.get("Domain", "N/A"),
         "Mnt-By": whois_data.get("Mnt-By", "N/A"),
         "Abuse Mailbox": whois_data.get("Abuse Mailbox", "N/A")
     }
