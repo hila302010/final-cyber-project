@@ -2,11 +2,21 @@
 <html>
 <head>
     <title>IPs Table</title>
+    <!-- For the logo png -->
+    <link rel="shortcut icon" size="32x32" type="image/icon" href="static/images/logo.png"/>
     <link rel="stylesheet" href="static/css/styleips.css" />
 </head>
 <body>
+    <img src="static/images/osintech.png" alt="Brand Logo" style="max-width: 170px; height: auto;" />
     <div class="card-container">
+        <div class="top-bar">
+            <a href="{{ url_for('data') }}" class="back-link">&larr; Back to Data</a>
+            <a href="{{ url_for('export_ips') }}" class="export-btn">Export to CSV</a>
+        </div>
         <h1>IPs Table</h1>
+        <p style="text-align: left; font-size: 1.2em; color: #2878e0;">
+            Found {{ ips_count }} {{ "result" if ips_count == 1 else "results" }}
+        </p>
         <table>
             <thead>
                 <tr>
@@ -17,6 +27,8 @@
                     <th>City</th>
                     <th>Domains</th>
                     <th>Hostnames</th>
+                    <th>Mnt-By</th>
+                    <th>Abuse Mailbox</th>
                 </tr>
             </thead>
             <tbody>
@@ -24,15 +36,45 @@
                 <tr>
                     <td>{{ ip_data.ip_str }}</td>
                     <td>{{ ip_data.port }}</td>
-                    <td>{{ ip_data.vulns }}</td>
+                    <td>
+                        {% if ip_data.vulns %}
+                        <span class="short-text vulnerabilities">{{ ip_data.vulns[:30] }}{% if ip_data.vulns|length > 30 %}...{% endif %}</span>
+                        {% if ip_data.vulns|length > 30 %}
+                        <span class="full-text vulnerabilities" style="display: none;">{{ ip_data.vulns }}</span>
+                        <button class="toggle-btn" onclick="toggleText(this)">More</button>
+                        {% endif %}
+                        {% else %}
+                        <span>No vulnerabilities</span>
+                        {% endif %}
+                    </td>
                     <td>{{ ip_data.country_name }}</td>
                     <td>{{ ip_data.city }}</td>
                     <td>{{ ip_data.domains }}</td>
                     <td>{{ ip_data.hostnames }}</td>
+                    <td>{{ ip_data.mnt_by }}</td>
+                    <td>{{ ip_data.abuse_mailbox }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
     </div>
+
+    <!-- Add the JavaScript here -->
+    <script>
+        function toggleText(button) {
+            const shortText = button.previousElementSibling.previousElementSibling;
+            const fullText = button.previousElementSibling;
+
+            if (fullText.style.display === "none") {
+                fullText.style.display = "inline";
+                shortText.style.display = "none";
+                button.textContent = "Less";
+            } else {
+                fullText.style.display = "none";
+                shortText.style.display = "inline";
+                button.textContent = "More";
+            }
+        }
+    </script>
 </body>
 </html>

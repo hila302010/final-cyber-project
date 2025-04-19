@@ -9,6 +9,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.chrome.options import Options
 import logging
 
 # Configure logging
@@ -223,8 +224,16 @@ def execute_linkedin(domain):
     if not linkedin_username or not linkedin_password:
         logging.error("LinkedIn credentials are not set.")
         exit(1)
+    
+    # Configure Chrome to run in headless mode
+    chrome_options = Options()
+    chrome_options.add_argument("--headless")  # Run in headless mode
+    chrome_options.add_argument("--disable-gpu")  # Disable GPU acceleration (optional)
+    chrome_options.add_argument("--window-size=1920x1080")  # Set a default window size
+    chrome_options.add_argument("--no-sandbox")  # Bypass OS security model (useful in some environments)
+    chrome_options.add_argument("--disable-dev-shm-usage")  # Overcome limited resource problems in Docker
 
-    driver = webdriver.Chrome()  # Use the updated function
+    driver = webdriver.Chrome(options=chrome_options)  # Use the updated function
     driver.maximize_window()
 
     try:

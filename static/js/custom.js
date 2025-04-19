@@ -134,48 +134,109 @@ $(document).ready(function(){
 									$("#about-content").html("<p>Unable to load content.</p>");
 							});
 			});
-
-				// 7. fetch the result from submit button
-				// Ensure that the DOM is fully loaded before attaching event handlers
+				//LOADING BAR - SHAKED
 				$(document).ready(function () {
 					$("#infoForm").on("submit", function (event) {
-							event.preventDefault(); // Prevent the default form submission
-			
-							// Show the loading bar
-							$("#loading").show();
-			
-							// Collect form data
-							const formData = {
-									domain: $("#domain").val(),
-									country: $("#country").val(),
-									company: $("#company").val()
-							};
-			
-							// Make an AJAX request to load the data
+						event.preventDefault(); // Prevent the default form submission
+				
+						// Show the loading bar container
+						$("#loading-bar-container").show();
+						$("#loading-bar").css("width", "0%"); // Reset the progress bar
+						$("#loading-percentage").text("0%"); // Reset the percentage text
+				
+						// Collect form data
+						const formData = {
+							domain: $("#domain").val(),
+							country: $("#country").val(),
+							company: $("#company").val()
+						};
+				
+						// Start polling the progress endpoint
+						const pollProgress = setInterval(() => {
 							$.ajax({
-									url: "/load_data", // Endpoint to load data
-									method: "POST",
-									contentType: "application/json",
-									data: JSON.stringify(formData),
-									success: function (response) {
-											console.log("Data loaded successfully:", response);
-			
-											// Hide the loading bar
-											$("#loading").hide();
-			
+								url: "/progress", // Endpoint to get progress
+								method: "GET",
+								success: function (response) {
+									const progress = response.value; // Get the progress value (0-100)
+									$("#loading-bar").css("width", progress + "%"); // Update the bar width
+									$("#loading-percentage").text(progress + "%"); // Update the percentage text
+				
+									if (progress >= 100) {
+										clearInterval(pollProgress); // Stop polling when progress reaches 100%
+				
+										// Keep the completed bar visible for 1 second before hiding it
+										setTimeout(() => {
+											$("#loading-bar-container").hide();
+				
 											// Redirect to the /data page
 											window.location.href = "/data";
-									},
-									error: function (error) {
-											console.error("Error loading data:", error);
-			
-											// Hide the loading bar and show an error message
-											$("#loading").hide();
-											alert("Failed to load data. Please try again.");
+										}, 1000); // Delay of 1 second
 									}
+								},
+								error: function (error) {
+									console.error("Error fetching progress:", error);
+								}
 							});
+						}, 1000); // Poll every 1000ms (1 second)
+				
+						// Make an AJAX request to start loading the data
+						$.ajax({
+							url: "/load_data", // Endpoint to load data
+							method: "POST",
+							contentType: "application/json",
+							data: JSON.stringify(formData),
+							success: function (response) {
+								console.log("Data loading started:", response);
+							},
+							error: function (error) {
+								console.error("Error starting data load:", error);
+								$("#loading-bar-container").hide();
+								alert("Failed to start data loading. Please try again.");
+							}
+						});
 					});
-			});
+				});
+			// 	// 7. fetch the result from submit button
+			// 	// Ensure that the DOM is fully loaded before attaching event handlers
+			// 	$(document).ready(function () {
+			// 		$("#infoForm").on("submit", function (event) {
+			// 				event.preventDefault(); // Prevent the default form submission
+			
+			// 				// Show the loading bar
+			// 				$("#loading").show();
+			
+			// 				// Collect form data
+			// 				const formData = {
+			// 						domain: $("#domain").val(),
+			// 						country: $("#country").val(),
+			// 						company: $("#company").val()
+			// 				};
+			
+			// 				// Make an AJAX request to load the data
+			// 				$.ajax({
+			// 						url: "/load_data", // Endpoint to load data
+			// 						method: "POST",
+			// 						contentType: "application/json",
+			// 						data: JSON.stringify(formData),
+			// 						success: function (response) {
+			// 								console.log("Data loaded successfully:", response);
+			
+			// 								// Hide the loading bar
+			// 								$("#loading").hide();
+			
+			// 								// Redirect to the /data page
+			// 								window.location.href = "/data";
+			// 						},
+			// 						error: function (error) {
+			// 								console.error("Error loading data:", error);
+			
+			// 								// Hide the loading bar and show an error message
+			// 								$("#loading").hide();
+			// 								alert("Failed to load data. Please try again.");
+			// 						}
+			// 				});
+			// 		});
+			// });
 
 });	
 	

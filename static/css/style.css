@@ -1069,7 +1069,30 @@ nav.navbar.bootsnav .navbar-toggle i{color: #439397;}
     bottom:0;
 
 }
+/*LOADING BAR*/
+#loading-bar-container {
+    width: 10%; /* Narrower width */
+    background-color: #f4f8fb;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 20px auto; /* Center the bar horizontally */
+}
 
+#loading-bar {
+    width: 0%;
+    height: 20px;
+    background-color: #459a9e;
+    transition: width 0.5s ease-in-out;
+    border-radius: 5px;
+}
+
+#loading-percentage {
+    font-size: 0.9em;
+    color: #459a9e;
+    font-weight: bold;
+    text-align: center;
+}
 #scroll-Top  .return-to-top i{
     position: relative;
     animation-name: example;
@@ -1081,4 +1104,3 @@ nav.navbar.bootsnav .navbar-toggle i{color: #439397;}
     0%   {bottom:0px;}
     100%  {bottom:7px;}
 }
-/*========================Thank you=================

@@ -2,15 +2,32 @@
 <html>
 <head>
     <title>Employees Table</title>
+    <!-- For the logo png -->
+    <link rel="shortcut icon" size="32x32" type="image/icon" href="static/images/logo.png"/>
     <link rel="stylesheet" href="static/css/styleemployees.css" />
 </head>
 <body>
+    <img src="static/images/osintech.png" alt="Brand Logo" style="max-width: 170px; height: auto;" />
+
     <div class="card-container">
         <div class="top-bar">
             <a href="{{ url_for('data') }}" class="back-link">&larr; Back to Data</a>
             <a href="{{ url_for('export_employees') }}" class="export-btn">Export to CSV</a>
         </div>
+        <div class="video-container">
+            <p style="text-align: left; font-size: 1.2em; color: #2878e0; cursor: pointer;" onclick="toggleVideo()">
+                <strong>See how employees are being extracted by our Script!</strong>
+            </p>
+            <div id="video-wrapper" style="display: none; text-align: center; margin-top: 20px;">
+                <video controls width="80%" style="border-radius: 8px; box-shadow: 0 4px 24px rgba(0,0,0,0.1);">
+                    <source src="{{ url_for('static', filename='video/video-linkedin.mp4') }}" type="video/mp4">                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
         <h1>Employees Table</h1>
+        <p style="text-align: left; font-size: 1.2em; color: #2878e0;">
+            Found {{ employees_count }} {{ "result" if employees_count == 1 else "results" }}
+        </p>
         <table>
             <thead>
                 <tr>
@@ -34,5 +51,15 @@
             </tbody>
         </table>
     </div>
+    <script>
+    function toggleVideo() {
+        const videoWrapper = document.getElementById("video-wrapper");
+        if (videoWrapper.style.display === "none") {
+            videoWrapper.style.display = "block";
+        } else {
+            videoWrapper.style.display = "none";
+        }
+    }
+</script>
 </body>
 </html>

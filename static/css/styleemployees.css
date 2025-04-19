@@ -8,7 +8,7 @@ body {
 }
 .card-container {
     max-width: 900px;
-    margin: 60px auto;
+    margin: -100px auto;
     background: #fff;
     border-radius: 16px;
     box-shadow: 0 4px 24px rgba(0,0,0,0.08);
@@ -22,7 +22,7 @@ body {
 }
 .back-link {
     font-size: 18px;
-    color: #3498db;
+    color: #459a9e;
     text-decoration: none;
     font-weight: 500;
     transition: color 0.2s;
@@ -72,4 +72,20 @@ tr:hover {
 	font-weight: 500;
 	transition: background 0.2s;
 	float: left; /* Align the button to the left */
+}
+.video-container p {
+    font-size: 1.2em;
+    color: #459a9e;
+    text-align: center;
+    cursor: pointer;
+    transition: color 0.3s;
+}
+
+.video-container p:hover {
+    color: #357e8c;
+}
+
+#video-wrapper {
+    margin-top: 30px;
+    text-align: center;
 }
