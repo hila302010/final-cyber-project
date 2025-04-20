@@ -1077,6 +1077,7 @@ nav.navbar.bootsnav .navbar-toggle i{color: #439397;}
     border-radius: 5px;
     overflow: hidden;
     margin: 20px auto; /* Center the bar horizontally */
+    position: relative; /* Ensure the container is positioned relative */
 }
 
 #loading-bar {
@@ -1085,14 +1086,24 @@ nav.navbar.bootsnav .navbar-toggle i{color: #439397;}
     background-color: #459a9e;
     transition: width 0.5s ease-in-out;
     border-radius: 5px;
+    position: relative; /* Ensure the bar is positioned relative */
 }
-
 #loading-percentage {
+    position: absolute; /* Position the text absolutely inside the bar */
+    width: 100%; /* Make the text span the entire width of the bar */
+    text-align: center; /* Center the text horizontally */
+    font-size: 0.9em;
+    color: white; /* Change the text color to white for better visibility */
+    font-weight: bold;
+    top: 50%; /* Center the text vertically */
+    transform: translateY(-50%); /* Adjust for vertical centering */
+}
+/* #loading-percentage {
     font-size: 0.9em;
     color: #459a9e;
     font-weight: bold;
     text-align: center;
-}
+} */
 #scroll-Top  .return-to-top i{
     position: relative;
     animation-name: example;

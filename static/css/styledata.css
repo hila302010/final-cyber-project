@@ -226,6 +226,11 @@ tr:hover {
 		color: #585858;
 		border-bottom: dotted 1px rgba(88, 88, 88, 0.5);
 	}
+	a img {
+		display: block;
+		padding: 0;
+		border: none;
+	}
 
 		a:hover {
 			border-bottom-color: transparent;
