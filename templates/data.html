@@ -20,8 +20,9 @@
 				<!-- Main -->
 					<div id="main">
 						<div class="inner">
-							<img src="static/images/osintech.png" alt="Brand Logo" style="max-width: 170px; height: auto; margin-top: 20px;" />
-							<header>
+							<a href="{{ url_for('index') }}">
+								<img src="static/images/osintech.png" alt="Brand Logo" style="max-width: 170px; height: auto; margin-top: 20px;" />
+							</a>							<header>
 								<br><h1 style="text-align: center; margin: -100px;">Data Results</h1><br><br>
 								<p style="text-align: center; margin-top: 40px; font-weight: bold; font-size:25px">Below are the results based on your query:</p>
 								<p style="text-align: center; margin-bottom: 13px;">Domain: {{ domain }}</p>
@@ -59,7 +60,7 @@
 									<span class="image">
 										<img src="static/images/dataImages/pic03.jpg" alt="" />
 									</span>
-									<a href="generic.html">
+									<a href="{{ url_for('domains') }}">
 										<h2>Domains</h2>
 										<div class="content">
 											<p>Click here to view the table of Domains.</p>
@@ -82,6 +83,16 @@
 
 
 								<article class="style5">
+									<span class="image">
+										<img src="static/images/dataImages/pic05.jpg" alt="" />
+									</span>
+									<a href="generic.html">
+										<h2>Dkim & Dmarc</h2>
+										<div class="content">
+											<p>Click here to view the table of Dmarc and Dkim data.</p>
+										</div>
+									</a>
+								</article><article class="style5">
 									<span class="image">
 										<img src="static/images/dataImages/pic05.jpg" alt="" />
 									</span>
