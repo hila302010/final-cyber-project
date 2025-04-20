@@ -58,27 +58,50 @@ def load_data():
     company = data.get('company')
 
     # Simulate progress for each step
-    progress["value"] = 10  # Step 1: Parsing input data
+    progress["value"] = 5  # Step 1: Parsing input data
 
 
-    # Call your Python logic here
+    # ----EMAILS----
     #emails = dataLoadingEmails()
     #emails = mainGG.getEmails(["@" + domain, company])  # Function to fetch emails from GitHub and Google Dorks
     emails = []
-    progress["value"] = 30  # Step 2: Fetching emails
+    progress["value"] = 10  # Step 2: Fetching emails
 
-    employees = linkedin.execute_linkedin(domain)
+    # ----EMPLOYEES----
+    employees = []
+    #employees = linkedin.execute_linkedin(domain)
     for i in range(5):  # Simulate 5 steps of employee fetching
         time.sleep(1)  # Simulate delay for each step
         progress["value"] += 10  # Increment progress for each step
     #employees = []
-    
+
+    # ----IPS----
+    dataForIpAndDomains =  nDBtoS.execute_networksdb_to_shodan(country, company)
     # Fetch IPs from both sources
-    #shodan_ips = nDBtoS.execute_networksdb_to_shodan(country, company)
+    #shodan_ips = dataForIpAndDomains
     #whois_ips = whois.getipsWithFields(domain)  # Function to fetch WHOIS data
     #merged_ips = dataLoadingIPs(shodan_ips, whois_ips)  # Function to merge and process IPs
     merged_ips = []
-    progress["value"] = 90  # Step 4: Fetching IPs
+    progress["value"] = 70  # Step 4: Fetching IPs
+
+    # ----DOMAINS----
+    #domainsWhois = set()  # Initialize as a set to avoid duplicates
+    domainsWhois = whois.fetch_subdomains(domain) # Fetch subdomains from WHOIS data
+    domainsNetworksDB = dataForIpAndDomains
+    domains = merge_domains(domainsWhois, domainsNetworksDB)  # Merge domains from both sources
+
+    # Limit the number of domains to avoid exceeding the session size limit
+    max_domains = 500  # Set the maximum number of domains to store
+    domains = domains[:max_domains]  # Truncate the list to the first 500 entries
+    
+    progress["value"] = 80  # Step 5: Fetching Domains
+
+    # ----DKIM DMARC----
+    #CONTINUEEEEEEEEEEEEEEEEEEEE
+    dkimdmarc =[]
+    progress["value"] = 90  # Step 6: Fetching DKIM DMARC RECORDS
+
+
 
     # Store the data in the session
     session['domain'] = domain
@@ -87,6 +110,9 @@ def load_data():
     session['emails'] = emails
     session['employees'] = employees
     session['ips'] = merged_ips
+    session['domains'] = domains
+    session['dkimdmarc'] = dkimdmarc
+
 
     progress["value"] = 100  # Step 5: Data loading complete
 
@@ -112,7 +138,9 @@ def data():
         company=session.get('company', ''),
         emails=session.get('emails', []),
         employees=session.get('employees', []),
-        ips=session.get('ips', [])
+        ips=session.get('ips', []),
+        domains=session.get('domains', []),
+        dkimdmarc=session.get('dkimdmarc', []),
     )
 
 
@@ -120,7 +148,6 @@ def data():
 # ------------------------------
 # Emails html and Emails export routes
 # ------------------------------
-@app.route('/emails')
 @app.route('/emails')
 def emails():
     emails = session.get('emails', [])
@@ -182,8 +209,6 @@ def export_employees():
             output.seek(0)
             output.truncate(0)
 
-
-
     # Return the response as a CSV file
     return Response(
         generate(),
@@ -192,7 +217,6 @@ def export_employees():
     )
 
 
-    
 
 
 # ------------------------------
@@ -261,6 +285,73 @@ def export_ips():
         mimetype='text/csv',
         headers={"Content-Disposition": "attachment; filename=ips.csv"}
     )
+
+# ------------------------------
+# Domains html and Domains export routes
+# ------------------------------
+@app.route('/domains')
+def domains():
+    # Render the table for domains
+    domains = session.get('domains', [])
+    domains_count = len(domains)  # Count the number of domains
+    return render_template('domains.html', domains=domains, domains_count=domains_count)
+
+@app.route('/export_domains')
+def export_domains():
+    domains = session.get('domains', [])
+    
+    # Ensure there is data to export
+    if not domains:
+        return "No domain data available to export.", 400
+
+    # Create a CSV response
+    def generate():
+        yield "Domain Name\n"  # Header row
+        for domain in domains:
+            yield f"{domain}\n"  # Write only the domain name
+
+    # Return the response as a CSV file
+    return Response(
+        generate(),
+        mimetype='text/csv',
+        headers={"Content-Disposition": "attachment; filename=domains.csv"}
+    )
+
+# ------------------------------
+# Dkim Dmarc html and export routes
+# ------------------------------
+@app.route('/dkimdmarc')
+def dkimdmarc():
+    # Retrieve DKIM/DMARC data from the session
+    dkimdmarc = session.get('dkimdmarc', [])
+    dkimdmarc_count = len(dkimdmarc)  # Count the number of DKIM/DMARC records
+    return render_template('dkimdmarc.html', dkimdmarc=dkimdmarc, dkimdmarc_count=dkimdmarc_count)
+
+
+@app.route('/export_dkimdmarc')
+def export_dkimdmarc():
+    dkimdmarc = session.get('dkimdmarc', [])
+    
+    # Ensure there is data to export
+    if not dkimdmarc:
+        return "No DKIM/DMARC data available to export.", 400
+
+    # Create a CSV response
+    def generate():
+        yield "Record Type,Domain,Value\n"  # Header row
+        for record in dkimdmarc:
+            yield f"{record.get('type', '')},{record.get('domain', '')},{record.get('value', '')}\n"
+
+    # Return the response as a CSV file
+    return Response(
+        generate(),
+        mimetype='text/csv',
+        headers={"Content-Disposition": "attachment; filename=dkimdmarc.csv"}
+    )
+
+
+
+
 # ------------------------------
 # Helper Functions
 # ------------------------------
@@ -314,6 +405,28 @@ def dataLoadingEmails():
     data.extend(google.getEmails())
     return data
 
+# Merge domainsWhois (set) with domains and hostnames from domainsNetworksDB (dict)
+def merge_domains(domainsWhois, domainsNetworksDB):
+    # Ensure domainsWhois is a set
+    if not isinstance(domainsWhois, set):
+        domainsWhois = set(domainsWhois)
+
+    # Extract domains and hostnames from domainsNetworksDB
+    extracted_domains = set()
+    for entry in domainsNetworksDB:
+        # Extract domains
+        if "domains" in entry and isinstance(entry["domains"], str):
+            extracted_domains.update(domain.strip() for domain in entry["domains"].split(", ") if domain.strip())
+
+        # Extract hostnames
+        if "hostnames" in entry and isinstance(entry["hostnames"], str):
+            extracted_domains.update(hostname.strip() for hostname in entry["hostnames"].split(", ") if hostname.strip())
+
+    # Merge the extracted domains and hostnames into domainsWhois
+    domainsWhois.update(extracted_domains)
+
+    # Convert the set back to a list and filter out empty entries
+    return [domain for domain in domainsWhois if domain.strip()]
 
 
 

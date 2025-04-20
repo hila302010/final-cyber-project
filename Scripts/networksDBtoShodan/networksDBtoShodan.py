@@ -1,6 +1,6 @@
 import requests
-import Scripts.networksDBtoShodan.shodanAPI as shodanAPI
-#import shodanAPI
+#import Scripts.networksDBtoShodan.shodanAPI as shodanAPI
+import shodanAPI
 import csv
 
 
@@ -68,7 +68,7 @@ def process_shodan_for_cidr(country, cidr_addresses):
         # Call the lookup_country_and_ip function from shodanAPI.py
         result = shodanAPI.lookup_country_and_ip(country, address)
 
-        # If results are found, save to CSV and collect the data
+        # If results are found, collect the data
         if result and 'matches' in result:
             shodan_data = getData(result['matches'])
             all_data.extend(shodan_data)  # Add the data to the main list
@@ -169,6 +169,28 @@ def getData(data):
     return result_data  # Return the processed data
 
 
+
+def extract_domains_and_hostnames(data):
+    """
+    Extracts all domains, subdomains, and hostnames from the given data.
+    Args: data (list): A list of dictionaries containing Shodan results.
+    Returns: list: A list of unique domains, subdomains, and hostnames.
+    """
+    if not data:
+        print("No data available to extract domains and hostnames.")
+        return []
+    results = set()  # Use a set to ensure uniqueness
+    for row in data:
+        # Extract domains
+        if 'domains' in row and isinstance(row['domains'], str):
+            results.update(row['domains'].split(', '))  # Split comma-separated domains and add to the set
+        # Extract hostnames
+        if 'hostnames' in row and isinstance(row['hostnames'], str):
+            results.update(row['hostnames'].split(', '))  # Split comma-separated hostnames and add to the set
+    return list(results)  # Convert the set back to a list
+
+
+
 def execute_networksdb_to_shodan(country, organization):
     api_key = "751ba4ad-5a35-4428-a4d3-1ec191d9aaf6"
     if not api_key:
@@ -179,12 +201,13 @@ def execute_networksdb_to_shodan(country, organization):
         cidr_addresses = search_networksdb(ormatted_country, organization, api_key)
 
         if cidr_addresses:
-            print(f"\nUnique CIDR/IP Addresses for '{organization}' in '{ormatted_country}':")
-            for address in cidr_addresses:
-                print(f"- {address}")
+            # print(f"\nUnique CIDR/IP Addresses for '{organization}' in '{ormatted_country}':")
+            # for address in cidr_addresses:
+            #     print(f"- {address}")
 
             # Call the Shodan API for each CIDR/IP using lookup_country_and_ip
             data = (process_shodan_for_cidr(ormatted_country, cidr_addresses))
+            print(data)
         else:
             data = "No CIDR/IP addresses found."
             print(f"\nNo CIDR/IP addresses found for '{organization}' in '{ormatted_country}'.")
