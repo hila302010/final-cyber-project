@@ -10,6 +10,7 @@ import time
 import csv
 from io import StringIO
 from flask import jsonify
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 # Custom scripts
 import Scripts.DNS.DkimDmarc as dkim_dmarc
@@ -30,7 +31,8 @@ progress = {"value": 0}
 # ------------------------------
 app = Flask(__name__)
 app.secret_key = str(secrets.token_hex(32)) # Replace with a secure random key
-
+# A dictionary to track cancellation flags for each session or process
+cancellation_flags = {}
 
 
 # ------------------------------
@@ -42,14 +44,36 @@ def index():
     return render_template('index.html')
 
 
+@app.route('/cancel', methods=['POST'])
+def cancel_process():
+    session_id = request.json.get('session_id')
+    if session_id:
+        cancellation_flags[session_id] = True
+        return {"message": "Process canceled successfully."}, 200
+    return {"error": "Session ID is required."}, 400
+
+
+def is_canceled(session_id):
+    return cancellation_flags.get(session_id, False)
+
 
 # ------------------------------------------------------
 # loading data from the scripts by the form fields: domain country and company
 # ------------------------------------------------------
+# Simulated progress variable
+progress = {"value": 0, "task": "Initializing..."}
 @app.route('/load_data', methods=['POST'])
 def load_data():
     global progress
     progress["value"] = 0  # Reset progress
+    progress["task"] = "Parsing input data..."  # Update task description
+
+    session_id = request.json.get('session_id')
+    if not session_id:
+        return {"error": "Session ID is required."}, 400
+    
+    # Reset the cancellation flag for this session
+    cancellation_flags[session_id] = False
 
     # Parse the JSON data from the AJAX request
     data = request.get_json()
@@ -59,33 +83,60 @@ def load_data():
 
     # Simulate progress for each step
     progress["value"] = 5  # Step 1: Parsing input data
-
+    
 
     # ----EMAILS----
-    #emails = dataLoadingEmails()
+    progress["task"] = "Fetching emails..."
+
+    if is_canceled(session_id):  # Check if the process is canceled
+        print("Process canceled during email fetching.")
+        progress["task"] = "Process canceled."
+        return {"message": "Process was canceled."}, 200
+
     #emails = mainGG.getEmails(["@" + domain, company])  # Function to fetch emails from GitHub and Google Dorks
     emails = []
     progress["value"] = 10  # Step 2: Fetching emails
+    print("Done fetching emails...")
+
 
     # ----EMPLOYEES----
-    employees = []
-    #employees = linkedin.execute_linkedin(domain)
+    #employees = []
+    progress["task"] = "Fetching Employees..."
+
+    if is_canceled(session_id):  # Check if the process is canceled
+        print("Process canceled during employees fetching.")
+        progress["task"] = "Process canceled."
+        return {"message": "Process was canceled."}, 200
+
+    employees = linkedin.execute_linkedin(domain)
     for i in range(5):  # Simulate 5 steps of employee fetching
         time.sleep(1)  # Simulate delay for each step
         progress["value"] += 10  # Increment progress for each step
-    #employees = []
 
     # ----IPS----
+    progress["task"] = "Fetching ips..."
+    if is_canceled(session_id):  # Check if the process is canceled
+        print("Process canceled during ips fetching.")
+        progress["task"] = "Process canceled."
+        return {"message": "Process was canceled."}, 200
+
     dataForIpAndDomains =  nDBtoS.execute_networksdb_to_shodan(country, company)
     # Fetch IPs from both sources
-    #shodan_ips = dataForIpAndDomains
-    #whois_ips = whois.getipsWithFields(domain)  # Function to fetch WHOIS data
-    #merged_ips = dataLoadingIPs(shodan_ips, whois_ips)  # Function to merge and process IPs
-    merged_ips = []
+
+    shodan_ips = dataForIpAndDomains
+    whois_ips = whois.getipsWithFields(domain)  # Function to fetch WHOIS data
+    merged_ips = dataLoadingIPs(shodan_ips, whois_ips)  # Function to merge and process IPs
+    # merged_ips = []
     progress["value"] = 70  # Step 4: Fetching IPs
 
     # ----DOMAINS----
-    #domainsWhois = set()  # Initialize as a set to avoid duplicates
+    progress["task"] = "Fetching domains..."
+
+    if is_canceled(session_id):  # Check if the process is canceled
+        print("Process canceled during domains fetching.")
+        progress["task"] = "Process canceled."
+        return {"message": "Process was canceled."}, 200
+
     domainsWhois = whois.fetch_subdomains(domain) # Fetch subdomains from WHOIS data
     domainsNetworksDB = dataForIpAndDomains
     domains = merge_domains(domainsWhois, domainsNetworksDB)  # Merge domains from both sources
@@ -95,25 +146,39 @@ def load_data():
     domains = domains[:max_domains]  # Truncate the list to the first 500 entries
     
     progress["value"] = 80  # Step 5: Fetching Domains
-
     # ----DKIM DMARC----
-    #CONTINUEEEEEEEEEEEEEEEEEEEE
-    dkimdmarc =[]
+    progress["task"] = "Fetching DKIM/DMARC records..."
+
+    if is_canceled(session_id):  # Check if the process is canceled
+        print("Process canceled during dkim, dmarc, spf fetching.")
+        progress["task"] = "Process canceled."
+        return {"message": "Process was canceled."}, 200
+    
+    dkimdmarc = loadingDkimDmarc(domains)  # Function to fetch DKIM and DMARC records
     progress["value"] = 90  # Step 6: Fetching DKIM DMARC RECORDS
 
 
-
     # Store the data in the session
+    progress["task"] = "Finalizing data..."
     session['domain'] = domain
     session['country'] = country
     session['company'] = company
-    session['emails'] = emails
-    session['employees'] = employees
-    session['ips'] = merged_ips
-    session['domains'] = domains
-    session['dkimdmarc'] = dkimdmarc
 
 
+    max_items = 40  # Limit the number of items
+    session['emails'] = emails[:max_items]
+    session['employees'] = employees[:max_items]
+    session['ips'] = merged_ips[:max_items]
+    session['domains'] = domains[:max_items]
+    session['dkimdmarc'] = dkimdmarc[:max_items]
+
+    # session['emails'] = emails
+    # session['employees'] = employees
+    # session['ips'] = merged_ips
+    # session['domains'] = domains
+    # session['dkimdmarc'] = dkimdmarc
+
+    progress["task"] = "Data loading complete."
     progress["value"] = 100  # Step 5: Data loading complete
 
     # Return a success response
@@ -338,9 +403,17 @@ def export_dkimdmarc():
 
     # Create a CSV response
     def generate():
-        yield "Record Type,Domain,Value\n"  # Header row
+        # Write the header row
+        yield "Domain,SPF,DMARC,DMARC Policy,DKIM,DKIM Status\n"
+        
+        # Write each record
         for record in dkimdmarc:
-            yield f"{record.get('type', '')},{record.get('domain', '')},{record.get('value', '')}\n"
+            yield f"{record.get('domain', '')}," \
+                  f"{record.get('SPF', '')}," \
+                  f"{record.get('DMARC', '')}," \
+                  f"{record.get('DMARC Policy', '')}," \
+                  f"{record.get('DKIM', '')}," \
+                  f"{record.get('DKIM Status', '')}\n"
 
     # Return the response as a CSV file
     return Response(
@@ -351,48 +424,66 @@ def export_dkimdmarc():
 
 
 
-
 # ------------------------------
 # Helper Functions
 # ------------------------------
 def dataLoadingIPs(shodan_ips, whois_ips):
     # Combine the two lists and ensure uniqueness based on the IP field
     merged_ips_dict = {}
-
-    # Add Shodan IPs to the dictionary
-    for ip_data in shodan_ips:
-        merged_ips_dict[ip_data["ip_str"]] = {
-            "ip_str": ip_data["ip_str"],
-            "port": ip_data.get("port", ""),
-            "vulns": ip_data.get("vulns", ""),
-            "country_name": ip_data.get("country_name", ""),
-            "city": ip_data.get("city", ""),
-            "domains": ip_data.get("domains",""),
-            "hostnames": ip_data.get("hostnames", ""),
-            "mnt_by": "",  # Placeholder for WHOIS data
-            "abuse_mailbox": ""  # Placeholder for WHOIS data
-        }
-
-    # Add WHOIS IPs to the dictionary (update or add new entries)
-    for whois_data in whois_ips:
-        ip = whois_data["IP"]
-        if ip in merged_ips_dict:
-            # Update existing entry with WHOIS data
-            merged_ips_dict[ip]["mnt_by"] = whois_data.get("Mnt-By", "")
-            merged_ips_dict[ip]["abuse_mailbox"] = whois_data.get("Abuse Mailbox", "")
+    if not shodan_ips:
+        print("No Shodan IPs to process.")  # Debug message
+        if not whois_ips:
+            print("No WHOIS IPs to process.")
+            return []
         else:
-            # Add new entry if IP is not already in the dictionary
-            merged_ips_dict[ip] = {
-                "ip_str": ip,
-                "port": "",  # Placeholder for Shodan data
-                "vulns": "",  # Placeholder for Shodan data
-                "country_name": whois_data.get("Country", ""),
-                "city": "",  # Placeholder for Shodan data
-                "domains": whois_data.get("Domain", ""),  # Placeholder for Shodan data
-                "hostnames": "",  # Placeholder for Shodan data
-                "mnt_by": whois_data.get("Mnt-By", ""),
-                "abuse_mailbox": whois_data.get("Abuse Mailbox", "")
+            for whois_data in whois_ips:
+                ip = whois_data["IP"]
+                merged_ips_dict[ip] = {
+                                "ip_str": ip,
+                                "port": "",  # Placeholder for Shodan data
+                                "vulns": "",  # Placeholder for Shodan data
+                                "country_name": whois_data.get("Country", ""),
+                                "city": "",  # Placeholder for Shodan data
+                                "domains": whois_data.get("Domain", ""),  # Placeholder for Shodan data
+                                "hostnames": "",  # Placeholder for Shodan data
+                                "mnt_by": whois_data.get("Mnt-By", ""),
+                                "abuse_mailbox": whois_data.get("Abuse Mailbox", "")
+                            }
+    else:
+        # Add Shodan IPs to the dictionary
+        for ip_data in shodan_ips:
+            ip_str = ip_data.get("ip_str")  # Use .get() to avoid KeyError
+            merged_ips_dict[ip_str] = {
+                "ip_str": ip_str,
+                "port": ip_data.get("port", ""),
+                "vulns": ip_data.get("vulns", ""),
+                "country_name": ip_data.get("country_name", ""),
+                "city": ip_data.get("city", ""),
+                "domains": ip_data.get("domains",""),
+                "hostnames": ip_data.get("hostnames", ""),
+                "mnt_by": "",  # Placeholder for WHOIS data
+                "abuse_mailbox": ""  # Placeholder for WHOIS data
             }
+            # Add WHOIS IPs to the dictionary (update or add new entries)
+            for whois_data in whois_ips:
+                ip = whois_data["IP"]
+                if ip in merged_ips_dict:
+                    # Update existing entry with WHOIS data
+                    merged_ips_dict[ip]["mnt_by"] = whois_data.get("Mnt-By", "")
+                    merged_ips_dict[ip]["abuse_mailbox"] = whois_data.get("Abuse Mailbox", "")
+                else:
+                    # Add new entry if IP is not already in the dictionary
+                    merged_ips_dict[ip] = {
+                        "ip_str": ip,
+                        "port": "",  # Placeholder for Shodan data
+                        "vulns": "",  # Placeholder for Shodan data
+                        "country_name": whois_data.get("Country", ""),
+                        "city": "",  # Placeholder for Shodan data
+                        "domains": whois_data.get("Domain", ""),  # Placeholder for Shodan data
+                        "hostnames": "",  # Placeholder for Shodan data
+                        "mnt_by": whois_data.get("Mnt-By", ""),
+                        "abuse_mailbox": whois_data.get("Abuse Mailbox", "")
+                    }
 
     # Convert the dictionary back to a list
     return list(merged_ips_dict.values())
@@ -429,6 +520,54 @@ def merge_domains(domainsWhois, domainsNetworksDB):
     return [domain for domain in domainsWhois if domain.strip()]
 
 
+def fetch_dkim_dmarc_for_domain(domain):
+    """
+    Fetch DKIM/DMARC records for a single domain and extract specific keys.
+    """
+    try:
+        # Fetch DNS records for the domain
+        records = dkim_dmarc.fetch_dns_records(domain)
+        print(f"Fetched records for {domain}: {records}")  # Debug statement
+
+        # Keys to extract
+        keys_to_extract = ["SPF", "DMARC", "DMARC Policy", "DKIM", "DKIM Status"]
+
+        # Extract only the specified keys
+        extracted_records = {key: records.get(key, "") for key in keys_to_extract}
+
+        # Add the domain to the extracted records
+        extracted_records["domain"] = domain
+
+        return extracted_records
+    except Exception as e:
+        print(f"Error fetching DKIM/DMARC records for {domain}: {e}")
+        return {"domain": domain, "error": str(e)}  # Return an error message if an exception occurs
+
+
+
+def loadingDkimDmarc(domains):
+    """
+    Fetch DKIM/DMARC records for a list of domains using threads.
+    """
+    dkimdmarc = []  # Initialize an empty list to store DKIM/DMARC records
+    max_threads = 10  # Set the maximum number of threads
+
+    # Use ThreadPoolExecutor to fetch records concurrently
+    with ThreadPoolExecutor(max_threads) as executor:
+        # Submit tasks for each domain
+        future_to_domain = {executor.submit(fetch_dkim_dmarc_for_domain, domain): domain for domain in domains}
+
+        # Process completed tasks
+        for future in as_completed(future_to_domain):
+            try:
+                # Append the result (a dictionary) to the list
+                result = future.result()
+                print(f"Fetched result for domain {future_to_domain[future]}: {result}")  # Debug statement
+                dkimdmarc.append(result)
+            except Exception as e:
+                print(f"Error processing domain {future_to_domain[future]}: {e}")
+
+    return dkimdmarc  # Return the list of DKIM/DMARC records
 
 # ------------------------------
 # open browser function

@@ -74,3 +74,29 @@ tr:nth-child(even) {
 tr:hover {
 	background: #e3f6fa;
 }
+
+/* .title-link {
+	font-size: 18px;
+	color: #171d1d;
+	text-decoration: none;
+	font-weight: 500;
+	transition: color 0.2s;
+} */
+.title-link {
+    display: inline-block; /* Ensure the background wraps around the text */
+    font-size: 18px;
+    color: #459a9e;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s, background 0.2s;
+    background: #e3f6fa; /* Light blue background */
+    padding: 8px 12px; /* Add padding for spacing */
+    border-radius: 8px; /* Rounded corners */
+    margin-left: 10px; /* Adjust spacing from the back link */
+}
+.title-link:hover {
+    text-decoration: underline; /* Add underline on hover */
+    color: #26323e; /* Optional: Change color on hover */
+	background: #d1eef5; /* Slightly darker background on hover */
+
+}

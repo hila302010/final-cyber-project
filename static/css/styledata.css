@@ -149,7 +149,7 @@ tr:nth-child(even) {
 tr:hover {
 	background: #e3f6fa;
 }
-    
+
 /* Basic */
 
 	@-ms-viewport {
@@ -283,8 +283,6 @@ tr:hover {
 		font-weight: 900;
 		line-height: 1.5;
 		margin: 0 0 2em 0;
-		text-transform: uppercase;
-		letter-spacing: 0.35em;
 	}
 
 		h2 a, h3 a, h4 a, h5 a, h6 a {
@@ -3426,3 +3424,83 @@ tr:hover {
 			}
 
 		}
+/* Center the entire section vertically and horizontally */
+.skills {
+    display: flex;
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    text-align: center;
+}
+
+/* Center the container */
+.skill-content .container {
+    max-width: 800px; /* Limit the width of the container */
+    margin: 0 auto; /* Center the container horizontally */
+}
+
+/* Section heading */
+.section-heading p {
+    font-size: 28px; /* Increase the font size */
+    font-weight: bold;
+    color: #333333;
+    margin-bottom: 30px;
+}
+
+/* Progress bar wrapper */
+.barWrapper {
+    margin-bottom: 10px; /* Add spacing between bars */
+}
+
+/* Progress text (e.g., Emails, IPs) */
+.progressText {
+    font-size: 18px; /* Increase the font size */
+    font-weight: bold;
+    color: #666666;
+    margin-bottom: 10px;
+    display: block;
+}
+
+/* Progress bar container */
+.progress {
+    background-color: #e9ecef;
+    border-radius: 10px;
+    height: 15px; /* Keep the height of the progress bar */
+    overflow: hidden;
+    margin-bottom: 10px;
+    width: 150%; /* Set the width to 100% of the parent container */
+    max-width: 900px; /* Increase the maximum width of the progress bar */
+    margin: 0 auto; /* Center the progress bar horizontally */
+}
+
+/* Progress bar itself */
+.progress-bar {
+    background-color: #459a9e;
+    height: 15px; /* Match the height of the container */
+    border-radius: 10px;
+    transition: width 0.5s ease-in-out;
+}
+
+/* Percentage grade to the right of the progress bar */
+.single-progress-txt h3 {
+    font-size: 16px; /* Keep the font size */
+    font-weight: bold;
+    color: #459a9e;
+    margin-left: 10px; /* Add spacing between the progress bar and the percentage */
+    margin-top: 0; /* Remove any top margin */
+}
+/* Style for the section divider */
+.section-divider {
+    border: none; /* Remove the default border */
+    border-top: 1px solid #e0e0e0; /* Add a light gray line */
+    margin: 40px auto; /* Add spacing above and below the line */
+    width: 100%; /* Limit the width of the line */
+}
+/* Style for the section divider */
+.section-divider2 {
+	border: none; /* Remove the default border */
+    border-top: 1px solid #e0e0e0; /* Add a light gray line */
+    margin: 40px auto; /* Center the line and add spacing above and below */
+    width: 80%; /* Set the width to 80% of the page */
+    max-width: 1200px; /* Limit the maximum width */
+    display: block; /* Ensure the line behaves as a block element */
+}

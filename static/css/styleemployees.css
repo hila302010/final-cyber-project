@@ -7,7 +7,7 @@ body {
     font-family: 'Segoe UI', 'Arial', sans-serif;
 }
 .card-container {
-    max-width: 900px;
+    max-width: 1050px;
     margin: -100px auto;
     background: #fff;
     border-radius: 16px;
@@ -38,7 +38,7 @@ h1 {
     letter-spacing: 1px;
 }
 table {
-    width: 100%;
+    width: 90%;
     border-collapse: collapse;
     background: #fafcff;
     border-radius: 8px;

@@ -77,7 +77,6 @@ h1,h2,h3,h4,h5,h6 {
 	color:#43485c;
     font-size: 16px;
 	font-family: 'Poppins', sans-serif;
-	text-transform: capitalize;
 }
 p {
 	margin: 0;
@@ -141,7 +140,6 @@ nav.navbar.bootsnav {
     font-size: 20px;
     font-weight: 600;
     padding: 33px 0px 57px;
-    text-transform: uppercase;
 }
 /*.navbar-brand*/
 
@@ -149,7 +147,6 @@ nav.navbar.bootsnav {
 nav.navbar.bootsnav ul.nav > li > a {
     font-size: 16px;
     font-weight: 400;
-    text-transform:uppercase;
     -webkit-transition: 0.3s linear; 
     -moz-transition: 0.3s linear; 
     -ms-transition: 0.3s linear; 
@@ -236,7 +233,7 @@ nav.navbar.bootsnav .navbar-toggle i{color: #439397;}
     color: #fff;
     font-size: 20px;
     font-weight: 300;
-    text-transform: uppercase;
+    /*text-transform: uppercase;*/
     margin: 30px 0 60px;
     letter-spacing: 1px;
 }
@@ -244,7 +241,7 @@ nav.navbar.bootsnav .navbar-toggle i{color: #439397;}
     color: #fff;
     font-size: 36px; /* Adjust the size as needed */
     font-weight: 700; /* Optional: Adjust the weight */
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     line-height: 1.5;
 }
 .header-text a {
@@ -252,7 +249,7 @@ nav.navbar.bootsnav .navbar-toggle i{color: #439397;}
     height: 60px;
     line-height: 60px;
     border-radius: 3px;
-    text-transform: capitalize;
+    /* text-transform: capitalize; */
     color: #439397;
     background: #fff;
     border:1px solid #1b0560;
@@ -292,7 +289,7 @@ nav.navbar.bootsnav .navbar-toggle i{color: #439397;}
 .single-about-add-info h3 {
     color: #636a82;
     font-size: 16px;
-    text-transform: capitalize;
+    /* text-transform: capitalize; */
 }
 .single-about-add-info p {font-weight:  300;border:  0;padding: 0;margin-top: 3px;}
 /*.single-about-txt*/
@@ -511,82 +508,35 @@ nav.navbar.bootsnav .navbar-toggle i{color: #439397;}
     margin: 0 auto;
 }
 
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+/* Spinner styles */
+.spinner {
+    border: 4px solid #f3f3f3; /* Light gray */
+    border-top: 4px solid #459a9e; /* Blue */
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    animation: spin 1s linear infinite;
 }
 
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+#task-description {
+    text-align: center; /* Center the text horizontally */
+    margin-top: 20px; /* Add some spacing above */
+    font-size: 16px;
+    font-weight: bold;
+    color: #333333;
+    display: none; /* Initially hidden */
+}
 
 /*.education-horizontal-timeline*/
 
-/*-------------------------------------
-        6.  Skills
---------------------------------------*/
-.skills {
-    
-}
-.skill-content{padding: 50px 0 80px;}
-.single-skill-content{padding-top: 100px;}
-.section-heading h2 {
-    font-size: 24px;
-    font-weight: 600;
-    text-transform: uppercase;
-    padding-bottom: 50px;
-    border-bottom: 1px solid #e5ebf2;
-}
-.single-progress-txt {
-    display: flex;
-}
-.single-progress-txt h3 {
-    width: 10%;
-    color: #439397;
-    position: relative;
-    top: 6px;
-    left: 20px;
-}
-.barWrapper {
-    font-weight: 400;
-    font-size: 16px;
-    text-transform: uppercase;
-}
-.progress {
-    border-radius:3px;
-    overflow: visible;
-    background: #e6ecf3;
-    height:8px;
-    margin-top: 15px;
-    width: 85%;
-    margin-bottom: 37px;
-}
-.progress-bar {
-   background: #439397;
-    border-radius: 3px;
-   -webkit-transition: width 1.5s ease-in-out;
-   -ms-transition: width 1.5s ease-in-out;
-   -moz-transition: width 1.5s ease-in-out;
-   -o-transition: width 1.5s ease-in-out;
-   transition: width 1.5s ease-in-out;
-}
-.tooltip{
-   position:relative;
-   float:right;
-}
-.tooltip > .tooltip-inner {
-   background-color: transparent;
-   padding: 1px 5px;
-   color: #439397;
-   font-weight: 500;
-   font-size: 12px;
-   border-radius: 0;
-}
-.popOver + .tooltip > .tooltip-arrow {
-   border-left: 6px solid transparent;
-   border-right: 6px solid transparent;
-   border-top: 6px solid #fff;
-   bottom: -1px;
-   transform: translateX(-50%);
-   margin-left: 0;
-}
 
 /*-------------------------------------
     7.Report Generation Workflow
@@ -758,11 +708,51 @@ nav.navbar.bootsnav .navbar-toggle i{color: #439397;}
     color: #39394b;
   }
   
-  .term {
+  .term1 {
     margin-bottom: 25px;
     padding: 20px 30px 20px 30px;
     background-color: #ffffff;
     border-left: 5px solid #7fc8ce;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  }
+  .term2 {
+    margin-bottom: 25px;
+    padding: 20px 30px 20px 30px;
+    background-color: #ffffff;
+    border-left: 5px solid #609ade;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  }
+  .term3 {
+    margin-bottom: 25px;
+    padding: 20px 30px 20px 30px;
+    background-color: #ffffff;
+    border-left: 5px solid #a75ccd;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  }
+  .term4 {
+    margin-bottom: 25px;
+    padding: 20px 30px 20px 30px;
+    background-color: #ffffff;
+    border-left: 5px solid #db62c9;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  }
+  .term5 {
+    margin-bottom: 25px;
+    padding: 20px 30px 20px 30px;
+    background-color: #ffffff;
+    border-left: 5px solid #dd3687;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  }
+  .term6 {
+    margin-bottom: 25px;
+    padding: 20px 30px 20px 30px;
+    background-color: #ffffff;
+    border-left: 5px solid #9e0318;
     border-radius: 10px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   }
@@ -795,6 +785,69 @@ nav.navbar.bootsnav .navbar-toggle i{color: #439397;}
     width: 100%;
     height: auto;
     border-radius:0;
+}
+/*===============================
+   Q&A
+===============================*/
+
+.qanda {
+    padding: 50px 0;
+    background-color: #f9f9f9;
+}
+
+.qanda .section-heading h2 {
+        font-size: 24px;
+        margin-bottom: 40px;
+        color: #39394b;
+      
+}
+
+.qa-table {
+    width: 150%;
+    margin-top: 20px;
+    table-layout: fixed;
+}
+
+.qa-table tr {
+    border-bottom: 1px solid #ddd;
+}
+
+.qa-table td {
+    padding: 20px; 
+    font-size: 1.2em;
+    text-align: left; 
+}
+
+.qa-table .question {
+    background-color: #e3f6fa;
+    font-weight: bold;
+    color: #2c9ca6;
+    cursor: pointer;
+}
+
+.qa-table .answer {
+    background-color: #ffffff;
+    color: #333333;
+    font-size: 1em;
+    line-height: 1.6;
+}
+
+.qa-button {
+    background: none;
+    border: none;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+    text-align: left;
+    width: 100%;
+    padding: 0;
+}
+
+.qa-button:hover {
+    text-decoration: underline;
+}
+.collapse {
+    transition: height 0.1s ease-in-out; /* Faster and smoother transition */
 }
 
 /*-------------------------------------
@@ -1032,6 +1085,7 @@ nav.navbar.bootsnav .navbar-toggle i{color: #439397;}
     transform: translateY(-2px); /* Add a slight lift effect */
     align-items: center;
 }
+
 
 /*===============================
     Scroll Top
