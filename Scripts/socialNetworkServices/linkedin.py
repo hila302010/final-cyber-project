@@ -210,6 +210,8 @@ from selenium.webdriver.chrome.options import Options
 
 
 def execute_linkedin(domain):
+    
+    employees = []  # Initialize employees as an empty list
     linkedin_username = "bulipik34@gmail.com"
     linkedin_password = "D5gVmR-6@@gM_rp"
 

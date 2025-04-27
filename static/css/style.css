@@ -78,6 +78,13 @@ h1,h2,h3,h4,h5,h6 {
     font-size: 16px;
 	font-family: 'Poppins', sans-serif;
 }
+/* Consistent style for all h2 elements */
+h2 {
+    font-size: 16px; /* Set a consistent font size */
+    color: #333333; /* Set a consistent color */
+    text-align: center; /* Center-align all h2 elements */
+    margin-bottom: 20px; /* Add consistent spacing below */
+}
 p {
 	margin: 0;
 	line-height:1.8;
@@ -286,6 +293,11 @@ nav.navbar.bootsnav .navbar-toggle i{color: #439397;}
 .single-about-add-info {
     margin: 35px 0;
 }
+.about .section-heading h2 {
+    font-size: 24px;
+    margin-bottom: 40px;
+    color: #39394b;
+}
 .single-about-add-info h3 {
     color: #636a82;
     font-size: 16px;
@@ -420,11 +432,10 @@ nav.navbar.bootsnav .navbar-toggle i{color: #439397;}
 .data-gathering .content {
     
 }
-
-.data-gathering h2 {
-    width: 100%;
-    text-align: center;
-    font-size: 42px;
+.data-gathering .section-heading h2 {
+    font-size: 24px;
+    margin-bottom: 40px;
+    color: #39394b;
 }
 
 /* Style for the suggested domains text */
@@ -548,13 +559,17 @@ nav.navbar.bootsnav .navbar-toggle i{color: #439397;}
 .experience-content {padding-top: 100px;}
 .single-timeline-box {margin-bottom: 75px;}
 
-/*experience-time*/
 .experience-time {
     position: relative;
 }
 .experience-time h1 {
     font-weight: 400;
     color: #2d868a;
+}
+.experience.section-heading h2 {
+    font-size: 24px;
+    margin-bottom: 40px;
+    color: #39394b;
 }
 .experience-time h3 {
     font-size: 16px;
@@ -689,6 +704,11 @@ nav.navbar.bootsnav .navbar-toggle i{color: #439397;}
     transform:scale(1);
     top:0;
 }
+.profiles .section-heading h2 {
+    font-size: 24px;
+    margin-bottom: 40px;
+    color: #39394b;
+}
 .single-profile:hover .profile-icon-name,.single-profile:hover .profile-txt a>i{color: #fff;}
 .single-profile:hover .profile-border {border:transparent;}
 /*-------------------------------------
@@ -786,6 +806,11 @@ nav.navbar.bootsnav .navbar-toggle i{color: #439397;}
     height: auto;
     border-radius:0;
 }
+.clients .section-heading h2 {
+    font-size: 24px;
+    margin-bottom: 40px;
+    color: #39394b;
+}
 /*===============================
    Q&A
 ===============================*/
@@ -870,6 +895,11 @@ nav.navbar.bootsnav .navbar-toggle i{color: #439397;}
 .contact-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 25px rgba(62, 124, 138, 0.15);
+}
+.contact .section-heading h2 {
+    font-size: 24px;
+    margin-bottom: 40px;
+    color: #39394b;
 }
 
 .contact-card h3 {

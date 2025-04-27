@@ -96,18 +96,16 @@ def load_data():
     #emails = mainGG.getEmails(["@" + domain, company])  # Function to fetch emails from GitHub and Google Dorks
     emails = []
     progress["value"] = 10  # Step 2: Fetching emails
-    print("Done fetching emails...")
-
 
     # ----EMPLOYEES----
-    #employees = []
     progress["task"] = "Fetching Employees..."
 
     if is_canceled(session_id):  # Check if the process is canceled
         print("Process canceled during employees fetching.")
         progress["task"] = "Process canceled."
         return {"message": "Process was canceled."}, 200
-
+    
+    #employees = []
     employees = linkedin.execute_linkedin(domain)
     for i in range(5):  # Simulate 5 steps of employee fetching
         time.sleep(1)  # Simulate delay for each step
@@ -146,6 +144,7 @@ def load_data():
     domains = domains[:max_domains]  # Truncate the list to the first 500 entries
     
     progress["value"] = 80  # Step 5: Fetching Domains
+
     # ----DKIM DMARC----
     progress["task"] = "Fetching DKIM/DMARC records..."
 
