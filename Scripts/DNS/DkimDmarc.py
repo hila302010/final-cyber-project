@@ -39,7 +39,7 @@ def fetch_dns_records(domain):
         spf_record = next((str(txt_rec) for txt_rec in txt_records if 'v=spf1' in str(txt_rec)), None)
         records['SPF'] = spf_record or "No SPF record found"
     except Exception as e:
-        records['SPF'] = f"Error fetching SPF: {e}"
+        records['SPF'] = f"No SPF record found"
 
     # Fetch DMARC record (_dmarc.domain as TXT record)
     try:
@@ -54,7 +54,7 @@ def fetch_dns_records(domain):
         else:
             records['DMARC Policy'] = f"DMARC policy: p={policy}"
     except Exception as e:
-        records['DMARC'] = f"Error fetching DMARC: {e}"
+        records['DMARC'] = f"No DMARC record found"
         records['DMARC Policy'] = "Not found"
 
         # Fetch DKIM records (selector._domainkey.domain as TXT record)

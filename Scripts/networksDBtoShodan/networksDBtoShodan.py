@@ -1,6 +1,6 @@
 import requests
-#import Scripts.networksDBtoShodan.shodanAPI as shodanAPI
-import shodanAPI
+import Scripts.networksDBtoShodan.shodanAPI as shodanAPI
+#import shodanAPI
 import csv
 
 
@@ -133,6 +133,7 @@ def getData(data):
         print("No data to save.")
         return []
 
+    print("Input data to getData:", data)  # Debug statement
     # Make 'address' the first field in the fieldnames list
     fieldnames = ['ip_str', 'port', 'vulns',  'country_name', 'city', 'domains', 'hostnames']
 
@@ -201,15 +202,11 @@ def execute_networksdb_to_shodan(country, organization):
         cidr_addresses = search_networksdb(ormatted_country, organization, api_key)
 
         if cidr_addresses:
-            # print(f"\nUnique CIDR/IP Addresses for '{organization}' in '{ormatted_country}':")
-            # for address in cidr_addresses:
-            #     print(f"- {address}")
-
             # Call the Shodan API for each CIDR/IP using lookup_country_and_ip
             data = (process_shodan_for_cidr(ormatted_country, cidr_addresses))
             print(data)
         else:
-            data = "No CIDR/IP addresses found."
+            data = []
             print(f"\nNo CIDR/IP addresses found for '{organization}' in '{ormatted_country}'.")
     return data 
 

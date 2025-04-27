@@ -1,0 +1,7 @@
+DNS Records for ads-api.reddit.com
+========================================
+SPF: Error fetching SPF: The DNS response does not contain an answer to the question: ads-api.reddit.com. IN TXT
+DMARC: Error fetching DMARC: The DNS response does not contain an answer to the question: _dmarc.ads-api.reddit.com. IN TXT
+DMARC Policy: Not found
+DKIM Selector: Not found
+DKIM: No DKIM record found

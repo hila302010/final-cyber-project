@@ -1,0 +1,140 @@
+
+body {
+    background: #f4f8fb;
+    font-family: 'Segoe UI', 'Arial', sans-serif;
+}
+/* Ensure the table fits within the container */
+.card-container {
+    max-width: 1100px;
+    margin: -100px auto;
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+    padding: 32px 20px; /* Adjust padding for better spacing */
+    overflow-x: auto; /* Enable horizontal scrolling if needed */
+}
+h1 {
+    text-align: center;
+    color: #459a9e;
+    margin-bottom: 28px;
+    font-size: 2em;
+    letter-spacing: 1px;
+}
+/* Ensure the table does not exceed the container width */
+table {
+    width: 100%; /* Make the table take full width of the wrapper */
+    border-collapse: collapse;
+    background: #fafcff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+    table-layout: fixed; /* Ensure columns have fixed widths */
+}
+/* Ensure text wraps within cells */
+th, td {
+    padding: 14px 10px;
+    text-align: left;
+    word-wrap: break-word; /* Wrap long text within cells */
+    white-space: normal; /* Allow text to wrap */
+}
+th {
+    background: #acd3d6;
+    color: #fff;
+    font-size: 1.1em;
+    letter-spacing: 1px;
+}
+tr:nth-child(even) {
+    background: #f4f8fb;
+}
+tr:hover {
+    background: #e3f6fa;
+}
+.short-text {
+    display: inline;
+}
+
+.full-text {
+    display: none;
+}
+
+.toggle-btn {
+    background: none;
+    border: none;
+    color: #007bff;
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: 0.9em;
+    padding: 0;
+}
+
+.toggle-btn:hover {
+    color: #0056b3;
+}
+.top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+.back-link {
+    font-size: 18px;
+    color: #67adb2;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+.back-link:hover {
+    color: #357e8c;
+}
+.export-btn {
+    font-size: 13px;
+    color: #fff;
+    background: #67adb2;
+    border: none;
+    border-radius: 3px;
+    padding: 8px 20px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: background 0.2s;
+    float: left; /* Align the button to the left */
+}
+/* Add a wrapper for the table to make it scrollable */
+.table-wrapper {
+    overflow-x: auto; /* Enable horizontal scrolling */
+    width: 100%; /* Ensure the wrapper takes full width */
+}
+.short-text {
+    display: inline; /* Show the short text by default */
+}
+
+.full-text {
+    display: none; /* Hide the full text by default */
+}
+
+.toggle-btn {
+    background: none;
+    border: none;
+    color: #007bff;
+    cursor: pointer;
+    text-decoration: underline;
+    font-size: 0.9em;
+    padding: 0;
+    margin-left: 5px;
+}
+
+.toggle-btn:hover {
+    color: #0056b3;
+}
+.warning-text {
+    color: red; /* Make the text red */
+    font-weight: bold; /* Optional: Make the text bold */
+}
+.error-text {
+    color: red; /* Make the text red */
+    font-weight: bold; /* Optional: Make the text bold */
+}
+
+.warning-text {
+    color: orange; /* Make the warning text red */
+    font-weight: bold; /* Optional: Make the text bold */
+}
