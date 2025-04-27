@@ -13,14 +13,14 @@
             <a href="{{ url_for('data') }}" class="back-link">&larr; Back to Data</a>
             <a href="{{ url_for('export_domains') }}" class="export-btn">Export to CSV</a>
         </div>
-        <h1>Domain Table</h1>
+        <h1>Domains & subdomains Table</h1>
         <p style="text-align: left; font-size: 1.2em; color: #2878e0;">
             Found {{ domains_count }} {{ "result" if domains_count == 1 else "results" }}
         </p>
         <table>
             <thead>
                 <tr>
-                    <th style="text-align: center;">Domain</th>
+                    <th style="text-align: center;">Domain / Subdomain Name</th>
                 </tr>
             </thead>
             <tbody>

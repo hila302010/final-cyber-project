@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Records Table</title>
+    <!-- For the logo png -->
+    <link rel="shortcut icon" size="32x32" type="image/icon" href="static/images/logo.png"/>
+    <link rel="stylesheet" href="static/css/styledkimdmarc.css" />
+</head>
+<body>
+    <img src="static/images/osintech.png" alt="Brand Logo" style="max-width: 170px; height: auto;" />
+    <div class="card-container">
+        <div class="top-bar">
+            <a href="{{ url_for('data') }}" class="back-link">&larr; Back to Data</a>
+            <a href="{{ url_for('export_dkimdmarc') }}" class="export-btn">Export to CSV</a>
+        </div>
+        <h1>Records Table: SPF, DKIM, DMARC</h1>
+        <p style="text-align: left; font-size: 1.2em; color: #2878e0;">
+            Found {{ dkimdmarc_count }} {{ "result" if dkimdmarc_count == 1 else "results" }}
+        </p>
+        <table>
+            <thead>
+                <tr>
+                    <th>Domain</th>
+                    <th>SPF</th>
+                    <th>DMARC</th>
+                    <th>DMARC Policy</th>
+                    <th>DKIM</th>
+                    <th>DKIM Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for record in dkimdmarc %}
+                <tr>
+                    <td>{{ record.domain or "N/A" }}</td>
+                    <td>
+                        {% if record.SPF and record.SPF == "No SPF record found" %}
+                        <span class="error-text">{{ record.SPF }}</span>
+                        {% else %}
+                        {{ record.SPF or "N/A" }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if record.SPF and record.DMARC == "No DMARC record found" %}
+                            <span class="error-text">{{ record.DMARC }}</span>
+                        {% else %}
+                        {{ record.DMARC or "N/A" }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if record['DMARC Policy'] and record['DMARC Policy'].startswith('WARNING') %}
+                        <span class="warning-text">{{ record['DMARC Policy'] }}</span>
+                        {% else %}
+                        {{ record['DMARC Policy'] or "N/A" }}
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if record.DKIM %}
+                            {% if record.DKIM == "No DKIM record found" %}
+                            <span class="error-text">{{ record.DKIM }}</span>
+                            {% elif record.DKIM|length > 20 %}
+                            <span class="short-text">{{ record.DKIM[:70] }}...</span>
+                            <span class="full-text">{{ record.DKIM }}</span>
+                            <button class="toggle-btn" onclick="toggleText(this)">More</button>
+                            {% else %}
+                            {{ record.DKIM }}
+                            {% endif %}
+                        {% else %}
+                        N/A
+                        {% endif %}
+                    </td>
+                    <td>{{ record['DKIM Status'] or "N/A" }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <script>
+        function toggleText(button) {
+            const shortText = button.previousElementSibling.previousElementSibling;
+            const fullText = button.previousElementSibling;
+    
+            if (shortText.style.display === "none") {
+                shortText.style.display = "inline";
+                fullText.style.display = "none";
+                button.textContent = "More";
+            } else {
+                shortText.style.display = "none";
+                fullText.style.display = "inline";
+                button.textContent = "Less";
+            }
+        }
+    </script>
+</body>
+</html>

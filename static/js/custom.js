@@ -136,6 +136,9 @@ $(document).ready(function(){
 			});
 				//LOADING BAR - SHAKED
 				$(document).ready(function () {
+					
+					const sessionId = Date.now().toString(); // Use a timestamp as a unique session ID
+					
 					$("#infoForm").on("submit", function (event) {
 						event.preventDefault(); // Prevent the default form submission
 				
@@ -143,12 +146,18 @@ $(document).ready(function(){
 						$("#loading-bar-container").show();
 						$("#loading-bar").css("width", "0%"); // Reset the progress bar
 						$("#loading-percentage").text("0%"); // Reset the percentage text
-				
+						$("#cancelButton").show(); // Show the Cancel button
+						$("#loading-circle").show(); // Show the loading circle
+						$("#task-description").show();
+
+
+
 						// Collect form data
 						const formData = {
 							domain: $("#domain").val(),
 							country: $("#country").val(),
-							company: $("#company").val()
+							company: $("#company").val(),
+							session_id: sessionId
 						};
 				
 						// Start polling the progress endpoint
@@ -158,16 +167,22 @@ $(document).ready(function(){
 								method: "GET",
 								success: function (response) {
 									const progress = response.value; // Get the progress value (0-100)
+									const task = response.task; // Get the current task description
 									$("#loading-bar").css("width", progress + "%"); // Update the bar width
 									$("#loading-percentage").text(progress + "%"); // Update the percentage text
-				
+									// Update the task description
+									$("#task-description").text(task);
+
 									if (progress >= 100) {
 										clearInterval(pollProgress); // Stop polling when progress reaches 100%
 				
 										// Keep the completed bar visible for 1 second before hiding it
 										setTimeout(() => {
 											$("#loading-bar-container").hide();
-				
+											$("#loading-circle").hide(); // Hide the loading circle
+				                            $("#cancelButton").hide(); // Hide the Cancel button
+											$("#task-description").hide();
+
 											// Redirect to the /data page
 											window.location.href = "/data";
 										}, 1000); // Delay of 1 second
@@ -191,52 +206,35 @@ $(document).ready(function(){
 							error: function (error) {
 								console.error("Error starting data load:", error);
 								$("#loading-bar-container").hide();
+								$("#loading-circle").hide(); // Hide the loading circle
+								$("#cancelButton").hide(); // Hide the Cancel button
+								$("#task-description").hide();
 								alert("Failed to start data loading. Please try again.");
 							}
 						});
 					});
-				});
-			// 	// 7. fetch the result from submit button
-			// 	// Ensure that the DOM is fully loaded before attaching event handlers
-			// 	$(document).ready(function () {
-			// 		$("#infoForm").on("submit", function (event) {
-			// 				event.preventDefault(); // Prevent the default form submission
-			
-			// 				// Show the loading bar
-			// 				$("#loading").show();
-			
-			// 				// Collect form data
-			// 				const formData = {
-			// 						domain: $("#domain").val(),
-			// 						country: $("#country").val(),
-			// 						company: $("#company").val()
-			// 				};
-			
-			// 				// Make an AJAX request to load the data
-			// 				$.ajax({
-			// 						url: "/load_data", // Endpoint to load data
-			// 						method: "POST",
-			// 						contentType: "application/json",
-			// 						data: JSON.stringify(formData),
-			// 						success: function (response) {
-			// 								console.log("Data loaded successfully:", response);
-			
-			// 								// Hide the loading bar
-			// 								$("#loading").hide();
-			
-			// 								// Redirect to the /data page
-			// 								window.location.href = "/data";
-			// 						},
-			// 						error: function (error) {
-			// 								console.error("Error loading data:", error);
-			
-			// 								// Hide the loading bar and show an error message
-			// 								$("#loading").hide();
-			// 								alert("Failed to load data. Please try again.");
-			// 						}
-			// 				});
-			// 		});
-			// });
+					// Handle cancel button click
+					$("#cancelButton").on("click", function () {
+						$.ajax({
+							url: "/cancel",
+							method: "POST",
+							contentType: "application/json",
+							data: JSON.stringify({ session_id: sessionId }),
+							success: function (response) {
+								console.log(response.message);
+								$("#loading-bar-container").hide(); // Hide the loading bar
+								$("#loading-circle").hide(); // Hide the loading circle
+								$("#cancelButton").hide(); // Hide the Cancel button
+								$("#task-description").hide(); // Hide the task description
+								alert("Request canceled.");
+							},
+							error: function (error) {
+								console.error("Error canceling the process:", error);
+								alert("Failed to cancel the process. Please try again.");
+							}
+						});
+					});
 
+				});
 });	
 	
