@@ -3446,48 +3446,67 @@ tr:hover {
     margin-bottom: 30px;
 }
 
-/* Progress bar wrapper */
+
+.container {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.section-title {
+    font-size: 26px;
+    margin-bottom: 40px;
+    font-weight: bold;
+    color: #333;
+}
+
+.progress-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+}
+
 .barWrapper {
-    margin-bottom: 10px; /* Add spacing between bars */
+    text-align: center;
+    margin-bottom: 30px;
 }
 
-/* Progress text (e.g., Emails, IPs) */
-.progressText {
-    font-size: 18px; /* Increase the font size */
+.barLabel {
+    font-size: 18px;
     font-weight: bold;
-    color: #666666;
-    margin-bottom: 10px;
-    display: block;
+    margin-bottom: 8px;
+    color: #555;
 }
 
-/* Progress bar container */
+.progress-bar-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Space between bar and percentage */
+    justify-content: center; /* Center them horizontally */
+}
+
+
 .progress {
-    background-color: #e9ecef;
-    border-radius: 10px;
-    height: 15px; /* Keep the height of the progress bar */
+    background-color: #f0f0f0;
+    border-radius: 15px;
+    height: 16px;
     overflow: hidden;
-    margin-bottom: 10px;
-    width: 150%; /* Set the width to 100% of the parent container */
-    max-width: 900px; /* Increase the maximum width of the progress bar */
-    margin: 0 auto; /* Center the progress bar horizontally */
+    width: 120px; /* << ADDED */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-/* Progress bar itself */
 .progress-bar {
-    background-color: #459a9e;
-    height: 15px; /* Match the height of the container */
-    border-radius: 10px;
-    transition: width 0.5s ease-in-out;
+    background: linear-gradient(90deg, #70effb, #21aebb);
+    height: 100%;
+    transition: width 1s ease-in-out;
+    border-radius: 20px;
+}
+.percentage {
+    font-size: 16px;
+    font-weight: bold;
+    color: #21aebb; /* or whatever color you prefer */
 }
 
-/* Percentage grade to the right of the progress bar */
-.single-progress-txt h3 {
-    font-size: 16px; /* Keep the font size */
-    font-weight: bold;
-    color: #459a9e;
-    margin-left: 10px; /* Add spacing between the progress bar and the percentage */
-    margin-top: 0; /* Remove any top margin */
-}
 /* Style for the section divider */
 .section-divider {
     border: none; /* Remove the default border */
@@ -3500,7 +3519,7 @@ tr:hover {
 	border: none; /* Remove the default border */
     border-top: 1px solid #e0e0e0; /* Add a light gray line */
     margin: 40px auto; /* Center the line and add spacing above and below */
-    width: 80%; /* Set the width to 80% of the page */
+    width: 100%; /* Set the width to 80% of the page */
     max-width: 1200px; /* Limit the maximum width */
     display: block; /* Ensure the line behaves as a block element */
 }
