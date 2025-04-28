@@ -22,13 +22,21 @@
 						<div class="inner">
 							<a href="{{ url_for('index') }}">
 								<img src="static/images/osintech.png" alt="Brand Logo" style="max-width: 170px; height: auto; margin-top: 20px;" />
-							</a>							<header>
+							</a>
+							<header>
 								<br><h1 style="text-align: center; margin: -100px;">Data Results</h1><br><br>
 								<p style="text-align: center; margin-top: 40px; font-weight: bold; font-size:25px">Below are the results based on your query:</p>
-								<p style="text-align: center; margin-bottom: 13px;">Domain: {{ domain }}</p>
-								<p style="text-align: center; margin-bottom: 13px;">Country: {{ country }}</p>
-								<p style="text-align: center; margin-bottom: 13px;">Company: {{ company }}</p>							
+								<p style="text-align: center; margin-bottom: 13px;">
+									Domain: <span style="color: #31c9c9;">{{ domain }}</span>
+								</p>
+								<p style="text-align: center; margin-bottom: 13px;">
+									Country: <span style="color: #31c9c9;">{{ country }}</span>
+								</p>
+								<p style="text-align: center; margin-bottom: 13px;">
+									Company: <span style="color: #31c9c9;">{{ company }}</span>
+								</p>							
 							</header>
+
 							<!-- Section -->
 								<hr class="section-divider">
 								<h2 style="text-align: center; margin-top: 40px; font-weight: bold; font-size:25px">Your Data:</h2>							<section class="tiles">
@@ -103,9 +111,8 @@
 										</div>
 									</a>
 								</article>
-
-
 							</section>
+
 							<!--skills start -->
 							<section id="skills" class="skills">
 								<div class="skill-content">
@@ -113,53 +120,61 @@
 									<hr class="section-divider2">
 									<h2 style="text-align: center; margin-top: 40px; font-weight: bold; font-size:25px">Your Company's Strength:</h2>
 									<div class="container">
-										<div class="row">
-											<div class="col-md-6">
-												<div class="single-skill-content">
-													<div class="barWrapper">
-														<span class="progressText">Emails</span>
-														<div class="single-progress-txt">
-															<div class="progress">
-																<div class="progress-bar" id="emails-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: 90%;"></div>
-															</div>
-															<h3 id="emails-grade">90%</h3>
+										<div class="row text-center align-items-center">
+											<div class="col-md-3">
+												<div class="barWrapper">
+													<div class="barLabel">Emails</div>
+													<div class="progress-bar-wrapper">
+														<div class="progress">
+															<div class="progress-bar" id="emails-bar" style="width: 90%;"></div>
 														</div>
-													</div>
-													<div class="barWrapper">
-														<span class="progressText">IPs</span>
-														<div class="single-progress-txt">
-															<div class="progress">
-																<div class="progress-bar" id="ips-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
-															</div>
-															<h3 id="ips-grade">60%</h3>
-														</div>
+														<div class="percentage">90%</div>
 													</div>
 												</div>
 											</div>
-											<div class="col-md-6">
-												<div class="single-skill-content">
-													<div class="barWrapper">
-														<span class="progressText">Records</span>
-														<div class="single-progress-txt">
-															<div class="progress">
-																<div class="progress-bar" id="employees-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: 75%;"></div>
-															</div>
-															<h3 id="employees-grade">75%</h3>
+									
+											<div class="col-md-3">
+												<div class="barWrapper">
+													<div class="barLabel">Records</div>
+													<div class="progress-bar-wrapper">
+														<div class="progress">
+															<div class="progress-bar" id="records-bar" style="width: 75%;"></div>
 														</div>
-													</div>
-													<div class="barWrapper">
-														<span class="progressText">Sensitive Data</span>
-														<div class="single-progress-txt">
-															<div class="progress">
-																<div class="progress-bar" id="records-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
-															</div>
-															<h3 id="records-grade">60%</h3>
-														</div>
+														<div class="percentage">75%</div>
 													</div>
 												</div>
 											</div>
-										</div><!-- /.row -->
-									</div><!-- /.container -->
+									
+											<div class="col-md-3">
+												<div class="barWrapper">
+													<div class="barLabel">IPs</div>
+													<div class="progress-bar-wrapper">
+														<div class="progress">
+															<div class="progress-bar" id="ips-bar" style="width: 60%;"></div>
+														</div>
+														<div class="percentage">60%</div>
+													</div>
+												</div>
+											</div>
+									
+											<div class="col-md-3">
+												<div class="barWrapper">
+													<div class="barLabel">Sensitive Data</div>
+													<div class="progress-bar-wrapper">
+														<div class="progress">
+															<div class="progress-bar" id="sensitive-data-bar" style="width: 60%;"></div>
+														</div>
+														<div class="percentage">60%</div>
+													</div>
+												</div>
+											</div>
+									
+										</div>
+									</div>
+									
+									
+									
+									
 								</div><!-- /.skill-content -->
 							</section>
 							<!--skills end -->
