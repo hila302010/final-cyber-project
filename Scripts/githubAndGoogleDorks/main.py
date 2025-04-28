@@ -31,16 +31,16 @@ def disconnect_from_nordvpn():
 
 #["@" + domain, company_name] == query
 def getEmails(queries):
-    emails = []
+    emails = set()
     for query in queries:
         # GitHub email search
         github_results = github.search_github_emails(query)
         if isinstance(github_results, dict):
-            emails.extend(github_results.keys())  # Flattening the keys into the list
+            emails.update(github_results.keys())  # Flattening the keys into the list
         # Google email search
         email_data = google.google_dork_emails(query)
-        emails.extend([email for email, _, _ in email_data])  # Just the emails
-    return emails
+        emails.update([email for email, _, _ in email_data])  # Just the emails
+    return list(emails)
 
 def run_all_queries(queries):
     for query in queries:
