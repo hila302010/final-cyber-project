@@ -22,12 +22,19 @@
 						<div class="inner">
 							<a href="{{ url_for('index') }}">
 								<img src="static/images/osintech.png" alt="Brand Logo" style="max-width: 170px; height: auto; margin-top: 20px;" />
-							</a>							<header>
+							</a>
+							<header>
 								<br><h1 style="text-align: center; margin: -100px;">Data Results</h1><br><br>
 								<p style="text-align: center; margin-top: 40px; font-weight: bold; font-size:25px">Below are the results based on your query:</p>
-								<p style="text-align: center; margin-bottom: 13px;">Domain: {{ domain }}</p>
-								<p style="text-align: center; margin-bottom: 13px;">Country: {{ country }}</p>
-								<p style="text-align: center; margin-bottom: 13px;">Company: {{ company }}</p>							
+								<p style="text-align: center; margin-bottom: 13px;">
+									Domain: <span style="color: #31c9c9;">{{ domain }}</span>
+								</p>
+								<p style="text-align: center; margin-bottom: 13px;">
+									Country: <span style="color: #31c9c9;">{{ country }}</span>
+								</p>
+								<p style="text-align: center; margin-bottom: 13px;">
+									Company: <span style="color: #31c9c9;">{{ company }}</span>
+								</p>							
 							</header>
 							<!--skills start -->
 							<section id="skills" class="skills">
@@ -36,57 +43,64 @@
 									<hr class="section-divider2">
 									<h2 style="text-align: center; margin-top: 40px; font-weight: bold; font-size:25px">Your Company's Strength:</h2>
 									<div class="container">
-										<div class="row">
-											<div class="col-md-6">
-												<div class="single-skill-content">
-													<div class="barWrapper">
-														<span class="progressText">Emails</span>
-														<div class="single-progress-txt">
-															<div class="progress">
-																<div class="progress-bar" id="emails-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: 90%;"></div>
-															</div>
-															<h3 id="emails-grade">90%</h3>
+										<div class="row text-center align-items-center">
+											<div class="col-md-3">
+												<div class="barWrapper">
+													<div class="barLabel">Emails</div>
+													<div class="progress-bar-wrapper">
+														<div class="progress">
+															<div class="progress-bar" id="emails-bar" style="width: 90%;"></div>
 														</div>
-													</div>
-													<div class="barWrapper">
-														<span class="progressText">IPs</span>
-														<div class="single-progress-txt">
-															<div class="progress">
-																<div class="progress-bar" id="ips-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
-															</div>
-															<h3 id="ips-grade">60%</h3>
-														</div>
+														<div class="percentage">90%</div>
 													</div>
 												</div>
 											</div>
-											<div class="col-md-6">
-												<div class="single-skill-content">
-													<div class="barWrapper">
-														<span class="progressText">Records</span>
-														<div class="single-progress-txt">
-															<div class="progress">
-																<div class="progress-bar" id="employees-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: 75%;"></div>
-															</div>
-															<h3 id="employees-grade">75%</h3>
+									
+											<div class="col-md-3">
+												<div class="barWrapper">
+													<div class="barLabel">Records</div>
+													<div class="progress-bar-wrapper">
+														<div class="progress">
+															<div class="progress-bar" id="records-bar" style="width: 75%;"></div>
 														</div>
-													</div>
-													<div class="barWrapper">
-														<span class="progressText">Sensitive Data</span>
-														<div class="single-progress-txt">
-															<div class="progress">
-																<div class="progress-bar" id="records-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" style="width: 60%;"></div>
-															</div>
-															<h3 id="records-grade">60%</h3>
-														</div>
+														<div class="percentage">75%</div>
 													</div>
 												</div>
 											</div>
-										</div><!-- /.row -->
-									</div><!-- /.container -->
+									
+											<div class="col-md-3">
+												<div class="barWrapper">
+													<div class="barLabel">IPs</div>
+													<div class="progress-bar-wrapper">
+														<div class="progress">
+															<div class="progress-bar" id="ips-bar" style="width: 60%;"></div>
+														</div>
+														<div class="percentage">60%</div>
+													</div>
+												</div>
+											</div>
+									
+											<div class="col-md-3">
+												<div class="barWrapper">
+													<div class="barLabel">Sensitive Data</div>
+													<div class="progress-bar-wrapper">
+														<div class="progress">
+															<div class="progress-bar" id="sensitive-data-bar" style="width: 60%;"></div>
+														</div>
+														<div class="percentage">60%</div>
+													</div>
+												</div>
+											</div>
+									
+										</div>
+									</div>
+									
+									
+									
+									
 								</div><!-- /.skill-content -->
 							</section>
 							<!--skills end -->
-								<!--skills end -->
 								<hr class="section-divider">
 								<h2 style="text-align: center; margin-top: 40px; font-weight: bold; font-size:25px">Your Data:</h2>							<section class="tiles">
 								<article class="style1">
@@ -160,68 +174,7 @@
 										</div>
 									</a>
 								</article>
-
-
 							</section>
-
-
-							
-							 <!-- Emails Section -->
-							 <!--<section>
-								<h2>Emails</h2>
-								<ul>
-										{% if emails %}
-												{% for email in emails %}
-												<li>{{ email }}</li>
-												{% endfor %}
-										{% else %}
-												<li>No emails found.</li>
-										{% endif %}
-								</ul>
-						</section>-->
-
-						<!-- IPs Section -->
-						<!--<section>
-								<h2>IPs</h2>
-								<ul>
-										{% for ip in ips %}
-										<li>{{ ip }}</li>
-										{% endfor %}
-								</ul>
-						</section> -->
-
-						<!-- Domains Section -->
-						<!--<section>
-								<h2>Domains</h2>
-								<ul>
-										{% for domain in domains %}
-										<li>{{ domain }}</li>
-										{% endfor %}
-								</ul>
-						</section> -->
-
-						<!-- Employees Section -->
-						<!-- <section>
-								<h2>Employees</h2>
-								<ul>
-										{% for employee in employees %}
-										<li>{{ employee }}</li>
-										{% endfor %}
-								</ul>
-						</section> -->
-
-						<!-- Sensitive Data Section -->
-						<!--<section>
-								<h2>Sensitive Data</h2>
-								<ul>
-										{% for data in sensitive_data %}
-										<li>{{ data }}</li>
-										{% endfor %}
-								</ul>
-						</section>-->
-
-
-
 						</div>
 					</div>
 			</div>
