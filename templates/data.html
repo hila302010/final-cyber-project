@@ -36,6 +36,83 @@
 									Company: <span style="color: #31c9c9;">{{ company }}</span>
 								</p>							
 							</header>
+
+							<!-- Section -->
+								<hr class="section-divider">
+								<h2 style="text-align: center; margin-top: 40px; font-weight: bold; font-size:25px">Your Data:</h2>							<section class="tiles">
+								<article class="style1">
+									<span class="image">
+										<img src="static/images/dataImages/pic01.jpg" alt="" />
+									</span>
+									<a href="{{ url_for('emails') }}">
+										<h2>Emails</h2>
+										<div class="content">
+											<p>Click here to view the table of Emails.</p>
+										</div>
+									</a>
+								</article>
+								<article class="style2">
+									<span class="image">
+										<img src="static/images/dataImages/pic02.jpg" alt="" />
+									</span>
+									<a href="{{ url_for('ips') }}">
+										<h2>IP adresses</h2>
+										<div class="content">
+											<p>Click here to view the table of IP's.</p>
+										</div>
+									</a>
+								</article>
+
+
+								<article class="style3">
+									<span class="image">
+										<img src="static/images/dataImages/pic03.jpg" alt="" />
+									</span>
+									<a href="{{ url_for('domains') }}">
+										<h2>Domains</h2>
+										<div class="content">
+											<p>Click here to view the table of Domains.</p>
+										</div>
+									</a>
+								</article>
+
+
+								<article class="style4">
+									<span class="image">
+										<img src="static/images/dataImages/pic04.jpg" alt="" />
+									</span>
+										<a href="{{ url_for('employees') }}">
+										<h2>Employees information</h2>
+										<div class="content">
+											<p>Click here to view the table of Employees.</p>
+										</div>
+									</a>
+								</article>
+
+
+								<article class="style5">
+									<span class="image">
+										<img src="static/images/dataImages/pic05.jpg" alt="" />
+									</span>
+									<a href="{{ url_for('dkimdmarc') }}">
+										<h2>Dkim & Dmarc & SPF</h2>
+										<div class="content">
+											<p>Click here to view the table of Dmarc and Dkim data.</p>
+										</div>
+									</a>
+								</article><article class="style6">
+									<span class="image">
+										<img src="static/images/dataImages/pic06.jpg" alt="" />
+									</span>
+									<a href="generic.html">
+										<h2>Sensitive data</h2>
+										<div class="content">
+											<p>Click here to view the table of Passwords Files and Sensitive Data.</p>
+										</div>
+									</a>
+								</article>
+							</section>
+
 							<!--skills start -->
 							<section id="skills" class="skills">
 								<div class="skill-content">
@@ -101,80 +178,8 @@
 								</div><!-- /.skill-content -->
 							</section>
 							<!--skills end -->
-								<hr class="section-divider">
-								<h2 style="text-align: center; margin-top: 40px; font-weight: bold; font-size:25px">Your Data:</h2>							<section class="tiles">
-								<article class="style1">
-									<span class="image">
-										<img src="static/images/dataImages/pic01.jpg" alt="" />
-									</span>
-									<a href="{{ url_for('emails') }}">
-										<h2>Emails</h2>
-										<div class="content">
-											<p>Click here to view the table of Emails.</p>
-										</div>
-									</a>
-								</article>
-								<article class="style2">
-									<span class="image">
-										<img src="static/images/dataImages/pic02.jpg" alt="" />
-									</span>
-									<a href="{{ url_for('ips') }}">
-										<h2>IP adresses</h2>
-										<div class="content">
-											<p>Click here to view the table of IP's.</p>
-										</div>
-									</a>
-								</article>
 
 
-								<article class="style3">
-									<span class="image">
-										<img src="static/images/dataImages/pic03.jpg" alt="" />
-									</span>
-									<a href="{{ url_for('domains') }}">
-										<h2>Domains</h2>
-										<div class="content">
-											<p>Click here to view the table of Domains.</p>
-										</div>
-									</a>
-								</article>
-
-
-								<article class="style4">
-									<span class="image">
-										<img src="static/images/dataImages/pic04.jpg" alt="" />
-									</span>
-										<a href="{{ url_for('employees') }}">
-										<h2>Employees information</h2>
-										<div class="content">
-											<p>Click here to view the table of Employees.</p>
-										</div>
-									</a>
-								</article>
-
-
-								<article class="style5">
-									<span class="image">
-										<img src="static/images/dataImages/pic05.jpg" alt="" />
-									</span>
-									<a href="{{ url_for('dkimdmarc') }}">
-										<h2>Dkim & Dmarc & SPF</h2>
-										<div class="content">
-											<p>Click here to view the table of Dmarc and Dkim data.</p>
-										</div>
-									</a>
-								</article><article class="style5">
-									<span class="image">
-										<img src="static/images/dataImages/pic05.jpg" alt="" />
-									</span>
-									<a href="generic.html">
-										<h2>Sensitive data</h2>
-										<div class="content">
-											<p>Click here to view the table of Passwords Files and Sensitive Data.</p>
-										</div>
-									</a>
-								</article>
-							</section>
 						</div>
 					</div>
 			</div>

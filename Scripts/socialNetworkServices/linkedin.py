@@ -182,6 +182,7 @@ def save_to_csv_usernames(usernames, file_name):
         for username in usernames:
             writer.writerow([username])  # Write each username as a single row
 
+
 def get_company_name(domain):
     api_key = "your_serpapi_key"
     params = {
