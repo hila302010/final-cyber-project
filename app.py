@@ -20,7 +20,7 @@ import Scripts.githubAndGoogleDorks.googleDorks as google
 import Scripts.githubAndGoogleDorks.github_api as github
 import Scripts.socialNetworkServices.linkedin as linkedin
 import Scripts.mergedWhois.crtshToIPSToWhois as whois
-import Scripts.githubAndGoogleDorks.main as mainGG
+import Scripts.githubAndGoogleDorks.main as googleAndGithub
 
 # Simulated progress variable
 progress = {"value": 0}
@@ -33,6 +33,9 @@ app = Flask(__name__)
 app.secret_key = str(secrets.token_hex(32)) # Replace with a secure random key
 # A dictionary to track cancellation flags for each session or process
 cancellation_flags = {}
+# Simulated progress variable
+progress = {"value": 0, "task": "Initializing..."}
+
 
 
 # ------------------------------
@@ -53,17 +56,14 @@ def cancel_process():
     return {"error": "Session ID is required."}, 400
 
 
-def is_canceled(session_id):
-    return cancellation_flags.get(session_id, False)
-
-
 # ------------------------------------------------------
 # loading data from the scripts by the form fields: domain country and company
 # ------------------------------------------------------
-# Simulated progress variable
-progress = {"value": 0, "task": "Initializing..."}
 @app.route('/load_data', methods=['POST'])
 def load_data():
+    """
+    Main function to load data based on the provided domain, country, and company.
+    """
     global progress
     progress["value"] = 0  # Reset progress
     progress["task"] = "Parsing input data..."  # Update task description
@@ -71,7 +71,7 @@ def load_data():
     session_id = request.json.get('session_id')
     if not session_id:
         return {"error": "Session ID is required."}, 400
-    
+
     # Reset the cancellation flag for this session
     cancellation_flags[session_id] = False
 
@@ -83,86 +83,20 @@ def load_data():
 
     # Simulate progress for each step
     progress["value"] = 5  # Step 1: Parsing input data
-    
 
-    # ----EMAILS----
-    progress["task"] = "Fetching emails..."
-
-    if is_canceled(session_id):  # Check if the process is canceled
-        print("Process canceled during email fetching.")
-        progress["task"] = "Process canceled."
-        return {"message": "Process was canceled."}, 200
-
-    #emails = mainGG.getEmails(["@" + domain, company])  # Function to fetch emails from GitHub and Google Dorks
-    emails = []
-    progress["value"] = 10  # Step 2: Fetching emails
-
-    # ----EMPLOYEES----
-    progress["task"] = "Fetching Employees..."
-
-    if is_canceled(session_id):  # Check if the process is canceled
-        print("Process canceled during employees fetching.")
-        progress["task"] = "Process canceled."
-        return {"message": "Process was canceled."}, 200
-    
-    #employees = []
-    employees = linkedin.execute_linkedin(domain)
-    for i in range(5):  # Simulate 5 steps of employee fetching
-        time.sleep(1)  # Simulate delay for each step
-        progress["value"] += 10  # Increment progress for each step
-
-    # ----IPS----
-    progress["task"] = "Fetching ips..."
-    if is_canceled(session_id):  # Check if the process is canceled
-        print("Process canceled during ips fetching.")
-        progress["task"] = "Process canceled."
-        return {"message": "Process was canceled."}, 200
-
-    dataForIpAndDomains =  nDBtoS.execute_networksdb_to_shodan(country, company)
-    # Fetch IPs from both sources
-
-    shodan_ips = dataForIpAndDomains
-    whois_ips = whois.getipsWithFields(domain)  # Function to fetch WHOIS data
-    merged_ips = dataLoadingIPs(shodan_ips, whois_ips)  # Function to merge and process IPs
-    # merged_ips = []
-    progress["value"] = 70  # Step 4: Fetching IPs
-
-    # ----DOMAINS----
-    progress["task"] = "Fetching domains..."
-
-    if is_canceled(session_id):  # Check if the process is canceled
-        print("Process canceled during domains fetching.")
-        progress["task"] = "Process canceled."
-        return {"message": "Process was canceled."}, 200
-
-    domainsWhois = whois.fetch_subdomains(domain) # Fetch subdomains from WHOIS data
-    domainsNetworksDB = dataForIpAndDomains
-    domains = merge_domains(domainsWhois, domainsNetworksDB)  # Merge domains from both sources
-
-    # Limit the number of domains to avoid exceeding the session size limit
-    max_domains = 500  # Set the maximum number of domains to store
-    domains = domains[:max_domains]  # Truncate the list to the first 500 entries
-    
-    progress["value"] = 80  # Step 5: Fetching Domains
-
-    # ----DKIM DMARC----
-    progress["task"] = "Fetching DKIM/DMARC records..."
-
-    if is_canceled(session_id):  # Check if the process is canceled
-        print("Process canceled during dkim, dmarc, spf fetching.")
-        progress["task"] = "Process canceled."
-        return {"message": "Process was canceled."}, 200
-    
-    dkimdmarc = loadingDkimDmarc(domains)  # Function to fetch DKIM and DMARC records
-    progress["value"] = 90  # Step 6: Fetching DKIM DMARC RECORDS
-
+    # Fetch data in steps
+    emails = fetch_emails(session_id, domain, company)
+    # Load employees from CSV - temporarily
+    employees = load_employees_from_csv()  
+    merged_ips = fetch_ips(session_id, domain, country, company)
+    domains = fetch_domains(session_id, domain, merged_ips)
+    dkimdmarc = fetch_dkim_dmarc(session_id, domains)
 
     # Store the data in the session
     progress["task"] = "Finalizing data..."
     session['domain'] = domain
     session['country'] = country
     session['company'] = company
-
 
     max_items = 40  # Limit the number of items
     session['emails'] = emails[:max_items]
@@ -171,19 +105,16 @@ def load_data():
     session['domains'] = domains[:max_items]
     session['dkimdmarc'] = dkimdmarc[:max_items]
 
-    # session['emails'] = emails
-    # session['employees'] = employees
-    # session['ips'] = merged_ips
-    # session['domains'] = domains
-    # session['dkimdmarc'] = dkimdmarc
-
+    # Finalize progress
     progress["task"] = "Data loading complete."
     progress["value"] = 100  # Step 5: Data loading complete
 
     # Return a success response
     return jsonify({"message": "Data loaded successfully"})
 
-
+# ---------------------------
+# update progress bar route
+# ---------------------------
 @app.route('/progress', methods=['GET'])
 def get_progress():
     global progress
@@ -232,8 +163,6 @@ def export_emails():
         generate(),
         mimetype='text/csv',
         headers={"Content-Disposition": f"attachment; filename=emails_{domain}.csv"})
-
-
 
 
 # ------------------------------
@@ -426,6 +355,108 @@ def export_dkimdmarc():
 # ------------------------------
 # Helper Functions
 # ------------------------------
+
+def fetch_emails(session_id, domain, company):
+    progress["task"] = "Fetching emails..."
+    if is_canceled(session_id):
+        handle_cancellation("email fetching")
+        return []
+
+    # Simulate fetching emails (replace with actual logic)
+    emails = googleAndGithub.getEmails(["@" + domain, company])
+    #emails = []
+    progress["value"] = 10  # Step 2: Fetching emails
+    return emails
+
+def fetch_employees(session_id, domain):
+    progress["task"] = "Fetching Employees..."
+    if is_canceled(session_id):
+        handle_cancellation("employees fetching")
+        return []
+
+    # Simulate fetching employees
+    employees = linkedin.execute_linkedin(domain)
+    for i in range(5):  # Simulate 5 steps of employee fetching
+        time.sleep(1)  # Simulate delay for each step
+        progress["value"] += 10  # Increment progress for each step
+    return employees
+
+
+def fetch_ips(session_id, domain, country, company):
+    progress["task"] = "Fetching IPs..."
+    if is_canceled(session_id):
+        handle_cancellation("IPs fetching")
+        return []
+
+    # Fetch IPs from both sources
+    dataForIpAndDomains = nDBtoS.execute_networksdb_to_shodan(country, company)
+    shodan_ips = dataForIpAndDomains
+    whois_ips = whois.getipsWithFields(domain)
+    merged_ips = dataLoadingIPs(shodan_ips, whois_ips)
+    progress["value"] = 70  # Step 4: Fetching IPs
+    return merged_ips
+
+def fetch_domains(session_id, domain, merged_ips):
+    progress["task"] = "Fetching domains..."
+    if is_canceled(session_id):
+        handle_cancellation("domains fetching")
+        return []
+
+    # Fetch domains from WHOIS and NetworksDB
+    domainsWhois = whois.fetch_subdomains(domain)
+    domainsNetworksDB = merged_ips
+    domains = merge_domains(domainsWhois, domainsNetworksDB)
+
+    # Limit the number of domains to avoid exceeding the session size limit
+    max_domains = 500
+    domains = domains[:max_domains]
+    progress["value"] = 80  # Step 5: Fetching Domains
+    return domains
+
+def fetch_dkim_dmarc(session_id, domains):
+    progress["task"] = "Fetching DKIM/DMARC records..."
+    if is_canceled(session_id):
+        handle_cancellation("DKIM/DMARC fetching")
+        return []
+
+    # Fetch DKIM and DMARC records
+    dkimdmarc = loadingDkimDmarc(domains)
+    progress["value"] = 90  # Step 6: Fetching DKIM DMARC RECORDS
+    return dkimdmarc
+
+
+def handle_cancellation(task_name):
+    print(f"Process canceled during {task_name}.")
+    progress["task"] = "Process canceled."
+
+
+
+def load_employees_from_csv(file_path="employees.csv"):
+    """
+    Load employees temporarily from a CSV file.
+    """
+    employees = []
+    try:
+        with open(file_path, mode='r', encoding='utf-8') as file:
+            reader = csv.DictReader(file)
+            for row in reader:
+                # Ensure the row contains the expected fields
+                employees.append((
+                    row.get("Name", ""),
+                    row.get("Role", ""),
+                    row.get("Username1", ""),
+                    row.get("Username2", ""),
+                    row.get("Username3", "")
+                ))
+        print(f"Loaded {len(employees)} employees from {file_path}.")
+    except FileNotFoundError:
+        print(f"File {file_path} not found.")
+    except Exception as e:
+        print(f"Error loading employees from {file_path}: {e}")
+    return employees
+
+
+
 def dataLoadingIPs(shodan_ips, whois_ips):
     # Combine the two lists and ensure uniqueness based on the IP field
     merged_ips_dict = {}
@@ -567,6 +598,12 @@ def loadingDkimDmarc(domains):
                 print(f"Error processing domain {future_to_domain[future]}: {e}")
 
     return dkimdmarc  # Return the list of DKIM/DMARC records
+
+
+
+def is_canceled(session_id):
+    return cancellation_flags.get(session_id, False)
+
 
 # ------------------------------
 # open browser function
