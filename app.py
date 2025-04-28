@@ -85,11 +85,14 @@ def load_data():
     progress["value"] = 5  # Step 1: Parsing input data
 
     # Fetch data in steps
-    emails = fetch_emails(session_id, domain, company)
+    #emails = fetch_emails(session_id, domain, company)
+    emails=[]
     # Load employees from CSV - temporarily
     employees = load_employees_from_csv()  
-    merged_ips = fetch_ips(session_id, domain, country, company)
-    domains = fetch_domains(session_id, domain, merged_ips)
+    #merged_ips = fetch_ips(session_id, domain, country, company)
+    merged_ips=[]
+    #domains = fetch_domains(session_id, domain, merged_ips)
+    domains=[]
     dkimdmarc = fetch_dkim_dmarc(session_id, domains)
 
     # Store the data in the session
