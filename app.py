@@ -1,6 +1,12 @@
 # ------------------------------
 # Imports
 # ------------------------------
+
+#adding redisfrom flask_session import Session
+import redis
+from flask_session import Session
+
+
 from flask import Flask, render_template, request, jsonify, Response, session, redirect, url_for
 import webbrowser
 import threading
@@ -31,6 +37,20 @@ progress = {"value": 0}
 # ------------------------------
 app = Flask(__name__)
 app.secret_key = str(secrets.token_hex(32)) # Replace with a secure random key
+
+
+# ------------------------------
+# Redis session configuration
+# ------------------------------
+app.config['SESSION_TYPE'] = 'redis'
+app.config['SESSION_PERMANENT'] = False
+app.config['SESSION_USE_SIGNER'] = True  # Optional: adds cryptographic signature
+app.config['SESSION_REDIS'] = redis.Redis(host='localhost', port=6379, db=0)
+# Initialize session
+Session(app)
+
+
+
 # A dictionary to track cancellation flags for each session or process
 cancellation_flags = {}
 # Simulated progress variable
@@ -85,14 +105,12 @@ def load_data():
     progress["value"] = 5  # Step 1: Parsing input data
 
     # Fetch data in steps
-    #emails = fetch_emails(session_id, domain, company)
-    emails=[]
+    emails = fetch_emails(session_id, domain, company)
     # Load employees from CSV - temporarily
-    employees = load_employees_from_csv()  
-    #merged_ips = fetch_ips(session_id, domain, country, company)
-    merged_ips=[]
-    #domains = fetch_domains(session_id, domain, merged_ips)
-    domains=[]
+    employees = fetch_employees(session_id, domain)
+    #employees = load_employees_from_csv()  
+    merged_ips = fetch_ips(session_id, domain, country, company)
+    domains = fetch_domains(session_id, domain, merged_ips)
     dkimdmarc = fetch_dkim_dmarc(session_id, domains)
 
     # Store the data in the session
@@ -101,12 +119,11 @@ def load_data():
     session['country'] = country
     session['company'] = company
 
-    max_items = 40  # Limit the number of items
-    session['emails'] = emails[:max_items]
-    session['employees'] = employees[:max_items]
-    session['ips'] = merged_ips[:max_items]
-    session['domains'] = domains[:max_items]
-    session['dkimdmarc'] = dkimdmarc[:max_items]
+    session['emails'] = emails
+    session['employees'] = employees
+    session['ips'] = merged_ips
+    session['domains'] = domains
+    session['dkimdmarc'] = dkimdmarc
 
     # Finalize progress
     progress["task"] = "Data loading complete."
