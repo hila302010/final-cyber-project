@@ -3523,3 +3523,63 @@ tr:hover {
     max-width: 1200px; /* Limit the maximum width */
     display: block; /* Ensure the line behaves as a block element */
 }
+
+/* Style for the Summery Section */
+.summary-report {
+    font-family: sans-serif;
+    max-width: 900px;
+    margin: auto;
+  }
+
+  .summary-title {
+    text-align: center;
+    margin-top: 40px;
+    font-weight: bold;
+    font-size: 25px;
+  }
+
+  .domain-section {
+    margin: 30px 0;
+  }
+
+  .domain-label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .domain-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .chip {
+    background-color: #d9f2f2;
+    color: #090909;
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+
+  .chip.hidden {
+    display: none;
+  }
+
+  .show-more-btn {
+    background-color: #f6f6f6;
+    color: white;
+    margin-top: 10px;
+    font-size: 10px;
+  }
+
+  .show-more-btn:hover {
+    background-color: #d6dbe0;
+  }
+
+  .counter {
+    margin-top: 20px;
+    font-weight: bold;
+  }
+  
