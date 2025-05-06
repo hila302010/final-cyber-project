@@ -213,8 +213,8 @@ from selenium.webdriver.chrome.options import Options
 def execute_linkedin(domain):
     
     employees = []  # Initialize employees as an empty list
-    linkedin_username = "bulipik34@gmail.com"
-    linkedin_password = "D5gVmR-6@@gM_rp"
+    linkedin_username = "hayahod@gmail.com"
+    linkedin_password = "120345hh"
 
     company_name = get_company_name(domain)
     if company_name:
@@ -231,6 +231,9 @@ def execute_linkedin(domain):
     # Configure Chrome to run in headless mode
     chrome_options = Options()
     chrome_options.add_argument("--headless")  # Run in headless mode
+    #ADDED SHAKED
+    chrome_options.add_argument("--incognito")  # ✅ Incognito mode
+    
     chrome_options.add_argument("--disable-gpu")  # Disable GPU acceleration (optional)
     chrome_options.add_argument("--window-size=1920x1080")  # Set a default window size
     chrome_options.add_argument("--no-sandbox")  # Bypass OS security model (useful in some environments)

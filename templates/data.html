@@ -37,6 +37,121 @@
 								</p>							
 							</header>
 
+							<!--SUMMERY-->
+							<hr class="section-divider">							  
+							<div class="summary-report">
+								<h2 class="summary-title">Results Summary</h2>
+								{# SPF #}
+								<div class="domain-section">
+								<li><strong>Missing SPF records for:</strong></li>
+								{% set spf_missing = [] %}
+								  {% for record in dkimdmarc %}
+									{% if record.SPF == "No SPF record found" %}
+									  {% set _ = spf_missing.append(record.domain or "N/A") %}
+									{% endif %}
+								  {% endfor %}
+								  {% if spf_missing %}
+									<div class="domain-chips">
+									  {% for domain in spf_missing %}
+										<div class="chip {% if loop.index > 5 %}hidden{% endif %}">{{ domain }}</div>
+									  {% endfor %}
+									</div>
+									{% if spf_missing|length > 5 %}
+									  <button class="show-more-btn" onclick="toggleVisibility(this)">Show more</button>
+									{% endif %}
+								  {% else %}
+									<span>✅ No missing SPF records</span>
+								  {% endif %}
+								</div>
+							  
+								{# DKIM #}
+								<div class="domain-section">
+								<li><strong>Missing DKIM records for:</strong></li>								  
+								{% set dkim_missing = [] %}
+								  {% for record in dkimdmarc %}
+									{% if record.DKIM == "No DKIM record found" %}
+									  {% set _ = dkim_missing.append(record.domain or "N/A") %}
+									{% endif %}
+								  {% endfor %}
+								  {% if dkim_missing %}
+									<div class="domain-chips">
+									  {% for domain in dkim_missing %}
+										<div class="chip {% if loop.index > 5 %}hidden{% endif %}">{{ domain }}</div>
+									  {% endfor %}
+									</div>
+									{% if dkim_missing|length > 5 %}
+									  <button class="show-more-btn" onclick="toggleVisibility(this)">Show more</button>
+									{% endif %}
+								  {% else %}
+									<span>✅ No missing DKIM records</span>
+								  {% endif %}
+								</div>
+							  
+								{# DMARC #}
+								<div class="domain-section">
+								<li><strong>Missing DMARC records for:</strong></li>
+								{% set dmarc_missing = [] %}
+								  {% for record in dkimdmarc %}
+									{% if record.DMARC == "No DMARC record found" %}
+									  {% set _ = dmarc_missing.append(record.domain or "N/A") %}
+									{% endif %}
+								  {% endfor %}
+								  {% if dmarc_missing %}
+									<div class="domain-chips">
+									  {% for domain in dmarc_missing %}
+										<div class="chip {% if loop.index > 5 %}hidden{% endif %}">{{ domain }}</div>
+									  {% endfor %}
+									</div>
+									{% if dmarc_missing|length > 5 %}
+									  <button class="show-more-btn" onclick="toggleVisibility(this)">Show more</button>
+									{% endif %}
+								  {% else %}
+									<span>✅ No missing DMARC records</span>
+								  {% endif %}
+								</div>
+								{# Vulnerabilities #}
+								<div class="domain-section">
+								<li><strong>IP Vulnerabilities:</strong></li>							  
+								{% set vulnerabilities = [] %}
+								  {% for ip_data in ips %}
+									{% if ip_data.vulns %}
+									  {% set _ = vulnerabilities.append(ip_data.vulns) %}
+									{% endif %}
+								  {% endfor %}
+								  {% if vulnerabilities %}
+									<div class="domain-chips">
+									  {% for vuln in vulnerabilities %}
+										<div class="chip {% if loop.index > 5 %}hidden{% endif %}">{{ vuln }}</div>
+									  {% endfor %}
+									</div>
+									{% if vulnerabilities|length > 5 %}
+									  <button class="show-more-btn" onclick="toggleVisibility(this)">Show more</button>
+									{% endif %}
+								  {% else %}
+									<span>✅ No vulnerabilities found</span>
+								  {% endif %}
+								</div>
+
+								{# Counters #}
+								<li><strong>Found {{ email_count }} emails</strong></li>
+								<li><strong>Found {{ ips_count }} IPs</strong></li>
+								<li><strong>Found {{ employees_count }} employee</strong></li>	
+							</div>
+							  
+							  <script>
+								function toggleVisibility(button) {
+								  const hiddenItems = button.previousElementSibling.querySelectorAll('.hidden');
+								  const isHidden = hiddenItems[0]?.style.display === 'none' || hiddenItems[0]?.style.display === '';
+							  
+								  hiddenItems.forEach(item => {
+									item.style.display = isHidden ? 'inline' : 'none';
+								  });
+							  
+								  button.textContent = isHidden ? 'Show less' : 'Show more';
+								}
+							  </script>
+							  
+							  
 							<!-- Section -->
 								<hr class="section-divider">
 								<h2 style="text-align: center; margin-top: 40px; font-weight: bold; font-size:25px">Your Data:</h2>							<section class="tiles">
@@ -111,75 +226,7 @@
 										</div>
 									</a>
 								</article>
-							</section>
-
-							<!--skills start -->
-							<section id="skills" class="skills">
-								<div class="skill-content">
-									<div class="section-heading text-center">
-									<hr class="section-divider2">
-									<h2 style="text-align: center; margin-top: 40px; font-weight: bold; font-size:25px">Your Company's Strength:</h2>
-									<div class="container">
-										<div class="row text-center align-items-center">
-											<div class="col-md-3">
-												<div class="barWrapper">
-													<div class="barLabel">Emails</div>
-													<div class="progress-bar-wrapper">
-														<div class="progress">
-															<div class="progress-bar" id="emails-bar" style="width: 90%;"></div>
-														</div>
-														<div class="percentage">90%</div>
-													</div>
-												</div>
-											</div>
-									
-											<div class="col-md-3">
-												<div class="barWrapper">
-													<div class="barLabel">Records</div>
-													<div class="progress-bar-wrapper">
-														<div class="progress">
-															<div class="progress-bar" id="records-bar" style="width: 75%;"></div>
-														</div>
-														<div class="percentage">75%</div>
-													</div>
-												</div>
-											</div>
-									
-											<div class="col-md-3">
-												<div class="barWrapper">
-													<div class="barLabel">IPs</div>
-													<div class="progress-bar-wrapper">
-														<div class="progress">
-															<div class="progress-bar" id="ips-bar" style="width: 60%;"></div>
-														</div>
-														<div class="percentage">60%</div>
-													</div>
-												</div>
-											</div>
-									
-											<div class="col-md-3">
-												<div class="barWrapper">
-													<div class="barLabel">Sensitive Data</div>
-													<div class="progress-bar-wrapper">
-														<div class="progress">
-															<div class="progress-bar" id="sensitive-data-bar" style="width: 60%;"></div>
-														</div>
-														<div class="percentage">60%</div>
-													</div>
-												</div>
-											</div>
-									
-										</div>
-									</div>
-									
-									
-									
-									
-								</div><!-- /.skill-content -->
-							</section>
-							<!--skills end -->
-
-
+							</section>				
 						</div>
 					</div>
 			</div>

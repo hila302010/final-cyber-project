@@ -104,8 +104,16 @@ def load_data():
     # Simulate progress for each step
     progress["value"] = 5  # Step 1: Parsing input data
 
-    # Fetch data in steps
-    emails = fetch_emails(session_id, domain, company)
+
+    #try:
+    emails = []
+    # employees = []  
+    # domains = []
+    # dkimdmarc = []
+
+
+    # # Fetch data in steps
+    #emails = fetch_emails(session_id, domain, company)
     # Load employees from CSV - temporarily
     employees = fetch_employees(session_id, domain)
     #employees = load_employees_from_csv()  
@@ -124,6 +132,7 @@ def load_data():
     session['ips'] = merged_ips
     session['domains'] = domains
     session['dkimdmarc'] = dkimdmarc
+    
 
     # Finalize progress
     progress["task"] = "Data loading complete."
@@ -145,17 +154,30 @@ def get_progress():
 # ------------------------------
 @app.route('/data')
 def data():
-    # Use session data to render the template
+     # Get session data
+    emails = session.get('emails', [])
+    ips = session.get('ips', [])
+    employees = session.get('employees', [])
+
+    # Count the number of emails, IPs, and employees
+    email_count = len(emails)
+    ips_count = len(ips)
+    employees_count = len(employees)
+    
+    # Pass counts along with other session data to the template
     return render_template(
         'data.html',
         domain=session.get('domain', ''),
         country=session.get('country', ''),
         company=session.get('company', ''),
-        emails=session.get('emails', []),
-        employees=session.get('employees', []),
-        ips=session.get('ips', []),
+        emails=emails,
+        employees=employees,
+        ips=ips,
         domains=session.get('domains', []),
         dkimdmarc=session.get('dkimdmarc', []),
+        email_count=email_count,          # Pass email count
+        ips_count=ips_count,              # Pass IPs count
+        employees_count=employees_count  # Pass employees count
     )
 
 
@@ -629,7 +651,7 @@ def is_canceled(session_id):
 # open browser function
 # ------------------------------
 def open_browser():
-    webbrowser.open_new("http://127.0.0.1:5000")
+    webbrowser.open_new("http://144.126.224.97:5000")
 
 
 # ------------------------------
