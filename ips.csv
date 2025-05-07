@@ -1,0 +1,17 @@
+IP,Port,Vulnerabilities,Country,City,Domains,Hostnames,Mnt-By,Abuse Mailbox
+141.193.213.11,,,US,,docs.checkmarx.com,,,
+141.193.213.10,,,US,,docs.checkmarx.com,,,
+162.159.153.4,,,US,,zero.checkmarx.com,,,
+162.159.152.4,,,US,,zero.checkmarx.com,,,
+185.199.108.153,,,US,,workshops.checkmarx.com,,us-github-1-mnt,@github.com
+185.199.109.153,,,US,,workshops.checkmarx.com,,us-github-1-mnt,@github.com
+185.199.110.153,,,US,,workshops.checkmarx.com,,us-github-1-mnt,@github.com
+185.199.111.153,,,US,,workshops.checkmarx.com,,us-github-1-mnt,@github.com
+51.17.195.100,,,US,,support.checkmarx.com,,MNT-ADSI,
+51.17.195.101,,,US,,support.checkmarx.com,,MNT-ADSI,
+141.193.213.20,,,US,,www.checkmarx.com,,,
+141.193.213.21,,,US,,www.checkmarx.com,,,
+199.60.103.225,,,US,,info.checkmarx.com,,,
+199.60.103.31,,,US,,info.checkmarx.com,,,
+172.66.40.162,,,US,,eureka.checkmarx.com,,,
+172.66.43.94,,,US,,eureka.checkmarx.com,,,

@@ -3581,5 +3581,9 @@ tr:hover {
   .counter {
     margin-top: 20px;
     font-weight: bold;
+
   }
-  
+  ul {
+	list-style-type: disc; /* or 'none' if you want to hide bullets */
+	padding-left: 20px;
+  }

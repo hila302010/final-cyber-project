@@ -14,6 +14,7 @@ import os
 import secrets
 import time
 import csv
+import threading
 from io import StringIO
 from flask import jsonify
 from concurrent.futures import ThreadPoolExecutor, as_completed
@@ -105,22 +106,39 @@ def load_data():
     progress["value"] = 5  # Step 1: Parsing input data
 
 
-    #try:
-    #emails = []
-    # employees = []  
-    # merged_ips = []
-    # domains = []
-    # dkimdmarc = []
+    emails = employees = merged_ips = domains = dkimdmarc = None
+
+    def fetch_emails_thread():
+        nonlocal emails
+        emails = fetch_emails(session_id, domain)
+
+    def fetch_employees_thread():
+        nonlocal employees
+        employees = []
+        #employees = fetch_employees(session_id, domain)
+
+    def fetch_ips_domains_dkim_thread():
+        nonlocal merged_ips, domains, dkimdmarc
+        merged_ips = fetch_ips(session_id, domain, country, company)
+        domains = fetch_domains(session_id, domain, merged_ips)
+        dkimdmarc = fetch_dkim_dmarc(session_id, domains)
+
+    # Create threads
+    t1 = threading.Thread(target=fetch_emails_thread)
+    t2 = threading.Thread(target=fetch_employees_thread)
+    t3 = threading.Thread(target=fetch_ips_domains_dkim_thread)
 
 
-    # # Fetch data in steps
-    emails = fetch_emails(session_id, domain, company)
-    # Load employees from CSV - temporarily
-    employees = fetch_employees(session_id, domain)
-    #employees = load_employees_from_csv()  
-    merged_ips = fetch_ips(session_id, domain, country, company)
-    domains = fetch_domains(session_id, domain, merged_ips)
-    dkimdmarc = fetch_dkim_dmarc(session_id, domains)
+    # Start threads
+    t1.start()
+    t2.start()
+    t3.start()
+
+    # Wait for all to finish
+    t1.join()
+    t2.join()
+    t3.join()
+
 
     # Store the data in the session
     progress["task"] = "Finalizing data..."
@@ -141,6 +159,82 @@ def load_data():
 
     # Return a success response
     return jsonify({"message": "Data loaded successfully"})
+
+
+def load_data():
+    global progress
+    progress["value"] = 0  # Reset progress
+    progress["task"] = "Parsing input data..."  # Update task description
+
+    session_id = request.json.get('session_id')
+    if not session_id:
+        return {"error": "Session ID is required."}, 400
+
+    # Reset the cancellation flag for this session
+    cancellation_flags[session_id] = False
+
+    # Parse the JSON data from the AJAX request
+    data = request.get_json()
+    domain = data.get('domain')
+    country = data.get('country')
+    company = data.get('company')
+
+    # Simulate progress for each step
+    progress["value"] = 5  # Step 1: Parsing input data
+
+    emails = employees = merged_ips = domains = dkimdmarc = None
+
+    def fetch_emails_thread():
+        nonlocal emails
+        emails = fetch_emails(session_id, domain)
+
+    def fetch_employees_thread():
+        nonlocal employees
+        employees = []
+        #employees = fetch_employees(session_id, domain)
+
+    def fetch_ips_domains_dkim_thread():
+        nonlocal merged_ips, domains, dkimdmarc
+        merged_ips = fetch_ips(session_id, domain, country, company)
+        domains = fetch_domains(session_id, domain, merged_ips)
+        dkimdmarc = fetch_dkim_dmarc(session_id, domains)
+
+    # Create threads
+    t1 = threading.Thread(target=fetch_emails_thread)
+    t2 = threading.Thread(target=fetch_employees_thread)
+    t3 = threading.Thread(target=fetch_ips_domains_dkim_thread)
+
+    # Start threads
+    t1.start()
+    t2.start()
+    t3.start()
+
+    # Wait for all to finish
+    t1.join()
+    t2.join()
+    t3.join()
+
+    # Store the data in the session
+    progress["task"] = "Finalizing data..."
+    session['domain'] = domain
+    session['country'] = country
+    session['company'] = company
+
+    session['emails'] = emails
+    session['employees'] = employees
+    session['ips'] = merged_ips
+    session['domains'] = domains
+    session['dkimdmarc'] = dkimdmarc
+    
+
+    # Finalize progress
+    progress["task"] = "Data loading complete."
+    progress["value"] = 100  # Step 5: Data loading complete
+
+    # Return a success response
+    return jsonify({"message": "Data loaded successfully"})
+
+    
 
 # ---------------------------
 # update progress bar route
@@ -399,14 +493,14 @@ def export_dkimdmarc():
 # Helper Functions
 # ------------------------------
 
-def fetch_emails(session_id, domain, company):
+def fetch_emails(session_id, domain):
     progress["task"] = "Fetching emails..."
     if is_canceled(session_id):
         handle_cancellation("email fetching")
         return []
 
     # Simulate fetching emails (replace with actual logic)
-    emails = googleAndGithub.getEmails(["@" + domain, company])
+    emails = googleAndGithub.getEmails(domain)
     #emails = []
     progress["value"] = 10  # Step 2: Fetching emails
     return emails
@@ -473,6 +567,57 @@ def handle_cancellation(task_name):
     progress["task"] = "Process canceled."
 
 
+def fetch_dkim_dmarc_for_domain(domain):
+    """
+    Fetch DKIM/DMARC records for a single domain and extract specific keys.
+    """
+    try:
+        # Fetch DNS records for the domain
+        records = dkim_dmarc.fetch_dns_records(domain)
+        print(f"Fetched records for {domain}: {records}")  # Debug statement
+
+        # Keys to extract
+        keys_to_extract = ["SPF", "DMARC", "DMARC Policy", "DKIM", "DKIM Status"]
+
+        # Extract only the specified keys
+        extracted_records = {key: records.get(key, "") for key in keys_to_extract}
+
+        # Add the domain to the extracted records
+        extracted_records["domain"] = domain
+
+        return extracted_records
+    except Exception as e:
+        print(f"Error fetching DKIM/DMARC records for {domain}: {e}")
+        return {"domain": domain, "error": str(e)}  # Return an error message if an exception occurs
+
+def loadingDkimDmarc(domains):
+    """
+    Fetch DKIM/DMARC records for a list of domains using threads.
+    """
+    dkimdmarc = []  # Initialize an empty list to store DKIM/DMARC records
+    max_threads = 10  # Set the maximum number of threads
+
+    # Use ThreadPoolExecutor to fetch records concurrently
+    with ThreadPoolExecutor(max_threads) as executor:
+        # Submit tasks for each domain
+        future_to_domain = {executor.submit(fetch_dkim_dmarc_for_domain, domain): domain for domain in domains}
+
+        # Process completed tasks
+        for future in as_completed(future_to_domain):
+            try:
+                # Append the result (a dictionary) to the list
+                result = future.result()
+                print(f"Fetched result for domain {future_to_domain[future]}: {result}")  # Debug statement
+                dkimdmarc.append(result)
+            except Exception as e:
+                print(f"Error processing domain {future_to_domain[future]}: {e}")
+
+    return dkimdmarc  # Return the list of DKIM/DMARC records
+
+# ------------------------------
+# Testing Functions
+# ------------------------------
+
 
 def load_employees_from_csv(file_path="employees.csv"):
     """
@@ -498,7 +643,96 @@ def load_employees_from_csv(file_path="employees.csv"):
         print(f"Error loading employees from {file_path}: {e}")
     return employees
 
+def load_emails_from_csv(file_path="emails.csv"):
+    """
+    Load emails temporarily from a CSV file.
+    """
+    emails = []
+    try:
+        with open(file_path, mode='r', encoding='utf-8') as file:
+            reader = csv.reader(file)
+            next(reader)  # Skip the header row
+            for row in reader:
+                emails.append(row[0])  # Assuming emails are in the first column
+        print(f"Loaded {len(emails)} emails from {file_path}.")
+    except FileNotFoundError:
+        print(f"File {file_path} not found.")
+    except Exception as e:
+        print(f"Error loading emails from {file_path}: {e}")
+    return emails
 
+
+def load_ips_from_csv(file_path="ips.csv"):
+    """
+    Load IPs temporarily from a CSV file.
+    """
+    ips = []
+    try:
+        with open(file_path, mode='r', encoding='utf-8') as file:
+            reader = csv.DictReader(file)
+            for row in reader:
+                ips.append({
+                    "ip_str": row.get("IP", ""),
+                    "port": row.get("Port", ""),
+                    "vulns": row.get("Vulnerabilities", ""),
+                    "country_name": row.get("Country", ""),
+                    "city": row.get("City", ""),
+                    "domains": row.get("Domains", ""),
+                    "hostnames": row.get("Hostnames", ""),
+                    "mnt_by": row.get("Mnt-By", ""),
+                    "abuse_mailbox": row.get("Abuse Mailbox", "")
+                })
+        print(f"Loaded {len(ips)} IPs from {file_path}.")
+    except FileNotFoundError:
+        print(f"File {file_path} not found.")
+    except Exception as e:
+        print(f"Error loading IPs from {file_path}: {e}")
+    return ips
+
+
+def load_domains_from_csv(file_path="domains.csv"):
+    """
+    Load domains temporarily from a CSV file.
+    """
+    domains = []
+    try:
+        with open(file_path, mode='r', encoding='utf-8') as file:
+            reader = csv.reader(file)
+            next(reader)  # Skip the header row
+            for row in reader:
+                domains.append(row[0])  # Assuming domains are in the first column
+        print(f"Loaded {len(domains)} domains from {file_path}.")
+    except FileNotFoundError:
+        print(f"File {file_path} not found.")
+    except Exception as e:
+        print(f"Error loading domains from {file_path}: {e}")
+    return domains
+
+
+def load_dkim_dmarc_from_csv(file_path="dkimdmarc.csv"):
+    """
+    Load DKIM/DMARC records from a CSV file.
+    """
+    dkimdmarc = []
+    try:
+        with open(file_path, mode='r', encoding='utf-8') as file:
+            reader = csv.DictReader(file)
+            for row in reader:
+                # Append each row as a dictionary to the list
+                dkimdmarc.append({
+                    "domain": row.get("Domain", ""),
+                    "SPF": row.get("SPF", ""),
+                    "DMARC": row.get("DMARC", ""),
+                    "DMARC Policy": row.get("DMARC Policy", ""),
+                    "DKIM": row.get("DKIM", ""),
+                    "DKIM Status": row.get("DKIM Status", "")
+                })
+        print(f"Loaded {len(dkimdmarc)} DKIM/DMARC records from {file_path}.")
+    except FileNotFoundError:
+        print(f"File {file_path} not found.")
+    except Exception as e:
+        print(f"Error loading DKIM/DMARC records from {file_path}: {e}")
+    return dkimdmarc
 
 def dataLoadingIPs(shodan_ips, whois_ips):
     # Combine the two lists and ensure uniqueness based on the IP field
@@ -562,7 +796,7 @@ def dataLoadingIPs(shodan_ips, whois_ips):
     return list(merged_ips_dict.values())
 
 
-
+    # for testing
 def dataLoadingEmails():
     # Example data loading function (replace with actual logic)
     data = github.getEmails() 
@@ -593,55 +827,6 @@ def merge_domains(domainsWhois, domainsNetworksDB):
     return [domain for domain in domainsWhois if domain.strip()]
 
 
-def fetch_dkim_dmarc_for_domain(domain):
-    """
-    Fetch DKIM/DMARC records for a single domain and extract specific keys.
-    """
-    try:
-        # Fetch DNS records for the domain
-        records = dkim_dmarc.fetch_dns_records(domain)
-        print(f"Fetched records for {domain}: {records}")  # Debug statement
-
-        # Keys to extract
-        keys_to_extract = ["SPF", "DMARC", "DMARC Policy", "DKIM", "DKIM Status"]
-
-        # Extract only the specified keys
-        extracted_records = {key: records.get(key, "") for key in keys_to_extract}
-
-        # Add the domain to the extracted records
-        extracted_records["domain"] = domain
-
-        return extracted_records
-    except Exception as e:
-        print(f"Error fetching DKIM/DMARC records for {domain}: {e}")
-        return {"domain": domain, "error": str(e)}  # Return an error message if an exception occurs
-
-
-
-def loadingDkimDmarc(domains):
-    """
-    Fetch DKIM/DMARC records for a list of domains using threads.
-    """
-    dkimdmarc = []  # Initialize an empty list to store DKIM/DMARC records
-    max_threads = 10  # Set the maximum number of threads
-
-    # Use ThreadPoolExecutor to fetch records concurrently
-    with ThreadPoolExecutor(max_threads) as executor:
-        # Submit tasks for each domain
-        future_to_domain = {executor.submit(fetch_dkim_dmarc_for_domain, domain): domain for domain in domains}
-
-        # Process completed tasks
-        for future in as_completed(future_to_domain):
-            try:
-                # Append the result (a dictionary) to the list
-                result = future.result()
-                print(f"Fetched result for domain {future_to_domain[future]}: {result}")  # Debug statement
-                dkimdmarc.append(result)
-            except Exception as e:
-                print(f"Error processing domain {future_to_domain[future]}: {e}")
-
-    return dkimdmarc  # Return the list of DKIM/DMARC records
-
 
 
 def is_canceled(session_id):
@@ -654,7 +839,7 @@ def is_canceled(session_id):
 def open_browser():
     webbrowser.open_new("http://127.0.0.1:5000")
 
-
+#careers.checkmarx.com
 # ------------------------------
 # Main Entry Point
 # ------------------------------
@@ -665,5 +850,7 @@ if __name__ == "__main__":
         threading.Timer(1.0, open_browser).start()
 
     app.run(debug=True)
+
+
 
 

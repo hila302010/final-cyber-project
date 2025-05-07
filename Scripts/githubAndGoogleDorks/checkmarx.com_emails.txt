@@ -1,0 +1,6 @@
+kics@checkmarx.com
+public@checkmarx.com
+supplychainsecurity@checkmarx.com
+CLOCBot@checkmarx.com
+joao.costa@checkmarx.com
+antonio.silva@checkmarx.com

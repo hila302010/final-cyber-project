@@ -213,8 +213,11 @@ from selenium.webdriver.chrome.options import Options
 def execute_linkedin(domain):
     
     employees = []  # Initialize employees as an empty list
-    linkedin_username = "bulipik34@gmail.com"
-    linkedin_password = "D5gVmR-6@@gM_rp"
+    #linkedin_username = "bulipik34@gmail.com"
+    #linkedin_password = "D5gVmR-6@@gM_rp"
+
+    linkedin_username = "benmhila@post.bgu.ac.il"
+    linkedin_password = "L)qvR$s~=8$J7FD"
 
     company_name = get_company_name(domain)
     if company_name:
@@ -230,11 +233,12 @@ def execute_linkedin(domain):
     
     # Configure Chrome to run in headless mode
     chrome_options = Options()
-    chrome_options.add_argument("--headless")  # Run in headless mode
+    chrome_options.add_argument("--incognito")  # NEW: Incognito mode
+    """chrome_options.add_argument("--headless")  # Run in headless mode
     chrome_options.add_argument("--disable-gpu")  # Disable GPU acceleration (optional)
     chrome_options.add_argument("--window-size=1920x1080")  # Set a default window size
     chrome_options.add_argument("--no-sandbox")  # Bypass OS security model (useful in some environments)
-    chrome_options.add_argument("--disable-dev-shm-usage")  # Overcome limited resource problems in Docker
+    chrome_options.add_argument("--disable-dev-shm-usage")  # Overcome limited resource problems in Docker"""
 
     driver = webdriver.Chrome(options=chrome_options)  # Use the updated function
     driver.maximize_window()
@@ -252,6 +256,7 @@ def execute_linkedin(domain):
 
     finally:
         driver.quit()
+        print(employees)
         return employees
 
 
