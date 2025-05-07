@@ -59,8 +59,7 @@ user_agents = deque([
 
 
 # Your GitHub token
-GITHUB_TOKENS = ["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",
-                 "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"]
+GITHUB_TOKENS = []
 
 GITHUB_API_URL = "https://api.github.com"
 KEYWORDS = {
