@@ -130,6 +130,7 @@ def save_to_txt(email_data, password_data, files_data,admin_data, domain):
     print(f"Data about {domain} saved to {filename}")
     
 
+# function for testing
 def getEmails():
     emails = set()  # Use a set to avoid duplicates
     email_pattern = r'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}'

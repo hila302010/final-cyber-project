@@ -5,237 +5,235 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 -->
 <html>
-	<head>
-		<title>Data Results</title>
-		  <!-- For the logo png -->
-		  <link rel="shortcut icon" size="32x32" type="image/icon" href="static/images/logo.png"/>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="static/css/styledata.css" />
-		<noscript><link rel="stylesheet" href="static/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
-		<!-- Wrapper -->
-			<div id="wrapper">
-				<!-- Main -->
-					<div id="main">
-						<div class="inner">
-							<a href="{{ url_for('index') }}">
-								<img src="static/images/osintech.png" alt="Brand Logo" style="max-width: 170px; height: auto; margin-top: 20px;" />
-							</a>
-							<header>
-								<br><h1 style="text-align: center; margin: -100px;">Data Results</h1><br><br>
-								<p style="text-align: center; margin-top: 40px; font-weight: bold; font-size:25px">Below are the results based on your query:</p>
-								<p style="text-align: center; margin-bottom: 13px;">
-									Domain: <span style="color: #31c9c9;">{{ domain }}</span>
-								</p>
-								<p style="text-align: center; margin-bottom: 13px;">
-									Country: <span style="color: #31c9c9;">{{ country }}</span>
-								</p>
-								<p style="text-align: center; margin-bottom: 13px;">
-									Company: <span style="color: #31c9c9;">{{ company }}</span>
-								</p>							
-							</header>
 
-							<!--SUMMERY-->
-							<hr class="section-divider">							  
-							<div class="summary-report">
-								<h2 class="summary-title">Results Summary</h2>
-								{# SPF #}
-								<div class="domain-section">
-								  <span class="domain-label">Missing SPF records for:</span>
-								  {% set spf_missing = [] %}
-								  {% for record in dkimdmarc %}
-									{% if record.SPF == "No SPF record found" %}
-									  {% set _ = spf_missing.append(record.domain or "N/A") %}
-									{% endif %}
-								  {% endfor %}
-								  {% if spf_missing %}
-									<div class="domain-chips">
-									  {% for domain in spf_missing %}
-										<div class="chip {% if loop.index > 5 %}hidden{% endif %}">{{ domain }}</div>
-									  {% endfor %}
-									</div>
-									{% if spf_missing|length > 5 %}
-									  <button class="show-more-btn" onclick="toggleVisibility(this)">Show more</button>
-									{% endif %}
-								  {% else %}
-									<span>✅ No missing SPF records</span>
-								  {% endif %}
-								</div>
-							  
-								{# DKIM #}
-								<div class="domain-section">
-								  <span class="domain-label">Missing DKIM records for:</span>
-								  {% set dkim_missing = [] %}
-								  {% for record in dkimdmarc %}
-									{% if record.DKIM == "No DKIM record found" %}
-									  {% set _ = dkim_missing.append(record.domain or "N/A") %}
-									{% endif %}
-								  {% endfor %}
-								  {% if dkim_missing %}
-									<div class="domain-chips">
-									  {% for domain in dkim_missing %}
-										<div class="chip {% if loop.index > 5 %}hidden{% endif %}">{{ domain }}</div>
-									  {% endfor %}
-									</div>
-									{% if dkim_missing|length > 5 %}
-									  <button class="show-more-btn" onclick="toggleVisibility(this)">Show more</button>
-									{% endif %}
-								  {% else %}
-									<span>✅ No missing DKIM records</span>
-								  {% endif %}
-								</div>
-							  
-								{# DMARC #}
-								<div class="domain-section">
-								  <span class="domain-label">Missing DMARC records for:</span>
-								  {% set dmarc_missing = [] %}
-								  {% for record in dkimdmarc %}
-									{% if record.DMARC == "No DMARC record found" %}
-									  {% set _ = dmarc_missing.append(record.domain or "N/A") %}
-									{% endif %}
-								  {% endfor %}
-								  {% if dmarc_missing %}
-									<div class="domain-chips">
-									  {% for domain in dmarc_missing %}
-										<div class="chip {% if loop.index > 5 %}hidden{% endif %}">{{ domain }}</div>
-									  {% endfor %}
-									</div>
-									{% if dmarc_missing|length > 5 %}
-									  <button class="show-more-btn" onclick="toggleVisibility(this)">Show more</button>
-									{% endif %}
-								  {% else %}
-									<span>✅ No missing DMARC records</span>
-								  {% endif %}
-								</div>
-							  
-								{# Vulnerabilities #}
-								<div class="domain-section">
-								  <span class="domain-label">IP Vulnerabilities:</span>
-								  {% set vulnerabilities = [] %}
-								  {% for ip_data in ips %}
-									{% if ip_data.vulns %}
-									  {% set _ = vulnerabilities.append(ip_data.vulns) %}
-									{% endif %}
-								  {% endfor %}
-								  {% if vulnerabilities %}
-									<div class="domain-chips">
-									  {% for vuln in vulnerabilities %}
-										<div class="chip {% if loop.index > 5 %}hidden{% endif %}">{{ vuln }}</div>
-									  {% endfor %}
-									</div>
-									{% if vulnerabilities|length > 5 %}
-									  <button class="show-more-btn" onclick="toggleVisibility(this)">Show more</button>
-									{% endif %}
-								  {% else %}
-									<span>✅ No vulnerabilities found</span>
-								  {% endif %}
-								</div>
-							  
-								{# Counters #}
-								<div class="counter">Found {{ email_count }} emails</div>
-								<div class="counter">Found {{ ips_count }} IPs</div>
-								<div class="counter">Found {{ employees_count }} employees</div>
-							  </div>
-							  
-							  <script>
-								function toggleVisibility(button) {
-								  const hiddenItems = button.previousElementSibling.querySelectorAll('.hidden');
-								  const isHidden = hiddenItems[0]?.style.display === 'none' || hiddenItems[0]?.style.display === '';
-							  
-								  hiddenItems.forEach(item => {
-									item.style.display = isHidden ? 'inline' : 'none';
-								  });
-							  
-								  button.textContent = isHidden ? 'Show less' : 'Show more';
-								}
-							  </script>
-							  
-							  
-							<!-- Section -->
-								<hr class="section-divider">
-								<h2 style="text-align: center; margin-top: 40px; font-weight: bold; font-size:25px">Your Data:</h2>							<section class="tiles">
-								<article class="style1">
-									<span class="image">
-										<img src="static/images/dataImages/pic01.jpg" alt="" />
-									</span>
-									<a href="{{ url_for('emails') }}">
-										<h2>Emails</h2>
-										<div class="content">
-											<p>Click here to view the table of Emails.</p>
-										</div>
-									</a>
-								</article>
-								<article class="style2">
-									<span class="image">
-										<img src="static/images/dataImages/pic02.jpg" alt="" />
-									</span>
-									<a href="{{ url_for('ips') }}">
-										<h2>IP adresses</h2>
-										<div class="content">
-											<p>Click here to view the table of IP's.</p>
-										</div>
-									</a>
-								</article>
+<head>
+	<title>Data Results</title>
+	<!-- For the logo png -->
+	<link rel="shortcut icon" size="32x32" type="image/icon" href="static/images/logo.png" />
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="static/css/styledata.css" />
+	<noscript>
+		<link rel="stylesheet" href="static/css/noscript.css" />
+	</noscript>
+</head>
 
+<body class="is-preload">
+	<!-- Wrapper -->
+	<div id="wrapper">
+		<!-- Main -->
+		<div id="main">
+			<div class="inner">
+				<a href="{{ url_for('index') }}">
+					<img src="static/images/osintech.png" alt="Brand Logo"
+						style="max-width: 170px; height: auto; margin-top: 20px;" />
+				</a>
+				<header>
+					<br>
+					<h1 style="text-align: center; margin: -100px;">Data Results</h1><br><br>
+					<p style="text-align: center; margin-top: 40px; font-weight: bold; font-size:25px">Below are the results based
+						on your query:</p>
+					<p style="text-align: center; margin-bottom: 13px;">
+						Domain: <span style="color: #31c9c9;">{{ domain }}</span>
+					</p>
+					<p style="text-align: center; margin-bottom: 13px;">
+						Country: <span style="color: #31c9c9;">{{ country }}</span>
+					</p>
+					<p style="text-align: center; margin-bottom: 13px;">
+						Company: <span style="color: #31c9c9;">{{ company }}</span>
+					</p>
+				</header>
 
-								<article class="style3">
-									<span class="image">
-										<img src="static/images/dataImages/pic03.jpg" alt="" />
-									</span>
-									<a href="{{ url_for('domains') }}">
-										<h2>Domains</h2>
-										<div class="content">
-											<p>Click here to view the table of Domains.</p>
-										</div>
-									</a>
-								</article>
-
-
-								<article class="style4">
-									<span class="image">
-										<img src="static/images/dataImages/pic04.jpg" alt="" />
-									</span>
-										<a href="{{ url_for('employees') }}">
-										<h2>Employees information</h2>
-										<div class="content">
-											<p>Click here to view the table of Employees.</p>
-										</div>
-									</a>
-								</article>
-
-
-								<article class="style5">
-									<span class="image">
-										<img src="static/images/dataImages/pic05.jpg" alt="" />
-									</span>
-									<a href="{{ url_for('dkimdmarc') }}">
-										<h2>Dkim & Dmarc & SPF</h2>
-										<div class="content">
-											<p>Click here to view the table of Dmarc and Dkim data.</p>
-										</div>
-									</a>
-								</article><article class="style6">
-									<span class="image">
-										<img src="static/images/dataImages/pic06.jpg" alt="" />
-									</span>
-									<a href="generic.html">
-										<h2>Sensitive data</h2>
-										<div class="content">
-											<p>Click here to view the table of Passwords Files and Sensitive Data.</p>
-										</div>
-									</a>
-								</article>
-							</section>				
+				<!--SUMMERY-->
+				<hr class="section-divider">
+				<div class="summary-report">
+					<h2 class="summary-title">Results Summary</h2>
+					{# SPF #}
+					<div class="domain-section">
+						<li><strong>Missing SPF records for:</strong></li>
+						{% set spf_missing = [] %}
+						{% for record in dkimdmarc %}
+						{% if record.SPF == "No SPF record found" %}
+						{% set _ = spf_missing.append(record.domain or "N/A") %}
+						{% endif %}
+						{% endfor %}
+						{% if spf_missing %}
+						<div class="domain-chips">
+							{% for domain in spf_missing %}
+							<div class="chip {% if loop.index > 5 %}hidden{% endif %}">{{ domain }}</div>
+							{% endfor %}
 						</div>
+						{% if spf_missing|length > 5 %}
+						<button class="show-more-btn" onclick="toggleVisibility(this)">Show more</button>
+						{% endif %}
+						{% else %}
+						<span>✅ No missing SPF records</span>
+						{% endif %}
 					</div>
+
+					{# DKIM #}
+					<div class="domain-section">
+						<li><strong>Missing DKIM records for:</strong></li>
+						{% set dkim_missing = [] %}
+						{% for record in dkimdmarc %}
+						{% if record.DKIM == "No DKIM record found" %}
+						{% set _ = dkim_missing.append(record.domain or "N/A") %}
+						{% endif %}
+						{% endfor %}
+						{% if dkim_missing %}
+						<div class="domain-chips">
+							{% for domain in dkim_missing %}
+							<div class="chip {% if loop.index > 5 %}hidden{% endif %}">{{ domain }}</div>
+							{% endfor %}
+						</div>
+						{% if dkim_missing|length > 5 %}
+						<button class="show-more-btn" onclick="toggleVisibility(this)">Show more</button>
+						{% endif %}
+						{% else %}
+						<span>✅ No missing DKIM records</span>
+						{% endif %}
+					</div>
+
+					{# DMARC #}
+					<div class="domain-section">
+						<li><strong>Missing DMARC records for:</strong></li>
+						{% set dmarc_missing = [] %}
+						{% for record in dkimdmarc %}
+						{% if record.DMARC == "No DMARC record found" %}
+						{% set _ = dmarc_missing.append(record.domain or "N/A") %}
+						{% endif %}
+						{% endfor %}
+						{% if dmarc_missing %}
+						<div class="domain-chips">
+							{% for domain in dmarc_missing %}
+							<div class="chip {% if loop.index > 5 %}hidden{% endif %}">{{ domain }}</div>
+							{% endfor %}
+						</div>
+						{% if dmarc_missing|length > 5 %}
+						<button class="show-more-btn" onclick="toggleVisibility(this)">Show more</button>
+						{% endif %}
+						{% else %}
+						<span>✅ No missing DMARC records</span>
+						{% endif %}
+					</div>
+					{# Vulnerabilities #}
+					<div class="domain-section">
+						<li><strong>IP Vulnerabilities:</strong></li>
+						{% set vulnerabilities = [] %}
+						{% for ip_data in ips %}
+						{% if ip_data.vulns %}
+						{% set _ = vulnerabilities.append(ip_data.vulns) %}
+						{% endif %}
+						{% endfor %}
+						{% if vulnerabilities %}
+						<div class="domain-chips">
+							{% for vuln in vulnerabilities %}
+							<div class="chip {% if loop.index > 5 %}hidden{% endif %}">{{ vuln }}</div>
+							{% endfor %}
+						</div>
+						{% if vulnerabilities|length > 5 %}
+						<button class="show-more-btn" onclick="toggleVisibility(this)">Show more</button>
+						{% endif %}
+						{% else %}
+						<span>✅ No vulnerabilities found</span>
+						{% endif %}
+					</div>
+
+					{# Counters #}
+					<li><strong>Found {{ email_count }} emails</strong></li>
+					<li><strong>Found {{ ips_count }} IPs</strong></li>
+					<li><strong>Found {{ employees_count }} employee</strong></li>
+				</div>
+
+				<script>
+					function toggleVisibility(button) {
+						const hiddenItems = button.previousElementSibling.querySelectorAll('.hidden');
+						const isHidden = hiddenItems[0]?.style.display === 'none' || hiddenItems[0]?.style.display === '';
+
+						hiddenItems.forEach(item => {
+							item.style.display = isHidden ? 'inline' : 'none';
+						});
+
+						button.textContent = isHidden ? 'Show less' : 'Show more';
+					}
+				</script>
+
+
+				<!-- Section -->
+				<hr class="section-divider">
+				<h2 style="text-align: center; margin-top: 40px; font-weight: bold; font-size:25px">Your Data:</h2>
+				<section class="tiles">
+					<article class="style1">
+						<span class="image">
+							<img src="static/images/dataImages/pic01.jpg" alt="" />
+						</span>
+						<a href="{{ url_for('emails') }}">
+							<h2>Emails</h2>
+							<div class="content">
+								<p>Click here to view the table of Emails.</p>
+							</div>
+						</a>
+					</article>
+					<article class="style2">
+						<span class="image">
+							<img src="static/images/dataImages/pic02.jpg" alt="" />
+						</span>
+						<a href="{{ url_for('ips') }}">
+							<h2>IP adresses</h2>
+							<div class="content">
+								<p>Click here to view the table of IP's.</p>
+							</div>
+						</a>
+					</article>
+
+
+					<article class="style3">
+						<span class="image">
+							<img src="static/images/dataImages/pic03.jpg" alt="" />
+						</span>
+						<a href="{{ url_for('domains') }}">
+							<h2>Domains</h2>
+							<div class="content">
+								<p>Click here to view the table of Domains.</p>
+							</div>
+						</a>
+					</article>
+
+
+					<article class="style4">
+						<span class="image">
+							<img src="static/images/dataImages/pic04.jpg" alt="" />
+						</span>
+						<a href="{{ url_for('employees') }}">
+							<h2>Employees information</h2>
+							<div class="content">
+								<p>Click here to view the table of Employees.</p>
+							</div>
+						</a>
+					</article>
+
+
+					<article class="style5">
+						<span class="image">
+							<img src="static/images/dataImages/pic05.jpg" alt="" />
+						</span>
+						<a href="{{ url_for('dkimdmarc') }}">
+							<h2>Dkim & Dmarc & SPF</h2>
+							<div class="content">
+								<p>Click here to view the table of Dmarc and Dkim data.</p>
+							</div>
+						</a>
+
+				</section>
 			</div>
-		<!-- Scripts -->
-			<script src="static/js/data/jquery.min.js"></script>
-			<script src="static/js/data/browser.min.js"></script>
-			<script src="static/js/data/breakpoints.min.js"></script>
-			<script src="static/js/data/util.js"></script>
-			<script src="static/js/data/main.js"></script>
-	</body>
+		</div>
+	</div>
+	<!-- Scripts -->
+	<script src="static/js/data/jquery.min.js"></script>
+	<script src="static/js/data/browser.min.js"></script>
+	<script src="static/js/data/breakpoints.min.js"></script>
+	<script src="static/js/data/util.js"></script>
+	<script src="static/js/data/main.js"></script>
+</body>
+
 </html>

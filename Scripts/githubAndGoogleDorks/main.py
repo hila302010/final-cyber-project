@@ -1,5 +1,3 @@
-import json
-
 import Scripts.githubAndGoogleDorks.github_api as github
 import Scripts.githubAndGoogleDorks.googleDorksNoPagodo as google
 
@@ -30,61 +28,42 @@ def disconnect_from_nordvpn():
 
 
 #["@" + domain, company_name] == query
-def getEmails(queries):
+def getEmails(domain):
     emails = set()
-    for query in queries:
-        # GitHub email search
-        github_results = github.search_github_emails(query)
-        if isinstance(github_results, dict):
-            emails.update(github_results.keys())  # Flattening the keys into the list
-        # Google email search
-        email_data = google.google_dork_emails(query)
-        emails.update([email for email, _, _ in email_data])  # Just the emails
+    connect_to_nordvpn('de')
+
+    # GitHub email search
+    github_results = github.search_github_emails(domain)
+    if isinstance(github_results, dict):
+        emails.update(github_results.keys())  # Flattening the keys into the list
+    else:
+        emails.update(github_results)
+
+    # Google email search
+    email_data = google.google_dork_emails(domain)
+    emails.update([email for email, _, _ in email_data])  # Just the emails
+
+    disconnect_from_nordvpn()
     return list(emails)
 
-def run_all_queries(queries):
-    for query in queries:
-        print(f"\n🔍 Searching for: {query}")
-
-        # Run GitHub search
-        github_results = github.search_github_emails(query)
-        if not github_results:
-            print(f"Skipping GitHub results for '{query}' due to connection issues.")
-        else:
-            path = f"{query}_github_results.txt"
-            github.write_to_file(path, github_results)
-
-        # Run Google search
-        email_data = google.google_dork_emails(query)
-        password_data = google.google_dork_passwords(query)
-        files_data = google.google_dork_files(query)
-        admin_data = google.google_dork_admin(query)
-
-        if files_data or email_data or password_data or admin_data:
-            path = f"{query}_google_results.txt"
-            google.save_to_txt(email_data, password_data, files_data, admin_data, query, path)
-
-        print(f"✅ Results for '{query}' saved.")
 
 def main():
     print("🕵️ Information Gathering Tool")
     try:
 
-        # Example usage
-        connect_to_nordvpn('de')
-        # Run your Google search script here
-
         domain = input("Enter domain name (e.g., example.com): ").strip()
-        company_name = input("Enter company name: ").strip()
-        nickname = input("Enter company nickname: (optional) ").strip()
+        company = input("Enter company name: ").strip()
 
-        if not domain or not company_name:
-            raise ValueError("All inputs must be provided and non-empty.")
-        if nickname:
-            run_all_queries(["@" + domain, company_name, nickname])
-        else:
-            run_all_queries(["@" + domain, company_name])
-        disconnect_from_nordvpn()
+        queries = ["@" + domain, company]
+        emails = getEmails(queries)
+
+        print(emails)
+        if  emails:
+            path = f"{queries}_emails_results.txt"
+            # should save to file            
+
+        print(f"✅ Results for '{queries}' saved.")
+
     except ValueError as e:
         print(f"Error: {e}")
 
