@@ -68,7 +68,13 @@
                         N/A
                         {% endif %}
                     </td>
-                    <td>{{ record['DKIM Status'] or "N/A" }}</td>
+                    <td>
+                        {% if record['DMARC Policy'] and record['DMARC Policy'].startswith('WARNING') %}
+                        <span class="warning-text">{{ record['DMARC Policy'] }}</span>
+                        {% else %}
+                        {{ record['DMARC Policy'] or "N/A" }}
+                        {% endif %}
+                    </td>
                 </tr>
                 {% endfor %}
             </tbody>
