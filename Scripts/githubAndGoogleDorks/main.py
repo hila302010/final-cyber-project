@@ -28,6 +28,25 @@ def disconnect_from_nordvpn():
 
 
 #["@" + domain, company_name] == query
+# def getEmails(domain):
+#     emails = set()
+#     connect_to_nordvpn('de')
+
+#     # GitHub email search
+#     github_results = github.search_github_emails(domain)
+#     if isinstance(github_results, dict):
+#         emails.update(github_results.keys())  # Flattening the keys into the list
+#     else:
+#         emails.update(github_results)
+
+#     # Google email search
+#     email_data = google.google_dork_emails(domain)
+#     emails.update([email for email, _, _ in email_data])  # Just the emails
+
+#     disconnect_from_nordvpn()
+    # return list(emails)
+
+#SHAKED CHANGED- ADDING SOURCE TO THE EMAILS
 def getEmails(domain):
     emails = set()
     connect_to_nordvpn('de')
@@ -35,16 +54,19 @@ def getEmails(domain):
     # GitHub email search
     github_results = github.search_github_emails(domain)
     if isinstance(github_results, dict):
-        emails.update(github_results.keys())  # Flattening the keys into the list
-    else:
-        emails.update(github_results)
+        emails.update((email, 'github') for email in github_results.keys())
+    elif isinstance(github_results, list):
+        emails.update((email, 'github') for email in github_results)
 
     # Google email search
     email_data = google.google_dork_emails(domain)
-    emails.update([email for email, _, _ in email_data])  # Just the emails
+    emails.update((email, 'google') for email, _, _ in email_data)
 
     disconnect_from_nordvpn()
-    return list(emails)
+
+    # Convert to list of dicts with source first
+    return [{'source': source, 'email': email} for email, source in emails]
+
 
 
 def main():

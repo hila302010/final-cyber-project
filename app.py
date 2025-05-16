@@ -82,86 +82,6 @@ def cancel_process():
 # ------------------------------------------------------
 @app.route('/load_data', methods=['POST'])
 def load_data():
-    """
-    Main function to load data based on the provided domain, country, and company.
-    """
-    global progress
-    progress["value"] = 0  # Reset progress
-    progress["task"] = "Parsing input data..."  # Update task description
-
-    session_id = request.json.get('session_id')
-    if not session_id:
-        return {"error": "Session ID is required."}, 400
-
-    # Reset the cancellation flag for this session
-    cancellation_flags[session_id] = False
-
-    # Parse the JSON data from the AJAX request
-    data = request.get_json()
-    domain = data.get('domain')
-    country = data.get('country')
-    company = data.get('company')
-
-    # Simulate progress for each step
-    progress["value"] = 5  # Step 1: Parsing input data
-
-
-    emails = employees = merged_ips = domains = dkimdmarc = None
-
-    def fetch_emails_thread():
-        nonlocal emails
-        emails = fetch_emails(session_id, domain)
-
-    def fetch_employees_thread():
-        nonlocal employees
-        employees = []
-        #employees = fetch_employees(session_id, domain)
-
-    def fetch_ips_domains_dkim_thread():
-        nonlocal merged_ips, domains, dkimdmarc
-        merged_ips = fetch_ips(session_id, domain, country, company)
-        domains = fetch_domains(session_id, domain, merged_ips)
-        dkimdmarc = fetch_dkim_dmarc(session_id, domains)
-
-    # Create threads
-    t1 = threading.Thread(target=fetch_emails_thread)
-    t2 = threading.Thread(target=fetch_employees_thread)
-    t3 = threading.Thread(target=fetch_ips_domains_dkim_thread)
-
-
-    # Start threads
-    t1.start()
-    t2.start()
-    t3.start()
-
-    # Wait for all to finish
-    t1.join()
-    t2.join()
-    t3.join()
-
-
-    # Store the data in the session
-    progress["task"] = "Finalizing data..."
-    session['domain'] = domain
-    session['country'] = country
-    session['company'] = company
-
-    session['emails'] = emails
-    session['employees'] = employees
-    session['ips'] = merged_ips
-    session['domains'] = domains
-    session['dkimdmarc'] = dkimdmarc
-    
-
-    # Finalize progress
-    progress["task"] = "Data loading complete."
-    progress["value"] = 100  # Step 5: Data loading complete
-
-    # Return a success response
-    return jsonify({"message": "Data loaded successfully"})
-
-
-def load_data():
     global progress
     progress["value"] = 0  # Reset progress
     progress["task"] = "Parsing input data..."  # Update task description
@@ -186,18 +106,22 @@ def load_data():
 
     def fetch_emails_thread():
         nonlocal emails
-        emails = fetch_emails(session_id, domain)
+        emails = load_emails_from_csv()  # Load emails from CSV for testing
+        # emails = fetch_emails(session_id, domain)
 
     def fetch_employees_thread():
         nonlocal employees
-        employees = []
+        employees = load_employees_from_csv()  # Load employees from CSV for testing
         #employees = fetch_employees(session_id, domain)
 
     def fetch_ips_domains_dkim_thread():
         nonlocal merged_ips, domains, dkimdmarc
-        merged_ips = fetch_ips(session_id, domain, country, company)
-        domains = fetch_domains(session_id, domain, merged_ips)
-        dkimdmarc = fetch_dkim_dmarc(session_id, domains)
+        merged_ips = load_ips_from_csv()
+        domains = load_domains_from_csv()
+        dkimdmarc = load_dkim_dmarc_from_csv()
+        # merged_ips = fetch_ips(session_id, domain, country, company)
+        # domains = fetch_domains(session_id, domain, merged_ips)
+        # dkimdmarc = fetch_dkim_dmarc(session_id, domains)
 
     # Create threads
     t1 = threading.Thread(target=fetch_emails_thread)
@@ -253,11 +177,14 @@ def data():
     emails = session.get('emails', [])
     ips = session.get('ips', [])
     employees = session.get('employees', [])
+    domains = session.get('domains', [])
+
 
     # Count the number of emails, IPs, and employees
     email_count = len(emails)
     ips_count = len(ips)
     employees_count = len(employees)
+    domains_count = len(domains)
     
     # Pass counts along with other session data to the template
     return render_template(
@@ -268,11 +195,12 @@ def data():
         emails=emails,
         employees=employees,
         ips=ips,
-        domains=session.get('domains', []),
+        domains=domains,
         dkimdmarc=session.get('dkimdmarc', []),
         email_count=email_count,          # Pass email count
         ips_count=ips_count,              # Pass IPs count
-        employees_count=employees_count  # Pass employees count
+        employees_count=employees_count, # Pass employees count
+        domains_count=domains_count       # Pass domains count
     )
 
 
@@ -501,7 +429,6 @@ def fetch_emails(session_id, domain):
 
     # Simulate fetching emails (replace with actual logic)
     emails = googleAndGithub.getEmails(domain)
-    #emails = []
     progress["value"] = 10  # Step 2: Fetching emails
     return emails
 
@@ -643,17 +570,22 @@ def load_employees_from_csv(file_path="employees.csv"):
         print(f"Error loading employees from {file_path}: {e}")
     return employees
 
+import csv
+
 def load_emails_from_csv(file_path="emails.csv"):
     """
-    Load emails temporarily from a CSV file.
+    Load emails with source from a CSV file.
+    Returns a list of dictionaries with 'source' and 'email' keys.
     """
     emails = []
     try:
         with open(file_path, mode='r', encoding='utf-8') as file:
-            reader = csv.reader(file)
-            next(reader)  # Skip the header row
+            reader = csv.DictReader(file)
             for row in reader:
-                emails.append(row[0])  # Assuming emails are in the first column
+                source = row.get("Source", "").strip().lower()
+                email = row.get("Email Address", "").strip()
+                if source and email:
+                    emails.append({'source': source, 'email': email})
         print(f"Loaded {len(emails)} emails from {file_path}.")
     except FileNotFoundError:
         print(f"File {file_path} not found.")

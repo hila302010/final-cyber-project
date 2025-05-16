@@ -2,8 +2,8 @@
 <html>
 <head>
     <title>Emails Table</title>
-     <!-- For the logo png -->
-     <link rel="shortcut icon" size="32x32" type="image/icon" href="static/images/logo.png"/>
+    <!-- For the logo png -->
+    <link rel="shortcut icon" size="32x32" type="image/icon" href="static/images/logo.png"/>
     <link rel="stylesheet" href="static/css/styleemails.css" />
 </head>
 <body>
@@ -20,13 +20,15 @@
         <table>
             <thead>
                 <tr>
-                    <th style="text-align: center;">Email Address</th>
+                    <th style="text-align: left;">Source</th>
+                    <th style="text-align: left;">Email Address</th>
                 </tr>
             </thead>
             <tbody>
-                {% for email in emails %}
+                {% for item in emails %}
                 <tr>
-                    <td>{{ email }}</td>
+                    <td>{{ item.source }}</td>
+                    <td>{{ item.email }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
