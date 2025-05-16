@@ -213,8 +213,8 @@ from selenium.webdriver.chrome.options import Options
 def execute_linkedin(domain):
     
     employees = []  # Initialize employees as an empty list
-    #linkedin_username = "bulipik34@gmail.com"
-    #linkedin_password = "D5gVmR-6@@gM_rp"
+    #linkedin_username = "m30934622@gmail.com"
+    #linkedin_password = "marianellarinaldi"
 
     linkedin_username = "benmhila@post.bgu.ac.il"
     linkedin_password = "L)qvR$s~=8$J7FD"

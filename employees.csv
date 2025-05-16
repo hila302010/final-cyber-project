@@ -1,13 +1,29 @@
-Name,Role,USER1,USER2,USER3
-Noga Horn,"Senior Analyst, Corporate FP&A at Checkmarx",noga.horn@checkmarx.com,nogahorn@checkmarx.com,nhorn@checkmarx.com
-Ariel Harush,Security Researcher,ariel.harush@checkmarx.com,arielharush@checkmarx.com,aharush@checkmarx.com
-Nitzan Mass-Ader,Software Engineer @ Checkmarx,nitzan.mass-ader@checkmarx.com,nitzanmass-ader@checkmarx.com,nmass-ader@checkmarx.com
-Karin George,Information Systems Admin at Checkmarx | B.Sc. Industrial Engineering & Management,karin.george@checkmarx.com,karingeorge@checkmarx.com,kgeorge@checkmarx.com
-Michal Dzimitrovsky,Senior Software Developer,michal.dzimitrovsky@checkmarx.com,michaldzimitrovsky@checkmarx.com,mdzimitrovsky@checkmarx.com
-Itay Paz,Full Stack Developer at Checkmarx,itay.paz@checkmarx.com,itaypaz@checkmarx.com,ipaz@checkmarx.com
-Yair Raiter,DevOps Engineer at Checkmarx,yair.raiter@checkmarx.com,yairraiter@checkmarx.com,yraiter@checkmarx.com
-Elad Rapoport,Cloud Architect at Checkmarx,elad.rapoport@checkmarx.com,eladrapoport@checkmarx.com,erapoport@checkmarx.com
-Tal Folkman,Security Research Team Lead at Checkmarx,tal.folkman@checkmarx.com,talfolkman@checkmarx.com,tfolkman@checkmarx.com
-Udi Vachterman,Global HRIS Professional Lead,udi.vachterman@checkmarx.com,udivachterman@checkmarx.com,uvachterman@checkmarx.com
-Tal Roth,Software Engineer,tal.roth@checkmarx.com,talroth@checkmarx.com,troth@checkmarx.com
-Tal Landa,Quality Manager at Checkmarx,tal.landa@checkmarx.com,tallanda@checkmarx.com,tlanda@checkmarx.com
+Name,Role,Username1,Username2,Username3
+Tomer Zachor,4th year Electrical & Computer Engineering student at Ben-Gurion University of the Negev,tomer.zachor@bgu.ac.il,tomerzachor@bgu.ac.il,tzachor@bgu.ac.il
+Guy Michael Tammam,Electrical and Computer Engineering Graduate at BGU,guy.tammam@bgu.ac.il,guytammam@bgu.ac.il,gtammam@bgu.ac.il
+Oleg Dukhno,Director of Bariatric and Minimally invasive Surgery Center at Soroka Medical Center,oleg.dukhno@bgu.ac.il,olegdukhno@bgu.ac.il,odukhno@bgu.ac.il
+Ori Salomon,"Physics student, BGU",ori.salomon@bgu.ac.il,orisalomon@bgu.ac.il,osalomon@bgu.ac.il
+Frederic Libersat,Professor at Ben Gurion University and The Abraham and Bessie Zacks Chair in Neurobiology,frederic.libersat@bgu.ac.il,fredericlibersat@bgu.ac.il,flibersat@bgu.ac.il
+Sagi Sameah,Student at Ben-Gurion University of the Negev,sagi.sameah@bgu.ac.il,sagisameah@bgu.ac.il,ssameah@bgu.ac.il
+max kleiner,chemical engineer at EST ecological systems and treatments,max.kleiner@bgu.ac.il,maxkleiner@bgu.ac.il,mkleiner@bgu.ac.il
+Shira Kauffman ,Donors & VIP visitors unit Coordinator at BGU,shira.kauffman@bgu.ac.il,shirakauffman@bgu.ac.il,skauffman@bgu.ac.il
+Michal Miterani,Projects manager at Mimun Yashir,michal.miterani@bgu.ac.il,michalmiterani@bgu.ac.il,mmiterani@bgu.ac.il
+Vladimir Lapidus,at Ben Gurion University,vladimir.lapidus@bgu.ac.il,vladimirlapidus@bgu.ac.il,vlapidus@bgu.ac.il
+Carmit Cohen,Researcher,carmit.cohen@bgu.ac.il,carmitcohen@bgu.ac.il,ccohen@bgu.ac.il
+Hadas Ner-Gaon,researcher at BGU,hadas.ner-gaon@bgu.ac.il,hadasner-gaon@bgu.ac.il,hner-gaon@bgu.ac.il
+Ifat Ben-Simon,Leave of Absence,ifat.ben-simon@bgu.ac.il,ifatben-simon@bgu.ac.il,iben-simon@bgu.ac.il
+Eugene Frumker,Head of Attosecond Science and Nanophotonics Group @BGU & Fellow of the IQSE@TAMU,eugene.frumker@bgu.ac.il,eugenefrumker@bgu.ac.il,efrumker@bgu.ac.il
+Berry Pinshow,Professor Emeritus at BGU,berry.pinshow@bgu.ac.il,berrypinshow@bgu.ac.il,bpinshow@bgu.ac.il
+Eric Maimon,Dr at bgu university,eric.maimon@bgu.ac.il,ericmaimon@bgu.ac.il,emaimon@bgu.ac.il
+Guy Shani,"Professor, Software and Information Systems Engineering, Ben-Gurion University",guy.shani@bgu.ac.il,guyshani@bgu.ac.il,gshani@bgu.ac.il
+Biomedtech BGU,community for biomedical students at BGU University,biomedtech.bgu@bgu.ac.il,biomedtechbgu@bgu.ac.il,bbgu@bgu.ac.il
+Tania Danov,--,tania.danov@bgu.ac.il,taniadanov@bgu.ac.il,tdanov@bgu.ac.il
+Amit Savaya,"Mariculture development officer, Ministry of Agriculture and Rural development, Israel",amit.savaya@bgu.ac.il,amitsavaya@bgu.ac.il,asavaya@bgu.ac.il
+Rachel Lichtenstein,Senior Lecturer at BGU,rachel.lichtenstein@bgu.ac.il,rachellichtenstein@bgu.ac.il,rlichtenstein@bgu.ac.il
+Ido Efrat,Prof at BGU,ido.efrat@bgu.ac.il,idoefrat@bgu.ac.il,iefrat@bgu.ac.il
+max frost,Student at BGU,max.frost@bgu.ac.il,maxfrost@bgu.ac.il,mfrost@bgu.ac.il
+vladimir lyandres,professor at bgu,vladimir.lyandres@bgu.ac.il,vladimirlyandres@bgu.ac.il,vlyandres@bgu.ac.il
+Ella Akkerman,Scientific software consultant at BGU,ella.akkerman@bgu.ac.il,ellaakkerman@bgu.ac.il,eakkerman@bgu.ac.il
+Benjamin Arazi,Professor at BGU,benjamin.arazi@bgu.ac.il,benjaminarazi@bgu.ac.il,barazi@bgu.ac.il
+Yehuda Ben-Shimol,"Consulting History: Ionoterra, Giraffic, ESL, MOBILICOM, Itran, Tadiran Communications, QVergence, TerraX, Gilat",yehuda.ben-shimol@bgu.ac.il,yehudaben-shimol@bgu.ac.il,yben-shimol@bgu.ac.il
+Nave Markovich,Mechanical Engineering student at Ben-Gurion University,nave.markovich@bgu.ac.il,navemarkovich@bgu.ac.il,nmarkovich@bgu.ac.il

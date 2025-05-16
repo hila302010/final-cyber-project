@@ -2815,10 +2815,16 @@ tr:hover {
 			.tiles article.style5 > .image:before {
 				background-color: #ae85ca;
 			}
-
-			.tiles article.style6 > .image:before {
-				background-color: #84e7a2;
+			.center-last-row {
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+				justify-content: center;
+				gap: 2rem; /* optional spacing between tiles */
 			}
+			.style-invisible {
+				visibility: hidden;
+			}
+		
 
 			body:not(.is-touch) .tiles article:hover > .image {
 				-moz-transform: scale(1.1);
@@ -2842,8 +2848,14 @@ tr:hover {
 			}
 
 		* + .tiles {
-			margin-top: 2em;
+			display: flex;
+			flex-wrap: wrap;
+			justify-content: center; /* Centers the items horizontally */
 		}
+		.style-invisible {
+			display: none; /* Hides the invisible tile */
+		}
+		
 
 		body.is-preload .tiles article {
 			-moz-transform: scale(0.9);
@@ -3525,11 +3537,14 @@ tr:hover {
 }
 
 /* Style for the Summery Section */
+/* Align the text of the summary report to the left */
 .summary-report {
-    font-family: sans-serif;
-    max-width: 900px;
-    margin: auto;
-  }
+  text-align: left; /* Aligns all text to the left */
+  margin-left: 20px; /* Optional: Adds some left margin for spacing */
+}
+.summary-report li {
+  list-style-position: inside; /* Ensures list items are aligned properly */
+}
 
   .summary-title {
     text-align: center;
@@ -3549,34 +3564,37 @@ tr:hover {
   }
 
   .domain-chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 8px;
   }
 
   .chip {
-    background-color: #d9f2f2;
-    color: #090909;
-    padding: 6px 12px;
-    border-radius: 20px;
-    font-size: 14px;
-    white-space: nowrap;
+	background-color: #d1f0f2;
+	padding: 6px 10px;
+	border-radius: 12px;
+	font-size: 0.9rem;
+	white-space: nowrap;
   }
-
+  .chip:hover {
+    background-color: #b3e6ea;
+}
   .chip.hidden {
     display: none;
   }
 
-  .show-more-btn {
+
+button.show-more-btn.custom-hover-style {
     background-color: #f6f6f6;
-    color: white;
+    color: black; /* Set default text color */
     margin-top: 10px;
     font-size: 10px;
-  }
+}
 
-  .show-more-btn:hover {
-    background-color: #d6dbe0;
-  }
+button.show-more-btn.custom-hover-style:hover {
+    background-color: #ffffff; /* Change background color on hover */
+    color: black !important; /* Ensure the text color remains black */
+}
 
   .counter {
     margin-top: 20px;
@@ -3587,3 +3605,46 @@ tr:hover {
 	list-style-type: disc; /* or 'none' if you want to hide bullets */
 	padding-left: 20px;
   }
+
+  .link-style-btn {
+    background: none;
+    border: none;
+    color: #007BFF;
+    cursor: pointer;
+    padding: 0 4px;
+    font-size: 0.9rem;
+    text-decoration: underline;
+    display: inline;
+    vertical-align: middle;
+}
+
+.link-style-btn:hover {
+    color: #0056b3;
+    text-decoration: none;
+}
+
+.inline-toggle {
+    display: inline-block;
+    margin-left: 8px;
+    margin-top: 4px;
+}
+.button-inline {
+	all: unset; /* Reset everything */
+	cursor: pointer;
+	color: #3498db;
+	font-size: 0.9rem;
+	display: inline;
+	text-decoration: underline;
+	margin-left: 8px;
+}
+.button-inline:hover {
+	color: #122d86 !important; /* override pink */
+	text-decoration: none;
+	box-shadow: none !important; /* kill the inset pink border */
+}
+.chip-wrapper {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	gap: 8px;
+}

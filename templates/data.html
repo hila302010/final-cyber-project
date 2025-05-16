@@ -30,7 +30,7 @@
 				</a>
 				<header>
 					<br>
-					<h1 style="text-align: center; margin: -100px;">Data Results:</h1><br><br>
+					<h1 style="text-align: center; margin: -100px;">Data Results:</h1><br><br><br><br>
 					<p style="text-align: center; margin-bottom: 13px;">
 						Domain: <span style="color: #31c9c9;">{{ domain }}</span>
 					</p>
@@ -39,127 +39,12 @@
 					</p>
 					<p style="text-align: center; margin-bottom: 13px;">
 						Company: <span style="color: #31c9c9;">{{ company }}</span>
-					</p>
+					</p><br><br><br>
 				</header>
 
-				<!--SUMMERY-->
-				<hr class="section-divider">
-				<div class="summary-report">
-					<h2 class="summary-title">Results Summary</h2>
-					{# SPF #}
-					<div class="domain-section">
-						<li><strong>Missing SPF records for:</strong></li>
-						{% set spf_missing = [] %}
-						{% for record in dkimdmarc %}
-						{% if record.SPF == "No SPF record found" %}
-						{% set _ = spf_missing.append(record.domain or "N/A") %}
-						{% endif %}
-						{% endfor %}
-						{% if spf_missing %}
-						<div class="domain-chips">
-							{% for domain in spf_missing %}
-							<div class="chip {% if loop.index > 5 %}hidden{% endif %}">{{ domain }}</div>
-							{% endfor %}
-						</div>
-						{% if spf_missing|length > 5 %}
-						<button class="show-more-btn" onclick="toggleVisibility(this)">Show more</button>
-						{% endif %}
-						{% else %}
-						<span>✅ No missing SPF records</span>
-						{% endif %}
-					</div>
-
-					{# DKIM #}
-					<div class="domain-section">
-						<li><strong>Missing DKIM records for:</strong></li>
-						{% set dkim_missing = [] %}
-						{% for record in dkimdmarc %}
-						{% if record.DKIM == "No DKIM record found" %}
-						{% set _ = dkim_missing.append(record.domain or "N/A") %}
-						{% endif %}
-						{% endfor %}
-						{% if dkim_missing %}
-						<div class="domain-chips">
-							{% for domain in dkim_missing %}
-							<div class="chip {% if loop.index > 5 %}hidden{% endif %}">{{ domain }}</div>
-							{% endfor %}
-						</div>
-						{% if dkim_missing|length > 5 %}
-						<button class="show-more-btn" onclick="toggleVisibility(this)">Show more</button>
-						{% endif %}
-						{% else %}
-						<span>✅ No missing DKIM records</span>
-						{% endif %}
-					</div>
-
-					{# DMARC #}
-					<div class="domain-section">
-						<li><strong>Missing DMARC records for:</strong></li>
-						{% set dmarc_missing = [] %}
-						{% for record in dkimdmarc %}
-						{% if record.DMARC == "No DMARC record found" %}
-						{% set _ = dmarc_missing.append(record.domain or "N/A") %}
-						{% endif %}
-						{% endfor %}
-						{% if dmarc_missing %}
-						<div class="domain-chips">
-							{% for domain in dmarc_missing %}
-							<div class="chip {% if loop.index > 5 %}hidden{% endif %}">{{ domain }}</div>
-							{% endfor %}
-						</div>
-						{% if dmarc_missing|length > 5 %}
-						<button class="show-more-btn" onclick="toggleVisibility(this)">Show more</button>
-						{% endif %}
-						{% else %}
-						<span>✅ No missing DMARC records</span>
-						{% endif %}
-					</div>
-					{# Vulnerabilities #}
-					<div class="domain-section">
-						<li><strong>IP Vulnerabilities:</strong></li>
-						{% set vulnerabilities = [] %}
-						{% for ip_data in ips %}
-						{% if ip_data.vulns %}
-						{% set _ = vulnerabilities.append(ip_data.vulns) %}
-						{% endif %}
-						{% endfor %}
-						{% if vulnerabilities %}
-						<div class="domain-chips">
-							{% for vuln in vulnerabilities %}
-							<div class="chip {% if loop.index > 5 %}hidden{% endif %}">{{ vuln }}</div>
-							{% endfor %}
-						</div>
-						{% if vulnerabilities|length > 5 %}
-						<button class="show-more-btn" onclick="toggleVisibility(this)">Show more</button>
-						{% endif %}
-						{% else %}
-						<span>✅ No vulnerabilities found</span>
-						{% endif %}
-					</div>
-
-					{# Counters #}
-					<li><strong>Found {{ email_count }} emails</strong></li>
-					<li><strong>Found {{ ips_count }} IPs</strong></li>
-					<li><strong>Found {{ employees_count }} employee</strong></li>
-				</div>
-
-				<script>
-					function toggleVisibility(button) {
-						const hiddenItems = button.previousElementSibling.querySelectorAll('.hidden');
-						const isHidden = hiddenItems[0]?.style.display === 'none' || hiddenItems[0]?.style.display === '';
-
-						hiddenItems.forEach(item => {
-							item.style.display = isHidden ? 'inline' : 'none';
-						});
-
-						button.textContent = isHidden ? 'Show less' : 'Show more';
-					}
-				</script>
-
+				
 
 				<!-- Section -->
-				<hr class="section-divider">
-				<h2 style="text-align: center; margin-top: 40px; font-weight: bold; font-size:25px">Your Data:</h2>
 				<section class="tiles">
 					<article class="style1">
 						<span class="image">
@@ -172,6 +57,7 @@
 							</div>
 						</a>
 					</article>
+				
 					<article class="style2">
 						<span class="image">
 							<img src="static/images/dataImages/pic02.jpg" alt="" />
@@ -183,8 +69,7 @@
 							</div>
 						</a>
 					</article>
-
-
+				
 					<article class="style3">
 						<span class="image">
 							<img src="static/images/dataImages/pic03.jpg" alt="" />
@@ -196,8 +81,10 @@
 							</div>
 						</a>
 					</article>
-
-
+				
+					<!-- Invisible tile to center the last two -->
+					<article class="style-invisible"></article>
+				
 					<article class="style4">
 						<span class="image">
 							<img src="static/images/dataImages/pic04.jpg" alt="" />
@@ -209,8 +96,7 @@
 							</div>
 						</a>
 					</article>
-
-
+				
 					<article class="style5">
 						<span class="image">
 							<img src="static/images/dataImages/pic05.jpg" alt="" />
@@ -221,8 +107,164 @@
 								<p>Click here to view the table of Dmarc and Dkim data.</p>
 							</div>
 						</a>
-
+					</article>
 				</section>
+
+
+
+
+				<!--SUMMERY-->
+				<br>
+				<hr class="section-divider">
+				<div class="summary-report">
+					<br><br><br><br>
+					<h1 style="text-align: center; margin: -100px;">Summery:</h1><br><br><br><br>
+
+					{# Counters #}
+					<li><strong>Found {{ email_count }} emails</strong></li>
+					<li><strong>Found {{ ips_count }} IPs</strong></li>
+					<li><strong>Found {{ employees_count }} employee</strong></li>
+					<li><strong>Found {{ domains_count }} domains and subdomains</strong></li>
+				
+					{# SPF #}
+					<div class="domain-section">
+						<li><strong>Missing SPF records for:</strong></li>
+						{% set spf_missing = [] %}
+						{% for record in dkimdmarc %}
+							{% if record.SPF == "No SPF record found" %}
+								{% set _ = spf_missing.append(record.domain or "N/A") %}
+							{% endif %}
+						{% endfor %}
+						{% if spf_missing %}
+						<div class="chip-wrapper">
+							<div class="domain-chips">
+								{% for domain in spf_missing %}
+								<div class="chip {% if loop.index > 5 %}hidden{% endif %}">{{ domain }}</div>
+								{% endfor %}
+							</div>
+							{% if spf_missing|length > 5 %}
+							<button class="button-inline" onclick="toggleVisibility(this)">Show more</button>
+							{% endif %}
+						</div>
+						{% else %}
+						<span>✅ No missing SPF records</span>
+						{% endif %}
+					</div>
+
+
+					{# DKIM #}
+					<div class="domain-section">
+						<li><strong>Missing DKIM records for:</strong></li>
+						{% set dkim_missing = [] %}
+						{% for record in dkimdmarc %}
+							{% if record.DKIM == "No DKIM record found" %}
+								{% set _ = dkim_missing.append(record.domain or "N/A") %}
+							{% endif %}
+						{% endfor %}
+						{% if dkim_missing %}
+						<div class="chip-wrapper">
+							<div class="domain-chips">
+								{% for domain in dkim_missing %}
+								<div class="chip {% if loop.index > 5 %}hidden{% endif %}">{{ domain }}</div>
+								{% endfor %}
+							</div>
+							{% if dkim_missing|length > 5 %}
+							<button class="button-inline" onclick="toggleVisibility(this)">Show more</button>
+							{% endif %}
+						</div>
+						{% else %}
+						<span>✅ No missing DKIM records</span>
+						{% endif %}
+					</div>
+
+
+					{# DMARC #}
+					<div class="domain-section">
+						<li><strong>Missing DMARC records for:</strong></li>
+						{% set dmarc_missing = [] %}
+						{% for record in dkimdmarc %}
+						{% if record.DMARC == "No DMARC record found" %}
+						{% set _ = dmarc_missing.append(record.domain or "N/A") %}
+						{% endif %}
+						{% endfor %}
+						{% if dmarc_missing %}
+						<div class="chip-wrapper">
+							<div class="domain-chips">
+								{% for domain in dmarc_missing %}
+								<div class="chip {% if loop.index > 5 %}hidden{% endif %}">{{ domain }}</div>
+								{% endfor %}
+							</div>
+							{% if dmarc_missing|length > 5 %}
+								<button class="button-inline" onclick="toggleVisibility(this)">Show more</button>
+							{% endif %}
+						</div>
+						{% else %}
+						<span>✅ No missing DMARC records</span>
+						{% endif %}
+					</div>
+
+
+					{# Vulnerabilities #}
+					<div class="domain-section">
+						<li><strong>IP Vulnerabilities:</strong></li>
+						{% set vulnerabilities = [] %}
+						{% for ip_data in ips %}
+							{% if ip_data.vulns %}
+								{% set _ = vulnerabilities.append(ip_data.vulns) %}
+							{% endif %}
+						{% endfor %}
+						{% if vulnerabilities %}
+						<div class="chip-wrapper">
+							<div class="domain-chips">
+								{% for vuln in vulnerabilities %}
+								<div class="chip {% if loop.index > 5 %}hidden{% endif %}" onclick="toggleFullVuln(this)">
+									<span class="vuln-short">{{ vuln[:13] }}...</span>
+									<span class="vuln-full" style="display: none;">{{ vuln }}</span>
+								</div>
+								{% endfor %}
+							</div>
+							{% if vulnerabilities|length > 5 %}
+							<button class="button-inline" onclick="toggleVisibility(this)">Show more</button>
+							{% endif %}
+						</div>
+						{% else %}
+						<span>✅ No vulnerabilities found</span>
+						{% endif %}
+					</div>
+
+				
+				</div>
+				{# script for Vulnerabilities len #}
+				<script>
+					function toggleFullVuln(element) {
+						const shortSpan = element.querySelector('.vuln-short');
+						const fullSpan = element.querySelector('.vuln-full');
+					
+						if (shortSpan.style.display === 'none') {
+							shortSpan.style.display = 'inline';
+							fullSpan.style.display = 'none';
+						} else {
+							shortSpan.style.display = 'none';
+							fullSpan.style.display = 'inline';
+						}
+					}
+					</script>
+
+				{# script for show more button #}
+				{# script for show more button #}
+				<script>
+					function toggleVisibility(button) {
+						const hiddenItems = button.previousElementSibling.querySelectorAll('.hidden');
+						const isHidden = hiddenItems[0]?.style.display === 'none' || hiddenItems[0]?.style.display === '';
+
+						hiddenItems.forEach(item => {
+							item.style.display = isHidden ? 'inline' : 'none';
+						});
+
+						button.textContent = isHidden ? 'Show less' : 'Show more';
+					}
+				</script>
+				
 			</div>
 		</div>
 	</div>

@@ -49,7 +49,7 @@ def fetch_dns_records(domain):
         policy = parse_dmarc_record(dmarc_data)
         if policy is None:
             records['DMARC Policy'] = "WARNING: No DMARC policy found (p=None)"
-        elif policy.lower() == "none":
+        elif policy.lower() == "none" or policy == "No DMARC policy found":
             records['DMARC Policy'] = "WARNING: DMARC policy is set to p=none (Monitoring Only)"
         else:
             records['DMARC Policy'] = f"DMARC policy: p={policy}"
@@ -62,7 +62,10 @@ def fetch_dns_records(domain):
         selector, dkim_data = find_dkim_selector(domain)
         if selector:
             records['DKIM Selector'] = selector
-            records['DKIM'] = dkim_data
+            if dkim_data != N/A:
+                records['DKIM'] = dkim_data
+            else:
+                records['DKIM'] = "No DKIM record found"
 
             # Extract DKIM 'p=' value
             dkim_key = parse_dkim_record(dkim_data)

@@ -19,13 +19,14 @@
         letter-spacing: 1px;
     }
     table {
-        width: 100%;
         border-collapse: collapse;
         background: #fafcff;
         border-radius: 8px;
         overflow: hidden;
         box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+        margin-left: -38px;
     }
+
     th, td {
         padding: 14px 10px;
         text-align: center;
