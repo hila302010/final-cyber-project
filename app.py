@@ -84,7 +84,7 @@ def cancel_process():
 @app.route('/load_data', methods=['POST'])
 def load_data():
     global progress
-
+    progress["status"] = 1  # Set status to running
     session_id = request.json.get('session_id')
     if not session_id:
         return {"error": "Session ID is required."}, 400
@@ -135,9 +135,11 @@ def load_data():
 
     def fetch_ips_domains_dkim_thread():
         nonlocal merged_ips, domains, dkimdmarc
-        time.sleep(40)  # Simulate the slowest operation
+        time.sleep(20)  # Simulate the slowest operation
         merged_ips = load_ips_from_csv()
+        time.sleep(20)  # Simulate the slowest operation
         domains = load_domains_from_csv()
+        time.sleep(20)  # Simulate the slowest operation
         dkimdmarc = load_dkim_dmarc_from_csv()
         # merged_ips = fetch_ips(session_id, domain, country, company)
         # domains = fetch_domains(session_id, domain, merged_ips)

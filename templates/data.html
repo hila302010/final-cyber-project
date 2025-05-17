@@ -39,11 +39,16 @@
 					</p>
 					<p style="text-align: center; margin-bottom: 13px;">
 						Company: <span style="color: #31c9c9;">{{ company }}</span>
-					</p><br><br><br>
+					</p>
 				</header>
 
 				<!-- Loading Bar -->
 				<section>
+					<div id="loading-spinner" style="display: none; text-align: center; margin-bottom: 10px;">
+						<div class="spinner"
+							style="margin: 0 auto; width: 40px; height: 40px; border: 5px solid #f3f3f3; border-top: 5px solid #459a9e; border-radius: 50%; animation: spin 1s linear infinite;">
+						</div>
+					</div>
 					<div id="loading-bar-container" style="display: none; width: 50%; margin-top: 20px;">
 						<div id="coffee-break-message"
 							style="text-align: center; font-size: 18px; font-weight: bold; color: #2878e0; margin-top: 10px; display: none;">
@@ -148,114 +153,40 @@
 					<li><strong>Found <span id="summary-domains-count">{{ domains_count }}</span> domains and subdomains</strong>
 					</li>
 
-					{# SPF #}
+					<!-- SPF -->
 					<div class="domain-section">
 						<li><strong>Missing SPF records for:</strong></li>
-						<div class="chip-wrapper">
-							<div id="spf-missing-list" class="domain-chips"></div>
-						</div>		
+						<div id="spf-missing-list" class="chip-wrapper">
+							<div class="domain-chips"></div>
+						</div>
 					</div>
 
-
-					{# DKIM #}
+					<!-- DKIM -->
 					<div class="domain-section">
 						<li><strong>Missing DKIM records for:</strong></li>
-						<div class="chip-wrapper">
-							<div id="dkim-missing-list" class="domain-chips"></div>
+						<div id="dkim-missing-list" class="chip-wrapper">
+							<div class="domain-chips"></div>
 						</div>
 					</div>
 
-
-					{# DMARC #}
+					<!-- DMARC -->
 					<div class="domain-section">
 						<li><strong>Missing DMARC records for:</strong></li>
-						<div id="dmarc-missing-list"></div>
-						{% set dmarc_missing = [] %}
-						{% for record in dkimdmarc %}
-						{% if record.DMARC == "No DMARC record found" %}
-						{% set _ = dmarc_missing.append(record.domain or "N/A") %}
-						{% endif %}
-						{% endfor %}
-						{% if dmarc_missing %}
-						<div class="chip-wrapper">
-							<div class="domain-chips">
-								{% for domain in dmarc_missing %}
-								<div class="chip {% if loop.index > 5 %}hidden{% endif %}">{{ domain }}</div>
-								{% endfor %}
-							</div>
-							{% if dmarc_missing|length > 5 %}
-							<button class="button-inline" onclick="toggleVisibility(this)">Show more</button>
-							{% endif %}
+						<div id="dmarc-missing-list" class="chip-wrapper">
+							<div class="domain-chips"></div>
 						</div>
-						{% else %}
-						<span>✅ No missing DMARC records</span>
-						{% endif %}
 					</div>
 
-
-					{# Vulnerabilities #}
+					<!-- Vulnerabilities -->
 					<div class="domain-section">
 						<li><strong>IP Vulnerabilities:</strong></li>
-						<div id="vuln-list"></div>
-						{% set vulnerabilities = [] %}
-						{% for ip_data in ips %}
-						{% if ip_data.vulns %}
-						{% set _ = vulnerabilities.append(ip_data.vulns) %}
-						{% endif %}
-						{% endfor %}
-						{% if vulnerabilities %}
-						<div class="chip-wrapper">
-							<div class="domain-chips">
-								{% for vuln in vulnerabilities %}
-								<div class="chip {% if loop.index > 5 %}hidden{% endif %}" onclick="toggleFullVuln(this)">
-									<span class="vuln-short">{{ vuln[:13] }}...</span>
-									<span class="vuln-full" style="display: none;">{{ vuln }}</span>
-								</div>
-								{% endfor %}
-							</div>
-							{% if vulnerabilities|length > 5 %}
-							<button class="button-inline" onclick="toggleVisibility(this)">Show more</button>
-							{% endif %}
+						<div id="vuln-list" class="chip-wrapper">
+							<div class="domain-chips"></div>
 						</div>
-						{% else %}
-						<span>✅ No vulnerabilities found</span>
-						{% endif %}
 					</div>
 
 
 				</div>
-				{# script for Vulnerabilities len #}
-				<script>
-					function toggleFullVuln(element) {
-						const shortSpan = element.querySelector('.vuln-short');
-						const fullSpan = element.querySelector('.vuln-full');
-
-						if (shortSpan.style.display === 'none') {
-							shortSpan.style.display = 'inline';
-							fullSpan.style.display = 'none';
-						} else {
-							shortSpan.style.display = 'none';
-							fullSpan.style.display = 'inline';
-						}
-					}
-				</script>
-
-				<!-- {# script for show more button #}
-				<script>
-					function toggleVisibility(button) {
-					// Find the parent container (domain-chips)
-					const container = button.parentElement;
-					const hiddenItems = container.querySelectorAll('.chip.hidden');
-					const isHidden = hiddenItems.length > 0 && (hiddenItems[0].style.display === 'none' || hiddenItems[0].style.display === '');
-
-					hiddenItems.forEach(item => {
-						item.style.display = isHidden ? 'inline-flex' : 'none';
-					});
-
-					button.textContent = isHidden ? 'Show less' : 'Show more';
-				}
-				</script> -->
-
 			</div>
 		</div>
 	</div>
@@ -265,40 +196,25 @@
 	<script src="static/js/data/breakpoints.min.js"></script>
 	<script src="static/js/data/util.js"></script>
 	<script src="static/js/data/main.js"></script>
-
 	<!-- Include all js compiled plugins (below), or include individual files as needed -->
-
 	<script src="static/js/jquery.js"></script>
-
 	<!--modernizr.min.js-->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
-
 	<!--bootstrap.min.js-->
 	<script src="static/js/bootstrap.min.js"></script>
-
 	<!-- bootsnav js -->
 	<script src="static/js/bootsnav.js"></script>
-
 	<!-- jquery.sticky.js -->
 	<script src="static/js/jquery.sticky.js"></script>
-
 	<!-- for progress bar start-->
-
 	<!-- progressbar js -->
 	<script src="static/js/progressbar.js"></script>
-
 	<!-- appear js -->
 	<script src="static/js/jquery.appear.js"></script>
-
 	<!-- for progress bar end -->
-
 	<!--owl.carousel.js-->
 	<script src="static/js/owl.carousel.min.js"></script>
-
-
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-
-
 	<!--Custom JS-->
 	<script src="static/js/custom.js"></script>
 

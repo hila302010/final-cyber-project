@@ -159,6 +159,7 @@ function checkAndShowLoadingBarOnDataPage() {
                 url: "/progress",
                 method: "GET",
                 success: function (response) {
+                    updateSummary(); // Update summary immediately
                     if (response.status === 1) { // Only if running
                         showLoadingBar();
                         startPollingProgress(sessionId);
@@ -180,10 +181,8 @@ function setupFormSubmission(sessionId) {
     $("#infoForm").on("submit", function (event) {
         event.preventDefault(); // Prevent the default form submission
 
-        // // Show the loading bar container
-        // showLoadingBar();
-
-        // Store sessionId for use on /data page
+        // Generate a new session ID for each submission
+        sessionId = Date.now().toString();
         sessionStorage.setItem("sessionId", sessionId);
 
         // Collect form data
@@ -202,8 +201,6 @@ function setupFormSubmission(sessionId) {
             data: JSON.stringify(formData),
             success: function (response) {
                 console.log("Data loading started:", response);
-                // sessionStorage.setItem("sessionId", sessionId); // <-- This line must be here!
-                // sessionStorage.removeItem("dataVisited"); // (optional) reset for new session
                 window.location.href = "/data"; // Redirect to the /data page
             },
             error: function (error) {
@@ -212,12 +209,6 @@ function setupFormSubmission(sessionId) {
                 alert("Failed to start data loading. Please try again.");
             }
         });
-
-        // // Show the loading bar container
-        // showLoadingBar();
-
-        // // Start polling the progress endpoint
-        // startPollingProgress(sessionId);
     });
 }
 
@@ -225,6 +216,7 @@ function setupFormSubmission(sessionId) {
 // This function shows the loading bar and initializes its state
 // It also shows the cancel button and loading circle
 function showLoadingBar() {
+    $("#loading-spinner").show(); // Show the spinner
     $("#loading-bar-container").show();
     $("#loading-bar").css("width", "0%"); // Reset the progress bar
     $("#loading-percentage").text("0%"); // Reset the percentage text
@@ -238,6 +230,7 @@ function showLoadingBar() {
 // This function hides the loading bar and resets its state
 // It also hides the cancel button and loading circle
 function hideLoadingBar() {
+    $("#loading-spinner").hide(); // Hide the spinner
     $("#loading-bar-container").hide();
     $("#loading-circle").hide(); // Hide the loading circle
     $("#cancelButton").hide(); // Hide the Cancel button
@@ -260,17 +253,10 @@ function startPollingProgress(sessionId) {
                 $("#loading-percentage").text(progress + "%"); // Update the percentage text
                 $("#task-description").text(task); // Update the task description
 
-                // if (window.location.pathname === "/data" && status === 1) {
-                //     setTimeout(function () {
-                //         window.location.reload();
-                //     }, 5000);
-                // }
-                if(status === 1){
+                if (status === 1) {
                     setInterval(updateSummary, 5000); // Update summary every 5 seconds
                 }
-                if(status === 0){
-                    updateSummary();
-                }
+
                 if (progress >= 100) {
                     clearInterval(pollProgress); // Stop polling when progress reaches 100%
 
@@ -328,6 +314,15 @@ function updateSummary() {
     });
 }
 
+const chipSectionState = {
+    "#spf-missing-list": false,
+    "#dkim-missing-list": false,
+    "#dmarc-missing-list": false,
+    "#vuln-list": false
+};
+
+const expandedVulnSet = new Set();
+
 // Helper to update chips for SPF, DKIM, DMARC, Vulnerabilities
 function updateSummaryChips(dkimdmarc, ips) {
     // SPF
@@ -347,15 +342,12 @@ function updateSummaryChips(dkimdmarc, ips) {
     updateChipSection("#vuln-list", vulnerabilities, "No vulnerabilities found", true);
 }
 
-
-
-
 function updateChipSection(selector, items, emptyText, isVuln) {
     let container = $(selector);
     if (!container.length) return;
 
-    // Check if the section was expanded before update
-    const wasExpanded = container.data("expanded") === true;
+    // Use the global state
+    const wasExpanded = chipSectionState[selector] || false;
 
     container.empty();
     if (items.length === 0) {
@@ -364,20 +356,26 @@ function updateChipSection(selector, items, emptyText, isVuln) {
         items.forEach((item, idx) => {
             let hiddenClass = (idx >= 5 && !wasExpanded) ? "hidden" : "";
             if (isVuln) {
-                container.append(`<div class="chip ${hiddenClass}" onclick="toggleFullVuln(this)"><span class="vuln-short">${item.substring(0, 13)}...</span><span class="vuln-full" style="display:none;">${item}</span></div>`);
+                const isExpanded = expandedVulnSet.has(item);
+                container.append(
+                    `<div class="chip ${hiddenClass}" onclick="toggleFullVuln(this, '${item.replace(/'/g, "\\'")}')">
+                        <span class="vuln-short" style="display:${isExpanded ? 'none' : 'inline'};">${item.substring(0, 13)}...</span>
+                        <span class="vuln-full" style="display:${isExpanded ? 'inline' : 'none'};">${item}</span>
+                    </div>`
+                );
             } else {
                 container.append(`<div class="chip ${hiddenClass}">${item}</div>`);
             }
         });
         if (items.length > 5) {
             const btnText = wasExpanded ? "Show less" : "Show more";
-            container.append(`<button class="button-inline" onclick="toggleVisibility(this)" data-expanded="${wasExpanded}">${btnText}</button>`);
+            container.append(`<button class="button-inline" onclick="toggleVisibility(this, '${selector}')" data-expanded="${wasExpanded}">${btnText}</button>`);
         }
     }
 }
 
 
-function toggleVisibility(button) {
+function toggleVisibility(button, selector) {
     const container = button.parentElement;
     const hiddenItems = container.querySelectorAll('.chip.hidden');
     const isHidden = hiddenItems.length > 0 && (hiddenItems[0].style.display === 'none' || hiddenItems[0].style.display === '');
@@ -388,6 +386,22 @@ function toggleVisibility(button) {
 
     button.textContent = isHidden ? 'Show less' : 'Show more';
 
-    // Store the expanded state in the parent container's data attribute
-    $(container).parent().data("expanded", isHidden);
+    // Update the global state
+    chipSectionState[selector] = isHidden;
+}
+
+function toggleFullVuln(element, vulnKey) {
+    const shortSpan = element.querySelector('.vuln-short');
+    const fullSpan = element.querySelector('.vuln-full');
+    const isNowExpanded = shortSpan.style.display !== 'none';
+
+    if (isNowExpanded) {
+        shortSpan.style.display = 'none';
+        fullSpan.style.display = 'inline';
+        expandedVulnSet.add(vulnKey);
+    } else {
+        shortSpan.style.display = 'inline';
+        fullSpan.style.display = 'none';
+        expandedVulnSet.delete(vulnKey);
+    }
 }
