@@ -151,54 +151,18 @@
 					{# SPF #}
 					<div class="domain-section">
 						<li><strong>Missing SPF records for:</strong></li>
-						<div id="spf-missing-list"></div>
-						{% set spf_missing = [] %}
-						{% for record in dkimdmarc %}
-						{% if record.SPF == "No SPF record found" %}
-						{% set _ = spf_missing.append(record.domain or "N/A") %}
-						{% endif %}
-						{% endfor %}
-						{% if spf_missing %}
 						<div class="chip-wrapper">
-							<div class="domain-chips">
-								{% for domain in spf_missing %}
-								<div class="chip {% if loop.index > 5 %}hidden{% endif %}">{{ domain }}</div>
-								{% endfor %}
-							</div>
-							{% if spf_missing|length > 5 %}
-							<button class="button-inline" onclick="toggleVisibility(this)">Show more</button>
-							{% endif %}
-						</div>
-						{% else %}
-						<span>✅ No missing SPF records</span>
-						{% endif %}
+							<div id="spf-missing-list" class="domain-chips"></div>
+						</div>		
 					</div>
 
 
 					{# DKIM #}
 					<div class="domain-section">
 						<li><strong>Missing DKIM records for:</strong></li>
-						<div id="dkim-missing-list"></div>
-						{% set dkim_missing = [] %}
-						{% for record in dkimdmarc %}
-						{% if record.DKIM == "No DKIM record found" %}
-						{% set _ = dkim_missing.append(record.domain or "N/A") %}
-						{% endif %}
-						{% endfor %}
-						{% if dkim_missing %}
 						<div class="chip-wrapper">
-							<div class="domain-chips">
-								{% for domain in dkim_missing %}
-								<div class="chip {% if loop.index > 5 %}hidden{% endif %}">{{ domain }}</div>
-								{% endfor %}
-							</div>
-							{% if dkim_missing|length > 5 %}
-							<button class="button-inline" onclick="toggleVisibility(this)">Show more</button>
-							{% endif %}
+							<div id="dkim-missing-list" class="domain-chips"></div>
 						</div>
-						{% else %}
-						<span>✅ No missing DKIM records</span>
-						{% endif %}
 					</div>
 
 
@@ -276,20 +240,21 @@
 					}
 				</script>
 
-				{# script for show more button #}
-				{# script for show more button #}
+				<!-- {# script for show more button #}
 				<script>
 					function toggleVisibility(button) {
-						const hiddenItems = button.previousElementSibling.querySelectorAll('.hidden');
-						const isHidden = hiddenItems[0]?.style.display === 'none' || hiddenItems[0]?.style.display === '';
+					// Find the parent container (domain-chips)
+					const container = button.parentElement;
+					const hiddenItems = container.querySelectorAll('.chip.hidden');
+					const isHidden = hiddenItems.length > 0 && (hiddenItems[0].style.display === 'none' || hiddenItems[0].style.display === '');
 
-						hiddenItems.forEach(item => {
-							item.style.display = isHidden ? 'inline' : 'none';
-						});
+					hiddenItems.forEach(item => {
+						item.style.display = isHidden ? 'inline-flex' : 'none';
+					});
 
-						button.textContent = isHidden ? 'Show less' : 'Show more';
-					}
-				</script>
+					button.textContent = isHidden ? 'Show less' : 'Show more';
+				}
+				</script> -->
 
 			</div>
 		</div>

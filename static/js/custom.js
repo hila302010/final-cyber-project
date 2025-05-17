@@ -265,8 +265,12 @@ function startPollingProgress(sessionId) {
                 //         window.location.reload();
                 //     }, 5000);
                 // }
-                setInterval(updateSummary, 5000); // Update summary every 5 seconds
-
+                if(status === 1){
+                    setInterval(updateSummary, 5000); // Update summary every 5 seconds
+                }
+                if(status === 0){
+                    updateSummary();
+                }
                 if (progress >= 100) {
                     clearInterval(pollProgress); // Stop polling when progress reaches 100%
 
@@ -343,29 +347,47 @@ function updateSummaryChips(dkimdmarc, ips) {
     updateChipSection("#vuln-list", vulnerabilities, "No vulnerabilities found", true);
 }
 
+
+
+
 function updateChipSection(selector, items, emptyText, isVuln) {
     let container = $(selector);
     if (!container.length) return;
+
+    // Check if the section was expanded before update
+    const wasExpanded = container.data("expanded") === true;
+
     container.empty();
     if (items.length === 0) {
         container.append(`<span>✅ ${emptyText}</span>`);
     } else {
-        items.slice(0, 5).forEach(item => {
+        items.forEach((item, idx) => {
+            let hiddenClass = (idx >= 5 && !wasExpanded) ? "hidden" : "";
             if (isVuln) {
-                container.append(`<div class="chip" onclick="toggleFullVuln(this)"><span class="vuln-short">${item.substring(0, 13)}...</span><span class="vuln-full" style="display:none;">${item}</span></div>`);
+                container.append(`<div class="chip ${hiddenClass}" onclick="toggleFullVuln(this)"><span class="vuln-short">${item.substring(0, 13)}...</span><span class="vuln-full" style="display:none;">${item}</span></div>`);
             } else {
-                container.append(`<div class="chip">${item}</div>`);
+                container.append(`<div class="chip ${hiddenClass}">${item}</div>`);
             }
         });
         if (items.length > 5) {
-            container.append(`<button class="button-inline" onclick="toggleVisibility(this)">Show more</button>`);
-            items.slice(5).forEach(item => {
-                if (isVuln) {
-                    container.append(`<div class="chip hidden" onclick="toggleFullVuln(this)"><span class="vuln-short">${item.substring(0, 13)}...</span><span class="vuln-full" style="display:none;">${item}</span></div>`);
-                } else {
-                    container.append(`<div class="chip hidden">${item}</div>`);
-                }
-            });
+            const btnText = wasExpanded ? "Show less" : "Show more";
+            container.append(`<button class="button-inline" onclick="toggleVisibility(this)" data-expanded="${wasExpanded}">${btnText}</button>`);
         }
     }
+}
+
+
+function toggleVisibility(button) {
+    const container = button.parentElement;
+    const hiddenItems = container.querySelectorAll('.chip.hidden');
+    const isHidden = hiddenItems.length > 0 && (hiddenItems[0].style.display === 'none' || hiddenItems[0].style.display === '');
+
+    hiddenItems.forEach(item => {
+        item.style.display = isHidden ? 'inline-flex' : 'none';
+    });
+
+    button.textContent = isHidden ? 'Show less' : 'Show more';
+
+    // Store the expanded state in the parent container's data attribute
+    $(container).parent().data("expanded", isHidden);
 }
