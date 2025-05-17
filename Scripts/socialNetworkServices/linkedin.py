@@ -18,7 +18,7 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(message)s')
 def login_to_linkedin(driver, username, password):
     try:
         driver.get("https://www.linkedin.com/login")
-        time.sleep(2)
+        time.sleep(5)
         # Enter username
         driver.find_element(By.ID, "username").send_keys(username)
         # Enter password
@@ -35,7 +35,7 @@ def navigate_to_company_page(driver, company_name):
         # Create the LinkedIn URL for the company page (format: https://www.linkedin.com/company/<company_name>)
         company_url = f"https://www.linkedin.com/company/{company_name.lower()}/"
         driver.get(company_url)
-        time.sleep(3)
+        time.sleep(5)
     except Exception as e:
         logging.error(f"Error navigating to company page: {e}")
         raise
@@ -48,7 +48,7 @@ def navigate_to_people_tab(driver, company_name):
             EC.presence_of_element_located(
                 (By.XPATH, f"//a[contains(@href, '/company/{company_name.lower()}/people/')]"))
         )
-        time.sleep(1)  # Allow time to visually see the element
+        time.sleep(5)  # Allow time to visually see the element
 
         # Create an ActionChains object to simulate the mouse actions
         actions = ActionChains(driver)
@@ -56,12 +56,12 @@ def navigate_to_people_tab(driver, company_name):
         # Move the mouse to the People tab
         actions.move_to_element(people_tab).perform()
         logging.info("Mouse moved to the People tab.")
-        time.sleep(1)  # Wait to see the mouse move
+        time.sleep(5)  # Wait to see the mouse move
 
         # Click on the People tab
         actions.click().perform()
         logging.info("Mouse clicked on the People tab.")
-        time.sleep(3)  # Allow the page to load
+        time.sleep(5)  # Allow the page to load
 
         # Print the current URL after the page loads
         current_url = driver.current_url
@@ -77,7 +77,7 @@ def scroll_down(driver):
     last_height = driver.execute_script("return document.body.scrollHeight")
     while True:
         driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
-        time.sleep(1)  # Delay to mimic human behavior
+        time.sleep(5)  # Delay to mimic human behavior
         new_height = driver.execute_script("return document.body.scrollHeight")
         if new_height == last_height:
             try:
@@ -88,7 +88,7 @@ def scroll_down(driver):
                     )
                 )
                 driver.execute_script("arguments[0].scrollIntoView(true);", load_more_button)
-                time.sleep(1)
+                time.sleep(5)
                 load_more_button.click()
                 logging.info("Clicked 'Show more results' button.")
 
@@ -207,7 +207,7 @@ def get_company_name(domain):
     except Exception as e:
         logging.error(f"An unexpected error occurred: {e}")
     return None
-from selenium.webdriver.chrome.options import Options
+
 
 
 def execute_linkedin(domain):
@@ -231,16 +231,16 @@ def execute_linkedin(domain):
         logging.error("LinkedIn credentials are not set.")
         exit(1)
     
-    # Configure Chrome to run in headless mode
     chrome_options = Options()
-    chrome_options.add_argument("--incognito")  # NEW: Incognito mode
-    """chrome_options.add_argument("--headless")  # Run in headless mode
-    chrome_options.add_argument("--disable-gpu")  # Disable GPU acceleration (optional)
-    chrome_options.add_argument("--window-size=1920x1080")  # Set a default window size
-    chrome_options.add_argument("--no-sandbox")  # Bypass OS security model (useful in some environments)
-    chrome_options.add_argument("--disable-dev-shm-usage")  # Overcome limited resource problems in Docker"""
+    chrome_options.add_argument("--incognito")
+    # Do NOT add "--headless" if you want to see the window 
+    # chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--disable-gpu")
+    chrome_options.add_argument("--window-size=1920x1080")
+    chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("--disable-dev-shm-usage")
 
-    driver = webdriver.Chrome(options=chrome_options)  # Use the updated function
+    driver = webdriver.Chrome(options=chrome_options)
     driver.maximize_window()
 
     try:

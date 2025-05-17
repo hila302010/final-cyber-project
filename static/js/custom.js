@@ -1,30 +1,29 @@
-	/*==================================
-	* Author        : "ThemeSine"
-	* Template Name : Khanas HTML Template
-	* Version       : 1.0
-	==================================== */
+/*==================================
+* Author        : "ThemeSine"
+* Template Name : Khanas HTML Template
+* Version       : 1.0
+==================================== */
 
 
 
-	/*=========== TABLE OF CONTENTS ===========
-	1. Scroll To Top 
-	2. Smooth Scroll spy
-	3. Progress-bar
-	4. owl carousel
-	5. welcome animation support
-	======================================*/
+/*=========== TABLE OF CONTENTS ===========
+1. Scroll To Top 
+2. Smooth Scroll spy
+3. Progress-bar
+4. owl carousel
+5. welcome animation support
+======================================*/
 
-$(document).ready(function()
-{
-	"use strict";
-	  initializeScrollToTop();
+$(document).ready(function () {
+    "use strict";
+    initializeScrollToTop();
     initializeSmoothScrollSpy();
     initializeProgressBar();
     initializeOwlCarousel();
     initializeWelcomeAnimation();
     fetchAboutUsText();
     initializeLoadingBar();
-});	
+});
 
 
 // 1. Scroll To Top
@@ -44,9 +43,9 @@ function initializeScrollToTop() {
         return false;
     });
 }
-	
 
-	// 2. Smooth Scroll spy
+
+// 2. Smooth Scroll spy
 function initializeSmoothScrollSpy() {
     $('.header-area').sticky({
         topSpacing: 0
@@ -68,7 +67,7 @@ function initializeSmoothScrollSpy() {
 }
 
 
-	// 3. Progress-bar
+// 3. Progress-bar
 function initializeProgressBar() {
     var dataToggleTooTip = $('[data-toggle="tooltip"]');
     var progressBar = $(".progress-bar");
@@ -85,8 +84,8 @@ function initializeProgressBar() {
     }
 }
 
-	
-	// 4. owl carousel
+
+// 4. owl carousel
 function initializeOwlCarousel() {
     $('#client').owlCarousel({
         items: 7,
@@ -129,7 +128,7 @@ function initializeWelcomeAnimation() {
 }
 
 
-	// 6. fetch about us text
+// 6. fetch about us text
 function fetchAboutUsText() {
     $.get("/static/AboutUs.txt")
         .done(function (data) {
@@ -143,8 +142,8 @@ function fetchAboutUsText() {
 }
 
 
-	// 7. LOADING BAR - SHAKED
-	// This function initializes the loading bar and sets up the form submission and cancel button functionality
+// 7. LOADING BAR - SHAKED
+// This function initializes the loading bar and sets up the form submission and cancel button functionality
 function initializeLoadingBar() {
     const sessionId = Date.now().toString(); // Use a timestamp as a unique session ID
 
@@ -180,6 +179,7 @@ function setupFormSubmission(sessionId) {
             data: JSON.stringify(formData),
             success: function (response) {
                 console.log("Data loading started:", response);
+                window.location.href = "/data"; // Redirect to the /data page
             },
             error: function (error) {
                 console.error("Error starting data load:", error);
@@ -200,7 +200,7 @@ function showLoadingBar() {
     $("#cancelButton").show(); // Show the Cancel button
     $("#loading-circle").show(); // Show the loading circle
     $("#task-description").show();
-		 $("#coffee-break-message").show(); // Show the coffee break message
+    $("#coffee-break-message").show(); // Show the coffee break message
 }
 
 
@@ -211,7 +211,7 @@ function hideLoadingBar() {
     $("#loading-circle").hide(); // Hide the loading circle
     $("#cancelButton").hide(); // Hide the Cancel button
     $("#task-description").hide();
-		$("#coffee-break-message").hide(); // Hide the coffee break message
+    $("#coffee-break-message").hide(); // Hide the coffee break message
 }
 
 // This function starts polling the progress endpoint every second
@@ -228,7 +228,12 @@ function startPollingProgress(sessionId) {
                 $("#loading-percentage").text(progress + "%"); // Update the percentage text
                 $("#task-description").text(task); // Update the task description
 
-                if (progress >= 100) {
+                if (window.location.pathname === "/data" && progress < 100) {
+                    setTimeout(function () {
+                        window.location.reload();
+                    }, 5000);
+                }
+                else if (progress >= 100) {
                     clearInterval(pollProgress); // Stop polling when progress reaches 100%
 
                     // Keep the completed bar visible for 1 second before hiding it

@@ -1,29 +1,99 @@
-Name,Role,Username1,Username2,Username3
-Tomer Zachor,4th year Electrical & Computer Engineering student at Ben-Gurion University of the Negev,tomer.zachor@bgu.ac.il,tomerzachor@bgu.ac.il,tzachor@bgu.ac.il
-Guy Michael Tammam,Electrical and Computer Engineering Graduate at BGU,guy.tammam@bgu.ac.il,guytammam@bgu.ac.il,gtammam@bgu.ac.il
-Oleg Dukhno,Director of Bariatric and Minimally invasive Surgery Center at Soroka Medical Center,oleg.dukhno@bgu.ac.il,olegdukhno@bgu.ac.il,odukhno@bgu.ac.il
-Ori Salomon,"Physics student, BGU",ori.salomon@bgu.ac.il,orisalomon@bgu.ac.il,osalomon@bgu.ac.il
-Frederic Libersat,Professor at Ben Gurion University and The Abraham and Bessie Zacks Chair in Neurobiology,frederic.libersat@bgu.ac.il,fredericlibersat@bgu.ac.il,flibersat@bgu.ac.il
-Sagi Sameah,Student at Ben-Gurion University of the Negev,sagi.sameah@bgu.ac.il,sagisameah@bgu.ac.il,ssameah@bgu.ac.il
-max kleiner,chemical engineer at EST ecological systems and treatments,max.kleiner@bgu.ac.il,maxkleiner@bgu.ac.il,mkleiner@bgu.ac.il
-Shira Kauffman ,Donors & VIP visitors unit Coordinator at BGU,shira.kauffman@bgu.ac.il,shirakauffman@bgu.ac.il,skauffman@bgu.ac.il
-Michal Miterani,Projects manager at Mimun Yashir,michal.miterani@bgu.ac.il,michalmiterani@bgu.ac.il,mmiterani@bgu.ac.il
-Vladimir Lapidus,at Ben Gurion University,vladimir.lapidus@bgu.ac.il,vladimirlapidus@bgu.ac.il,vlapidus@bgu.ac.il
-Carmit Cohen,Researcher,carmit.cohen@bgu.ac.il,carmitcohen@bgu.ac.il,ccohen@bgu.ac.il
-Hadas Ner-Gaon,researcher at BGU,hadas.ner-gaon@bgu.ac.il,hadasner-gaon@bgu.ac.il,hner-gaon@bgu.ac.il
-Ifat Ben-Simon,Leave of Absence,ifat.ben-simon@bgu.ac.il,ifatben-simon@bgu.ac.il,iben-simon@bgu.ac.il
-Eugene Frumker,Head of Attosecond Science and Nanophotonics Group @BGU & Fellow of the IQSE@TAMU,eugene.frumker@bgu.ac.il,eugenefrumker@bgu.ac.il,efrumker@bgu.ac.il
-Berry Pinshow,Professor Emeritus at BGU,berry.pinshow@bgu.ac.il,berrypinshow@bgu.ac.il,bpinshow@bgu.ac.il
-Eric Maimon,Dr at bgu university,eric.maimon@bgu.ac.il,ericmaimon@bgu.ac.il,emaimon@bgu.ac.il
-Guy Shani,"Professor, Software and Information Systems Engineering, Ben-Gurion University",guy.shani@bgu.ac.il,guyshani@bgu.ac.il,gshani@bgu.ac.il
-Biomedtech BGU,community for biomedical students at BGU University,biomedtech.bgu@bgu.ac.il,biomedtechbgu@bgu.ac.il,bbgu@bgu.ac.il
-Tania Danov,--,tania.danov@bgu.ac.il,taniadanov@bgu.ac.il,tdanov@bgu.ac.il
-Amit Savaya,"Mariculture development officer, Ministry of Agriculture and Rural development, Israel",amit.savaya@bgu.ac.il,amitsavaya@bgu.ac.il,asavaya@bgu.ac.il
-Rachel Lichtenstein,Senior Lecturer at BGU,rachel.lichtenstein@bgu.ac.il,rachellichtenstein@bgu.ac.il,rlichtenstein@bgu.ac.il
-Ido Efrat,Prof at BGU,ido.efrat@bgu.ac.il,idoefrat@bgu.ac.il,iefrat@bgu.ac.il
-max frost,Student at BGU,max.frost@bgu.ac.il,maxfrost@bgu.ac.il,mfrost@bgu.ac.il
-vladimir lyandres,professor at bgu,vladimir.lyandres@bgu.ac.il,vladimirlyandres@bgu.ac.il,vlyandres@bgu.ac.il
-Ella Akkerman,Scientific software consultant at BGU,ella.akkerman@bgu.ac.il,ellaakkerman@bgu.ac.il,eakkerman@bgu.ac.il
-Benjamin Arazi,Professor at BGU,benjamin.arazi@bgu.ac.il,benjaminarazi@bgu.ac.il,barazi@bgu.ac.il
-Yehuda Ben-Shimol,"Consulting History: Ionoterra, Giraffic, ESL, MOBILICOM, Itran, Tadiran Communications, QVergence, TerraX, Gilat",yehuda.ben-shimol@bgu.ac.il,yehudaben-shimol@bgu.ac.il,yben-shimol@bgu.ac.il
-Nave Markovich,Mechanical Engineering student at Ben-Gurion University,nave.markovich@bgu.ac.il,navemarkovich@bgu.ac.il,nmarkovich@bgu.ac.il
+Name,Role,USER1,USER2,USER3
+Noa Cohen,Software Developer,noa.cohen@zemingo,noacohen@zemingo,ncohen@zemingo
+Alexander Pochtarenko,QA & Automation Engineer,alexander.pochtarenko@zemingo,alexanderpochtarenko@zemingo,apochtarenko@zemingo
+Nadav Chalfen,QA Engineer at Zemingo,nadav.chalfen@zemingo,nadavchalfen@zemingo,nchalfen@zemingo
+Sinyora Cohen,Project & Product Manager | Delivery Manager | Group Leader | Program Manager,sinyora.cohen@zemingo,sinyoracohen@zemingo,scohen@zemingo
+Michael Mozeikov,∞ QA Engineer Ready to Unleash the Power of Automation and Collaboration! 🚀∞,michael.mozeikov@zemingo,michaelmozeikov@zemingo,mmozeikov@zemingo
+Netanel Halevi,Full Stack Developer & Game developer.,netanel.halevi@zemingo,netanelhalevi@zemingo,nhalevi@zemingo
+Ofir Attias,UX Designer at Zemingo,ofir.attias@zemingo,ofirattias@zemingo,oattias@zemingo
+Linoi M. Vaselezam,HR Manager ★ HRBP ★ Employee's Personal Branding Expert ★ Certified Career Counselor (CCC) ★ Certified Professional Career Coach (PCC) ★,linoi.vaselezam@zemingo,linoivaselezam@zemingo,lvaselezam@zemingo
+Rohi Benhammo,"QA Engineer Web/Mobile , Client/Server",rohi.benhammo@zemingo,rohibenhammo@zemingo,rbenhammo@zemingo
+Yonatan Raviv,Senior QA Engineer at Zemingo,yonatan.raviv@zemingo,yonatanraviv@zemingo,yraviv@zemingo
+Adi Didi,Product Designer | UX/UI,adi.didi@zemingo,adididi@zemingo,adidi@zemingo
+Hadas Strul,UX Designer @ Zemingo,hadas.strul@zemingo,hadasstrul@zemingo,hstrul@zemingo
+Eden Goshen,Product Manager at Zemingo,eden.goshen@zemingo,edengoshen@zemingo,egoshen@zemingo
+Amit Buchris,Product Manager at Zemingo,amit.buchris@zemingo,amitbuchris@zemingo,abuchris@zemingo
+Gil Nimer,Full Stack Team Lead at Zemingo,gil.nimer@zemingo,gilnimer@zemingo,gnimer@zemingo
+Tom Milberg,GM Zemingo R&D at Zemingo,tom.milberg@zemingo,tommilberg@zemingo,tmilberg@zemingo
+Naor Orenstein,Head of Finance at Zemingo,naor.orenstein@zemingo,naororenstein@zemingo,norenstein@zemingo
+Yael Shmida,Junior Product Designer at Zemingo,yael.shmida@zemingo,yaelshmida@zemingo,yshmida@zemingo
+ Tamara Barzillay- Braverman ,Product Designer | Crafting intuitive digital experiences at Zemingo | Specializing in UX/UI and user-centric design solutions,tamara.braverman@zemingo,tamarabraverman@zemingo,tbraverman@zemingo
+omer klein,Full - Stack Developer at Zemingo.,omer.klein@zemingo,omerklein@zemingo,oklein@zemingo
+Konstantin Evstafiev,Android Developer at Zemingo,konstantin.evstafiev@zemingo,konstantinevstafiev@zemingo,kevstafiev@zemingo
+Nataly Boguslavsky,QA Team Lead,nataly.boguslavsky@zemingo,natalyboguslavsky@zemingo,nboguslavsky@zemingo
+Bracha Rubin,Bachelor's degree at The College of Management Academic Studies,bracha.rubin@zemingo,bracharubin@zemingo,brubin@zemingo
+Irina Litvak,"Bookkeeper, Senior payroll accountant",irina.litvak@zemingo,irinalitvak@zemingo,ilitvak@zemingo
+Yarden Lifshitz,Digital Innovation | Giving service to CDO's & CTO's/CIO's | Conference Moderator,yarden.lifshitz@zemingo,yardenlifshitz@zemingo,ylifshitz@zemingo
+Gal Ben Menachem,Product Designer at Zemingo,gal.menachem@zemingo,galmenachem@zemingo,gmenachem@zemingo
+Aviv Levanon,Mobile Software developer,aviv.levanon@zemingo,avivlevanon@zemingo,alevanon@zemingo
+Moti Meler,QA Team leader at Zemingo Group,moti.meler@zemingo,motimeler@zemingo,mmeler@zemingo
+Netanel Mizrahi,Mobile Developer,netanel.mizrahi@zemingo,netanelmizrahi@zemingo,nmizrahi@zemingo
+Hennadii Sakhniuk,Software Architect | Engineering Manager,hennadii.sakhniuk@zemingo,hennadiisakhniuk@zemingo,hsakhniuk@zemingo
+Asaf Berko,Senior iOS Developer at Zemingo,asaf.berko@zemingo,asafberko@zemingo,aberko@zemingo
+Netta Henen,Employee Experience manager +Office Manager at Trigo Vision,netta.henen@zemingo,nettahenen@zemingo,nhenen@zemingo
+Diana Kuperman,Product Designer @ Zemingo,diana.kuperman@zemingo,dianakuperman@zemingo,dkuperman@zemingo
+keren ben dror,--,keren.dror@zemingo,kerendror@zemingo,kdror@zemingo
+Betzalel Silver,Team Lead | Tech Strategy & Leader | Mobile Architecture Expert,betzalel.silver@zemingo,betzalelsilver@zemingo,bsilver@zemingo
+Amit Hadad,Senior software Engineer at Zemingo,amit.hadad@zemingo,amithadad@zemingo,ahadad@zemingo
+Snir Yacoby,Mobile Developer (Flutter),snir.yacoby@zemingo,sniryacoby@zemingo,syacoby@zemingo
+Chen Hanna Benatav,QA Tester @ Zemingo | Diploma of Education in QA,chen.benatav@zemingo,chenbenatav@zemingo,cbenatav@zemingo
+Maya Aronson,product designer,maya.aronson@zemingo,mayaaronson@zemingo,maronson@zemingo
+Robert Priscu,CEO | Building Innovative Digital Products & Services,robert.priscu@zemingo,robertpriscu@zemingo,rpriscu@zemingo
+Hadar Golan,Product designer,hadar.golan@zemingo,hadargolan@zemingo,hgolan@zemingo
+Tomer Peled,Swifty Ninja iOS Developer,tomer.peled@zemingo,tomerpeled@zemingo,tpeled@zemingo
+Linoy Efrati,Operations Manager at Zemingo,linoy.efrati@zemingo,linoyefrati@zemingo,lefrati@zemingo
+Olena Savchenko,Senior Product Designer,olena.savchenko@zemingo,olenasavchenko@zemingo,osavchenko@zemingo
+Serhii Virstiuk,Team Lead | Senior Software Developer,serhii.virstiuk@zemingo,serhiivirstiuk@zemingo,svirstiuk@zemingo
+Yifat levy,HR Manager at Zemingo,yifat.levy@zemingo,yifatlevy@zemingo,ylevy@zemingo
+Nickolay Sachno,Android Developer,nickolay.sachno@zemingo,nickolaysachno@zemingo,nsachno@zemingo
+Michał Wołek,"Frontend Developer (React, TypeScript)",michał.wołek@zemingo,michałwołek@zemingo,mwołek@zemingo
+Davyd Polianchuk,QA Engineer | Founder @ Degna,davyd.polianchuk@zemingo,davydpolianchuk@zemingo,dpolianchuk@zemingo
+Anna Alexandrovich,Product Design Team Lead,anna.alexandrovich@zemingo,annaalexandrovich@zemingo,aalexandrovich@zemingo
+Yanai Rozenberg,Mobile Developer at Zemingo,yanai.rozenberg@zemingo,yanairozenberg@zemingo,yrozenberg@zemingo
+Pavel Korshun,Senior Front-end engineer,pavel.korshun@zemingo,pavelkorshun@zemingo,pkorshun@zemingo
+Alexander Voronovich,Senior .Net Developer,alexander.voronovich@zemingo,alexandervoronovich@zemingo,avoronovich@zemingo
+Gabi Alterman,Senior Android developer at Zemingo Mobile Group,gabi.alterman@zemingo,gabialterman@zemingo,galterman@zemingo
+Tomasz Bursztyński,Full Stack Developer | .NET Node.js,tomasz.bursztyński@zemingo,tomaszbursztyński@zemingo,tbursztyński@zemingo
+Joanna Piotrowska,Content Manager | Content Specialist | Copywriter,joanna.piotrowska@zemingo,joannapiotrowska@zemingo,jpiotrowska@zemingo
+Vitali Dziachuk,"JavaScript Developer @ Zemingo | React.js, TypeScript",vitali.dziachuk@zemingo,vitalidziachuk@zemingo,vdziachuk@zemingo
+Erez Pickman,flutter & android developer,erez.pickman@zemingo,erezpickman@zemingo,epickman@zemingo
+Lena Tribelsky,Senior Digital Marketing Manager,lena.tribelsky@zemingo,lenatribelsky@zemingo,ltribelsky@zemingo
+Asaf Moav,iOS Team Lead,asaf.moav@zemingo,asafmoav@zemingo,amoav@zemingo
+Nurit (Nura) Millo,Executive Studio Manager | Zemingo Design,nurit.millo@zemingo,nuritmillo@zemingo,nmillo@zemingo
+Gil Katzir,Product Manager,gil.katzir@zemingo,gilkatzir@zemingo,gkatzir@zemingo
+Eli Feigelman,Fullstack / Mobile Developer,eli.feigelman@zemingo,elifeigelman@zemingo,efeigelman@zemingo
+Leora Kahn,Android Developer,leora.kahn@zemingo,leorakahn@zemingo,lkahn@zemingo
+Adi Reizberg (Meiseles),Branding & UX/UI Designer,adi.(meiseles)@zemingo,adi(meiseles)@zemingo,a(meiseles)@zemingo
+Aleksandra Masunova,Operations Manager | Team Lead | Technical Support manager,aleksandra.masunova@zemingo,aleksandramasunova@zemingo,amasunova@zemingo
+Ayub Otieno,QA Engineer || JavaScript || Jira || Azure Devops || SQL || Cypress || Passionate about building projects with positive impacts,ayub.otieno@zemingo,ayubotieno@zemingo,aotieno@zemingo
+Tomasz Chwesewicz,Content Manager | Copywriter | Alpaca Enthusiast | SMM,tomasz.chwesewicz@zemingo,tomaszchwesewicz@zemingo,tchwesewicz@zemingo
+Uri Romano,Leading design and innovation at Zemingo,uri.romano@zemingo,uriromano@zemingo,uromano@zemingo
+Idan Levi,iOS Developer at Zemingo,idan.levi@zemingo,idanlevi@zemingo,ilevi@zemingo
+Noa Cohen,Multidisciplinary graphic designer,noa.cohen@zemingo,noacohen@zemingo,ncohen@zemingo
+Ori Koren,Building innovative digital products at Zemingo,ori.koren@zemingo,orikoren@zemingo,okoren@zemingo
+Ortal Tal,Delivery Manager at Zemingo,ortal.tal@zemingo,ortaltal@zemingo,otal@zemingo
+Dan-el Khen,Freelance Software Developer,dan-el.khen@zemingo,dan-elkhen@zemingo,dkhen@zemingo
+Michal Kapon,"Nutritionist, Well Being Consultant, Nutrition and Health Expert for organizations, Specialized in HighTech industry",michal.kapon@zemingo,michalkapon@zemingo,mkapon@zemingo
+Ruby Gerber,Product Designer at Zemingo,ruby.gerber@zemingo,rubygerber@zemingo,rgerber@zemingo
+Michał Andruszkiewicz,Senior Product Manager | Driving Product Decisions with Data Insights,michał.andruszkiewicz@zemingo,michałandruszkiewicz@zemingo,mandruszkiewicz@zemingo
+Assaf Yogev,"GM Zemingo Design (fka Yellowtale), +15 years experience leading end-to-end Branding, Product, Service and UX/UI Design projects",assaf.yogev@zemingo,assafyogev@zemingo,ayogev@zemingo
+Konrad Wysokiński,Design Team Leader | Ultramarathon Runner,konrad.wysokiński@zemingo,konradwysokiński@zemingo,kwysokiński@zemingo
+Adam Intrys,"Service Delivery Manager | Delivery Management, Competence Centre Management, ITIL v4",adam.intrys@zemingo,adamintrys@zemingo,aintrys@zemingo
+Hanna Hancharova,Product designer,hanna.hancharova@zemingo,hannahancharova@zemingo,hhancharova@zemingo
+Ruth Tadesse,"Web Ops at Zemingo | IT support| Help desk | L1/L2 analyst | Technical support specialist | Networking | Troubleshooting | Programming | Helping clients make customers, not a sale",ruth.tadesse@zemingo,ruthtadesse@zemingo,rtadesse@zemingo
+Ilya Barachenia,Software engineer | TypeScript | Solidity | React | Next | NodeJS | Telegram MiniApps | TON | Tact | funC,ilya.barachenia@zemingo,ilyabarachenia@zemingo,ibarachenia@zemingo
+Hristo Ganov,Front End Team Leader at Zemingo,hristo.ganov@zemingo,hristoganov@zemingo,hganov@zemingo
+Andrej Shevchenko,Product Manager • Certified PSPO,andrej.shevchenko@zemingo,andrejshevchenko@zemingo,ashevchenko@zemingo
+Daniel Beringer,Experienced CMS Publisher | Creative Problem Solver | Process Automation Enthusiast,daniel.beringer@zemingo,danielberinger@zemingo,dberinger@zemingo
+Dawid Holisz,React Developer,dawid.holisz@zemingo,dawidholisz@zemingo,dholisz@zemingo
+Mikolai Prakunin,Senior Frontend Developer,mikolai.prakunin@zemingo,mikolaiprakunin@zemingo,mprakunin@zemingo
+Julia Khvostyk,Frontend Developer,julia.khvostyk@zemingo,juliakhvostyk@zemingo,jkhvostyk@zemingo
+Dzmitry Dziadzin,"Senior Software Developer, Team Lead",dzmitry.dziadzin@zemingo,dzmitrydziadzin@zemingo,ddziadzin@zemingo
+Rafal GRUSZCZYNSKI,General Manager Zemingo Poland,rafal.gruszczynski@zemingo,rafalgruszczynski@zemingo,rgruszczynski@zemingo
+Hagit Liran,Digital Strategy | Innovation | Product Management | Digital Transformation,hagit.liran@zemingo,hagitliran@zemingo,hliran@zemingo
+Aliaksandra Aliaksandrava,"Content Operations Lead, ex-Wargaming",aliaksandra.aliaksandrava@zemingo,aliaksandraaliaksandrava@zemingo,aaliaksandrava@zemingo
+Kseniia Pashkovska,Experienced Product Designer • UX Specialist,kseniia.pashkovska@zemingo,kseniiapashkovska@zemingo,kpashkovska@zemingo
+Anton Dubik,"Software Engineer @ Zemingo | React, Next.js",anton.dubik@zemingo,antondubik@zemingo,adubik@zemingo
+PAVEL MAKHNACH,Frontend Developer,pavel.makhnach@zemingo,pavelmakhnach@zemingo,pmakhnach@zemingo
+Kristina Willliams,Director Of Partnerships at Copilot.CX,kristina.willliams@zemingo,kristinawillliams@zemingo,kwillliams@zemingo
+Itai Keshet,Creative Lead | Turning Strategic Visions into Fresh Campaigns,itai.keshet@zemingo,itaikeshet@zemingo,ikeshet@zemingo
