@@ -43,6 +43,23 @@ function initializeScrollToTop() {
     });
 }
 
+$(document).ready(function () {
+    // Show/hide the button
+    $(window).scroll(function () {
+        if ($(this).scrollTop() > 100) {
+            $('#scroll-Top').fadeIn();
+        } else {
+            $('#scroll-Top').fadeOut();
+        }
+    });
+    // Scroll to top on click
+    $('#scroll-top').click(function () {
+        $("html, body").animate({ scrollTop: 0 }, 600);
+        return false;
+    });
+});
+
+
 
 // 2. Smooth Scroll spy
 function initializeSmoothScrollSpy() {

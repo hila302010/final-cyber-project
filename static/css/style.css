@@ -817,7 +817,7 @@ nav.navbar.bootsnav .navbar-toggle i{color: #439397;}
 
 .qanda {
     padding: 50px 0;
-    background-color: #f9f9f9;
+    background-color: #ffffff;
 }
 
 .qanda .section-heading h2 {
@@ -881,7 +881,7 @@ nav.navbar.bootsnav .navbar-toggle i{color: #439397;}
 /* Contact Us Section */
 .contact {
     padding: 60px 0;
-    background-color: #f9f9f9;
+    background-color: #ffffff;
 }
 
 .contact-card {
@@ -1199,3 +1199,170 @@ nav.navbar.bootsnav .navbar-toggle i{color: #439397;}
     0%   {bottom:0px;}
     100%  {bottom:7px;}
 }
+/* Colorful About Section Styles */
+.about-diagram-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+  
+  .about-arrow {
+    font-size: 24px;
+    color: #555;
+  }
+
+  @media (max-width: 1100px) {
+    .about-diagram-container {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  }
+.about-box {
+  background: linear-gradient(135deg, #f8fafc 60%, #e0e7ff 100%);
+  border-radius: 18px;
+  box-shadow: 0 6px 24px rgba(44,62,80,0.08);
+  padding: 28px 36px 24px 36px;
+  width: 370px;
+  text-align: center;
+  position: relative;
+  border: none;
+  transition: transform 0.2s;
+}
+.about-box:hover {
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 12px 32px rgba(44,62,80,0.16);
+}
+.about-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 12px auto;
+  color: #fff;
+  font-size: 2rem;
+  box-shadow: 0 2px 8px rgba(44,62,80,0.12);
+}
+.about-box h3 {
+  margin-top: 0;
+  color: #2c3e50;
+  font-size: 22px;
+  border-bottom: 2px solid #ccc;
+  padding-bottom: 7px;
+  margin-bottom: 18px;
+  letter-spacing: 1px;
+}
+.about-box ul {
+  list-style: none;
+  padding-left: 0;
+  text-align: left;
+  margin: 0;
+}
+.about-box ul li {
+  margin-bottom: 10px;
+  font-size: 1.08em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.about-box ul li i {
+  color:    #5dbed2;
+  min-width: 22px;
+  text-align: center;
+}
+.about-arrow {
+  font-size: 2.2rem;
+  color: #5dbed2;
+  margin: 0 0 0 0;
+  text-shadow: 0 2px 8px #e0e7ff;
+  align-self: center; /* Vertically center the arrow between boxes */
+}
+.about-diagram-container {
+  display: flex;
+  flex-direction: row;   /* Change from column to row */
+  align-items: flex-start; /* Align boxes to the top */
+  gap: 40px;
+  margin-bottom: 40px;
+  justify-content: center; /* Center the row horizontally */
+}
+.about-input .about-icon { background: #6c63ff; }
+.about-tools .about-icon { background: #ff6f61; }
+.about-data .about-icon { background: #43cea2; }
+.about-report .about-icon { background: #c4f71e; }
+
+.about-diagram-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 40px;
+    flex-wrap: nowrap;
+    margin-bottom: 40px;
+  }
+
+  .about-box {
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    padding: 30px 20px;
+    width: 250px;
+    height: 420px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+    .about-box.about-data {
+    width: 300px; /* or adjust to your preference */
+    }
+    .about-box.about-report {
+    width: 270px; /* or adjust to your preference */
+    }
+    .about-box.about-input {
+    width: 270px; /* or adjust to your preference */
+    }
+    .about-box.about-tools {
+    width: 270px; /* or adjust to your preference */
+    }
+
+  .about-box h3 {
+    margin-top: 10px;
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .about-icon {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    color: white;
+    font-size: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+  }
+
+  .about-box ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 10px;
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .about-box ul li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .about-arrow {
+    font-size: 28px;
+    color: #6c63ff;
+    align-self: center;
+  }
+  

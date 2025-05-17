@@ -1,15 +1,17 @@
-<p class="large-text">Welcome to OsinTech!</p> <br>
-<p class="small-text">
-
-At OsinTech, we harness the power of Open Source Intelligence (OSINT) to collect and analyze publicly available information based on a target domain name, company name, and country.</p> <br>
-<p class="small-text">
-Our custom-built Python scripts integrate with leading tools such as Shodan, WHOIS databases, and NetworksDB to extract critical technical and infrastructural data.
-Beyond technical details, we delve into human intelligence by gathering insights from LinkedIn about the organization’s workforce. We also use GitHub and Google Dorks to uncover code repositories, exposed infrastructure components, and potential vulnerabilities linked to the company.
-All gathered data is compiled into a detailed and structured report, providing a clear and comprehensive view of the organization's digital footprint, exposure, and security posture.
-</p>
-
-<br>
+<p class="large-text" style="color: #43c0ce;">Welcome to OsinTech!</p> <br>
 
 <p class="small-text">
-Whether you're a cybersecurity professional, researcher, or analyst, OsinTech empowers you with actionable intelligence to better understand and assess online risks related to your organization.
-</p>
+At OsinTech, we harness the power of Open Source Intelligence (OSINT) to collect and analyze publicly available data about a target domain name, company name, and country.
+</p> <br>
+
+<p class="small-text">
+Our custom-built Python scripts integrate with leading tools like Shodan, WHOIS, and NetworksDB to extract technical infrastructure data. We also leverage LinkedIn to gather human intelligence, and use GitHub and Google Dorks to uncover code repositories and exposed components linked to the organization.
+</p> <br>
+
+<p class="small-text">
+All collected data is compiled into a detailed report, providing insights into your digital footprint, exposures, vulnerabilities, and recommendations.
+Whether you're a cybersecurity professional, researcher, or analyst, OsinTech empowers you with actionable intelligence to assess and reduce online risks to your organization.
+</p> <br>
+
+
+<h3 style="text-align: center; margin-top: 40px; font-size: 20px;">Workflow:</h3>

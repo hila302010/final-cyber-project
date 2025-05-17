@@ -14,6 +14,8 @@
 		<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
 
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 		<!-- title of site -->
         <title>OsinTech</title>
 
@@ -76,12 +78,12 @@
 			                <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
 			                <li class=" smooth-menu active"></li>
 													<li class="smooth-menu"><a href="#about">About Us</a></li>
-			                    <li class=" smooth-menu"><a href="#data-gathering">data gathering</a></li>
-			                    <li class="smooth-menu"><a href="#reportWorkflow">Workflow</a></li>
+			                    <li class=" smooth-menu"><a href="#data-gathering">Data Gathering</a></li>
+								<li class="smooth-menu"><a href="#tokens">Data Sources</a></li>
+			                    <li class="smooth-menu"><a href="#reportWorkflow">Data extracted</a></li>
 			                    <li class="smooth-menu"><a href="#cyber-glossary">Terms</a></li>
-								<li class="smooth-menu"><a href="#tokens">Sources</a></li>
 								<li class="smooth-menu"><a href="#qanda">Q&A</a></li>
-			                    <li class="smooth-menu"><a href="#contact">contact</a></li>			                    
+			                    <li class="smooth-menu"><a href="#contact">Contact</a></li>			                    
 
 			                </ul><!--/.nav -->
 			            </div><!-- /.navbar-collapse -->
@@ -129,11 +131,73 @@
 			</div>
 			<div class="container">
 					<div id="about-content">
-							<!-- Content will be loaded dynamically -->
 					</div>
-			</div>
+
+					<br><br><br>
+			
+<div class="about-diagram-container" style="display: flex; flex-direction: row; justify-content: center; align-items: center; gap: 20px; flex-wrap: nowrap; margin-bottom: 40px;">
+  
+  <div class="about-box about-input">
+    <div class="about-icon" style="background: #6c63ff;"><i class="fa fa-keyboard-o"></i></div>
+    <h3><a href="#data-gathering" style="color:#43485c; font-size: 20px; font-family: 'Poppins', sans-serif;">Input</a></h3>
+    <ul>
+      <li><i class="fa fa-globe"></i> Domain Name</li>
+      <li><i class="fa fa-flag"></i> Country</li>
+	  <li><i class="fa fa-users"></i> Company Name</li>
+
+    </ul>
+  </div>
+
+  <div class="about-arrow"><i class="fa fa-arrow-right" style="color: #43c0ce;"></i></div>
+
+  <div class="about-box about-tools">
+    <div class="about-icon" style="background: #ff6f61;"><i class="fa fa-cogs"></i></div>
+    <h3><a href="#tokens" style="color:#43485c; font-size: 20px; font-family: 'Poppins', sans-serif;">Data Sources</a></h3>
+    <ul>
+      <li><i class="fa fa-search"></i> Shodan</li>
+      <li><i class="fa fa-user-secret"></i> WHOIS</li>
+      <li><i class="fa fa-database"></i> NetworksDB</li>
+      <li><i class="fa fa-google"></i> Google Dorks</li>
+      <li><i class="fa fa-github"></i> GitHub</li>
+      <li><i class="fa fa-linkedin"></i> LinkedIn (Selenium)</li>
+      <li><i class="fa fa-certificate"></i> crt.sh</li>
+    </ul>
+  </div>
+
+  <div class="about-arrow"><i class="fa fa-arrow-right" style="color: #43c0ce;"></i></div>
+
+  <div class="about-box about-data">
+    <div class="about-icon" style="background: #43cea2;"><i class="fa fa-database"></i></div>
+	<h3><a href="#reportWorkflow" style="color:#43485c; font-size: 20px; font-family: 'Poppins', sans-serif;">Data Extracted</a></h3>
+    <ul>
+      <li><i class="fa fa-sitemap"></i> IP Ranges, Ports</li>
+      <li><i class="fa fa-bug"></i> CVEs (vulnerabilities)</li>
+      <li><i class="fa fa-globe"></i> Domains & Subdomains</li>
+      <li><i class="fa fa-users"></i> Employee Names & Roles</li>
+      <li><i class="fa fa-envelope"></i> DNS Records (SPF, DKIM)</li>
+      <li><i class="fa fa-code"></i>Emails from GITHUB & GOOGLE</li>
+    </ul>
+  </div>
+
+  <div class="about-arrow"><i class="fa fa-arrow-right " style="color: #43c0ce;"></i></div>
+
+  <div class="about-box about-report">
+    <div class="about-icon" style="background: #f1e235;"><i class="fa fa-file-text-o"></i></div>
+    <h3>Output</h3>
+    <ul>
+      <li><i class="fa fa-exclamation-triangle"></i> Risk Summary</li>
+      <li><i class="fa fa-eye"></i> Exposure & Footprint</li>
+	  <li><i class="fa fa-file-csv"></i> Data extracted to CSV</li>
+
+    </ul>
+  </div>
+
+</div>
+
+			
+</div>
 	</section>
-		
+	<hr class="section-divider">
 	<section id="data-gathering" class="data-gathering">
 		<div class="content">
 			<div class="section-heading text-center">
@@ -162,31 +226,178 @@
 				</div>
 			</form>
 		
-			<!-- <div id="loading-bar-container" style="display: none; width: 50%; margin-top: 20px;">
-				<div id="coffee-break-message" style="text-align: center; font-size: 18px; font-weight: bold; color: #2878e0; margin-top: 10px; display: none;">
-        	It's time for your coffee break!
-    		</div>
-				<div id="loading-bar" style="width: 0%; height: 20px; background-color: #459a9e; border-radius: 5px;">
-					<span id="loading-percentage" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-weight: bold; color: #ffffff;">0%</span>
-				</div>
-				<div id="loading-circle" style="display: none; margin-left: 10px;">
-					<div class="spinner"></div>
-				</div>
-			</div>
-			<div id="task-description" style="text-align:center 10px; font-size: 16px; font-weight: bold; color: #333333; display: none;">
-				Initializing...
-			</div> -->
+						<hr class="section-divider">
+
 		</div>
 	</section>
-	
+
 		</section><!--/.education-->
 		<!--education end -->
+		<!--profiles start -->
+<section id="tokens" class="tokens">
+	<div class="profiles-details">
+		<div class="section-heading text-center">
+			<h2 style="font-size: 24px;">Our Data Sources</h2>
+		</div>
+		<div class="container">
+			<div class="profiles-content">
+				<!-- First Row -->
+				<div class="row justify-content-center">
+					<div class="col-sm-3">
+						<div class="single-profile">
+							<div class="profile-txt">
+								<a href=""><i class="flaticon-github-logo"></i></a>
+								<div class="profile-icon-name">GitHub</div>
+							</div>
+							<div class="single-profile-overlay">
+								<div class="profile-txt">
+									<a href=""><i class="flaticon-github-logo"></i></a>
+									<div class="profile-icon-name">GitHub</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="single-profile">
+							<div class="profile-txt">
+								<a href="https://www.google.com/advanced_search" target="_blank">
+									<img src="static/images/google_logo.png" alt="Google Logo" style="width: 28px; height: 28px;">										</a>
+								<div class="profile-icon-name">Google</div>
+							</div>
+							<div class="single-profile-overlay">
+								<div class="profile-txt">
+									<a href="https://www.google.com/advanced_search" target="_blank">
+										<img src="static/images/google_logo.png" alt="Google Logo" style="width: 28px; height: 28px;">
+									</a>
+									<div class="profile-icon-name">Google</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="single-profile">
+							<div class="profile-txt">
+								<a href="https://www.linkedin.com" target="_blank">
+									<img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn Logo" style="width: 28px; height: 28px;">
+								</a>
+								<div class="profile-icon-name">LinkedIn</div>
+							</div>
+							<div class="single-profile-overlay">
+								<div class="profile-txt">
+									<a href="https://www.linkedin.com" target="_blank">
+										<img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn Logo" style="width: 32px; height: 32px;">
+									</a>
+									<div class="profile-icon-name">LinkedIn</div>
+								</div>
+							</div>
+						</div>
+					</div>
+						<div class="col-sm-3">
+							<div class="single-profile">
+								<div class="profile-txt">
+									<a href="https://networksdb.io" target="_blank">
+										<img src="static/images/networks_logo.jpeg" alt="NetworksDB Logo" style="width: 45px; height: 36px;">
+									</a>
+									<div class="profile-icon-name">NetworksDB</div>
+								</div>
+								<div class="single-profile-overlay">
+									<div class="profile-txt">
+										<a href="https://networksdb.io" target="_blank">
+											<img src="static/images/networks_logo.jpeg" alt="NetworksDB Logo" style="width: 45px; height: 36px;">
+										</a>
+										<div class="profile-icon-name">NetworksDB</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- Second Row -->
+					<div class="row">
+					<div class="col-sm-3">
+						<div class="single-profile">
+							<div class="profile-txt">
+								<a href="https://www.shodan.io/" target="_blank">
+									<img src="static/images/shodan_logo.png" alt="Shodan Logo" style="width: 40x; height: 40px;">
+								</a>
+								<div class="profile-icon-name">Shodan</div>
+							</div>
+							<div class="single-profile-overlay">
+								<div class="profile-txt">
+									<a href="https://www.shodan.io" target="_blank">
+										<img src="static/images/shodan_logo.png" alt="Shodan Logo" style="width: 40px; height: 40px;">
+									</a>
+									<div class="profile-icon-name">Shodan</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="single-profile">
+							<div class="profile-txt">
+								<a href="https://www.whois.com" target="_blank">
+									<img src="static/images/whois_logo.png" alt="Whois Logo" style="width: 32px; height: 32px;">
+								</a>
+								<div class="profile-icon-name">Whois</div>
+							</div>
+							<div class="single-profile-overlay">
+								<div class="profile-txt">
+									<a href="https://www.whois.com" target="_blank">
+										<img src="static/images/whois_logo.png" alt="Whois Logo" style="width: 32px; height: 32px;">
+									</a>
+									<div class="profile-icon-name">Whois</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="single-profile">
+							<div class="profile-txt">
+								<a href="https://crt.sh/" target="_blank">
+									<img src="static/images/crtsh_logo.png" alt="crt.sh Logo" style="width: 32px; height: 32px;">
+								</a>
+								<div class="profile-icon-name">crt.sh</div>
+							</div>
+							<div class="single-profile-overlay">
+								<div class="profile-txt">
+									<a href="https://crt.sh/" target="_blank">
+										<img src="static/images/crtsh_logo.png" alt="crt.sh Logo" style="width: 32px; height: 32px;">
+									</a>
+									<div class="profile-icon-name">crt.sh</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-sm-3">
+						<div class="single-profile">
+							<div class="profile-txt">
+								<a href="https://dmarcian.com/" target="_blank">
+									<img src="static/images/demarcin_logo.png" alt="demarcian Logo" style="width: 32px; height: 32px;">
+								</a>
+								<div class="profile-icon-name">demarcian</div>
+							</div>
+							<div class="single-profile-overlay">
+								<div class="profile-txt">
+									<a href="https://dmarcian.com/" target="_blank">
+										<img src="static/images/demarcin_logo.png" alt="demarcian Logo" style="width: 32px; height: 32px;">
+									</a>
+									<div class="profile-icon-name">demarcian</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
-
+</section><!--/.profiles-->
+<!--profiles end -->
+<br>
+		<hr class="section-divider"><br><br>
 		<!--Report Generation Workflow start -->
 		<section id="reportWorkflow" class="reportWorkflow">
 			<div class="section-heading text-center">
-				<h2 style="font-size: 24px;">Report Generation Workflow</h2>
+				<h2 style="font-size: 24px;">Explanation of extracted data</h2>
 			</div>
 			<div class="container">
 				<div class="experience-content">
@@ -399,7 +610,7 @@
 
 		</section><!--/.experience-->
 		<!--experience end -->
-
+		<hr class="section-divider">
 		<!--portfolio start -->
 		<section id="cyber-glossary" class="cyber-glossary">
 			<div class="section-heading text-center">
@@ -464,171 +675,11 @@
 				</div><br>
 
 	</section>
-		</div><!--/.portfolio-details-->
 
-	</section><!--/.portfolio-->
-	<!--portfolio end -->
-<!--profiles start -->
-<section id="tokens" class="tokens">
-	<div class="profiles-details">
-		<div class="section-heading text-center">
-			<h2 style="font-size: 24px;">Our Data Sources</h2>
-		</div>
-		<div class="container">
-			<div class="profiles-content">
-				<!-- First Row -->
-				<div class="row justify-content-center">
-					<div class="col-sm-3">
-						<div class="single-profile">
-							<div class="profile-txt">
-								<a href=""><i class="flaticon-github-logo"></i></a>
-								<div class="profile-icon-name">GitHub</div>
-							</div>
-							<div class="single-profile-overlay">
-								<div class="profile-txt">
-									<a href=""><i class="flaticon-github-logo"></i></a>
-									<div class="profile-icon-name">GitHub</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-3">
-						<div class="single-profile">
-							<div class="profile-txt">
-								<a href="https://www.google.com/advanced_search" target="_blank">
-									<img src="static/images/google_logo.png" alt="Google Logo" style="width: 28px; height: 28px;">										</a>
-								<div class="profile-icon-name">Google</div>
-							</div>
-							<div class="single-profile-overlay">
-								<div class="profile-txt">
-									<a href="https://www.google.com/advanced_search" target="_blank">
-										<img src="static/images/google_logo.png" alt="Google Logo" style="width: 28px; height: 28px;">
-									</a>
-									<div class="profile-icon-name">Google</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-3">
-						<div class="single-profile">
-							<div class="profile-txt">
-								<a href="https://www.linkedin.com" target="_blank">
-									<img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn Logo" style="width: 28px; height: 28px;">
-								</a>
-								<div class="profile-icon-name">LinkedIn</div>
-							</div>
-							<div class="single-profile-overlay">
-								<div class="profile-txt">
-									<a href="https://www.linkedin.com" target="_blank">
-										<img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn Logo" style="width: 32px; height: 32px;">
-									</a>
-									<div class="profile-icon-name">LinkedIn</div>
-								</div>
-							</div>
-						</div>
-					</div>
-						<div class="col-sm-3">
-							<div class="single-profile">
-								<div class="profile-txt">
-									<a href="https://networksdb.io" target="_blank">
-										<img src="static/images/networks_logo.jpeg" alt="NetworksDB Logo" style="width: 45px; height: 36px;">
-									</a>
-									<div class="profile-icon-name">NetworksDB</div>
-								</div>
-								<div class="single-profile-overlay">
-									<div class="profile-txt">
-										<a href="https://networksdb.io" target="_blank">
-											<img src="static/images/networks_logo.jpeg" alt="NetworksDB Logo" style="width: 45px; height: 36px;">
-										</a>
-										<div class="profile-icon-name">NetworksDB</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<!-- Second Row -->
-					<div class="row">
-					<div class="col-sm-3">
-						<div class="single-profile">
-							<div class="profile-txt">
-								<a href="https://www.shodan.io/" target="_blank">
-									<img src="static/images/shodan_logo.png" alt="Shodan Logo" style="width: 40x; height: 40px;">
-								</a>
-								<div class="profile-icon-name">Shodan</div>
-							</div>
-							<div class="single-profile-overlay">
-								<div class="profile-txt">
-									<a href="https://www.shodan.io" target="_blank">
-										<img src="static/images/shodan_logo.png" alt="Shodan Logo" style="width: 40px; height: 40px;">
-									</a>
-									<div class="profile-icon-name">Shodan</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-3">
-						<div class="single-profile">
-							<div class="profile-txt">
-								<a href="https://www.whois.com" target="_blank">
-									<img src="static/images/whois_logo.png" alt="Whois Logo" style="width: 32px; height: 32px;">
-								</a>
-								<div class="profile-icon-name">Whois</div>
-							</div>
-							<div class="single-profile-overlay">
-								<div class="profile-txt">
-									<a href="https://www.whois.com" target="_blank">
-										<img src="static/images/whois_logo.png" alt="Whois Logo" style="width: 32px; height: 32px;">
-									</a>
-									<div class="profile-icon-name">Whois</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-3">
-						<div class="single-profile">
-							<div class="profile-txt">
-								<a href="https://crt.sh/" target="_blank">
-									<img src="static/images/crtsh_logo.png" alt="crt.sh Logo" style="width: 32px; height: 32px;">
-								</a>
-								<div class="profile-icon-name">crt.sh</div>
-							</div>
-							<div class="single-profile-overlay">
-								<div class="profile-txt">
-									<a href="https://crt.sh/" target="_blank">
-										<img src="static/images/crtsh_logo.png" alt="crt.sh Logo" style="width: 32px; height: 32px;">
-									</a>
-									<div class="profile-icon-name">crt.sh</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-sm-3">
-						<div class="single-profile">
-							<div class="profile-txt">
-								<a href="https://dmarcian.com/" target="_blank">
-									<img src="static/images/demarcin_logo.png" alt="demarcian Logo" style="width: 32px; height: 32px;">
-								</a>
-								<div class="profile-icon-name">demarcian</div>
-							</div>
-							<div class="single-profile-overlay">
-								<div class="profile-txt">
-									<a href="https://dmarcian.com/" target="_blank">
-										<img src="static/images/demarcin_logo.png" alt="demarcian Logo" style="width: 32px; height: 32px;">
-									</a>
-									<div class="profile-icon-name">demarcian</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-
-</section><!--/.profiles-->
-<!--profiles end -->
+<!--portfolio end -->
+<hr class="section-divider">
 <!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+ <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 <section class="qanda" id="qanda">
     <div class="section-heading text-center">
         <h2>FAQ</h2>
@@ -736,7 +787,7 @@
     </div>
 </section>
 
-
+<hr class="section-divider">
 
 <section class="contact" id="contact">
     <div class="section-heading text-center">
