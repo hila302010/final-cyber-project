@@ -162,7 +162,7 @@
 				</div>
 			</form>
 		
-			<div id="loading-bar-container" style="display: none; width: 50%; margin-top: 20px;">
+			<!-- <div id="loading-bar-container" style="display: none; width: 50%; margin-top: 20px;">
 				<div id="coffee-break-message" style="text-align: center; font-size: 18px; font-weight: bold; color: #2878e0; margin-top: 10px; display: none;">
         	It's time for your coffee break!
     		</div>
@@ -175,7 +175,7 @@
 			</div>
 			<div id="task-description" style="text-align:center 10px; font-size: 16px; font-weight: bold; color: #333333; display: none;">
 				Initializing...
-			</div>
+			</div> -->
 		</div>
 	</section>
 	
@@ -839,45 +839,6 @@
         <!--Custom JS-->
         <script src="static/js/custom.js"></script>
 		
-		<script>
-			// Example data (replace with actual data from your backend or API)
-			const data = {
-				emails: 50,
-				ips: 20,
-				domains: 10,
-				employees: 30,
-				records: 15,
-			};
-		
-			// Function to calculate grade percentage
-			function calculatePercentage(count) {
-				if (count >= 50) return 90; // A grade
-				if (count >= 30) return 75; // B grade
-				if (count >= 15) return 60; // C grade
-				if (count >= 5) return 40;  // D grade
-				return 20;                 // F grade
-			}
-		
-			// Populate the progress bars and grades
-			function updateGrades() {
-				const categories = ['emails', 'ips', 'domains', 'employees', 'records'];
-				categories.forEach(category => {
-					const percentage = calculatePercentage(data[category]);
-					const gradeElement = document.getElementById(`${category}-grade`);
-					const barElement = document.getElementById(`${category}-bar`);
-		
-					// Update the grade text
-					gradeElement.textContent = `${percentage}%`;
-		
-					// Update the progress bar
-					barElement.style.width = `${percentage}%`;
-					barElement.setAttribute('aria-valuenow', percentage);
-				});
-			}
-		
-			// Call the function to update grades
-			updateGrades();
-		</script>
     </body>
 	
 </html>
