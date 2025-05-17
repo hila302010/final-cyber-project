@@ -29,8 +29,6 @@ import Scripts.socialNetworkServices.linkedin as linkedin
 import Scripts.mergedWhois.crtshToIPSToWhois as whois
 import Scripts.githubAndGoogleDorks.main as googleAndGithub
 
-# Simulated progress variable
-progress = {"value": 0}
 
 
 # ------------------------------
@@ -56,7 +54,9 @@ Session(app)
 # A dictionary to track cancellation flags for each session or process
 cancellation_flags = {}
 # Simulated progress variable
-progress = {"value": 0, "task": "Initializing..."}
+# If status is 1, it means the process is running
+# If status is 0, it means the process is finished
+progress = {"value": 0, "task": "Initializing...", "status": 1}
 
 
 
@@ -84,8 +84,6 @@ def cancel_process():
 @app.route('/load_data', methods=['POST'])
 def load_data():
     global progress
-    progress["value"] = 0  # Reset progress
-    progress["task"] = "Parsing input data..."  # Update task description
 
     session_id = request.json.get('session_id')
     if not session_id:
@@ -106,8 +104,9 @@ def load_data():
     session['country'] = country
     session['company'] = company
 
-    # Simulate progress for each step
-    progress["value"] = 5  # Step 1: Parsing input data
+
+    progress["value"] = 0  # Reset progress
+    progress["task"] = "Parsing input data..."  # Update task description
 
 
     emails = employees = merged_ips = domains = dkimdmarc = None
@@ -118,6 +117,10 @@ def load_data():
         emails = load_emails_from_csv()  # Load emails from CSV for testing
         # emails = fetch_emails(session_id, domain)
         redis_client.set(f"{session_id}_emails", json.dumps(emails))
+        if(progress["value"] >= 100):
+            # Finalize progress
+            progress["task"] = "Data loading complete."
+            progress["status"] = 0  # Mark the process as finished
 
     def fetch_employees_thread():
         nonlocal employees
@@ -125,6 +128,10 @@ def load_data():
         employees = load_employees_from_csv()  # Load employees from CSV for testing
         #employees = fetch_employees(session_id, domain)
         redis_client.set(f"{session_id}_employees", json.dumps(employees))
+        if(progress["value"] >= 100):
+            # Finalize progress
+            progress["task"] = "Data loading complete."
+            progress["status"] = 0  # Mark the process as finished
 
     def fetch_ips_domains_dkim_thread():
         nonlocal merged_ips, domains, dkimdmarc
@@ -138,24 +145,22 @@ def load_data():
         redis_client.set(f"{session_id}_ips", json.dumps(merged_ips))
         redis_client.set(f"{session_id}_domains", json.dumps(domains))
         redis_client.set(f"{session_id}_dkimdmarc", json.dumps(dkimdmarc))
+        if(progress["value"] >= 100):
+            # Finalize progress
+            progress["task"] = "Data loading complete."
+            progress["status"] = 0  # Mark the process as finished
 
     # Create threads
     t1 = threading.Thread(target=fetch_emails_thread)
     t2 = threading.Thread(target=fetch_employees_thread)
     t3 = threading.Thread(target=fetch_ips_domains_dkim_thread)
 
+
     # Start threads
     t1.start()
     t2.start()
     t3.start()
-
-
-    # Store the data in the session
-    progress["task"] = "Finalizing data..."
     
-    # Finalize progress
-    progress["task"] = "Data loading complete."
-    progress["value"] = 100  # Step 5: Data loading complete
 
     # Return a success response
     return jsonify({"message": "Data loaded successfully"})
@@ -206,6 +211,22 @@ def data():
         domains_count=domains_count       # Pass domains count
     )
 
+@app.route('/data_json')
+def data_json():
+    session_id = session.get('session_id')
+    emails = json.loads(redis_client.get(f"{session_id}_emails") or "[]")
+    ips = json.loads(redis_client.get(f"{session_id}_ips") or "[]")
+    employees = json.loads(redis_client.get(f"{session_id}_employees") or "[]")
+    domains = json.loads(redis_client.get(f"{session_id}_domains") or "[]")
+    dkimdmarc = json.loads(redis_client.get(f"{session_id}_dkimdmarc") or "[]")
+    return jsonify({
+        "email_count": len(emails),
+        "ips_count": len(ips),
+        "employees_count": len(employees),
+        "domains_count": len(domains),
+        "dkimdmarc": dkimdmarc,
+        "ips": ips
+    })
 
 
 # ------------------------------
@@ -441,31 +462,31 @@ def export_dkimdmarc():
 
 def fetch_emails(session_id, domain):
     progress["task"] = "Fetching emails..."
+    progress["value"] += 10  # Step 2: Fetching emails
     if is_canceled(session_id):
         handle_cancellation("email fetching")
         return []
 
     # Simulate fetching emails (replace with actual logic)
     emails = googleAndGithub.getEmails(domain)
-    progress["value"] = 10  # Step 2: Fetching emails
+    progress["value"] += 10  # Step 2: Fetching emails
     return emails
 
 def fetch_employees(session_id, domain):
-    progress["task"] = "Fetching Employees..."
     if is_canceled(session_id):
         handle_cancellation("employees fetching")
         return []
-
+    progress["value"] += 10  # Increment progress 
+    progress["task"] = "Fetching Employees..."
     # Simulate fetching employees
     employees = linkedin.execute_linkedin(domain)
-    for i in range(5):  # Simulate 5 steps of employee fetching
-        time.sleep(1)  # Simulate delay for each step
-        progress["value"] += 10  # Increment progress for each step
+    progress["value"] += 10  # Increment progress 
     return employees
 
 
 def fetch_ips(session_id, domain, country, company):
     progress["task"] = "Fetching IPs..."
+    progress["value"] += 10  # Step 4: Fetching IPs
     if is_canceled(session_id):
         handle_cancellation("IPs fetching")
         return []
@@ -475,11 +496,12 @@ def fetch_ips(session_id, domain, country, company):
     shodan_ips = dataForIpAndDomains
     whois_ips = whois.getipsWithFields(domain)
     merged_ips = dataLoadingIPs(shodan_ips, whois_ips)
-    progress["value"] = 70  # Step 4: Fetching IPs
+    progress["value"] += 10  # Step 4: Fetching IPs
     return merged_ips
 
 def fetch_domains(session_id, domain, merged_ips):
     progress["task"] = "Fetching domains..."
+    progress["value"] += 10  # Step 5: Fetching Domains
     if is_canceled(session_id):
         handle_cancellation("domains fetching")
         return []
@@ -492,7 +514,7 @@ def fetch_domains(session_id, domain, merged_ips):
     # Limit the number of domains to avoid exceeding the session size limit
     max_domains = 500
     domains = domains[:max_domains]
-    progress["value"] = 80  # Step 5: Fetching Domains
+    progress["value"] += 10  # Step 5: Fetching Domains
     return domains
 
 def fetch_dkim_dmarc(session_id, domains):
@@ -501,9 +523,10 @@ def fetch_dkim_dmarc(session_id, domains):
         handle_cancellation("DKIM/DMARC fetching")
         return []
 
+    progress["value"] += 10  # Step 6: Fetching DKIM DMARC RECORDS
     # Fetch DKIM and DMARC records
     dkimdmarc = loadingDkimDmarc(domains)
-    progress["value"] = 90  # Step 6: Fetching DKIM DMARC RECORDS
+    progress["value"] += 10  # Step 6: Fetching DKIM DMARC RECORDS
     return dkimdmarc
 
 
@@ -568,6 +591,8 @@ def load_employees_from_csv(file_path="employees.csv"):
     """
     Load employees temporarily from a CSV file.
     """
+    progress["task"] = "Fetching employees..."
+    progress["value"] += 10  # Step 2: Fetching emails
     employees = []
     try:
         with open(file_path, mode='r', encoding='utf-8') as file:
@@ -581,6 +606,8 @@ def load_employees_from_csv(file_path="employees.csv"):
                     row.get("Username2", ""),
                     row.get("Username3", "")
                 ))
+        progress["value"] += 10  # Step 2: Fetching emails
+
         print(f"Loaded {len(employees)} employees from {file_path}.")
     except FileNotFoundError:
         print(f"File {file_path} not found.")
@@ -595,6 +622,8 @@ def load_emails_from_csv(file_path="emails.csv"):
     Load emails with source from a CSV file.
     Returns a list of dictionaries with 'source' and 'email' keys.
     """
+    progress["task"] = "Fetching emails..."
+    progress["value"] += 10  # Step 2: Fetching emails
     emails = []
     try:
         with open(file_path, mode='r', encoding='utf-8') as file:
@@ -604,6 +633,8 @@ def load_emails_from_csv(file_path="emails.csv"):
                 email = row.get("Email Address", "").strip()
                 if source and email:
                     emails.append({'source': source, 'email': email})
+        progress["value"] += 10  # Step 2: Fetching emails
+
         print(f"Loaded {len(emails)} emails from {file_path}.")
     except FileNotFoundError:
         print(f"File {file_path} not found.")
@@ -616,6 +647,8 @@ def load_ips_from_csv(file_path="ips.csv"):
     """
     Load IPs temporarily from a CSV file.
     """
+    progress["task"] = "Fetching ips..."
+    progress["value"] += 10  # Step 2: Fetching emails
     ips = []
     try:
         with open(file_path, mode='r', encoding='utf-8') as file:
@@ -632,6 +665,8 @@ def load_ips_from_csv(file_path="ips.csv"):
                     "mnt_by": row.get("Mnt-By", ""),
                     "abuse_mailbox": row.get("Abuse Mailbox", "")
                 })
+        progress["value"] += 10  # Step 2: Fetching emails
+
         print(f"Loaded {len(ips)} IPs from {file_path}.")
     except FileNotFoundError:
         print(f"File {file_path} not found.")
@@ -644,6 +679,8 @@ def load_domains_from_csv(file_path="domains.csv"):
     """
     Load domains temporarily from a CSV file.
     """
+    progress["task"] = "Fetching domains..."
+    progress["value"] += 10  # Step 2: Fetching emails
     domains = []
     try:
         with open(file_path, mode='r', encoding='utf-8') as file:
@@ -652,6 +689,8 @@ def load_domains_from_csv(file_path="domains.csv"):
             for row in reader:
                 domains.append(row[0])  # Assuming domains are in the first column
         print(f"Loaded {len(domains)} domains from {file_path}.")
+        progress["value"] += 10  # Step 2: Fetching emails
+
     except FileNotFoundError:
         print(f"File {file_path} not found.")
     except Exception as e:
@@ -663,6 +702,8 @@ def load_dkim_dmarc_from_csv(file_path="dkimdmarc.csv"):
     """
     Load DKIM/DMARC records from a CSV file.
     """
+    progress["task"] = "Fetching dkim dmarc..."
+    progress["value"] += 10  # Step 2: Fetching emails
     dkimdmarc = []
     try:
         with open(file_path, mode='r', encoding='utf-8') as file:
@@ -677,6 +718,8 @@ def load_dkim_dmarc_from_csv(file_path="dkimdmarc.csv"):
                     "DKIM": row.get("DKIM", ""),
                     "DKIM Status": row.get("DKIM Status", "")
                 })
+        progress["value"] += 10  # Step 2: Fetching emails
+
         print(f"Loaded {len(dkimdmarc)} DKIM/DMARC records from {file_path}.")
     except FileNotFoundError:
         print(f"File {file_path} not found.")

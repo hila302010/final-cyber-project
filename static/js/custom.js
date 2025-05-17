@@ -3,9 +3,6 @@
 * Template Name : Khanas HTML Template
 * Version       : 1.0
 ==================================== */
-
-
-
 /*=========== TABLE OF CONTENTS ===========
 1. Scroll To Top 
 2. Smooth Scroll spy
@@ -22,22 +19,9 @@ $(document).ready(function () {
     initializeOwlCarousel();
     initializeWelcomeAnimation();
     fetchAboutUsText();
-    // initializeLoadingBar();
+    initializeLoadingBar();
+    checkAndShowLoadingBarOnDataPage();
 
-    // Only initialize loading bar logic on the relevant pages
-    if (window.location.pathname === "/") {
-        // On index.html, set up form and loading bar
-        initializeLoadingBar();
-    } else if (window.location.pathname === "/data") {
-        // On data.html, just show and update the loading bar if progress < 100%
-        showLoadingBar();
-        // You need to get the sessionId from the server or sessionStorage
-        // For example, if you store it in sessionStorage:
-        const sessionId = sessionStorage.getItem("sessionId");
-        if (sessionId) {
-            startPollingProgress(sessionId);
-        }
-    }
 });
 
 
@@ -166,6 +150,30 @@ function initializeLoadingBar() {
     setupCancelButton(sessionId);
 }
 
+function checkAndShowLoadingBarOnDataPage() {
+    if (window.location.pathname === "/data") {
+        const sessionId = sessionStorage.getItem("sessionId");
+        if (sessionId) {
+            // Check progress status before showing/loading bar
+            $.ajax({
+                url: "/progress",
+                method: "GET",
+                success: function (response) {
+                    if (response.status === 1) { // Only if running
+                        showLoadingBar();
+                        startPollingProgress(sessionId);
+                    } else {
+                        hideLoadingBar();
+                    }
+                },
+                error: function (error) {
+                    console.error("Error checking progress:", error);
+                }
+            });
+        }
+    }
+}
+
 // This function sets up the form submission event handler
 // It prevents the default form submission, shows the loading bar, and starts polling for progress
 function setupFormSubmission(sessionId) {
@@ -175,7 +183,7 @@ function setupFormSubmission(sessionId) {
         // // Show the loading bar container
         // showLoadingBar();
 
-         // Store sessionId for use on /data page
+        // Store sessionId for use on /data page
         sessionStorage.setItem("sessionId", sessionId);
 
         // Collect form data
@@ -186,8 +194,6 @@ function setupFormSubmission(sessionId) {
             session_id: sessionId
         };
 
-        
-
         // Make an AJAX request to start loading the data
         $.ajax({
             url: "/load_data", // Endpoint to load data
@@ -196,12 +202,9 @@ function setupFormSubmission(sessionId) {
             data: JSON.stringify(formData),
             success: function (response) {
                 console.log("Data loading started:", response);
+                // sessionStorage.setItem("sessionId", sessionId); // <-- This line must be here!
+                // sessionStorage.removeItem("dataVisited"); // (optional) reset for new session
                 window.location.href = "/data"; // Redirect to the /data page
-                // Show the loading bar container
-                showLoadingBar();
-
-                // Start polling the progress endpoint
-                startPollingProgress(sessionId);
             },
             error: function (error) {
                 console.error("Error starting data load:", error);
@@ -209,6 +212,12 @@ function setupFormSubmission(sessionId) {
                 alert("Failed to start data loading. Please try again.");
             }
         });
+
+        // // Show the loading bar container
+        // showLoadingBar();
+
+        // // Start polling the progress endpoint
+        // startPollingProgress(sessionId);
     });
 }
 
@@ -246,16 +255,19 @@ function startPollingProgress(sessionId) {
             success: function (response) {
                 const progress = response.value; // Get the progress value (0-100)
                 const task = response.task; // Get the current task description
+                const status = response.status; // Get the status
                 $("#loading-bar").css("width", progress + "%"); // Update the bar width
                 $("#loading-percentage").text(progress + "%"); // Update the percentage text
                 $("#task-description").text(task); // Update the task description
 
-                if (window.location.pathname === "/data" && progress < 100) {
-                    setTimeout(function () {
-                        window.location.reload();
-                    }, 5000);
-                }
-                else if (progress >= 100) {
+                // if (window.location.pathname === "/data" && status === 1) {
+                //     setTimeout(function () {
+                //         window.location.reload();
+                //     }, 5000);
+                // }
+                setInterval(updateSummary, 5000); // Update summary every 5 seconds
+
+                if (progress >= 100) {
                     clearInterval(pollProgress); // Stop polling when progress reaches 100%
 
                     // Keep the completed bar visible for 1 second before hiding it
@@ -293,4 +305,67 @@ function setupCancelButton(sessionId) {
             }
         });
     });
+}
+
+function updateSummary() {
+    $.ajax({
+        url: "/data_json",
+        method: "GET",
+        success: function (data) {
+            // Update counters
+            $("#summary-email-count").text(data.email_count);
+            $("#summary-ips-count").text(data.ips_count);
+            $("#summary-employees-count").text(data.employees_count);
+            $("#summary-domains-count").text(data.domains_count);
+
+            // Update SPF, DKIM, DMARC, Vulnerabilities
+            updateSummaryChips(data.dkimdmarc, data.ips);
+        }
+    });
+}
+
+// Helper to update chips for SPF, DKIM, DMARC, Vulnerabilities
+function updateSummaryChips(dkimdmarc, ips) {
+    // SPF
+    let spf_missing = dkimdmarc.filter(r => r.SPF === "No SPF record found").map(r => r.domain || "N/A");
+    updateChipSection("#spf-missing-list", spf_missing, "No missing SPF records");
+
+    // DKIM
+    let dkim_missing = dkimdmarc.filter(r => r.DKIM === "No DKIM record found").map(r => r.domain || "N/A");
+    updateChipSection("#dkim-missing-list", dkim_missing, "No missing DKIM records");
+
+    // DMARC
+    let dmarc_missing = dkimdmarc.filter(r => r.DMARC === "No DMARC record found").map(r => r.domain || "N/A");
+    updateChipSection("#dmarc-missing-list", dmarc_missing, "No missing DMARC records");
+
+    // Vulnerabilities
+    let vulnerabilities = (ips || []).filter(ip => ip.vulns).map(ip => ip.vulns);
+    updateChipSection("#vuln-list", vulnerabilities, "No vulnerabilities found", true);
+}
+
+function updateChipSection(selector, items, emptyText, isVuln) {
+    let container = $(selector);
+    if (!container.length) return;
+    container.empty();
+    if (items.length === 0) {
+        container.append(`<span>✅ ${emptyText}</span>`);
+    } else {
+        items.slice(0, 5).forEach(item => {
+            if (isVuln) {
+                container.append(`<div class="chip" onclick="toggleFullVuln(this)"><span class="vuln-short">${item.substring(0, 13)}...</span><span class="vuln-full" style="display:none;">${item}</span></div>`);
+            } else {
+                container.append(`<div class="chip">${item}</div>`);
+            }
+        });
+        if (items.length > 5) {
+            container.append(`<button class="button-inline" onclick="toggleVisibility(this)">Show more</button>`);
+            items.slice(5).forEach(item => {
+                if (isVuln) {
+                    container.append(`<div class="chip hidden" onclick="toggleFullVuln(this)"><span class="vuln-short">${item.substring(0, 13)}...</span><span class="vuln-full" style="display:none;">${item}</span></div>`);
+                } else {
+                    container.append(`<div class="chip hidden">${item}</div>`);
+                }
+            });
+        }
+    }
 }
