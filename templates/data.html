@@ -45,19 +45,22 @@
 				<!-- Loading Bar -->
 				<section>
 					<div id="loading-bar-container" style="display: none; width: 50%; margin-top: 20px;">
-						<div id="coffee-break-message" style="text-align: center; font-size: 18px; font-weight: bold; color: #2878e0; margin-top: 10px; display: none;">
-						It's time for your coffee break!
+						<div id="coffee-break-message"
+							style="text-align: center; font-size: 18px; font-weight: bold; color: #2878e0; margin-top: 10px; display: none;">
+							It's time for your coffee break!
 						</div>
-							<div id="loading-bar" style="width: 0%; height: 20px; background-color: #459a9e; border-radius: 5px;">
-								<span id="loading-percentage" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-weight: bold; color: #ffffff;">0%</span>
-							</div>
-							<div id="loading-circle" style="display: none; margin-left: 10px;">
-								<div class="spinner"></div>
-							</div>
+						<div id="loading-bar" style="width: 0%; height: 20px; background-color: #459a9e; border-radius: 5px;">
+							<span id="loading-percentage"
+								style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-weight: bold; color: #ffffff;">0%</span>
 						</div>
-						<div id="task-description" style="text-align:center 10px; font-size: 16px; font-weight: bold; color: #333333; display: none;">
-							Initializing...
+						<div id="loading-circle" style="display: none; margin-left: 10px;">
+							<div class="spinner"></div>
 						</div>
+					</div>
+					<div id="task-description"
+						style="text-align:center 10px; font-size: 16px; font-weight: bold; color: #333333; display: none;">
+						Initializing...
+					</div>
 				</section><br><br><br>
 
 
@@ -74,7 +77,7 @@
 							</div>
 						</a>
 					</article>
-				
+
 					<article class="style2">
 						<span class="image">
 							<img src="static/images/dataImages/pic02.jpg" alt="" />
@@ -86,7 +89,7 @@
 							</div>
 						</a>
 					</article>
-				
+
 					<article class="style3">
 						<span class="image">
 							<img src="static/images/dataImages/pic03.jpg" alt="" />
@@ -98,10 +101,10 @@
 							</div>
 						</a>
 					</article>
-				
+
 					<!-- Invisible tile to center the last two -->
 					<article class="style-invisible"></article>
-				
+
 					<article class="style4">
 						<span class="image">
 							<img src="static/images/dataImages/pic04.jpg" alt="" />
@@ -113,7 +116,7 @@
 							</div>
 						</a>
 					</article>
-				
+
 					<article class="style5">
 						<span class="image">
 							<img src="static/images/dataImages/pic05.jpg" alt="" />
@@ -127,9 +130,6 @@
 					</article>
 				</section>
 
-
-
-
 				<!--SUMMERY-->
 				<br>
 				<hr class="section-divider">
@@ -138,19 +138,25 @@
 					<h1 style="text-align: center; margin: -100px;">Summery:</h1><br><br><br><br>
 
 					{# Counters #}
-					<li><strong>Found {{ email_count }} emails</strong></li>
+					<!-- <li><strong>Found {{ email_count }} emails</strong></li>
 					<li><strong>Found {{ ips_count }} IPs</strong></li>
 					<li><strong>Found {{ employees_count }} employee</strong></li>
-					<li><strong>Found {{ domains_count }} domains and subdomains</strong></li>
-				
+					<li><strong>Found {{ domains_count }} domains and subdomains</strong></li> -->
+					<li><strong>Found <span id="summary-email-count">{{ email_count }}</span> emails</strong></li>
+					<li><strong>Found <span id="summary-ips-count">{{ ips_count }}</span> IPs</strong></li>
+					<li><strong>Found <span id="summary-employees-count">{{ employees_count }}</span> employee</strong></li>
+					<li><strong>Found <span id="summary-domains-count">{{ domains_count }}</span> domains and subdomains</strong>
+					</li>
+
 					{# SPF #}
 					<div class="domain-section">
 						<li><strong>Missing SPF records for:</strong></li>
+						<div id="spf-missing-list"></div>
 						{% set spf_missing = [] %}
 						{% for record in dkimdmarc %}
-							{% if record.SPF == "No SPF record found" %}
-								{% set _ = spf_missing.append(record.domain or "N/A") %}
-							{% endif %}
+						{% if record.SPF == "No SPF record found" %}
+						{% set _ = spf_missing.append(record.domain or "N/A") %}
+						{% endif %}
 						{% endfor %}
 						{% if spf_missing %}
 						<div class="chip-wrapper">
@@ -172,11 +178,12 @@
 					{# DKIM #}
 					<div class="domain-section">
 						<li><strong>Missing DKIM records for:</strong></li>
+						<div id="dkim-missing-list"></div>
 						{% set dkim_missing = [] %}
 						{% for record in dkimdmarc %}
-							{% if record.DKIM == "No DKIM record found" %}
-								{% set _ = dkim_missing.append(record.domain or "N/A") %}
-							{% endif %}
+						{% if record.DKIM == "No DKIM record found" %}
+						{% set _ = dkim_missing.append(record.domain or "N/A") %}
+						{% endif %}
 						{% endfor %}
 						{% if dkim_missing %}
 						<div class="chip-wrapper">
@@ -198,6 +205,7 @@
 					{# DMARC #}
 					<div class="domain-section">
 						<li><strong>Missing DMARC records for:</strong></li>
+						<div id="dmarc-missing-list"></div>
 						{% set dmarc_missing = [] %}
 						{% for record in dkimdmarc %}
 						{% if record.DMARC == "No DMARC record found" %}
@@ -212,7 +220,7 @@
 								{% endfor %}
 							</div>
 							{% if dmarc_missing|length > 5 %}
-								<button class="button-inline" onclick="toggleVisibility(this)">Show more</button>
+							<button class="button-inline" onclick="toggleVisibility(this)">Show more</button>
 							{% endif %}
 						</div>
 						{% else %}
@@ -224,11 +232,12 @@
 					{# Vulnerabilities #}
 					<div class="domain-section">
 						<li><strong>IP Vulnerabilities:</strong></li>
+						<div id="vuln-list"></div>
 						{% set vulnerabilities = [] %}
 						{% for ip_data in ips %}
-							{% if ip_data.vulns %}
-								{% set _ = vulnerabilities.append(ip_data.vulns) %}
-							{% endif %}
+						{% if ip_data.vulns %}
+						{% set _ = vulnerabilities.append(ip_data.vulns) %}
+						{% endif %}
 						{% endfor %}
 						{% if vulnerabilities %}
 						<div class="chip-wrapper">
@@ -249,14 +258,14 @@
 						{% endif %}
 					</div>
 
-				
+
 				</div>
 				{# script for Vulnerabilities len #}
 				<script>
 					function toggleFullVuln(element) {
 						const shortSpan = element.querySelector('.vuln-short');
 						const fullSpan = element.querySelector('.vuln-full');
-					
+
 						if (shortSpan.style.display === 'none') {
 							shortSpan.style.display = 'inline';
 							fullSpan.style.display = 'none';
@@ -265,7 +274,7 @@
 							fullSpan.style.display = 'inline';
 						}
 					}
-					</script>
+				</script>
 
 				{# script for show more button #}
 				{# script for show more button #}
@@ -281,7 +290,7 @@
 						button.textContent = isHidden ? 'Show less' : 'Show more';
 					}
 				</script>
-				
+
 			</div>
 		</div>
 	</div>
@@ -290,44 +299,44 @@
 	<script src="static/js/data/browser.min.js"></script>
 	<script src="static/js/data/breakpoints.min.js"></script>
 	<script src="static/js/data/util.js"></script>
-	<script src="static/js/data/main.js"></script> 
-	
+	<script src="static/js/data/main.js"></script>
+
 	<!-- Include all js compiled plugins (below), or include individual files as needed -->
 
-		<script src="static/js/jquery.js"></script>
-        
-        <!--modernizr.min.js-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
-		
-		<!--bootstrap.min.js-->
-        <script src="static/js/bootstrap.min.js"></script>
-		
-		<!-- bootsnav js -->
-		<script src="static/js/bootsnav.js"></script>
-		
-		<!-- jquery.sticky.js -->
-		<script src="static/js/jquery.sticky.js"></script>
-		
-		<!-- for progress bar start-->
+	<script src="static/js/jquery.js"></script>
 
-		<!-- progressbar js -->
-		<script src="static/js/progressbar.js"></script>
+	<!--modernizr.min.js-->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
 
-		<!-- appear js -->
-		<script src="static/js/jquery.appear.js"></script>
+	<!--bootstrap.min.js-->
+	<script src="static/js/bootstrap.min.js"></script>
 
-		<!-- for progress bar end -->
+	<!-- bootsnav js -->
+	<script src="static/js/bootsnav.js"></script>
 
-		<!--owl.carousel.js-->
-        <script src="static/js/owl.carousel.min.js"></script>
+	<!-- jquery.sticky.js -->
+	<script src="static/js/jquery.sticky.js"></script>
+
+	<!-- for progress bar start-->
+
+	<!-- progressbar js -->
+	<script src="static/js/progressbar.js"></script>
+
+	<!-- appear js -->
+	<script src="static/js/jquery.appear.js"></script>
+
+	<!-- for progress bar end -->
+
+	<!--owl.carousel.js-->
+	<script src="static/js/owl.carousel.min.js"></script>
 
 
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-		
-        
-        <!--Custom JS-->
-        <script src="static/js/custom.js"></script>
-    
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+
+
+	<!--Custom JS-->
+	<script src="static/js/custom.js"></script>
+
 </body>
 
 </html>
