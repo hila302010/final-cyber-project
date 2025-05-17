@@ -3575,6 +3575,8 @@ tr:hover {
 	border-radius: 12px;
 	font-size: 0.9rem;
 	white-space: nowrap;
+	display: inline-flex;
+
   }
   .chip:hover {
     background-color: #b3e6ea;
