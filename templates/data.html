@@ -42,9 +42,26 @@
 					</p><br><br><br>
 				</header>
 
-				
+				<!-- Loading Bar -->
+				<section>
+					<div id="loading-bar-container" style="display: none; width: 50%; margin-top: 20px;">
+						<div id="coffee-break-message" style="text-align: center; font-size: 18px; font-weight: bold; color: #2878e0; margin-top: 10px; display: none;">
+						It's time for your coffee break!
+						</div>
+							<div id="loading-bar" style="width: 0%; height: 20px; background-color: #459a9e; border-radius: 5px;">
+								<span id="loading-percentage" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-weight: bold; color: #ffffff;">0%</span>
+							</div>
+							<div id="loading-circle" style="display: none; margin-left: 10px;">
+								<div class="spinner"></div>
+							</div>
+						</div>
+						<div id="task-description" style="text-align:center 10px; font-size: 16px; font-weight: bold; color: #333333; display: none;">
+							Initializing...
+						</div>
+				</section><br><br><br>
 
-				<!-- Section -->
+
+				<!-- Data Section -->
 				<section class="tiles">
 					<article class="style1">
 						<span class="image">
@@ -273,7 +290,44 @@
 	<script src="static/js/data/browser.min.js"></script>
 	<script src="static/js/data/breakpoints.min.js"></script>
 	<script src="static/js/data/util.js"></script>
-	<script src="static/js/data/main.js"></script>
+	<script src="static/js/data/main.js"></script> 
+	
+	<!-- Include all js compiled plugins (below), or include individual files as needed -->
+
+		<script src="static/js/jquery.js"></script>
+        
+        <!--modernizr.min.js-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+		
+		<!--bootstrap.min.js-->
+        <script src="static/js/bootstrap.min.js"></script>
+		
+		<!-- bootsnav js -->
+		<script src="static/js/bootsnav.js"></script>
+		
+		<!-- jquery.sticky.js -->
+		<script src="static/js/jquery.sticky.js"></script>
+		
+		<!-- for progress bar start-->
+
+		<!-- progressbar js -->
+		<script src="static/js/progressbar.js"></script>
+
+		<!-- appear js -->
+		<script src="static/js/jquery.appear.js"></script>
+
+		<!-- for progress bar end -->
+
+		<!--owl.carousel.js-->
+        <script src="static/js/owl.carousel.min.js"></script>
+
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+		
+        
+        <!--Custom JS-->
+        <script src="static/js/custom.js"></script>
+    
 </body>
 
 </html>
