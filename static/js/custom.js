@@ -22,7 +22,22 @@ $(document).ready(function () {
     initializeOwlCarousel();
     initializeWelcomeAnimation();
     fetchAboutUsText();
-    initializeLoadingBar();
+    // initializeLoadingBar();
+
+    // Only initialize loading bar logic on the relevant pages
+    if (window.location.pathname === "/") {
+        // On index.html, set up form and loading bar
+        initializeLoadingBar();
+    } else if (window.location.pathname === "/data") {
+        // On data.html, just show and update the loading bar if progress < 100%
+        showLoadingBar();
+        // You need to get the sessionId from the server or sessionStorage
+        // For example, if you store it in sessionStorage:
+        const sessionId = sessionStorage.getItem("sessionId");
+        if (sessionId) {
+            startPollingProgress(sessionId);
+        }
+    }
 });
 
 
@@ -157,8 +172,11 @@ function setupFormSubmission(sessionId) {
     $("#infoForm").on("submit", function (event) {
         event.preventDefault(); // Prevent the default form submission
 
-        // Show the loading bar container
-        showLoadingBar();
+        // // Show the loading bar container
+        // showLoadingBar();
+
+         // Store sessionId for use on /data page
+        sessionStorage.setItem("sessionId", sessionId);
 
         // Collect form data
         const formData = {
@@ -168,8 +186,7 @@ function setupFormSubmission(sessionId) {
             session_id: sessionId
         };
 
-        // Start polling the progress endpoint
-        startPollingProgress(sessionId);
+        
 
         // Make an AJAX request to start loading the data
         $.ajax({
@@ -180,6 +197,11 @@ function setupFormSubmission(sessionId) {
             success: function (response) {
                 console.log("Data loading started:", response);
                 window.location.href = "/data"; // Redirect to the /data page
+                // Show the loading bar container
+                showLoadingBar();
+
+                // Start polling the progress endpoint
+                startPollingProgress(sessionId);
             },
             error: function (error) {
                 console.error("Error starting data load:", error);
@@ -239,8 +261,8 @@ function startPollingProgress(sessionId) {
                     // Keep the completed bar visible for 1 second before hiding it
                     setTimeout(() => {
                         hideLoadingBar();
-                        // Redirect to the /data page
-                        window.location.href = "/data";
+                        // // Redirect to the /data page
+                        // window.location.href = "/data";
                     }, 1000); // Delay of 1 second
                 }
             },

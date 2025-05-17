@@ -3648,3 +3648,40 @@ button.show-more-btn.custom-hover-style:hover {
 	align-items: center;
 	gap: 8px;
 }
+/*LOADING BAR*/
+#loading-bar-container {
+    width: 10%; /* Narrower width */
+    background-color: #f4f8fb;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    overflow: hidden;
+    margin: 20px auto; /* Center the bar horizontally */
+    position: relative; /* Ensure the container is positioned relative */
+}
+
+#loading-bar {
+    width: 0%;
+    height: 20px;
+    background-color: #459a9e;
+    transition: width 0.5s ease-in-out;
+    border-radius: 5px;
+    position: relative; /* Ensure the bar is positioned relative */
+}
+#loading-percentage {
+    position: absolute; /* Position the text absolutely inside the bar */
+    width: 100%; /* Make the text span the entire width of the bar */
+    text-align: center; /* Center the text horizontally */
+    font-size: 0.9em;
+    color: white; /* Change the text color to white for better visibility */
+    font-weight: bold;
+    top: 50%; /* Center the text vertically */
+    transform: translateY(-50%); /* Adjust for vertical centering */
+}
+#task-description {
+    text-align: center; /* Center the text horizontally */
+    margin-top: 20px; /* Add some spacing above */
+    font-size: 16px;
+    font-weight: bold;
+    color: #333333;
+    display: none; /* Initially hidden */
+}

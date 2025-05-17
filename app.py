@@ -114,21 +114,21 @@ def load_data():
 
     def fetch_emails_thread():
         nonlocal emails
-        time.sleep(5)  # Simulate a slow operation
+        time.sleep(20)  # Simulate a slow operation
         emails = load_emails_from_csv()  # Load emails from CSV for testing
         # emails = fetch_emails(session_id, domain)
         redis_client.set(f"{session_id}_emails", json.dumps(emails))
 
     def fetch_employees_thread():
         nonlocal employees
-        time.sleep(10)  # Simulate a slower operation
+        time.sleep(30)  # Simulate a slower operation
         employees = load_employees_from_csv()  # Load employees from CSV for testing
         #employees = fetch_employees(session_id, domain)
         redis_client.set(f"{session_id}_employees", json.dumps(employees))
 
     def fetch_ips_domains_dkim_thread():
         nonlocal merged_ips, domains, dkimdmarc
-        time.sleep(15)  # Simulate the slowest operation
+        time.sleep(40)  # Simulate the slowest operation
         merged_ips = load_ips_from_csv()
         domains = load_domains_from_csv()
         dkimdmarc = load_dkim_dmarc_from_csv()
@@ -150,25 +150,9 @@ def load_data():
     t3.start()
 
 
-
-    """# Wait for all to finish
-    t1.join()
-    t2.join()
-    t3.join()"""
-
     # Store the data in the session
     progress["task"] = "Finalizing data..."
-    """    session['domain'] = domain
-    session['country'] = country
-    session['company'] = company
-    """
-    """    session['emails'] = emails
-    session['employees'] = employees
-    session['ips'] = merged_ips
-    session['domains'] = domains
-    session['dkimdmarc'] = dkimdmarc"""
     
-
     # Finalize progress
     progress["task"] = "Data loading complete."
     progress["value"] = 100  # Step 5: Data loading complete
@@ -242,9 +226,10 @@ def export_emails():
     emails = json.loads(redis_client.get(f"{session_id}_emails") or "[]")
     # Create a CSV response
     def generate():
-        yield "Email Address\n"  # Header row
+        yield "Email Address,Source\n"  # Header row
         for email in emails:
-            yield f"{email}\n"  # Each email as a new row
+            # email is expected to be a dict: {'email': ..., 'source': ...}
+            yield f"{email.get('email', '')},{email.get('source', '')}\n"
     # Return the response as a CSV file
     return Response(
         generate(),
