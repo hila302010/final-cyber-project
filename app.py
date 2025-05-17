@@ -1,7 +1,6 @@
 # ------------------------------
 # Imports
 # ------------------------------
-
 #adding redisfrom flask_session import Session
 import redis
 from flask_session import Session
@@ -16,6 +15,7 @@ import time
 import csv
 import threading
 from io import StringIO
+import json
 from flask import jsonify
 from concurrent.futures import ThreadPoolExecutor, as_completed
 
@@ -47,6 +47,7 @@ app.config['SESSION_TYPE'] = 'redis'
 app.config['SESSION_PERMANENT'] = False
 app.config['SESSION_USE_SIGNER'] = True  # Optional: adds cryptographic signature
 app.config['SESSION_REDIS'] = redis.Redis(host='localhost', port=6379, db=0)
+redis_client = redis.Redis(host='localhost', port=6379, db=0)
 # Initialize session
 Session(app)
 
@@ -93,35 +94,50 @@ def load_data():
     # Reset the cancellation flag for this session
     cancellation_flags[session_id] = False
 
+    session['session_id'] = session_id
+
     # Parse the JSON data from the AJAX request
     data = request.get_json()
     domain = data.get('domain')
     country = data.get('country')
     company = data.get('company')
 
+    session['domain'] = domain
+    session['country'] = country
+    session['company'] = company
+
     # Simulate progress for each step
     progress["value"] = 5  # Step 1: Parsing input data
+
 
     emails = employees = merged_ips = domains = dkimdmarc = None
 
     def fetch_emails_thread():
         nonlocal emails
+        time.sleep(5)  # Simulate a slow operation
         emails = load_emails_from_csv()  # Load emails from CSV for testing
         # emails = fetch_emails(session_id, domain)
+        redis_client.set(f"{session_id}_emails", json.dumps(emails))
 
     def fetch_employees_thread():
         nonlocal employees
+        time.sleep(10)  # Simulate a slower operation
         employees = load_employees_from_csv()  # Load employees from CSV for testing
         #employees = fetch_employees(session_id, domain)
+        redis_client.set(f"{session_id}_employees", json.dumps(employees))
 
     def fetch_ips_domains_dkim_thread():
         nonlocal merged_ips, domains, dkimdmarc
+        time.sleep(15)  # Simulate the slowest operation
         merged_ips = load_ips_from_csv()
         domains = load_domains_from_csv()
         dkimdmarc = load_dkim_dmarc_from_csv()
         # merged_ips = fetch_ips(session_id, domain, country, company)
         # domains = fetch_domains(session_id, domain, merged_ips)
         # dkimdmarc = fetch_dkim_dmarc(session_id, domains)
+        redis_client.set(f"{session_id}_ips", json.dumps(merged_ips))
+        redis_client.set(f"{session_id}_domains", json.dumps(domains))
+        redis_client.set(f"{session_id}_dkimdmarc", json.dumps(dkimdmarc))
 
     # Create threads
     t1 = threading.Thread(target=fetch_emails_thread)
@@ -133,22 +149,24 @@ def load_data():
     t2.start()
     t3.start()
 
-    # Wait for all to finish
+
+
+    """# Wait for all to finish
     t1.join()
     t2.join()
-    t3.join()
+    t3.join()"""
 
     # Store the data in the session
     progress["task"] = "Finalizing data..."
-    session['domain'] = domain
+    """    session['domain'] = domain
     session['country'] = country
     session['company'] = company
-
-    session['emails'] = emails
+    """
+    """    session['emails'] = emails
     session['employees'] = employees
     session['ips'] = merged_ips
     session['domains'] = domains
-    session['dkimdmarc'] = dkimdmarc
+    session['dkimdmarc'] = dkimdmarc"""
     
 
     # Finalize progress
@@ -173,12 +191,13 @@ def get_progress():
 # ------------------------------
 @app.route('/data')
 def data():
-     # Get session data
-    emails = session.get('emails', [])
-    ips = session.get('ips', [])
-    employees = session.get('employees', [])
-    domains = session.get('domains', [])
-
+    # Get session data
+    session_id = session.get('session_id')
+    emails = json.loads(redis_client.get(f"{session_id}_emails") or "[]")
+    ips = json.loads(redis_client.get(f"{session_id}_ips") or "[]")
+    employees = json.loads(redis_client.get(f"{session_id}_employees") or "[]")
+    domains = json.loads(redis_client.get(f"{session_id}_domains") or "[]")
+    dkimdmarc = json.loads(redis_client.get(f"{session_id}_dkimdmarc") or "[]")
 
     # Count the number of emails, IPs, and employees
     email_count = len(emails)
@@ -196,7 +215,7 @@ def data():
         employees=employees,
         ips=ips,
         domains=domains,
-        dkimdmarc=session.get('dkimdmarc', []),
+        dkimdmarc=dkimdmarc,
         email_count=email_count,          # Pass email count
         ips_count=ips_count,              # Pass IPs count
         employees_count=employees_count, # Pass employees count
@@ -210,14 +229,17 @@ def data():
 # ------------------------------
 @app.route('/emails')
 def emails():
-    emails = session.get('emails', [])
+    #emails = session.get('emails', [])
+    session_id = session.get('session_id')
+    emails = json.loads(redis_client.get(f"{session_id}_emails") or "[]")
     email_count = len(emails)  # Count the number of emails
     return render_template('emails.html', emails=emails, email_count=email_count)
 
 @app.route('/export_emails')
 def export_emails():
     domain = session.get('domain', '')
-    emails = session.get('emails', [])
+    session_id = session.get('session_id')
+    emails = json.loads(redis_client.get(f"{session_id}_emails") or "[]")
     # Create a CSV response
     def generate():
         yield "Email Address\n"  # Header row
@@ -236,14 +258,16 @@ def export_emails():
 @app.route('/employees')
 def employees():
     # Render the table for employees
-    employees = session.get('employees', [])
+    session_id = session.get('session_id')
+    employees = json.loads(redis_client.get(f"{session_id}_employees") or "[]")
     employees_count = len(employees)  # Count the number of employees
     return render_template('employees.html', employees=employees, employees_count=employees_count)
 
 
 @app.route('/export_employees')
 def export_employees():
-    employees = session.get('employees', [])
+    session_id = session.get('session_id')
+    employees = json.loads(redis_client.get(f"{session_id}_employees") or "[]")
     
     # Ensure the data is structured as a list of tuples
     if not employees:
@@ -283,13 +307,16 @@ def export_employees():
 @app.route('/ips')
 def ips():
     # Render the table for ips
-    ips = session.get('ips', [])
+    #ips = session.get('ips', [])
+    session_id = session.get('session_id')
+    ips = json.loads(redis_client.get(f"{session_id}_ips") or "[]")
     ips_count = len(ips)
     return render_template('ips.html', ips=ips, ips_count=ips_count)
 
 @app.route('/export_ips')
 def export_ips():
-    ips = session.get('ips', [])
+    session_id = session.get('session_id')
+    ips = json.loads(redis_client.get(f"{session_id}_ips") or "[]")
     
     # Ensure there is data to export
     if not ips:
@@ -350,13 +377,16 @@ def export_ips():
 @app.route('/domains')
 def domains():
     # Render the table for domains
-    domains = session.get('domains', [])
+    #domains = session.get('domains', [])
+    session_id = session.get('session_id')
+    domains = json.loads(redis_client.get(f"{session_id}_domains") or "[]")
     domains_count = len(domains)  # Count the number of domains
     return render_template('domains.html', domains=domains, domains_count=domains_count)
 
 @app.route('/export_domains')
 def export_domains():
-    domains = session.get('domains', [])
+    session_id = session.get('session_id')
+    domains = json.loads(redis_client.get(f"{session_id}_domains") or "[]")
     
     # Ensure there is data to export
     if not domains:
@@ -381,14 +411,17 @@ def export_domains():
 @app.route('/dkimdmarc')
 def dkimdmarc():
     # Retrieve DKIM/DMARC data from the session
-    dkimdmarc = session.get('dkimdmarc', [])
+    #dkimdmarc = session.get('dkimdmarc', [])
+    session_id = session.get('session_id')
+    dkimdmarc = json.loads(redis_client.get(f"{session_id}_dkimdmarc") or "[]")
     dkimdmarc_count = len(dkimdmarc)  # Count the number of DKIM/DMARC records
     return render_template('dkimdmarc.html', dkimdmarc=dkimdmarc, dkimdmarc_count=dkimdmarc_count)
 
 
 @app.route('/export_dkimdmarc')
 def export_dkimdmarc():
-    dkimdmarc = session.get('dkimdmarc', [])
+    session_id = session.get('session_id')
+    dkimdmarc = json.loads(redis_client.get(f"{session_id}_dkimdmarc") or "[]")
     
     # Ensure there is data to export
     if not dkimdmarc:
