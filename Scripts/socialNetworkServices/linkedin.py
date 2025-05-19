@@ -213,11 +213,11 @@ def get_company_name(domain):
 def execute_linkedin(domain):
     
     employees = []  # Initialize employees as an empty list
-    #linkedin_username = "m30934622@gmail.com"
-    #linkedin_password = "marianellarinaldi"
+    linkedin_username = "pikshaked@gmail.com"
+    linkedin_password = "SP210601!"
 
-    linkedin_username = "benmhila@post.bgu.ac.il"
-    linkedin_password = "L)qvR$s~=8$J7FD"
+    # linkedin_username = "benmhila@post.bgu.ac.il"
+    # linkedin_password = "L)qvR$s~=8$J7FD"
 
     company_name = get_company_name(domain)
     if company_name:
