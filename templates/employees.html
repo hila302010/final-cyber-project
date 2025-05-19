@@ -5,6 +5,10 @@
     <!-- For the logo png -->
     <link rel="shortcut icon" size="32x32" type="image/icon" href="static/images/logo.png"/>
     <link rel="stylesheet" href="static/css/styleemployees.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
 </head>
 <body>
     <img src="static/images/osintech.png" alt="Brand Logo" style="max-width: 170px; height: auto;" />
@@ -12,15 +16,15 @@
     <div class="card-container">
         <div class="top-bar">
             <a href="{{ url_for('data') }}" class="back-link">&larr; Back to Data</a>
-            <a href="{{ url_for('export_employees') }}" class="export-btn">Export to CSV</a>
+            <a href="{{ url_for('export_employees') }}" class="export-btn"><i class="fas fa-file-csv"></i> Export to CSV</a>
         </div>
         <div class="video-container">
             <p style="text-align: left; font-size: 1.2em; color: #2878e0; cursor: pointer;" onclick="toggleVideo()">
-                <strong>See how employees are being extracted by our Script!</strong>
+                <strong>🔗 Click here to watch our script extract employees in action!</strong>
             </p>
             <div id="video-wrapper" style="display: none; text-align: center; margin-top: 20px;">
                 <video controls width="80%" style="border-radius: 8px; box-shadow: 0 4px 24px rgba(0,0,0,0.1);">
-                    <source src="{{ url_for('static', filename='video/video-linkedin.mp4') }}" type="video/mp4">                    Your browser does not support the video tag.
+                    <source src="{{ url_for('static', filename='video/video-linkedin.mp4') }}" type="video/mp4"> Your browser does not support the video tag.
                 </video>
             </div>
         </div>
@@ -61,5 +65,13 @@
         }
     }
 </script>
+<div id="scroll-Top">
+				<div class="return-to-top">
+					<i class="fa fa-angle-up " id="scroll-top" ></i>
+				</div>
+				
+			</div><!--/.scroll-Top-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="static/js/custom.js"></script>
 </body>
 </html>

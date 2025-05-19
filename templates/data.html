@@ -13,6 +13,7 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 	<link rel="stylesheet" href="static/css/styledata.css" />
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<noscript>
 		<link rel="stylesheet" href="static/css/noscript.css" />
 	</noscript>
@@ -30,7 +31,7 @@
 				</a>
 				<header>
 					<br>
-					<h1 style="text-align: center; margin: -100px;">Data Results:</h1><br><br><br><br>
+					<h1 style="text-align: center; margin: -100px;">Data Results</h1><br><br><br><br>
 					<p style="text-align: center; margin-bottom: 13px;">
 						Domain: <span style="color: #31c9c9;">{{ domain }}</span>
 					</p>
@@ -66,8 +67,9 @@
 						style="text-align:center 10px; font-size: 16px; font-weight: bold; color: #333333; display: none;">
 						Initializing...
 					</div>
-				</section><br><br><br>
+				</section>
 
+				<hr class="section-divider">
 
 				<!-- Data Section -->
 				<section class="tiles">
@@ -140,17 +142,17 @@
 				<hr class="section-divider">
 				<div class="summary-report">
 					<br><br><br><br>
-					<h1 style="text-align: center; margin: -100px;">Summery:</h1><br><br><br><br>
+					<h1 style="text-align: center; margin: -100px;">Summary</h1><br><br><br><br>
 
 					{# Counters #}
 					<!-- <li><strong>Found {{ email_count }} emails</strong></li>
 					<li><strong>Found {{ ips_count }} IPs</strong></li>
 					<li><strong>Found {{ employees_count }} employee</strong></li>
 					<li><strong>Found {{ domains_count }} domains and subdomains</strong></li> -->
-					<li><strong>Found <span id="summary-email-count">{{ email_count }}</span> emails</strong></li>
-					<li><strong>Found <span id="summary-ips-count">{{ ips_count }}</span> IPs</strong></li>
-					<li><strong>Found <span id="summary-employees-count">{{ employees_count }}</span> employee</strong></li>
-					<li><strong>Found <span id="summary-domains-count">{{ domains_count }}</span> domains and subdomains</strong>
+					<li><strong>Found <span id="summary-email-count">{{ email_count }}</span> Emails</strong></li>
+					<li><strong>Found <span id="summary-ips-count">{{ ips_count }}</span> Ips</strong></li>
+					<li><strong>Found <span id="summary-employees-count">{{ employees_count }}</span> Employees</strong></li>
+					<li><strong>Found <span id="summary-domains-count">{{ domains_count }}</span> Domains and Subdomains</strong>
 					</li>
 
 					<!-- SPF -->
@@ -217,7 +219,12 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 	<!--Custom JS-->
 	<script src="static/js/custom.js"></script>
-
+			<div id="scroll-Top">
+				<div class="return-to-top">
+					<i class="fa fa-angle-up " id="scroll-top" ></i>
+				</div>
+				
+			</div><!--/.scroll-Top-->
 </body>
 
 </html>
