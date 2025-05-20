@@ -59,8 +59,9 @@ user_agents = deque([
 
 
 # Your GitHub token
-GITHUB_TOKENS = ["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",
-                 "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"]
+# GITHUB_TOKENS = ["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",
+#                  "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"]
+GITHUB_TOKENS = ["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"]
 
 GITHUB_API_URL = "https://api.github.com"
 KEYWORDS = {
@@ -76,7 +77,7 @@ MAX_THREADS = 5  # Number of concurrent threads
 # Rotate through GitHub tokens
 def get_next_token():
     token = GITHUB_TOKENS[0]
-    GITHUB_TOKENS.append(GITHUB_TOKENS.pop(0))  # Rotate tokens
+    # GITHUB_TOKENS.append(GITHUB_TOKENS.pop(0))  # Rotate tokens
     return token
 
 
@@ -109,6 +110,25 @@ def get_rate_limit():
     except requests.exceptions.RequestException as e:
         print(f"Request error: {e}")
         return None, None
+
+#SHAKED ADDED- TRY!
+def get_default_branch(repo_full_name):
+    """Fetch the default branch of a GitHub repository."""
+    try:
+        headers = HEADERS.copy()
+        headers["Authorization"] = f"token {get_next_token()}"
+        headers["User-Agent"] = get_next_user_agent()
+        response = requests.get(f"{GITHUB_API_URL}/repos/{repo_full_name}", headers=headers, timeout=10)
+        response.raise_for_status()
+        data = response.json()
+        return data.get("default_branch", "main")
+    except Exception as e:
+        print(f"Error getting default branch for {repo_full_name}: {e}")
+        return "main"
+
+
+
+
 
 
 def fetch_code_content(url):
@@ -165,8 +185,12 @@ def get_emails_from_commits(repo_full_name, domain, email_urls, lock):
 def process_file(item, domain, email_urls, checked_urls, lock, seen_repos):
     """Extract emails if the file contains relevant keywords."""
     repo, path = item["repository"]["full_name"], item["path"]
-    code_url = f"https://github.com/{repo}/blob/main/{path}"
-    raw_url = f"https://raw.githubusercontent.com/{repo}/main/{path}"
+    # code_url = f"https://github.com/{repo}/blob/main/{path}"
+    # raw_url = f"https://raw.githubusercontent.com/{repo}/main/{path}"
+    default_branch = get_default_branch(repo)
+    code_url = f"https://github.com/{repo}/blob/{default_branch}/{path}"
+    raw_url = f"https://raw.githubusercontent.com/{repo}/{default_branch}/{path}"
+
 
     #with lock:
     if raw_url in checked_urls:

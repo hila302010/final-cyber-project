@@ -49,20 +49,20 @@ def disconnect_from_nordvpn():
 #SHAKED CHANGED- ADDING SOURCE TO THE EMAILS
 def getEmails(domain):
     emails = set()
-    connect_to_nordvpn('de')
+    #connect_to_nordvpn('de')
 
     # GitHub email search
     github_results = github.search_github_emails(domain)
     if isinstance(github_results, dict):
         emails.update((email, 'github') for email in github_results.keys())
-    elif isinstance(github_results, list):
+    elif isinstance(github_results, (list, set)):
         emails.update((email, 'github') for email in github_results)
 
     # Google email search
     email_data = google.google_dork_emails(domain)
     emails.update((email, 'google') for email, _, _ in email_data)
 
-    disconnect_from_nordvpn()
+    #disconnect_from_nordvpn()
 
     # Convert to list of dicts with source first
     return [{'source': source, 'email': email} for email, source in emails]
