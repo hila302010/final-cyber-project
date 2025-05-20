@@ -45,7 +45,7 @@
                         {% if record.SPF and record.DMARC == "No DMARC record found" %}
                             <span class="error-text">{{ record.DMARC }}</span>
                         {% else %}
-                        {{ record.DMARC or "N/A" }}
+                        {{ record.DMARC or "No DMARC record found" }}
                         {% endif %}
                     </td>
                     <td>
@@ -59,7 +59,7 @@
                         {% if record.DKIM %}
                             {% if record.DKIM == "No DKIM record found" %}
                             <span class="error-text">{{ record.DKIM }}</span>
-                            {% elif record.DKIM|length > 20 %}
+                            {% elif record.DKIM|length > 25 %}
                             <span class="short-text">{{ record.DKIM[:70] }}...</span>
                             <span class="full-text">{{ record.DKIM }}</span>
                             <button class="toggle-btn" onclick="toggleText(this)">More</button>
@@ -71,10 +71,10 @@
                         {% endif %}
                     </td>
                     <td>
-                        {% if record['DMARC Policy'] and record['DMARC Policy'].startswith('WARNING') %}
-                        <span class="warning-text">{{ record['DMARC Policy'] }}</span>
+                        {% if record['DKIM Status'] and record['DKIM Status'].startswith('WARNING') %}
+                        <span class="warning-text">{{ record['DKIM Status'] }}</span>
                         {% else %}
-                        {{ record['DMARC Policy'] or "N/A" }}
+                        {{ record['DKIM Status'] or "N/A" }}
                         {% endif %}
                     </td>
                 </tr>
