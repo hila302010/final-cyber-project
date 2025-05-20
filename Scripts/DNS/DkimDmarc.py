@@ -62,7 +62,7 @@ def fetch_dns_records(domain):
         selector, dkim_data = find_dkim_selector(domain)
         if selector:
             records['DKIM Selector'] = selector
-            if dkim_data != N/A:
+            if dkim_data is not None:
                 records['DKIM'] = dkim_data
             else:
                 records['DKIM'] = "No DKIM record found"
@@ -74,7 +74,7 @@ def fetch_dns_records(domain):
             elif dkim_key.lower() == "none":
                 records['DKIM Status'] = "WARNING: DKIM p=none (Invalid Configuration!)"
             else:
-                records['DKIM Status'] = "DKIM  public key found"
+                records['DKIM Status'] = "DKIM public key found"
         else:
             records['DKIM Selector'] = "Not found"
             records['DKIM'] = "No DKIM record found"
