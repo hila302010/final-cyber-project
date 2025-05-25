@@ -25,10 +25,22 @@
 		<!-- Main -->
 		<div id="main">
 			<div class="inner">
-				<a href="{{ url_for('index') }}">
-					<img src="static/images/osintech.png" alt="Brand Logo"
-						style="max-width: 170px; height: auto; margin-top: 20px;" />
-				</a>
+				<div style="display: flex; align-items: center; gap: 12px; margin-top: 20px;">
+<div style="display: flex; flex-direction: column; align-items: flex-start; margin-top: 20px;">
+    <a href="{{ url_for('index') }}" style="text-decoration: none; color: inherit; outline: none; border: none;">
+        <img src="static/images/osintech.png"
+             alt="Brand Logo"
+             style="max-width: 170px; height: auto; margin-bottom: 2px;" />
+    </a>
+    <a href="{{ url_for('index') }}"
+       style="font-size: 1em; margin-top: -40px; text-decoration: none; color: inherit; outline: none; border: none;">
+        Back to OsinTech
+    </a>
+</div>
+
+
+    
+</div>
 				<header>
 					<br>
 					<h1 style="text-align: center; margin: -100px;">Data Results</h1><br><br><br><br>
@@ -143,6 +155,7 @@
 				<div class="summary-report">
 					<br><br><br><br>
 					<h1 style="text-align: center; margin: -100px;">Summary</h1><br><br><br><br>
+					<li><strong>Data right to time:</strong> {{ current_time }}</li>
 
 					{# Counters #}
 					<!-- <li><strong>Found {{ email_count }} emails</strong></li>

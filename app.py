@@ -30,6 +30,8 @@ import Scripts.mergedWhois.crtshToIPSToWhois as whois
 import Scripts.githubAndGoogleDorks.main as googleAndGithub
 
 
+from datetime import datetime
+
 
 # ------------------------------
 # Flask App Configuration
@@ -113,7 +115,7 @@ def load_data():
 
     def fetch_emails_thread():
         nonlocal emails
-        time.sleep(20)  # Simulate a slow operation
+        # time.sleep(20)  # Simulate a slow operation
         emails = load_emails_from_csv()  # Load emails from CSV for testing
         # emails = fetch_emails(session_id, domain)
         redis_client.set(f"{session_id}_emails", json.dumps(emails))
@@ -162,7 +164,8 @@ def load_data():
     t1.start()
     t2.start()
     t3.start()
-    
+
+
 
     # Return a success response
     return jsonify({"message": "Data loaded successfully"})
@@ -195,7 +198,9 @@ def data():
     ips_count = len(ips)
     employees_count = len(employees)
     domains_count = len(domains)
-    
+    #shaked added- 25.5
+    current_time = get_current_time()
+
     # Pass counts along with other session data to the template
     return render_template(
         'data.html',
@@ -210,8 +215,13 @@ def data():
         email_count=email_count,          # Pass email count
         ips_count=ips_count,              # Pass IPs count
         employees_count=employees_count, # Pass employees count
-        domains_count=domains_count       # Pass domains count
+        domains_count=domains_count,       # Pass domains count
+        current_time=current_time
     )
+
+def get_current_time():
+    return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+
 
 @app.route('/data_json')
 def data_json():
@@ -472,6 +482,7 @@ def fetch_emails(session_id, domain):
     # Simulate fetching emails (replace with actual logic)
     emails = googleAndGithub.getEmails(domain)
     progress["value"] += 10  # Step 2: Fetching emails
+    progress["task"] = "Done Fetching emails..."
     return emails
 
 def fetch_employees(session_id, domain):
@@ -482,7 +493,9 @@ def fetch_employees(session_id, domain):
     progress["task"] = "Fetching Employees..."
     # Simulate fetching employees
     employees = linkedin.execute_linkedin(domain)
-    progress["value"] += 10  # Increment progress 
+    progress["value"] += 10  # Increment progress
+    progress["task"] = "Done Fetching Employees..."
+ 
     return employees
 
 
@@ -499,6 +512,7 @@ def fetch_ips(session_id, domain, country, company):
     whois_ips = whois.getipsWithFields(domain)
     merged_ips = dataLoadingIPs(shodan_ips, whois_ips)
     progress["value"] += 10  # Step 4: Fetching IPs
+    progress["task"] = "Done Fetching IPs..."
     return merged_ips
 
 def fetch_domains(session_id, domain, merged_ips):
@@ -517,6 +531,7 @@ def fetch_domains(session_id, domain, merged_ips):
     max_domains = 500
     domains = domains[:max_domains]
     progress["value"] += 10  # Step 5: Fetching Domains
+    progress["task"] = "Done Fetching domains..."
     return domains
 
 def fetch_dkim_dmarc(session_id, domains):
@@ -529,6 +544,7 @@ def fetch_dkim_dmarc(session_id, domains):
     # Fetch DKIM and DMARC records
     dkimdmarc = loadingDkimDmarc(domains)
     progress["value"] += 10  # Step 6: Fetching DKIM DMARC RECORDS
+    progress["task"] = "Done Fetching DKIM/DMARC records..."
     return dkimdmarc
 
 
