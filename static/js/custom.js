@@ -61,6 +61,8 @@ $(document).ready(function () {
 
 
 
+
+
 // 2. Smooth Scroll spy
 function initializeSmoothScrollSpy() {
     $('.header-area').sticky({
@@ -422,3 +424,27 @@ function toggleFullVuln(element, vulnKey) {
         expandedVulnSet.delete(vulnKey);
     }
 }
+
+// Poll for progress status every 2 seconds
+function checkProgressAndRedirect() {
+    fetch("/progress")
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 0) {
+                // Data is finished loading, redirect to /data
+                window.location.href = "/data";
+            } else {
+                // Continue polling until status is 0
+                setTimeout(checkProgressAndRedirect, 2000);
+            }
+        })
+        .catch(error => {
+            console.error("Error fetching progress:", error);
+            setTimeout(checkProgressAndRedirect, 2000); // Retry after delay
+        });
+}
+
+// Start polling after page load
+document.addEventListener("DOMContentLoaded", function() {
+    checkProgressAndRedirect();
+});
