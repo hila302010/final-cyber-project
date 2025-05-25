@@ -26,21 +26,21 @@
 		<div id="main">
 			<div class="inner">
 				<div style="display: flex; align-items: center; gap: 12px; margin-top: 20px;">
-<div style="display: flex; flex-direction: column; align-items: flex-start; margin-top: 20px;">
-    <a href="{{ url_for('index') }}" style="text-decoration: none; color: inherit; outline: none; border: none;">
-        <img src="static/images/osintech.png"
-             alt="Brand Logo"
-             style="max-width: 170px; height: auto; margin-bottom: 2px;" />
-    </a>
-    <a href="{{ url_for('index') }}"
-       style="font-size: 1em; margin-top: -40px; text-decoration: none; color: inherit; outline: none; border: none;">
-        Back to OsinTech
-    </a>
-</div>
+					<div style="display: flex; flex-direction: column; align-items: flex-start; margin-top: 20px;">
+						<a href="{{ url_for('index') }}"
+							style="text-decoration: none; color: inherit; outline: none; border: none;">
+							<img src="static/images/osintech.png" alt="Brand Logo"
+								style="max-width: 170px; height: auto; margin-bottom: 2px;" />
+						</a>
+						<a href="{{ url_for('index') }}"
+							style="font-size: 1em; margin-top: -40px; text-decoration: none; color: inherit; outline: none; border: none;">
+							Back to OsinTech
+						</a>
+					</div>
 
 
-    
-</div>
+
+				</div>
 				<header>
 					<br>
 					<h1 style="text-align: center; margin: -100px;">Data Results</h1><br><br><br><br>
@@ -78,6 +78,10 @@
 					<div id="task-description"
 						style="text-align:center 10px; font-size: 16px; font-weight: bold; color: #333333; display: none;">
 						Initializing...
+					</div>
+					<div id="completed-tasks-description"
+						style="text-align:center 10px; font-size: 16px; font-weight: bold; color: #333333; display: none;">
+						Completed tasks
 					</div>
 				</section>
 
@@ -232,12 +236,12 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
 	<!--Custom JS-->
 	<script src="static/js/custom.js"></script>
-			<div id="scroll-Top">
-				<div class="return-to-top">
-					<i class="fa fa-angle-up " id="scroll-top" ></i>
-				</div>
-				
-			</div><!--/.scroll-Top-->
+	<div id="scroll-Top">
+		<div class="return-to-top">
+			<i class="fa fa-angle-up " id="scroll-top"></i>
+		</div>
+
+	</div><!--/.scroll-Top-->
 </body>
 
 </html>
