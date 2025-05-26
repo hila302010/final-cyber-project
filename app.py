@@ -95,6 +95,10 @@ def load_data():
     global progress
     progress["status"] = 1  # Set status to running
     session_id = request.json.get('session_id')
+
+    if not redis_client.exists(f"{session_id}_starting_time"):
+        redis_client.set(f"{session_id}_starting_time", get_current_time())
+
     if not session_id:
         return {"error": "Session ID is required."}, 400
 
@@ -133,13 +137,13 @@ def load_data():
                 progress["status"] = 0  # Mark the process as finished
                 progress["completed"] = []
                 # Save completion time ONLY when ALL threads are done
-                redis_client.set(f"{session_id}_completion_time", datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+                redis_client.set(f"{session_id}_completion_time", get_current_time())
 
     def fetch_emails_thread():
         nonlocal emails
-        # time.sleep(20)  # Simulate a slow operation
-        # emails = load_emails_from_csv()  # Load emails from CSV for testing
-        emails = fetch_emails(session_id, domain)
+        time.sleep(20)  # Simulate a slow operation
+        emails = load_emails_from_csv()  # Load emails from CSV for testing
+        # emails = fetch_emails(session_id, domain)
         redis_client.set(f"{session_id}_emails", json.dumps(emails))
         check_all_threads_complete()  # Check if this is the last thread
 
@@ -155,15 +159,17 @@ def load_data():
         nonlocal merged_ips, domains, dkimdmarc
         time.sleep(10)  # Simulate the slowest operation
         merged_ips = load_ips_from_csv()
+        # merged_ips = fetch_ips(session_id, domain, country, company)
+        redis_client.set(f"{session_id}_ips", json.dumps(merged_ips))
+
         time.sleep(10)  # Simulate the slowest operation
         domains = load_domains_from_csv()
+        # domains = fetch_domains(session_id, domain, merged_ips)
+        redis_client.set(f"{session_id}_domains", json.dumps(domains))
+
         time.sleep(10)  # Simulate the slowest operation
         dkimdmarc = load_dkim_dmarc_from_csv()
-        # merged_ips = fetch_ips(session_id, domain, country, company)
-        # domains = fetch_domains(session_id, domain, merged_ips)
         # dkimdmarc = fetch_dkim_dmarc(session_id, domains)
-        redis_client.set(f"{session_id}_ips", json.dumps(merged_ips))
-        redis_client.set(f"{session_id}_domains", json.dumps(domains))
         redis_client.set(f"{session_id}_dkimdmarc", json.dumps(dkimdmarc))
         check_all_threads_complete()  # Check if this is the last thread
 
@@ -201,6 +207,7 @@ def data():
     employees = json.loads(redis_client.get(f"{session_id}_employees") or "[]")
     domains = json.loads(redis_client.get(f"{session_id}_domains") or "[]")
     dkimdmarc = json.loads(redis_client.get(f"{session_id}_dkimdmarc") or "[]")
+
 
     # Count the number of emails, IPs, and employees
     email_count = len(emails)
@@ -241,8 +248,12 @@ def data_json():
     domains = json.loads(redis_client.get(f"{session_id}_domains") or "[]")
     dkimdmarc = json.loads(redis_client.get(f"{session_id}_dkimdmarc") or "[]")
     completion_time = redis_client.get(f"{session_id}_completion_time")
+    starting_time = redis_client.get(f"{session_id}_starting_time")
+
     if completion_time:
         completion_time = completion_time.decode("utf-8")
+    starting_time = starting_time.decode("utf-8") if starting_time else None
+
     return jsonify({
         "email_count": len(emails),
         "ips_count": len(ips),
@@ -250,7 +261,9 @@ def data_json():
         "domains_count": len(domains),
         "dkimdmarc": dkimdmarc,
         "ips": ips,
-        "completion_time": completion_time  # ✅ Include here
+        "completion_time": completion_time,  # ✅ Include here
+        "starting_time": starting_time  # ✅ Include here
+        
     })
 
 
