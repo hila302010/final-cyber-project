@@ -242,6 +242,7 @@ function showLoadingBar() {
     $("#cancelButton").show(); // Show the Cancel button
     $("#loading-circle").show(); // Show the loading circle
     $("#task-description").show();
+    $("#completed-tasks-description").show(); // Show the completed tasks description
     $("#coffee-break-message").show(); // Show the coffee break message
 }
 
@@ -254,6 +255,7 @@ function hideLoadingBar() {
     $("#loading-circle").hide(); // Hide the loading circle
     $("#cancelButton").hide(); // Hide the Cancel button
     $("#task-description").hide();
+    $("#completed-tasks-description").hide(); // Hide the completed tasks description
     $("#coffee-break-message").hide(); // Hide the coffee break message
 }
 
@@ -268,9 +270,11 @@ function startPollingProgress(sessionId) {
                 const progress = response.value; // Get the progress value (0-100)
                 const task = response.task; // Get the current task description
                 const status = response.status; // Get the status
+                const completedTasks = response.completed; // Get completed tasks
                 $("#loading-bar").css("width", progress + "%"); // Update the bar width
                 $("#loading-percentage").text(progress + "%"); // Update the percentage text
                 $("#task-description").text(task); // Update the task description
+                $("#completed-tasks-description").text("Completed tasks: " + completedTasks.join(", ")); // Update completed tasks description
 
                 if (status === 1) {
                     setInterval(updateSummary, 5000); // Update summary every 5 seconds
@@ -313,23 +317,6 @@ function setupCancelButton(sessionId) {
                 alert("Failed to cancel the process. Please try again.");
             }
         });
-    });
-}
-
-function updateSummary() {
-    $.ajax({
-        url: "/data_json",
-        method: "GET",
-        success: function (data) {
-            // Update counters
-            $("#summary-email-count").text(data.email_count);
-            $("#summary-ips-count").text(data.ips_count);
-            $("#summary-employees-count").text(data.employees_count);
-            $("#summary-domains-count").text(data.domains_count);
-
-            // Update SPF, DKIM, DMARC, Vulnerabilities
-            updateSummaryChips(data.dkimdmarc, data.ips);
-        }
     });
 }
 
@@ -541,4 +528,3 @@ function checkProgressAndRevealData() {
             setTimeout(checkProgressAndRevealData, 3000); // retry later
         });
 }
-
