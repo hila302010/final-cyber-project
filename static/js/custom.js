@@ -412,47 +412,6 @@ function toggleFullVuln(element, vulnKey) {
     }
 }
 
-// Add this updated function to your custom.js file
-// Replace the existing startPollingProgress function with this one:
-
-function startPollingProgress(sessionId) {
-    const pollProgress = setInterval(() => {
-        $.ajax({
-            url: "/progress", // Endpoint to get progress
-            method: "GET",
-            success: function (response) {
-                const progress = response.value; // Get the progress value (0-100)
-                const task = response.task; // Get the current task description
-                const status = response.status; // Get the status
-                $("#loading-bar").css("width", progress + "%"); // Update the bar width
-                $("#loading-percentage").text(progress + "%"); // Update the percentage text
-                $("#task-description").text(task); // Update the task description
-
-                if (status === 1) {
-                    setInterval(updateSummary, 5000); // Update summary every 5 seconds
-                }
-
-                // ✅ KEY FIX: When progress reaches 100% AND status is 0 (finished)
-                if (progress >= 100 && status === 0) {
-                    clearInterval(pollProgress); // Stop polling when progress reaches 100%
-                    
-                    // ✅ IMMEDIATELY fetch and update the completion time
-                    updateCompletionTime();
-                    
-                    // Keep the completed bar visible for 1 second before hiding it
-                    setTimeout(() => {
-                        hideLoadingBar();
-                        // Update summary one final time to ensure completion time is shown
-                        updateSummary();
-                    }, 1000); // Delay of 1 second
-                }
-            },
-            error: function (error) {
-                console.error("Error fetching progress:", error);
-            }
-        });
-    }, 1000); // Poll every 1000ms (1 second)
-}
 
 // ✅ NEW FUNCTION: Update completion time specifically
 function updateCompletionTime() {
@@ -480,6 +439,7 @@ function updateSummary() {
         method: "GET",
         success: function (data) {
             // Update counters
+            $("#starting-time").text(data.starting_time);
             $("#summary-email-count").text(data.email_count);
             $("#summary-ips-count").text(data.ips_count);
             $("#summary-employees-count").text(data.employees_count);
@@ -512,12 +472,12 @@ function checkProgressAndRevealData() {
 
                 // ✅ IMMEDIATELY fetch and update completion time when data is revealed
                 updateCompletionTime();
-                
+
                 // Also update the full summary
                 setTimeout(() => {
                     updateSummary();
                 }, 500); // Small delay to ensure completion time is set
-                
+
             } else {
                 // Poll again in 2 seconds
                 setTimeout(checkProgressAndRevealData, 2000);
