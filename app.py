@@ -146,15 +146,15 @@ def load_data():
 
     def fetch_ips_domains_dkim_thread():
         nonlocal merged_ips, domains, dkimdmarc
-        #time.sleep(10)  # Simulate the slowest operation
-        #merged_ips = load_ips_from_csv()
-        #time.sleep(10)  # Simulate the slowest operation
-        #domains = load_domains_from_csv()
-        #time.sleep(10)  # Simulate the slowest operation
-        #dkimdmarc = load_dkim_dmarc_from_csv()
-        merged_ips = fetch_ips(session_id, domain, country, company)
-        domains = fetch_domains(session_id, domain, merged_ips)
-        dkimdmarc = fetch_dkim_dmarc(session_id, domains)
+        time.sleep(10)  # Simulate the slowest operation
+        merged_ips = load_ips_from_csv()
+        time.sleep(10)  # Simulate the slowest operation
+        domains = load_domains_from_csv()
+        time.sleep(10)  # Simulate the slowest operation
+        dkimdmarc = load_dkim_dmarc_from_csv()
+        # merged_ips = fetch_ips(session_id, domain, country, company)
+        # domains = fetch_domains(session_id, domain, merged_ips)
+        # dkimdmarc = fetch_dkim_dmarc(session_id, domains)
         redis_client.set(f"{session_id}_ips", json.dumps(merged_ips))
         redis_client.set(f"{session_id}_domains", json.dumps(domains))
         redis_client.set(f"{session_id}_dkimdmarc", json.dumps(dkimdmarc))
