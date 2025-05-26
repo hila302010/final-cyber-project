@@ -1,4 +1,4 @@
-import Scripts.githubAndGoogleDorks.github_api as github
+import Scripts.githubAndGoogleDorks.testGithub as github
 import Scripts.githubAndGoogleDorks.googleDorksNoPagodo as google
 
 import subprocess
@@ -52,7 +52,7 @@ def getEmails(domain):
     #connect_to_nordvpn('de')
 
     # GitHub email search
-    github_results = github.search_github_emails(domain)
+    github_results = github.execute_github(domain)
     if isinstance(github_results, dict):
         emails.update((email, 'github') for email in github_results.keys())
     elif isinstance(github_results, (list, set)):
