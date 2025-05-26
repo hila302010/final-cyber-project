@@ -106,23 +106,34 @@ def load_data():
     session['country'] = country
     session['company'] = company
 
-
     progress["value"] = 0  # Reset progress
     progress["task"] = "Parsing input data..."  # Update task description
 
-
     emails = employees = merged_ips = domains = dkimdmarc = None
+    
+    # Thread completion tracking
+    completed_threads = {"count": 0}
+    thread_lock = threading.Lock()
+
+    def check_all_threads_complete():
+        """Check if all threads are complete and finalize the process"""
+        with thread_lock:
+            completed_threads["count"] += 1
+            if completed_threads["count"] == 3:  # All 3 threads completed
+                # Set progress to 100% and mark as finished
+                progress["value"] = 100
+                progress["task"] = "Data loading complete."
+                progress["status"] = 0  # Mark the process as finished
+                # Save completion time ONLY when ALL threads are done
+                redis_client.set(f"{session_id}_completion_time", datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
 
     def fetch_emails_thread():
         nonlocal emails
         # time.sleep(20)  # Simulate a slow operation
-        emails = load_emails_from_csv()  # Load emails from CSV for testing
-        # emails = fetch_emails(session_id, domain)
+        # emails = load_emails_from_csv()  # Load emails from CSV for testing
+        emails = fetch_emails(session_id, domain)
         redis_client.set(f"{session_id}_emails", json.dumps(emails))
-        if(progress["value"] >= 100):
-            # Finalize progress
-            progress["task"] = "Data loading complete."
-            progress["status"] = 0  # Mark the process as finished
+        check_all_threads_complete()  # Check if this is the last thread
 
     def fetch_employees_thread():
         nonlocal employees
@@ -130,10 +141,7 @@ def load_data():
         employees = load_employees_from_csv()  # Load employees from CSV for testing
         #employees = fetch_employees(session_id, domain)
         redis_client.set(f"{session_id}_employees", json.dumps(employees))
-        if(progress["value"] >= 100):
-            # Finalize progress
-            progress["task"] = "Data loading complete."
-            progress["status"] = 0  # Mark the process as finished
+        check_all_threads_complete()  # Check if this is the last thread
 
     def fetch_ips_domains_dkim_thread():
         nonlocal merged_ips, domains, dkimdmarc
@@ -149,27 +157,20 @@ def load_data():
         redis_client.set(f"{session_id}_ips", json.dumps(merged_ips))
         redis_client.set(f"{session_id}_domains", json.dumps(domains))
         redis_client.set(f"{session_id}_dkimdmarc", json.dumps(dkimdmarc))
-        if(progress["value"] >= 100):
-            # Finalize progress
-            progress["task"] = "Data loading complete."
-            progress["status"] = 0  # Mark the process as finished
+        check_all_threads_complete()  # Check if this is the last thread
 
     # Create threads
     t1 = threading.Thread(target=fetch_emails_thread)
     t2 = threading.Thread(target=fetch_employees_thread)
     t3 = threading.Thread(target=fetch_ips_domains_dkim_thread)
 
-
     # Start threads
     t1.start()
     t2.start()
     t3.start()
 
-
-
     # Return a success response
     return jsonify({"message": "Data loaded successfully"})
-
     
 
 # ---------------------------
@@ -216,7 +217,7 @@ def data():
         ips_count=ips_count,              # Pass IPs count
         employees_count=employees_count, # Pass employees count
         domains_count=domains_count,       # Pass domains count
-        current_time=current_time
+        current_time=current_time # Pass the current time   
     )
 
 def get_current_time():
@@ -231,13 +232,17 @@ def data_json():
     employees = json.loads(redis_client.get(f"{session_id}_employees") or "[]")
     domains = json.loads(redis_client.get(f"{session_id}_domains") or "[]")
     dkimdmarc = json.loads(redis_client.get(f"{session_id}_dkimdmarc") or "[]")
+    completion_time = redis_client.get(f"{session_id}_completion_time")
+    if completion_time:
+        completion_time = completion_time.decode("utf-8")
     return jsonify({
         "email_count": len(emails),
         "ips_count": len(ips),
         "employees_count": len(employees),
         "domains_count": len(domains),
         "dkimdmarc": dkimdmarc,
-        "ips": ips
+        "ips": ips,
+        "completion_time": completion_time  # ✅ Include here
     })
 
 
