@@ -49,17 +49,17 @@ def append_to_csv(data, file_name="whois_data_combined.csv"):
             with open(file_name, mode='r', newline='', encoding='utf-8') as file:
                 first_line = file.readline().strip()
                 # If the first line is not the header row, write headers
-                if first_line != "Domain,IP_Address,OrgName,Country,Mnt-By,Abuse_Mailbox":
+                if first_line != "Domain,IP_Address,OrgName,Country":
                     is_empty = not file.read().strip()  # Check if the file has any more content
                     if is_empty:
                         with open(file_name, mode='a', newline='', encoding='utf-8') as append_file:
                             writer = csv.writer(append_file)
-                            writer.writerow(["Domain", "IP_Address", "OrgName", "Country", "Mnt-By", "Abuse_Mailbox"])
+                            writer.writerow(["Domain", "IP_Address", "OrgName", "Country"])
         else:
             # If the file doesn't exist, create it and write headers
             with open(file_name, mode='w', newline='', encoding='utf-8') as file:
                 writer = csv.writer(file)
-                writer.writerow(["Domain", "IP_Address", "OrgName", "Country", "Mnt-By", "Abuse_Mailbox"])
+                writer.writerow(["Domain", "IP_Address", "OrgName", "Country"])
 
         # Now append the actual data
         with open(file_name, mode='a', newline='', encoding='utf-8') as file:
@@ -67,9 +67,7 @@ def append_to_csv(data, file_name="whois_data_combined.csv"):
             writer.writerow([data.get("Domain", ""),
                              data.get("IP Address", ""),
                              data.get("OrgName", ""),
-                             data.get("Country", ""),
-                             data.get("Mnt-By", ""),
-                             data.get("Abuse Mailbox", "")])
+                             data.get("Country", "")])
 
         print(f"WHOIS data appended to {file_name}")
     except Exception as e:
@@ -234,9 +232,7 @@ def extract_whois_fields(ip, whois_data):
     return {
         "IP": ip,
         "Country": whois_data.get("Country", "N/A"),
-        "Domain": whois_data.get("Domain", "N/A"),
-        "Mnt-By": whois_data.get("Mnt-By", "N/A"),
-        "Abuse Mailbox": whois_data.get("Abuse Mailbox", "N/A")
+        "Domain": whois_data.get("Domain", "N/A")
     }
 
 

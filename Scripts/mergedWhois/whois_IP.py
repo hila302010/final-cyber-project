@@ -57,9 +57,7 @@ def get_whois_data(ip, domain_name="N/A"):
         "Domain": domain_name,
         "IP Address": ip,
         "OrgName": "",
-        "Country": "",
-        "Mnt-By": "",
-        "Abuse Mailbox": ""
+        "Country": ""
     }
 
     for line in data_lines:
@@ -69,10 +67,6 @@ def get_whois_data(ip, domain_name="N/A"):
             extracted_data["OrgName"] = line.split(':', 1)[-1].strip()
         elif "country:" in line.lower():
             extracted_data["Country"] = line.split(':', 1)[-1].strip()
-        elif "mnt-by:" in line.lower():
-            extracted_data["Mnt-By"] = line.split(':', 1)[-1].strip()
-        elif "abuse-mailbox:" in line.lower():
-            extracted_data["Abuse Mailbox"] = line.split(':', 1)[-1].strip()
 
     return extracted_data
 
@@ -80,7 +74,7 @@ def get_whois_data(ip, domain_name="N/A"):
 
 def save_to_csv(data, filename="whois_data.csv"):
     # Define the fieldnames that match the keys in the data dictionary
-    fieldnames = ["Domain", "IP Address", "OrgName", "Country", "Mnt-By", "Abuse Mailbox"]
+    fieldnames = ["Domain", "IP Address", "OrgName", "Country"]
 
     try:
         # Open the CSV file in append mode so that we don't overwrite existing data
@@ -97,9 +91,7 @@ def save_to_csv(data, filename="whois_data.csv"):
                 "Domain": data["Domain"],
                 "IP Address": data["IP Address"],
                 "OrgName": data["OrgName"],
-                "Country": data["Country"],
-                "Mnt-By": data["Mnt-By"],
-                "Abuse Mailbox": data["Abuse Mailbox"]
+                "Country": data["Country"]
             })
 
         print(f"Data saved to {filename}")
