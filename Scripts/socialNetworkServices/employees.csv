@@ -1,13 +1,75 @@
 Name,Role,USER1,USER2,USER3
-Noga Horn,"Senior Analyst, Corporate FP&A at Checkmarx",noga.horn@checkmarx.com,nogahorn@checkmarx.com,nhorn@checkmarx.com
-Ariel Harush,Security Researcher,ariel.harush@checkmarx.com,arielharush@checkmarx.com,aharush@checkmarx.com
-Nitzan Mass-Ader,Software Engineer @ Checkmarx,nitzan.mass-ader@checkmarx.com,nitzanmass-ader@checkmarx.com,nmass-ader@checkmarx.com
-Karin George,Information Systems Admin at Checkmarx | B.Sc. Industrial Engineering & Management,karin.george@checkmarx.com,karingeorge@checkmarx.com,kgeorge@checkmarx.com
-Michal Dzimitrovsky,Senior Software Developer,michal.dzimitrovsky@checkmarx.com,michaldzimitrovsky@checkmarx.com,mdzimitrovsky@checkmarx.com
-Itay Paz,Full Stack Developer at Checkmarx,itay.paz@checkmarx.com,itaypaz@checkmarx.com,ipaz@checkmarx.com
-Yair Raiter,DevOps Engineer at Checkmarx,yair.raiter@checkmarx.com,yairraiter@checkmarx.com,yraiter@checkmarx.com
-Elad Rapoport,Cloud Architect at Checkmarx,elad.rapoport@checkmarx.com,eladrapoport@checkmarx.com,erapoport@checkmarx.com
-Tal Folkman,Security Research Team Lead at Checkmarx,tal.folkman@checkmarx.com,talfolkman@checkmarx.com,tfolkman@checkmarx.com
-Udi Vachterman,Global HRIS Professional Lead,udi.vachterman@checkmarx.com,udivachterman@checkmarx.com,uvachterman@checkmarx.com
-Tal Roth,Software Engineer,tal.roth@checkmarx.com,talroth@checkmarx.com,troth@checkmarx.com
-Tal Landa,Quality Manager at Checkmarx,tal.landa@checkmarx.com,tallanda@checkmarx.com,tlanda@checkmarx.com
+Tomer Zachor,4th year Electrical & Computer Engineering student at Ben-Gurion University of the Negev,tomer.zachor@bgu.ac.il,tomerzachor@bgu.ac.il,tzachor@bgu.ac.il
+Ori Salomon,Its going to be AWESOME,ori.salomon@bgu.ac.il,orisalomon@bgu.ac.il,osalomon@bgu.ac.il
+Hagay Kordonsky,--software engineering student at BGU (1 semester remaining),hagay.kordonsky@bgu.ac.il,hagaykordonsky@bgu.ac.il,hkordonsky@bgu.ac.il
+Guy Shani,Leading research in applied machine learning and AI,guy.shani@bgu.ac.il,guyshani@bgu.ac.il,gshani@bgu.ac.il
+Nave Markovich,Mechanical Engineering student at Ben-Gurion University,nave.markovich@bgu.ac.il,navemarkovich@bgu.ac.il,nmarkovich@bgu.ac.il
+Oren Presler,R&D at BGU,oren.presler@bgu.ac.il,orenpresler@bgu.ac.il,opresler@bgu.ac.il
+Biomedtech BGU,community for biomedical students at BGU University,biomedtech.bgu@bgu.ac.il,biomedtechbgu@bgu.ac.il,bbgu@bgu.ac.il
+Zvika Yankovich2,swe at bgu,zvika.yankovich2@bgu.ac.il,zvikayankovich2@bgu.ac.il,zyankovich2@bgu.ac.il
+אמיר חטיבה,Domain property at bgu,אמיר.חטיבה@bgu.ac.il,אמירחטיבה@bgu.ac.il,אחטיבה@bgu.ac.il
+shay tau,"E-O engineer, M.Sc at BGU",shay.tau@bgu.ac.il,shaytau@bgu.ac.il,stau@bgu.ac.il
+Igor Porthnov,Teacher at BGU,igor.porthnov@bgu.ac.il,igorporthnov@bgu.ac.il,iporthnov@bgu.ac.il
+Reuven Shavit,PhD at BGU,reuven.shavit@bgu.ac.il,reuvenshavit@bgu.ac.il,rshavit@bgu.ac.il
+Ely Kozminsky,Researcher at BGU,ely.kozminsky@bgu.ac.il,elykozminsky@bgu.ac.il,ekozminsky@bgu.ac.il
+Rafi Alush,bgu beer shevaa at bgu,rafi.alush@bgu.ac.il,rafialush@bgu.ac.il,ralush@bgu.ac.il
+Vladimir Lapidus,at Ben Gurion University,vladimir.lapidus@bgu.ac.il,vladimirlapidus@bgu.ac.il,vlapidus@bgu.ac.il
+Yossi Yona,lecturer at BGU,yossi.yona@bgu.ac.il,yossiyona@bgu.ac.il,yyona@bgu.ac.il
+max frost,Student at BGU,max.frost@bgu.ac.il,maxfrost@bgu.ac.il,mfrost@bgu.ac.il
+Natan Uriely,Prof. at Ben Gurion University,natan.uriely@bgu.ac.il,natanuriely@bgu.ac.il,nuriely@bgu.ac.il
+Arik Goldfeld,Network Engineer at BGU,arik.goldfeld@bgu.ac.il,arikgoldfeld@bgu.ac.il,agoldfeld@bgu.ac.il
+Oleg Dukhno,Director of Bariatric and Minimally invasive Surgery Center at Soroka Medical Center,oleg.dukhno@bgu.ac.il,olegdukhno@bgu.ac.il,odukhno@bgu.ac.il
+semion chernin,"HPC, Unix, Linux System administration at Ben Gurion University of Negev",semion.chernin@bgu.ac.il,semionchernin@bgu.ac.il,schernin@bgu.ac.il
+Yehuda Ben-Shimol,"Consulting History: Ionoterra, Giraffic, ESL, MOBILICOM, Itran, Tadiran Communications, QVergence, TerraX, Gilat",yehuda.ben-shimol@bgu.ac.il,yehudaben-shimol@bgu.ac.il,yben-shimol@bgu.ac.il
+Michal Miterani,Projects manager at Mimun Yashir,michal.miterani@bgu.ac.il,michalmiterani@bgu.ac.il,mmiterani@bgu.ac.il
+Dana ifergan,Economist at BGU International,dana.ifergan@bgu.ac.il,danaifergan@bgu.ac.il,difergan@bgu.ac.il
+Daniel Berend,Prof at BGU,daniel.berend@bgu.ac.il,danielberend@bgu.ac.il,dberend@bgu.ac.il
+Nadav Kama,IT Technician at BGU International,nadav.kama@bgu.ac.il,nadavkama@bgu.ac.il,nkama@bgu.ac.il
+Sharon Alterman,DBA at BGU,sharon.alterman@bgu.ac.il,sharonalterman@bgu.ac.il,salterman@bgu.ac.il
+Prof. Nidaa Khoury,Poet and lecturer at BGU,prof..khoury@bgu.ac.il,prof.khoury@bgu.ac.il,pkhoury@bgu.ac.il
+Ella Akkerman,Scientific software consultant at BGU,ella.akkerman@bgu.ac.il,ellaakkerman@bgu.ac.il,eakkerman@bgu.ac.il
+Tomer Artzi,student at BGU,tomer.artzi@bgu.ac.il,tomerartzi@bgu.ac.il,tartzi@bgu.ac.il
+Michael Meijler,"Full Professor, Chemistry, Ben-Gurion University",michael.meijler@bgu.ac.il,michaelmeijler@bgu.ac.il,mmeijler@bgu.ac.il
+לירון דימונה קדוש,BGU researcher at BGU,לירון.קדוש@bgu.ac.il,לירוןקדוש@bgu.ac.il,לקדוש@bgu.ac.il
+Ariel motola,paramedic at BGU,ariel.motola@bgu.ac.il,arielmotola@bgu.ac.il,amotola@bgu.ac.il
+chen dubi,Dr at BGU,chen.dubi@bgu.ac.il,chendubi@bgu.ac.il,cdubi@bgu.ac.il
+Itzhak Tal,Central Library I.T manager at BGU,itzhak.tal@bgu.ac.il,itzhaktal@bgu.ac.il,ital@bgu.ac.il
+Shira Kauffman,Donors & VIP visitors unit Coordinator at BGU,shira.kauffman@bgu.ac.il,shirakauffman@bgu.ac.il,skauffman@bgu.ac.il
+Guy Michael Tammam,Electrical and Computer Engineering Graduate at BGU,guy.tammam@bgu.ac.il,guytammam@bgu.ac.il,gtammam@bgu.ac.il
+Yuval Zur,Social Work college student,yuval.zur@bgu.ac.il,yuvalzur@bgu.ac.il,yzur@bgu.ac.il
+Rotem Haik,Sustainable buildings consultant and researcher at BGU International,rotem.haik@bgu.ac.il,rotemhaik@bgu.ac.il,rhaik@bgu.ac.il
+Sagi Sameah,Student at Ben-Gurion University of the Negev,sagi.sameah@bgu.ac.il,sagisameah@bgu.ac.il,ssameah@bgu.ac.il
+Maxim Bershadsky,math lecturer at BGU,maxim.bershadsky@bgu.ac.il,maximbershadsky@bgu.ac.il,mbershadsky@bgu.ac.il
+Tal Weiss,Physics PhD at BGU,tal.weiss@bgu.ac.il,talweiss@bgu.ac.il,tweiss@bgu.ac.il
+Boris Krasovitov,Senior Researcher at BGU,boris.krasovitov@bgu.ac.il,boriskrasovitov@bgu.ac.il,bkrasovitov@bgu.ac.il
+Yoash Avrahami,Research Coordinator GEM Israel at BGU,yoash.avrahami@bgu.ac.il,yoashavrahami@bgu.ac.il,yavrahami@bgu.ac.il
+Rotem Vardi,Lecturer assistant at BGU,rotem.vardi@bgu.ac.il,rotemvardi@bgu.ac.il,rvardi@bgu.ac.il
+Yuval Shahar,Head of Medical Informatics Research Center at BGU,yuval.shahar@bgu.ac.il,yuvalshahar@bgu.ac.il,yshahar@bgu.ac.il
+Tania Danov,--,tania.danov@bgu.ac.il,taniadanov@bgu.ac.il,tdanov@bgu.ac.il
+Yefim Lechtman,engineer at BGU,yefim.lechtman@bgu.ac.il,yefimlechtman@bgu.ac.il,ylechtman@bgu.ac.il
+Sylvie Benoualid Massoth,Engineer in Hydrology,sylvie.massoth@bgu.ac.il,sylviemassoth@bgu.ac.il,smassoth@bgu.ac.il
+Paul Erez,Mr. at BGU,paul.erez@bgu.ac.il,paulerez@bgu.ac.il,perez@bgu.ac.il
+Noa Godin,Professional Sales Representative at Pfizer Pharmaceuticals,noa.godin@bgu.ac.il,noagodin@bgu.ac.il,ngodin@bgu.ac.il
+Natalya Panov,"system administrator at Institutes for desert researches, BGU",natalya.panov@bgu.ac.il,natalyapanov@bgu.ac.il,npanov@bgu.ac.il
+Dalia Tyomkin,Lecturer at The Open University of Israel,dalia.tyomkin@bgu.ac.il,daliatyomkin@bgu.ac.il,dtyomkin@bgu.ac.il
+Ido Efrat,Prof at BGU,ido.efrat@bgu.ac.il,idoefrat@bgu.ac.il,iefrat@bgu.ac.il
+max kleiner,chemical engineer at EST ecological systems and treatments,max.kleiner@bgu.ac.il,maxkleiner@bgu.ac.il,mkleiner@bgu.ac.il
+Eric Maimon,Dr at bgu university,eric.maimon@bgu.ac.il,ericmaimon@bgu.ac.il,emaimon@bgu.ac.il
+Eugene Frumker,Head of Attosecond Science and Nanophotonics Group @BGU & Fellow of the IQSE@TAMU,eugene.frumker@bgu.ac.il,eugenefrumker@bgu.ac.il,efrumker@bgu.ac.il
+Itay Sharon,Research & Consulting at BGU,itay.sharon@bgu.ac.il,itaysharon@bgu.ac.il,isharon@bgu.ac.il
+Alex Kirilovsky,Controller engineer at BGU,alex.kirilovsky@bgu.ac.il,alexkirilovsky@bgu.ac.il,akirilovsky@bgu.ac.il
+Yoel Huri,Account Manager at BGU International,yoel.huri@bgu.ac.il,yoelhuri@bgu.ac.il,yhuri@bgu.ac.il
+Boris Shklyar,פיסיקאי at BGU,boris.shklyar@bgu.ac.il,borisshklyar@bgu.ac.il,bshklyar@bgu.ac.il
+Carmit Cohen,Researcher,carmit.cohen@bgu.ac.il,carmitcohen@bgu.ac.il,ccohen@bgu.ac.il
+Uri Shwed,Asst. Prof. at BGU,uri.shwed@bgu.ac.il,urishwed@bgu.ac.il,ushwed@bgu.ac.il
+Rita Ginzburg,computer supporting at BGU University,rita.ginzburg@bgu.ac.il,ritaginzburg@bgu.ac.il,rginzburg@bgu.ac.il
+Frederic Libersat,Professor at Ben Gurion University and The Abraham and Bessie Zacks Chair in Neurobiology,frederic.libersat@bgu.ac.il,fredericlibersat@bgu.ac.il,flibersat@bgu.ac.il
+michael averbukh,Physics at BGU,michael.averbukh@bgu.ac.il,michaelaverbukh@bgu.ac.il,maverbukh@bgu.ac.il
+Amos Drory,Academic and Academic Administration,amos.drory@bgu.ac.il,amosdrory@bgu.ac.il,adrory@bgu.ac.il
+Berry Pinshow,Professor Emeritus at BGU,berry.pinshow@bgu.ac.il,berrypinshow@bgu.ac.il,bpinshow@bgu.ac.il
+Benjamin Arazi,Professor at BGU,benjamin.arazi@bgu.ac.il,benjaminarazi@bgu.ac.il,barazi@bgu.ac.il
+Hadas Ner-Gaon,researcher at BGU,hadas.ner-gaon@bgu.ac.il,hadasner-gaon@bgu.ac.il,hner-gaon@bgu.ac.il
+vladimir lyandres,professor at bgu,vladimir.lyandres@bgu.ac.il,vladimirlyandres@bgu.ac.il,vlyandres@bgu.ac.il
+Ifat Ben-Simon,Leave of Absence,ifat.ben-simon@bgu.ac.il,ifatben-simon@bgu.ac.il,iben-simon@bgu.ac.il
+Amit Savaya,"Mariculture development officer, Ministry of Agriculture and Rural development, Israel",amit.savaya@bgu.ac.il,amitsavaya@bgu.ac.il,asavaya@bgu.ac.il
+Rachel Lichtenstein,Senior Lecturer at BGU,rachel.lichtenstein@bgu.ac.il,rachellichtenstein@bgu.ac.il,rlichtenstein@bgu.ac.il

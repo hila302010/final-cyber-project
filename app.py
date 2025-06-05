@@ -26,7 +26,7 @@ import Scripts.networksDBtoShodan.shodanAPI as shodanAPI
 import Scripts.networksDBtoShodan.networksDBtoShodan as nDBtoS
 import Scripts.githubAndGoogleDorks.googleDorks as google
 import Scripts.githubAndGoogleDorks.github_api as github
-import Scripts.socialNetworkServices.linkedin as linkedin
+import Scripts.socialNetworkServices.claudetry as linkedin
 import Scripts.mergedWhois.crtshToIPSToWhois as whois
 import Scripts.githubAndGoogleDorks.main as googleAndGithub
 
@@ -158,8 +158,8 @@ def load_data():
     def fetch_ips_domains_dkim_thread():
         nonlocal merged_ips, domains, dkimdmarc
         time.sleep(10)  # Simulate the slowest operation
-        merged_ips = load_ips_from_csv()
-        # merged_ips = fetch_ips(session_id, domain, country, company)
+        # merged_ips = load_ips_from_csv()
+        merged_ips = fetch_ips(session_id, domain, country, company)
         redis_client.set(f"{session_id}_ips", json.dumps(merged_ips))
 
         time.sleep(20)  # Simulate the slowest operation
