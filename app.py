@@ -133,7 +133,7 @@ def load_data():
             if completed_threads["count"] == 3:  # All 3 threads completed
                 # Set progress to 100% and mark as finished
                 progress["value"] = 100
-                progress["task"] = "Data loading complete."
+                progress["task"] = "Data loading complete"
                 progress["status"] = 0  # Mark the process as finished
                 progress["completed"] = []
                 # Save completion time ONLY when ALL threads are done
@@ -520,7 +520,7 @@ def fetch_employees(session_id, domain):
     employees = linkedin.execute_linkedin(domain)
     progress["value"] += 10  # Increment progress
     progress["task"] = "Done Fetching Employees..."
-    progress["completed"].append("Employees loaded successfully.")
+    progress["completed"].append("Employees loaded successfully")
  
     return employees
 
@@ -869,7 +869,7 @@ def is_canceled(session_id):
 # open browser function
 # ------------------------------
 def open_browser():
-    webbrowser.open_new("http://127.0.0.1:5000")
+    webbrowser.open_new("http://144.126.224.97:5000")
 
 #careers.checkmarx.com
 # ------------------------------
@@ -881,7 +881,7 @@ if __name__ == "__main__":
     if os.environ.get("WERKZEUG_RUN_MAIN") == "true":
         threading.Timer(1.0, open_browser).start()
 
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=5000)
 
 
 
