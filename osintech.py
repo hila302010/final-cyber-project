@@ -26,7 +26,7 @@ import Scripts.networksDBtoShodan.shodanAPI as shodanAPI
 import Scripts.networksDBtoShodan.networksDBtoShodan as nDBtoS
 import Scripts.githubAndGoogleDorks.googleDorks as google
 import Scripts.githubAndGoogleDorks.github_api as github
-import Scripts.socialNetworkServices.linkedin as linkedin
+import Scripts.socialNetworkServices.claudetry as linkedin
 import Scripts.mergedWhois.crtshToIPSToWhois as whois
 import Scripts.githubAndGoogleDorks.main as googleAndGithub
 
@@ -83,7 +83,7 @@ def cancel_process():
     session_id = request.json.get('session_id')
     if session_id:
         cancellation_flags[session_id] = True
-        return {"message": "Process canceled successfully."}, 200
+        return {"message": "Process canceled successfully"}, 200
     return {"error": "Session ID is required."}, 400
 
 
@@ -133,7 +133,7 @@ def load_data():
             if completed_threads["count"] == 3:  # All 3 threads completed
                 # Set progress to 100% and mark as finished
                 progress["value"] = 100
-                progress["task"] = "Data loading complete."
+                progress["task"] = "Data loading complete"
                 progress["status"] = 0  # Mark the process as finished
                 progress["completed"] = []
                 # Save completion time ONLY when ALL threads are done
@@ -372,7 +372,7 @@ def export_ips():
         writer = csv.writer(output)  # Create a CSV writer object
         
         # Write the header row
-        writer.writerow(["IP", "Port", "Vulnerabilities", "Country", "City", "Domains", "Hostnames", "Mnt-By", "Abuse Mailbox"])
+        writer.writerow(["IP", "Port", "Vulnerabilities", "Country", "City", "Domains", "Hostnames"])
         yield output.getvalue()  # Send the current content of the output object to the client
         output.seek(0)  # Move the cursor to the beginning of the StringIO object
         output.truncate(0)  # Clear the StringIO object for the next write
@@ -400,9 +400,7 @@ def export_ips():
                 ip_data.get("country_name", ""),
                 ip_data.get("city", ""),
                 ", ".join(domains),  # Join domains list into a string
-                ", ".join(hostnames),  # Join hostnames list into a string
-                ip_data.get("mnt_by", ""),
-                ip_data.get("abuse_mailbox", "")
+                ", ".join(hostnames)  # Join hostnames list into a string
             ])
             yield output.getvalue()
             output.seek(0)
@@ -509,7 +507,7 @@ def fetch_emails(session_id, domain):
     emails = googleAndGithub.getEmails(domain)
     progress["value"] += 10  # Step 2: Fetching emails
     progress["task"] = "Done Fetching emails..."
-    progress["completed"].append("Emails loaded successfully.")  # Update completed task
+    progress["completed"].append("Emails loaded successfully")  # Update completed task
     return emails
 
 def fetch_employees(session_id, domain):
@@ -522,7 +520,7 @@ def fetch_employees(session_id, domain):
     employees = linkedin.execute_linkedin(domain)
     progress["value"] += 10  # Increment progress
     progress["task"] = "Done Fetching Employees..."
-    progress["completed"].append("Employees loaded successfully.")
+    progress["completed"].append("Employees loaded successfully")
  
     return employees
 
@@ -541,7 +539,7 @@ def fetch_ips(session_id, domain, country, company):
     merged_ips = dataLoadingIPs(shodan_ips, whois_ips)
     progress["value"] += 10  # Step 4: Fetching IPs
     progress["task"] = "Done Fetching IPs..."
-    progress["completed"].append("IPs loaded successfully.")  # Update completed task
+    progress["completed"].append("IPs loaded successfully")  # Update completed task
     return merged_ips
 
 def fetch_domains(session_id, domain, merged_ips):
@@ -561,7 +559,7 @@ def fetch_domains(session_id, domain, merged_ips):
     domains = domains[:max_domains]
     progress["value"] += 10  # Step 5: Fetching Domains
     progress["task"] = "Done Fetching domains..."
-    progress["completed"].append("Domains loaded successfully.")  # Update completed task
+    progress["completed"].append("Domains loaded successfully")  # Update completed task
     return domains
 
 def fetch_dkim_dmarc(session_id, domains):
@@ -575,7 +573,7 @@ def fetch_dkim_dmarc(session_id, domains):
     dkimdmarc = loadingDkimDmarc(domains)
     progress["value"] += 10  # Step 6: Fetching DKIM DMARC RECORDS
     progress["task"] = "Done Fetching DKIM/DMARC records..."
-    progress["completed"].append("DKIM/DMARC records loaded successfully.")  # Update completed task
+    progress["completed"].append("DKIM/DMARC records loaded successfully")  # Update completed task
     return dkimdmarc
 
 
@@ -656,7 +654,7 @@ def load_employees_from_csv(file_path="employees.csv"):
                     row.get("USER3", "")     # Match CSV column name
                 ))
         progress["value"] += 10  # Step 2: Fetching emails
-        progress["completed"].append("Employees loaded successfully.")
+        progress["completed"].append("Employees loaded successfully")
 
         print(f"Loaded {len(employees)} employees from {file_path}.")
     except FileNotFoundError:
@@ -684,7 +682,7 @@ def load_emails_from_csv(file_path="emails.csv"):
                 if source and email:
                     emails.append({'source': source, 'email': email})
         progress["value"] += 10  # Step 2: Fetching emails
-        progress["completed"].append("Emails loaded successfully.")  # Update completed task
+        progress["completed"].append("Emails loaded successfully")  # Update completed task
 
         print(f"Loaded {len(emails)} emails from {file_path}.")
     except FileNotFoundError:
@@ -712,10 +710,10 @@ def load_ips_from_csv(file_path="ips.csv"):
                     "country_name": row.get("Country", ""),
                     "city": row.get("City", ""),
                     "domains": row.get("Domains", ""),
-                    "hostnames": row.get("Hostnames", ""),
+                    "hostnames": row.get("Hostnames", "")
                 })
         progress["value"] += 10  # Step 2: Fetching emails
-        progress["completed"].append("IPs loaded successfully.")  # Update completed task
+        progress["completed"].append("IPs loaded successfully")  # Update completed task
 
         print(f"Loaded {len(ips)} IPs from {file_path}.")
     except FileNotFoundError:
@@ -740,7 +738,7 @@ def load_domains_from_csv(file_path="domains.csv"):
                 domains.append(row[0])  # Assuming domains are in the first column
         print(f"Loaded {len(domains)} domains from {file_path}.")
         progress["value"] += 10  # Step 2: Fetching emails
-        progress["completed"].append("Domains loaded successfully.")  # Update completed task
+        progress["completed"].append("Domains loaded successfully")  # Update completed task
 
     except FileNotFoundError:
         print(f"File {file_path} not found.")
@@ -770,7 +768,7 @@ def load_dkim_dmarc_from_csv(file_path="dkimdmarc.csv"):
                     "DKIM Status": row.get("DKIM Status", "")
                 })
         progress["value"] += 10  # Step 2: Fetching emails
-        progress["completed"].append("DKIM/DMARC records loaded successfully.")  # Update completed task
+        progress["completed"].append("DKIM/DMARC records loaded successfully")  # Update completed task
 
         print(f"Loaded {len(dkimdmarc)} DKIM/DMARC records from {file_path}.")
     except FileNotFoundError:
@@ -797,9 +795,7 @@ def dataLoadingIPs(shodan_ips, whois_ips):
                                 "country_name": whois_data.get("Country", ""),
                                 "city": "",  # Placeholder for Shodan data
                                 "domains": whois_data.get("Domain", ""),  # Placeholder for Shodan data
-                                "hostnames": "",  # Placeholder for Shodan data
-                                "mnt_by": whois_data.get("Mnt-By", ""),
-                                "abuse_mailbox": whois_data.get("Abuse Mailbox", "")
+                                "hostnames": ""  # Placeholder for Shodan data
                             }
     else:
         # Add Shodan IPs to the dictionary
@@ -812,30 +808,21 @@ def dataLoadingIPs(shodan_ips, whois_ips):
                 "country_name": ip_data.get("country_name", ""),
                 "city": ip_data.get("city", ""),
                 "domains": ip_data.get("domains",""),
-                "hostnames": ip_data.get("hostnames", ""),
-                "mnt_by": "",  # Placeholder for WHOIS data
-                "abuse_mailbox": ""  # Placeholder for WHOIS data
+                "hostnames": ip_data.get("hostnames", "")
             }
             # Add WHOIS IPs to the dictionary (update or add new entries)
             for whois_data in whois_ips:
                 ip = whois_data["IP"]
-                if ip in merged_ips_dict:
-                    # Update existing entry with WHOIS data
-                    merged_ips_dict[ip]["mnt_by"] = whois_data.get("Mnt-By", "")
-                    merged_ips_dict[ip]["abuse_mailbox"] = whois_data.get("Abuse Mailbox", "")
-                else:
-                    # Add new entry if IP is not already in the dictionary
-                    merged_ips_dict[ip] = {
-                        "ip_str": ip,
-                        "port": "",  # Placeholder for Shodan data
-                        "vulns": "",  # Placeholder for Shodan data
-                        "country_name": whois_data.get("Country", ""),
-                        "city": "",  # Placeholder for Shodan data
-                        "domains": whois_data.get("Domain", ""),  # Placeholder for Shodan data
-                        "hostnames": "",  # Placeholder for Shodan data
-                        "mnt_by": whois_data.get("Mnt-By", ""),
-                        "abuse_mailbox": whois_data.get("Abuse Mailbox", "")
-                    }
+                # Add new entry if IP is not already in the dictionary
+                merged_ips_dict[ip] = {
+                    "ip_str": ip,
+                    "port": "",  # Placeholder for Shodan data
+                    "vulns": "",  # Placeholder for Shodan data
+                    "country_name": whois_data.get("Country", ""),
+                    "city": "",  # Placeholder for Shodan data
+                    "domains": whois_data.get("Domain", ""),  # Placeholder for Shodan data
+                    "hostnames": ""  # Placeholder for Shodan data
+                }
 
     # Convert the dictionary back to a list
     return list(merged_ips_dict.values())
@@ -882,7 +869,7 @@ def is_canceled(session_id):
 # open browser function
 # ------------------------------
 def open_browser():
-    webbrowser.open_new("http://127.0.0.1:5000")
+    webbrowser.open_new("http://144.126.224.97:5000")
 
 #careers.checkmarx.com
 # ------------------------------
@@ -895,6 +882,7 @@ if __name__ == "__main__":
         threading.Timer(1.0, open_browser).start()
 
     app.run(debug=True, host='0.0.0.0', port=5000)
+
 
 
 
