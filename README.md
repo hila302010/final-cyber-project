@@ -62,7 +62,7 @@ Whether you're a cybersecurity professional, researcher, or analyst, OsinTech em
 
 1. **Start the Flask server:**
     ```bash
-    python osintech.py
+    python3 osintech.py
     ```
     The app will open in your browser at [http://localhost:5000](http://localhost:5000).
 
