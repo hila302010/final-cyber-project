@@ -339,7 +339,7 @@ def export_employees():
     return Response(
         generate(),
         mimetype='text/csv',
-        headers={"Content-Disposition": "attachment; filename=employees.csv"}
+        headers={"Content-Disposition": "attachment; filename=csv_files/employees.csv"}
     )
 
 
@@ -410,7 +410,7 @@ def export_ips():
     return Response(
         generate(),
         mimetype='text/csv',
-        headers={"Content-Disposition": "attachment; filename=ips.csv"}
+        headers={"Content-Disposition": "attachment; filename=csv_files/ips.csv"}
     )
 
 # ------------------------------
@@ -444,7 +444,7 @@ def export_domains():
     return Response(
         generate(),
         mimetype='text/csv',
-        headers={"Content-Disposition": "attachment; filename=domains.csv"}
+        headers={"Content-Disposition": "attachment; filename=csv_files/domains.csv"}
     )
 
 # ------------------------------
@@ -487,7 +487,7 @@ def export_dkimdmarc():
     return Response(
         generate(),
         mimetype='text/csv',
-        headers={"Content-Disposition": "attachment; filename=dkimdmarc.csv"}
+        headers={"Content-Disposition": "attachment; filename=csv_files/dkimdmarc.csv"}
     )
 
 
@@ -634,7 +634,7 @@ def loadingDkimDmarc(domains):
 # ------------------------------
 
 
-def load_employees_from_csv(file_path="employees.csv"):
+def load_employees_from_csv(file_path="csv_files/employees.csv"):
     """
     Load employees temporarily from a CSV file.
     """
@@ -665,7 +665,7 @@ def load_employees_from_csv(file_path="employees.csv"):
 
 
 
-def load_emails_from_csv(file_path="emails.csv"):
+def load_emails_from_csv(file_path="csv_files/emails.csv"):
     """
     Load emails with source from a CSV file.
     Returns a list of dictionaries with 'source' and 'email' keys.
@@ -692,7 +692,7 @@ def load_emails_from_csv(file_path="emails.csv"):
     return emails
 
 
-def load_ips_from_csv(file_path="ips.csv"):
+def load_ips_from_csv(file_path="csv_files/ips.csv"):
     """
     Load IPs temporarily from a CSV file.
     """
@@ -723,7 +723,7 @@ def load_ips_from_csv(file_path="ips.csv"):
     return ips
 
 
-def load_domains_from_csv(file_path="domains.csv"):
+def load_domains_from_csv(file_path="csv_files/domains.csv"):
     """
     Load domains temporarily from a CSV file.
     """
@@ -747,7 +747,7 @@ def load_domains_from_csv(file_path="domains.csv"):
     return domains
 
 
-def load_dkim_dmarc_from_csv(file_path="dkimdmarc.csv"):
+def load_dkim_dmarc_from_csv(file_path="csv_files/dkimdmarc.csv"):
     """
     Load DKIM/DMARC records from a CSV file.
     """
