@@ -149,25 +149,25 @@ def load_data():
 
     def fetch_employees_thread():
         nonlocal employees
-        # time.sleep(30)  # Simulate a slower operation
+        time.sleep(30)  # Simulate a slower operation
         employees = load_employees_from_csv()  # Load employees from CSV for testing
-        #employees = fetch_employees(session_id, domain)
+        # employees = fetch_employees(session_id, domain)
         redis_client.set(f"{session_id}_employees", json.dumps(employees))
         check_all_threads_complete()  # Check if this is the last thread
 
     def fetch_ips_domains_dkim_thread():
         nonlocal merged_ips, domains, dkimdmarc
         time.sleep(10)  # Simulate the slowest operation
-        # merged_ips = load_ips_from_csv()
-        merged_ips = fetch_ips(session_id, domain, country, company)
+        merged_ips = load_ips_from_csv()
+        # merged_ips = fetch_ips(session_id, domain, country, company)
         redis_client.set(f"{session_id}_ips", json.dumps(merged_ips))
 
-        time.sleep(20)  # Simulate the slowest operation
+        time.sleep(10)  # Simulate the slowest operation
         domains = load_domains_from_csv()
         # domains = fetch_domains(session_id, domain, merged_ips)
         redis_client.set(f"{session_id}_domains", json.dumps(domains))
 
-        time.sleep(20)  # Simulate the slowest operation
+        time.sleep(10)  # Simulate the slowest operation
         dkimdmarc = load_dkim_dmarc_from_csv()
         # dkimdmarc = fetch_dkim_dmarc(session_id, domains)
         redis_client.set(f"{session_id}_dkimdmarc", json.dumps(dkimdmarc))
@@ -649,9 +649,9 @@ def load_employees_from_csv(file_path="employees.csv"):
                 employees.append((
                     row.get("Name", ""),
                     row.get("Role", ""),
-                    row.get("Username1", ""),
-                    row.get("Username2", ""),
-                    row.get("Username3", "")
+                    row.get("USER1", ""),    # Match CSV column name
+                    row.get("USER2", ""),    # Match CSV column name
+                    row.get("USER3", "")     # Match CSV column name
                 ))
         progress["value"] += 10  # Step 2: Fetching emails
         progress["completed"].append("Employees loaded successfully")
