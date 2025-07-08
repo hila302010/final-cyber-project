@@ -651,9 +651,9 @@ def load_employees_from_csv(file_path="employees.csv"):
                 employees.append((
                     row.get("Name", ""),
                     row.get("Role", ""),
-                    row.get("Username1", ""),
-                    row.get("Username2", ""),
-                    row.get("Username3", "")
+                    row.get("USER1", ""),    # Match CSV column name
+                    row.get("USER2", ""),    # Match CSV column name
+                    row.get("USER3", "")     # Match CSV column name
                 ))
         progress["value"] += 10  # Step 2: Fetching emails
         progress["completed"].append("Employees loaded successfully.")
@@ -713,8 +713,6 @@ def load_ips_from_csv(file_path="ips.csv"):
                     "city": row.get("City", ""),
                     "domains": row.get("Domains", ""),
                     "hostnames": row.get("Hostnames", ""),
-                    "mnt_by": row.get("Mnt-By", ""),
-                    "abuse_mailbox": row.get("Abuse Mailbox", "")
                 })
         progress["value"] += 10  # Step 2: Fetching emails
         progress["completed"].append("IPs loaded successfully.")  # Update completed task

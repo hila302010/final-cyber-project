@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>IPs Table</title>
     <!-- For the logo png -->
-    <link rel="shortcut icon" size="32x32" type="image/icon" href="static/images/logo.png"/>
+    <link rel="shortcut icon" size="32x32" type="image/icon" href="static/images/logo.png" />
     <link rel="stylesheet" href="static/css/styleips.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
+
 <body>
     <img src="static/images/osintech.png" alt="Brand Logo" style="max-width: 120px; height: auto;" />
     <div class="card-container">
@@ -29,8 +31,6 @@
                     <th>City</th>
                     <th>Domains</th>
                     <th>Hostnames</th>
-                    <th>Mnt-By</th>
-                    <th>Abuse Mailbox</th>
                 </tr>
             </thead>
             <tbody>
@@ -40,7 +40,8 @@
                     <td>{{ ip_data.port }}</td>
                     <td>
                         {% if ip_data.vulns %}
-                        <span class="short-text vulnerabilities">{{ ip_data.vulns[:30] }}{% if ip_data.vulns|length > 30 %}...{% endif %}</span>
+                        <span class="short-text vulnerabilities">{{ ip_data.vulns[:30] }}{% if ip_data.vulns|length > 30
+                            %}...{% endif %}</span>
                         {% if ip_data.vulns|length > 30 %}
                         <span class="full-text vulnerabilities" style="display: none;">{{ ip_data.vulns }}</span>
                         <button class="toggle-btn" onclick="toggleText(this)">More</button>
@@ -53,8 +54,6 @@
                     <td>{{ ip_data.city }}</td>
                     <td>{{ ip_data.domains }}</td>
                     <td>{{ ip_data.hostnames }}</td>
-                    <td>{{ ip_data.mnt_by }}</td>
-                    <td>{{ ip_data.abuse_mailbox }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -79,12 +78,13 @@
         }
     </script>
     <div id="scroll-Top">
-				<div class="return-to-top">
-					<i class="fa fa-angle-up " id="scroll-top" ></i>
-				</div>
-				
-	</div><!--/.scroll-Top-->
-     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <div class="return-to-top">
+            <i class="fa fa-angle-up " id="scroll-top"></i>
+        </div>
+
+    </div><!--/.scroll-Top-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="static/js/custom.js"></script>
 </body>
+
 </html>
