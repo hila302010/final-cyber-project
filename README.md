@@ -1,10 +1,23 @@
-# <p align="left"><img src="static/images/osintech.png" width="200"/></p> 
+# <p align="center"><img src="static/images/osintech.png" width="200"/></p> 
 
-**OsinTech** is an open-source intelligence (OSINT) tool designed to help cybersecurity professionals, ethical hackers, and investigators gather, analyze, and visualize publicly available information about individuals, companies, and domains.
+# <p align="center"><img src="static/images/welcomeReadme.png"/></p> 
+## Welcome to OsinTech
+<p class="large-text" style="color: #43c0ce;">Welcome to OsinTech!</p> 
 
-## 🌐 About the Project
+<p class="small-text">
+At OsinTech, we harness the power of Open Source Intelligence (OSINT) to collect and analyze publicly available data about a target domain name, company name, and country.
+</p> 
 
-OsinTech automates the process of collecting data from multiple public sources to provide deep insights with minimal effort. It's built to be modular, efficient, and adaptable to various investigation needs—whether you're researching a company's digital footprint or assessing potential threats.
+<p class="small-text">
+Our custom-built Python scripts integrate with leading tools like Shodan, WHOIS, and NetworksDB to extract technical infrastructure data. We also leverage LinkedIn to gather human intelligence, and use GitHub and Google Dorks to uncover code repositories and exposed components linked to the organization.
+</p> 
+
+<p class="small-text">
+All collected data is compiled into a detailed report, providing insights into your digital footprint, exposures, vulnerabilities, and recommendations.
+Whether you're a cybersecurity professional, researcher, or analyst, OsinTech empowers you with actionable intelligence to assess and reduce online risks to your organization.
+</p> 
+
+# <p align="center"><img src="static/images/workflow.png"/></p> 
 
 ## ⚙️ Features
 
