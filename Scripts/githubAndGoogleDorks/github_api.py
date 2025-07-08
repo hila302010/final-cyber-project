@@ -58,9 +58,6 @@ user_agents = deque([
 
 
 
-# Your GitHub token
-# GITHUB_TOKENS = ["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",
-#                  "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"]
 GITHUB_TOKENS = ["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"]
 
 GITHUB_API_URL = "https://api.github.com"
@@ -128,9 +125,6 @@ def get_default_branch(repo_full_name):
 
 
 
-
-
-
 def fetch_code_content(url):
     """Fetch raw file content from GitHub."""
     try:
@@ -185,8 +179,6 @@ def get_emails_from_commits(repo_full_name, domain, email_urls, lock):
 def process_file(item, domain, email_urls, checked_urls, lock, seen_repos):
     """Extract emails if the file contains relevant keywords."""
     repo, path = item["repository"]["full_name"], item["path"]
-    # code_url = f"https://github.com/{repo}/blob/main/{path}"
-    # raw_url = f"https://raw.githubusercontent.com/{repo}/main/{path}"
     default_branch = get_default_branch(repo)
     code_url = f"https://github.com/{repo}/blob/{default_branch}/{path}"
     raw_url = f"https://raw.githubusercontent.com/{repo}/{default_branch}/{path}"
@@ -330,6 +322,3 @@ if __name__ == "__main__":
         write_to_file(f"{domain_name}_emails.txt", found_emails)
     else:
         print("No emails found.")
-
-# unitest
-# pytest

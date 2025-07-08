@@ -76,58 +76,6 @@ def process_shodan_for_cidr(country, cidr_addresses):
             print(f"No Shodan results for {address}")
     return all_data
 
-
-
-"""def save_to_csv(data, adress, filename):
-    if not data:
-        print("No data to save.")
-        return []
-
-    # Make 'address' the first field in the fieldnames list
-    fieldnames = ['address', 'port', 'vulns', 'org', 'country_name', 'city', 'ip_str', 'domains', 'hostnames']
-
-    with open(filename, 'w', newline='', encoding='utf-8-sig') as file:
-        writer = csv.DictWriter(file, fieldnames=fieldnames)
-        writer.writeheader()
-
-        data_written = False
-        result_data = []  # To collect the processed data
-
-        for row in data:
-            # Ensure it's a valid Shodan result (skip unwanted data)
-            if not isinstance(row, dict) or 'ip_str' not in row or 'port' not in row:
-                continue
-
-            # Clean "vulns" field (avoid CVE lists)
-            if 'vulns' in row and isinstance(row['vulns'], dict):
-                row['vulns'] = ', '.join(row['vulns'].keys())  # Keep only CVE IDs, remove details
-
-            # Convert lists to comma-separated strings for CSV readability
-            for field in ['domains', 'hostnames']:
-                if isinstance(row.get(field), list):
-                    row[field] = ', '.join(row[field])
-
-            # Extract country_name and city from the location dictionary
-            row['country_name'] = row.get('location', {}).get('country_name', '')
-            row['city'] = row.get('location', {}).get('city', '')
-
-            # Extract only required fields and add the address as the first field
-            filtered_row = {'address': adress}  # Add address as the first field
-            filtered_row.update({field: row.get(field, '') for field in fieldnames if field != 'address'})
-
-            # Avoiding blank rows
-            if any(filtered_row.values()):
-                writer.writerow(filtered_row)
-                result_data.append(filtered_row)  # Add the row to the result data
-                data_written = True
-
-        if not data_written:
-            writer.writerow({field: '' for field in fieldnames})
-
-    print(f"Results saved to {filename}")
-    return result_data  # Return the processed data
-"""
-
 def getData(data):
     if not data:
         print("No data to save.")

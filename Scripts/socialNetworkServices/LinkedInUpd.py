@@ -12,13 +12,14 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
+from webdriver_manager.chrome import ChromeDriverManager
 import logging
 
 # Configure logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(message)s')
 
 def setup_chrome_driver():
-    """Setup Chrome driver with proper configuration to avoid conflicts"""
+    """Setup Chrome driver with automatic driver management"""
     chrome_options = Options()
     
     # Create a unique temporary directory for user data
@@ -46,6 +47,12 @@ def setup_chrome_driver():
     chrome_options.add_argument("--disable-dev-shm-usage")
     chrome_options.add_argument("--disable-blink-features=AutomationControlled")
     
+    # Add more compatibility options
+    chrome_options.add_argument("--disable-web-security")
+    chrome_options.add_argument("--allow-running-insecure-content")
+    chrome_options.add_argument("--disable-features=VizDisplayCompositor")
+    chrome_options.add_argument("--remote-debugging-port=9222")
+    
     # Add user agent to appear more like a regular browser
     chrome_options.add_argument("--user-agent=Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36")
     
@@ -54,13 +61,33 @@ def setup_chrome_driver():
     chrome_options.add_experimental_option('useAutomationExtension', False)
     
     try:
-        driver = webdriver.Chrome(options=chrome_options)
-        driver.execute_script("Object.defineProperty(navigator, 'webdriver', {get: () => undefined})")
+        # Use ChromeDriverManager to automatically download and manage the correct driver
+        service = Service(ChromeDriverManager().install())
+        driver = webdriver.Chrome(service=service, options=chrome_options)
+        
+        # Try to execute a simple script to test if JavaScript execution works
+        try:
+            driver.execute_script("return 1;")
+            logging.info("JavaScript execution test passed")
+        except Exception as js_error:
+            logging.warning(f"JavaScript execution test failed: {js_error}")
+            # Continue anyway, some operations might still work
+        
         driver.maximize_window()
         return driver
+        
     except Exception as e:
-        logging.error(f"Failed to create Chrome driver: {e}")
-        raise
+        logging.error(f"Failed to create Chrome driver with webdriver-manager: {e}")
+        
+        # Fallback: try without webdriver-manager
+        try:
+            logging.info("Trying fallback method without webdriver-manager...")
+            driver = webdriver.Chrome(options=chrome_options)
+            driver.maximize_window()
+            return driver
+        except Exception as fallback_error:
+            logging.error(f"Fallback method also failed: {fallback_error}")
+            raise Exception(f"Both methods failed. Original error: {e}, Fallback error: {fallback_error}")
 
 def login_to_linkedin(driver, username, password):
     """Login to LinkedIn with improved error handling"""
@@ -152,14 +179,23 @@ def navigate_to_people_tab(driver, company_name):
             raise Exception("Could not find People tab")
         
         # Scroll to the element and click
-        driver.execute_script("arguments[0].scrollIntoView(true);", people_tab)
+        try:
+            driver.execute_script("arguments[0].scrollIntoView(true);", people_tab)
+        except:
+            # If JavaScript fails, try alternative scrolling
+            ActionChains(driver).move_to_element(people_tab).perform()
+        
         time.sleep(2)
         
         # Try clicking with JavaScript if regular click fails
         try:
             people_tab.click()
         except:
-            driver.execute_script("arguments[0].click();", people_tab)
+            try:
+                driver.execute_script("arguments[0].click();", people_tab)
+            except:
+                # If JavaScript fails, try ActionChains
+                ActionChains(driver).click(people_tab).perform()
         
         # Wait for the people page to load
         WebDriverWait(driver, 15).until(
@@ -176,17 +212,41 @@ def navigate_to_people_tab(driver, company_name):
 def scroll_down(driver):
     """Improved scrolling function with better load detection"""
     logging.info("Starting to scroll and load all employees...")
-    last_height = driver.execute_script("return document.body.scrollHeight")
+    
+    # Try JavaScript-based scrolling first
+    try:
+        last_height = driver.execute_script("return document.body.scrollHeight")
+        javascript_works = True
+    except:
+        logging.warning("JavaScript execution failed, using alternative scrolling method")
+        javascript_works = False
+        last_height = 0
+    
     scroll_count = 0
     max_scrolls = 50  # Prevent infinite scrolling
     
     while scroll_count < max_scrolls:
-        # Scroll down
-        driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        # Scroll down using different methods
+        if javascript_works:
+            try:
+                driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+            except:
+                # Fallback to key press
+                driver.find_element(By.TAG_NAME, "body").send_keys(Keys.END)
+        else:
+            driver.find_element(By.TAG_NAME, "body").send_keys(Keys.END)
+        
         time.sleep(3)  # Wait for content to load
         
         # Check if new content loaded
-        new_height = driver.execute_script("return document.body.scrollHeight")
+        if javascript_works:
+            try:
+                new_height = driver.execute_script("return document.body.scrollHeight")
+            except:
+                javascript_works = False
+                new_height = last_height + 1  # Assume content loaded
+        else:
+            new_height = last_height + 1  # Assume content loaded
         
         if new_height == last_height:
             # Try to find and click "Show more" button
@@ -208,9 +268,21 @@ def scroll_down(driver):
                         continue
                 
                 if load_more_button:
-                    driver.execute_script("arguments[0].scrollIntoView(true);", load_more_button)
+                    try:
+                        driver.execute_script("arguments[0].scrollIntoView(true);", load_more_button)
+                    except:
+                        ActionChains(driver).move_to_element(load_more_button).perform()
+                    
                     time.sleep(2)
-                    load_more_button.click()
+                    
+                    try:
+                        load_more_button.click()
+                    except:
+                        try:
+                            driver.execute_script("arguments[0].click();", load_more_button)
+                        except:
+                            ActionChains(driver).click(load_more_button).perform()
+                    
                     logging.info("Clicked 'Show more results' button.")
                     time.sleep(5)
                 else:
