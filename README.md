@@ -1,4 +1,4 @@
-# ![OsinTech](Static/images/logo.png) 
+# <p align="left"><img src="static/images/osintech.png" width="200"/></p> 
 
 **OsinTech** is an open-source intelligence (OSINT) tool designed to help cybersecurity professionals, ethical hackers, and investigators gather, analyze, and visualize publicly available information about individuals, companies, and domains.
 
