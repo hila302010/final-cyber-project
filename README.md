@@ -22,14 +22,13 @@ Whether you're a cybersecurity professional, researcher, or analyst, OsinTech em
 
 ## Features ⚙️
 
-- Domain & Subdomain scanning
-- Company technology stack detection
-- Leaked credentials search (via GitHub Dorks)
-- WHOIS and DNS record analysis
-- TLS/SSL certificate inspection
-- Shodan integration for port and service scanning
-- LinkedIn scraping for employee metadata
-- Visual reports and exportable results
+- Automated OSINT collection from multiple sources (GitHub, Google, Shodan, LinkedIn, etc.)
+- Google Dorking & GitHub Dorking for exposed data
+- Social Network scraping (LinkedIn)
+- API integration with services like: Shodan, GitHub API, WHOIS & DNS record lookup
+-  TLS/SSL certificate inspection to check for certificate issues and expiration
+-  Flask-based web interface for easy, browser-based interaction
+  
 
 ##
 ## Prerequisites 📦
