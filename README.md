@@ -1,8 +1,5 @@
-# <p align="center"><img src="static/images/osintech.png" width="200"/></p> 
-
 # <p align="center"><img src="static/images/welcomeReadme.png"/></p> 
-## Welcome to OsinTech
-<p class="large-text" style="color: #43c0ce;">Welcome to OsinTech!</p> 
+## Welcome to OsinTech!
 
 <p class="small-text">
 At OsinTech, we harness the power of Open Source Intelligence (OSINT) to collect and analyze publicly available data about a target domain name, company name, and country.
@@ -17,9 +14,13 @@ All collected data is compiled into a detailed report, providing insights into y
 Whether you're a cybersecurity professional, researcher, or analyst, OsinTech empowers you with actionable intelligence to assess and reduce online risks to your organization.
 </p> 
 
-# <p align="center"><img src="static/images/workflowupd.png"/></p> 
+##
+## Project's Workflow 🔄
+<p align="center">
+  <img src="static/images/projectworkflow.png" width="600"/>
+</p>
 
-## ⚙️ Features
+## Features ⚙️
 
 - Domain & Subdomain scanning
 - Company technology stack detection
@@ -30,15 +31,15 @@ Whether you're a cybersecurity professional, researcher, or analyst, OsinTech em
 - LinkedIn scraping for employee metadata
 - Visual reports and exportable results
 
-## Getting Started:
-
-### Prerequisites
+##
+## Prerequisites 📦
 
 - Python 3.10+
 - Git
 - Vscode
-
-## Installation
+  
+##
+## Installation 💻
 
 1. **Clone the repository:**
     ```bash
@@ -57,8 +58,8 @@ Whether you're a cybersecurity professional, researcher, or analyst, OsinTech em
         sudo apt install redis-server
         sudo systemctl start redis
         ```
-
-## Usage
+##
+## Usage 🚀
 
 1. **Start the Flask server:**
     ```bash
@@ -71,22 +72,17 @@ Whether you're a cybersecurity professional, researcher, or analyst, OsinTech em
 3. **View and export results from the dashboard.**
 
 
-##⚠️ Disclaimer
+##
+## Disclaimer ⚠️
 This tool is intended only for educational and ethical purposes.
 Unauthorized use of OsinTech against targets without explicit consent may be illegal and is strictly discouraged.
 
-OsinTech/
-├── csv_files/ # Generated CSV reports
-├── Scripts/
-│ ├── githubAndGoogleDorks/ # GitHub scraping & Google Dorking scripts
-│ ├── socialNetworkServices/ # LinkedIn and social scraping scripts
-│ └── ... # Other modules
-├── static/ # Static files: CSS, fonts, images, JS
-│ ├── css/
-│ ├── fonts/
-  └── ... 
-├── templates/ # HTML page templates
-├── osintech.py # Main application script (Flask server)
-├── requirements.txt # Python dependencies
-└── README.md # Project documentation
+##
+## Project Structure 📁 
+<p align="left">
+  <img src="static/images/treestruct.png" width="600"/>
+</p>
+
+
+
 
