@@ -169,8 +169,6 @@ def write_to_file(results, output_file):
 
 
 
-
-
 def main():
     print("Choose an option:")
     print("1) Search for emails by domain")
