@@ -1,55 +1,87 @@
-# <p align="left"><img src="static/images/osintech.png" width="200"/></p> 
+# <p align="center"><img src="static/images/welcomeReadme.png"/></p> 
+## Welcome to OsinTech!
 
-**OsinTech** is an open-source intelligence (OSINT) tool designed to help cybersecurity professionals, ethical hackers, and investigators gather, analyze, and visualize publicly available information about individuals, companies, and domains.
+<p class="small-text">
+At OsinTech, we harness the power of Open Source Intelligence (OSINT) to collect and analyze publicly available data about a target domain name, company name, and country.
+</p> 
 
-## 🌐 About the Project
+<p class="small-text">
+Our custom-built Python scripts integrate with leading tools like Shodan, WHOIS, and NetworksDB to extract technical infrastructure data. We also leverage LinkedIn to gather human intelligence, and use GitHub and Google Dorks to uncover code repositories and exposed components linked to the organization.
+</p> 
 
-OsinTech automates the process of collecting data from multiple public sources to provide deep insights with minimal effort. It's built to be modular, efficient, and adaptable to various investigation needs—whether you're researching a company's digital footprint or assessing potential threats.
+<p class="small-text">
+All collected data is compiled into a detailed report, providing insights into your digital footprint, exposures, vulnerabilities, and recommendations.
+Whether you're a cybersecurity professional, researcher, or analyst, OsinTech empowers you with actionable intelligence to assess and reduce online risks to your organization.
+</p> 
 
-## ⚙️ Features
+##
+## Project's Workflow 🔄
+<p align="center">
+  <img src="static/images/projectworkflow.png" width="600"/>
+</p>
 
-- Domain & Subdomain scanning
-- Company technology stack detection
-- Leaked credentials search (via GitHub Dorks)
-- WHOIS and DNS record analysis
-- TLS/SSL certificate inspection
-- Shodan integration for port and service scanning
-- LinkedIn scraping for employee metadata
-- Visual reports and exportable results
+## Features ⚙️
 
-## 🚀 Getting Started
+- Automated OSINT collection from multiple sources (GitHub, Google, Shodan, LinkedIn, etc.)
+- Google Dorking & GitHub Dorking for exposed data
+- Social Network scraping (LinkedIn)
+- API integration with services like: Shodan, GitHub API, WHOIS & DNS record lookup
+-  TLS/SSL certificate inspection to check for certificate issues and expiration
+-  Flask-based web interface for easy, browser-based interaction
+  
 
-### Prerequisites
+##
+## Prerequisites 📦
 
 - Python 3.10+
 - Git
-- Virtualenv (recommended)
+- Vscode
+  
+##
+## Installation 💻
 
-### Installation
+1. **Clone the repository:**
+    ```bash
+    git clone https://github.com/hila302010/final-cyber-project
+    ```
 
-```bash
-git clone https://github.com/your-username/OsinTech.git
-cd OsinTech
-python3 -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-pip install -r requirements.txt
+2. **Install dependencies:**
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+3. **Install and run Redis:**
+    - On Ubuntu:
+        ```bash
+        sudo apt update
+        sudo apt install redis-server
+        sudo systemctl start redis
+        ```
+##
+## Usage 🚀
+
+1. **Start the Flask server:**
+    ```bash
+    python3 osintech.py
+    ```
+    The app will open in your browser at [http://localhost:5000](http://localhost:5000).
+
+2. **Use the web interface to enter your target domain, company, and country.**
+
+3. **View and export results from the dashboard.**
 
 
-##⚠️ Disclaimer
+##
+## Disclaimer ⚠️
 This tool is intended only for educational and ethical purposes.
 Unauthorized use of OsinTech against targets without explicit consent may be illegal and is strictly discouraged.
 
-OsinTech/
-├── core/              # Core scanning and OSINT modules
-│   ├── domain_scan.py
-│   ├── github_dorks.py
-│   └── ...  
-├── utils/             # Helper functions and configuration
-│   ├── config.py
-│   └── logger.py
-├── reports/           # Generated reports (JSON, HTML, CSV, etc.)
-├── data/              # Cached or temporary data
-├── osintech.py        # Main application script
-├── requirements.txt   # Python dependencies
-└── README.md          # Project documentation
+##
+## Project Structure 📁 
+<p align="left">
+  <img src="static/images/treestruct.png" width="600"/>
+</p>
+
+
+
 

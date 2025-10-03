@@ -1,8 +1,0 @@
-DNS Records for bgu.ac.il
-========================================
-SPF: "v=spf1 ip4:132.72.0.0/16 ip4:132.73.0.0/16 include:spf.protection.outlook.com include:one.zoho.com include:spf1.formassembly.com include:_spf.salesforce.com include:spf-eu.exlibrisgroup.com ~all"
-DMARC: v=DMARC1; p=none; adkim=r; aspf=r
-DMARC Policy: WARNING: DMARC policy is set to p=none (Monitoring Only)
-DKIM Selector: default
-DKIM: v=DKIM1;k=rsa;p=MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEA znn4H5To/dFphz7EN/HcY8a3AR94P5suuiFCNdhX+ZAhyJA6uDgQX8Fu8hrFGY txWygHrIEK7+61sDoJbyhJCdhqcNQDQMTXk0SbyTm2z3VMi9d6V46/b4UDdtx XFPuOKh9Qsq0bXdYkLW323iKeC23ijX31p+wS04wusmkZDCBNjHX+2Rbn2xY Kz4DjGkhgqHqHGZvOP5AIdvgdStMHUAAY0DAXtYvI4Bci5R/B/k49XWcYCGdI k/vmjF5ssRMKkGZ4BqUFfE+LiwugyhuR8Nqq0QDtiPoi9f7HGhmIh6g4pC3aSe aMobtCQOjcIECOLalzz2t26WsdzrQ9TQxUeQIDAQAB
-DKIM Status: DKIM public key found

@@ -1,0 +1,12 @@
+Flask
+requests
+aiohttp
+dnspython
+beautifulsoup4
+googlesearch-python
+shodan
+pycountry
+selenium
+webdriver-manager
+python-whois
+

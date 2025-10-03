@@ -26,7 +26,7 @@ import Scripts.networksDBtoShodan.shodanAPI as shodanAPI
 import Scripts.networksDBtoShodan.networksDBtoShodan as nDBtoS
 import Scripts.githubAndGoogleDorks.googleDorks as google
 import Scripts.githubAndGoogleDorks.github_api as github
-import Scripts.socialNetworkServices.claudetry as linkedin
+import Scripts.socialNetworkServices.LinkedInUpd as linkedin
 import Scripts.mergedWhois.crtshToIPSToWhois as whois
 import Scripts.githubAndGoogleDorks.main as googleAndGithub
 
@@ -141,34 +141,22 @@ def load_data():
 
     def fetch_emails_thread():
         nonlocal emails
-        # time.sleep(20)  # Simulate a slow operation
-        # emails = load_emails_from_csv()  # Load emails from CSV for testing
         emails = fetch_emails(session_id, domain)
         redis_client.set(f"{session_id}_emails", json.dumps(emails))
         check_all_threads_complete()  # Check if this is the last thread
 
     def fetch_employees_thread():
         nonlocal employees
-        # time.sleep(30)  # Simulate a slower operation
-        # employees = load_employees_from_csv()  # Load employees from CSV for testing
         employees = fetch_employees(session_id, domain)
         redis_client.set(f"{session_id}_employees", json.dumps(employees))
         check_all_threads_complete()  # Check if this is the last thread
 
     def fetch_ips_domains_dkim_thread():
         nonlocal merged_ips, domains, dkimdmarc
-        # time.sleep(10)  # Simulate the slowest operation
-        # merged_ips = load_ips_from_csv()
         merged_ips = fetch_ips(session_id, domain, country, company)
         redis_client.set(f"{session_id}_ips", json.dumps(merged_ips))
-
-        # time.sleep(10)  # Simulate the slowest operation
-        # domains = load_domains_from_csv()
         domains = fetch_domains(session_id, domain, merged_ips)
         redis_client.set(f"{session_id}_domains", json.dumps(domains))
-
-        # time.sleep(10)  # Simulate the slowest operation
-        # dkimdmarc = load_dkim_dmarc_from_csv()
         dkimdmarc = fetch_dkim_dmarc(session_id, domains)
         redis_client.set(f"{session_id}_dkimdmarc", json.dumps(dkimdmarc))
         check_all_threads_complete()  # Check if this is the last thread
@@ -261,8 +249,8 @@ def data_json():
         "domains_count": len(domains),
         "dkimdmarc": dkimdmarc,
         "ips": ips,
-        "completion_time": completion_time,  # ✅ Include here
-        "starting_time": starting_time  # ✅ Include here
+        "completion_time": completion_time, 
+        "starting_time": starting_time 
         
     })
 
@@ -339,7 +327,7 @@ def export_employees():
     return Response(
         generate(),
         mimetype='text/csv',
-        headers={"Content-Disposition": "attachment; filename=employees.csv"}
+        headers={"Content-Disposition": "attachment; filename=csv_files/employees.csv"}
     )
 
 
@@ -410,7 +398,7 @@ def export_ips():
     return Response(
         generate(),
         mimetype='text/csv',
-        headers={"Content-Disposition": "attachment; filename=ips.csv"}
+        headers={"Content-Disposition": "attachment; filename=csv_files/ips.csv"}
     )
 
 # ------------------------------
@@ -419,7 +407,6 @@ def export_ips():
 @app.route('/domains')
 def domains():
     # Render the table for domains
-    #domains = session.get('domains', [])
     session_id = session.get('session_id')
     domains = json.loads(redis_client.get(f"{session_id}_domains") or "[]")
     domains_count = len(domains)  # Count the number of domains
@@ -444,7 +431,7 @@ def export_domains():
     return Response(
         generate(),
         mimetype='text/csv',
-        headers={"Content-Disposition": "attachment; filename=domains.csv"}
+        headers={"Content-Disposition": "attachment; filename=csv_files/domains.csv"}
     )
 
 # ------------------------------
@@ -453,7 +440,6 @@ def export_domains():
 @app.route('/dkimdmarc')
 def dkimdmarc():
     # Retrieve DKIM/DMARC data from the session
-    #dkimdmarc = session.get('dkimdmarc', [])
     session_id = session.get('session_id')
     dkimdmarc = json.loads(redis_client.get(f"{session_id}_dkimdmarc") or "[]")
     dkimdmarc_count = len(dkimdmarc)  # Count the number of DKIM/DMARC records
@@ -487,7 +473,7 @@ def export_dkimdmarc():
     return Response(
         generate(),
         mimetype='text/csv',
-        headers={"Content-Disposition": "attachment; filename=dkimdmarc.csv"}
+        headers={"Content-Disposition": "attachment; filename=csv_files/dkimdmarc.csv"}
     )
 
 
@@ -521,7 +507,6 @@ def fetch_employees(session_id, domain):
     progress["value"] += 10  # Increment progress
     progress["task"] = "Done Fetching Employees..."
     progress["completed"].append("Employees loaded successfully")
- 
     return employees
 
 
@@ -634,7 +619,7 @@ def loadingDkimDmarc(domains):
 # ------------------------------
 
 
-def load_employees_from_csv(file_path="employees.csv"):
+def load_employees_from_csv(file_path="csv_files/employees.csv"):
     """
     Load employees temporarily from a CSV file.
     """
@@ -649,9 +634,9 @@ def load_employees_from_csv(file_path="employees.csv"):
                 employees.append((
                     row.get("Name", ""),
                     row.get("Role", ""),
-                    row.get("Username1", ""),
-                    row.get("Username2", ""),
-                    row.get("Username3", "")
+                    row.get("USER1", ""),  
+                    row.get("USER2", ""),  
+                    row.get("USER3", "")   
                 ))
         progress["value"] += 10  # Step 2: Fetching emails
         progress["completed"].append("Employees loaded successfully")
@@ -665,7 +650,7 @@ def load_employees_from_csv(file_path="employees.csv"):
 
 
 
-def load_emails_from_csv(file_path="emails.csv"):
+def load_emails_from_csv(file_path="csv_files/emails.csv"):
     """
     Load emails with source from a CSV file.
     Returns a list of dictionaries with 'source' and 'email' keys.
@@ -692,7 +677,7 @@ def load_emails_from_csv(file_path="emails.csv"):
     return emails
 
 
-def load_ips_from_csv(file_path="ips.csv"):
+def load_ips_from_csv(file_path="csv_files/ips.csv"):
     """
     Load IPs temporarily from a CSV file.
     """
@@ -723,7 +708,7 @@ def load_ips_from_csv(file_path="ips.csv"):
     return ips
 
 
-def load_domains_from_csv(file_path="domains.csv"):
+def load_domains_from_csv(file_path="csv_files/domains.csv"):
     """
     Load domains temporarily from a CSV file.
     """
@@ -747,7 +732,7 @@ def load_domains_from_csv(file_path="domains.csv"):
     return domains
 
 
-def load_dkim_dmarc_from_csv(file_path="dkimdmarc.csv"):
+def load_dkim_dmarc_from_csv(file_path="csv_files/dkimdmarc.csv"):
     """
     Load DKIM/DMARC records from a CSV file.
     """
